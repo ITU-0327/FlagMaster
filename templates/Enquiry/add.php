@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Enquiry $enquiry
+ * @var \Cake\Collection\CollectionInterface|string[] $users
+ */
+?>
+<div class="row">
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Actions') ?></h4>
+            <?= $this->Html->link(__('List Enquiry'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+        </div>
+    </aside>
+    <div class="column column-80">
+        <div class="enquiry form content">
+            <?= $this->Form->create($enquiry) ?>
+            <fieldset>
+                <legend><?= __('Add Enquiry') ?></legend>
+                <?php
+                    echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
+                    echo $this->Form->control('SUBJECT');
+                    echo $this->Form->control('message');
+                    echo $this->Form->control('STATUS');
+                    echo $this->Form->control('created_at');
+                    echo $this->Form->control('updated_at');
+                ?>
+            </fieldset>
+            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+</div>

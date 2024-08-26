@@ -1,0 +1,51 @@
+<?php
+declare(strict_types=1);
+
+namespace App\Model\Entity;
+
+use Cake\ORM\Entity;
+
+/**
+ * User Entity
+ *
+ * @property int $id
+ * @property string|null $username
+ * @property string $email
+ * @property string|null $PASSWORD
+ * @property string|null $role
+ * @property string|null $oauth_provider
+ * @property string|null $oauth_id
+ * @property \Cake\I18n\DateTime|null $created_at
+ * @property \Cake\I18n\DateTime|null $updated_at
+ *
+ * @property \App\Model\Entity\Enquiry[] $enquiry
+ * @property \App\Model\Entity\Order[] $order
+ * @property \App\Model\Entity\Profile[] $profile
+ * @property \App\Model\Entity\Review[] $review
+ */
+class User extends Entity
+{
+    /**
+     * Fields that can be mass assigned using newEntity() or patchEntity().
+     *
+     * Note that when '*' is set to true, this allows all unspecified fields to
+     * be mass assigned. For security purposes, it is advised to set '*' to false
+     * (or remove it), and explicitly make individual fields accessible as needed.
+     *
+     * @var array<string, bool>
+     */
+    protected array $_accessible = [
+        'username' => true,
+        'email' => true,
+        'PASSWORD' => true,
+        'role' => true,
+        'oauth_provider' => true,
+        'oauth_id' => true,
+        'created_at' => true,
+        'updated_at' => true,
+        'enquiry' => true,
+        'order' => true,
+        'profile' => true,
+        'review' => true,
+    ];
+}
