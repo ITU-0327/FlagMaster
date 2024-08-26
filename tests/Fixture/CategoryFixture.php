@@ -26,10 +26,10 @@ class CategoryFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'NAME' => 'Lorem ipsum dolor sit amet',
+                'name' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created_at' => 1724681889,
-                'updated_at' => 1724681889,
+                'created_at' => 1724685261,
+                'updated_at' => 1724685261,
             ],
         ];
         parent::init();

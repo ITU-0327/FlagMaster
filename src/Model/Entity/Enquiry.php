@@ -10,9 +10,9 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int|null $user_id
- * @property string $SUBJECT
+ * @property string $subject
  * @property string $message
- * @property string|null $STATUS
+ * @property string|null $status
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
@@ -31,9 +31,9 @@ class Enquiry extends Entity
      */
     protected array $_accessible = [
         'user_id' => true,
-        'SUBJECT' => true,
+        'subject' => true,
         'message' => true,
-        'STATUS' => true,
+        'status' => true,
         'created_at' => true,
         'updated_at' => true,
         'user' => true,

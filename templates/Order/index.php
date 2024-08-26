@@ -15,7 +15,7 @@
                     <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('order_date') ?></th>
                     <th><?= $this->Paginator->sort('total_amount') ?></th>
-                    <th><?= $this->Paginator->sort('STATUS') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('created_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -28,7 +28,7 @@
                     <td><?= $order->hasValue('user') ? $this->Html->link($order->user->email, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
                     <td><?= h($order->order_date) ?></td>
                     <td><?= $this->Number->format($order->total_amount) ?></td>
-                    <td><?= h($order->STATUS) ?></td>
+                    <td><?= h($order->status) ?></td>
                     <td><?= h($order->created_at) ?></td>
                     <td><?= h($order->updated_at) ?></td>
                     <td class="actions">

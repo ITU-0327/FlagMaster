@@ -31,8 +31,8 @@ class ProfileFixture extends TestFixture
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
                 'phone' => 'Lorem ipsum dolor ',
-                'created_at' => 1724681885,
-                'updated_at' => 1724681885,
+                'created_at' => 1724685248,
+                'updated_at' => 1724685248,
             ],
         ];
         parent::init();

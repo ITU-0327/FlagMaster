@@ -61,10 +61,10 @@ class EnquiryTable extends Table
             ->allowEmptyString('user_id');
 
         $validator
-            ->scalar('SUBJECT')
-            ->maxLength('SUBJECT', 255)
-            ->requirePresence('SUBJECT', 'create')
-            ->notEmptyString('SUBJECT');
+            ->scalar('subject')
+            ->maxLength('subject', 255)
+            ->requirePresence('subject', 'create')
+            ->notEmptyString('subject');
 
         $validator
             ->scalar('message')
@@ -72,8 +72,8 @@ class EnquiryTable extends Table
             ->notEmptyString('message');
 
         $validator
-            ->scalar('STATUS')
-            ->allowEmptyString('STATUS');
+            ->scalar('status')
+            ->allowEmptyString('status');
 
         $validator
             ->dateTime('created_at')

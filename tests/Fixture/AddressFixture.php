@@ -31,8 +31,8 @@ class AddressFixture extends TestFixture
                 'state' => 'Lorem ipsum dolor sit amet',
                 'postal_code' => 'Lorem ipsum dolor ',
                 'country' => 'Lorem ipsum dolor sit amet',
-                'created_at' => 1724681878,
-                'updated_at' => 1724681878,
+                'created_at' => 1724685228,
+                'updated_at' => 1724685228,
             ],
         ];
         parent::init();

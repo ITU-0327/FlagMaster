@@ -73,8 +73,8 @@ class ReviewTable extends Table
             ->allowEmptyString('rating');
 
         $validator
-            ->scalar('COMMENT')
-            ->allowEmptyString('COMMENT');
+            ->scalar('comment')
+            ->allowEmptyString('comment');
 
         $validator
             ->dateTime('created_at')

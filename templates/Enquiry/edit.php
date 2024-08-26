@@ -24,9 +24,9 @@
                 <legend><?= __('Edit Enquiry') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
-                    echo $this->Form->control('SUBJECT');
+                    echo $this->Form->control('subject');
                     echo $this->Form->control('message');
-                    echo $this->Form->control('STATUS');
+                    echo $this->Form->control('status');
                     echo $this->Form->control('created_at');
                     echo $this->Form->control('updated_at');
                 ?>

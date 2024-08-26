@@ -17,7 +17,7 @@
                     <th><?= $this->Paginator->sort('amount') ?></th>
                     <th><?= $this->Paginator->sort('payment_method') ?></th>
                     <th><?= $this->Paginator->sort('stripe_payment_id') ?></th>
-                    <th><?= $this->Paginator->sort('STATUS') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('created_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -32,7 +32,7 @@
                     <td><?= $this->Number->format($payment->amount) ?></td>
                     <td><?= h($payment->payment_method) ?></td>
                     <td><?= h($payment->stripe_payment_id) ?></td>
-                    <td><?= h($payment->STATUS) ?></td>
+                    <td><?= h($payment->status) ?></td>
                     <td><?= h($payment->created_at) ?></td>
                     <td><?= h($payment->updated_at) ?></td>
                     <td class="actions">

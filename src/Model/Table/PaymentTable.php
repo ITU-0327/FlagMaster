@@ -80,8 +80,8 @@ class PaymentTable extends Table
             ->allowEmptyString('stripe_payment_id');
 
         $validator
-            ->scalar('STATUS')
-            ->allowEmptyString('STATUS');
+            ->scalar('status')
+            ->allowEmptyString('status');
 
         $validator
             ->dateTime('created_at')

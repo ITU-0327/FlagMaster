@@ -82,8 +82,8 @@ class OrderTable extends Table
             ->notEmptyString('total_amount');
 
         $validator
-            ->scalar('STATUS')
-            ->allowEmptyString('STATUS');
+            ->scalar('status')
+            ->allowEmptyString('status');
 
         $validator
             ->dateTime('created_at')

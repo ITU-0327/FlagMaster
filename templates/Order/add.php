@@ -21,7 +21,7 @@
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
                     echo $this->Form->control('order_date');
                     echo $this->Form->control('total_amount');
-                    echo $this->Form->control('STATUS');
+                    echo $this->Form->control('status');
                     echo $this->Form->control('created_at');
                     echo $this->Form->control('updated_at');
                 ?>

@@ -23,12 +23,12 @@
                     <td><?= $enquiry->hasValue('user') ? $this->Html->link($enquiry->user->email, ['controller' => 'Users', 'action' => 'view', $enquiry->user->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('SUBJECT') ?></th>
-                    <td><?= h($enquiry->SUBJECT) ?></td>
+                    <th><?= __('Subject') ?></th>
+                    <td><?= h($enquiry->subject) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('STATUS') ?></th>
-                    <td><?= h($enquiry->STATUS) ?></td>
+                    <th><?= __('Status') ?></th>
+                    <td><?= h($enquiry->status) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

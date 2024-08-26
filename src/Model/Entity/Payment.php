@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property string $amount
  * @property string $payment_method
  * @property string|null $stripe_payment_id
- * @property string|null $STATUS
+ * @property string|null $status
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
@@ -37,7 +37,7 @@ class Payment extends Entity
         'amount' => true,
         'payment_method' => true,
         'stripe_payment_id' => true,
-        'STATUS' => true,
+        'status' => true,
         'created_at' => true,
         'updated_at' => true,
         'order' => true,

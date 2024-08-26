@@ -17,7 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Category') ?></legend>
                 <?php
-                    echo $this->Form->control('NAME');
+                    echo $this->Form->control('name');
                     echo $this->Form->control('description');
                     echo $this->Form->control('created_at');
                     echo $this->Form->control('updated_at');

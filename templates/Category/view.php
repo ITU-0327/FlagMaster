@@ -19,8 +19,8 @@
             <h3><?= h($category->NAME) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('NAME') ?></th>
-                    <td><?= h($category->NAME) ?></td>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($category->name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -48,7 +48,7 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('NAME') ?></th>
+                            <th><?= __('Name') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Price') ?></th>
                             <th><?= __('Stock Quantity') ?></th>
@@ -61,7 +61,7 @@
                         <?php foreach ($category->product as $product) : ?>
                         <tr>
                             <td><?= h($product->id) ?></td>
-                            <td><?= h($product->NAME) ?></td>
+                            <td><?= h($product->name) ?></td>
                             <td><?= h($product->description) ?></td>
                             <td><?= h($product->price) ?></td>
                             <td><?= h($product->stock_quantity) ?></td>

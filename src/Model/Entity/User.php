@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string|null $username
  * @property string $email
- * @property string|null $PASSWORD
+ * @property string|null $password
  * @property string|null $role
  * @property string|null $oauth_provider
  * @property string|null $oauth_id
@@ -37,7 +37,7 @@ class User extends Entity
     protected array $_accessible = [
         'username' => true,
         'email' => true,
-        'PASSWORD' => true,
+        'password' => true,
         'role' => true,
         'oauth_provider' => true,
         'oauth_id' => true,
@@ -47,5 +47,14 @@ class User extends Entity
         'order' => true,
         'profile' => true,
         'review' => true,
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var list<string>
+     */
+    protected array $_hidden = [
+        'password',
     ];
 }

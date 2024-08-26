@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Category Entity
  *
  * @property int $id
- * @property string $NAME
+ * @property string $name
  * @property string|null $description
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
@@ -28,7 +28,7 @@ class Category extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'NAME' => true,
+        'name' => true,
         'description' => true,
         'created_at' => true,
         'updated_at' => true,

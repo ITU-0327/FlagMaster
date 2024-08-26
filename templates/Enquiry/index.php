@@ -13,8 +13,8 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
-                    <th><?= $this->Paginator->sort('SUBJECT') ?></th>
-                    <th><?= $this->Paginator->sort('STATUS') ?></th>
+                    <th><?= $this->Paginator->sort('subject') ?></th>
+                    <th><?= $this->Paginator->sort('status') ?></th>
                     <th><?= $this->Paginator->sort('created_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -25,8 +25,8 @@
                 <tr>
                     <td><?= $this->Number->format($enquiry->id) ?></td>
                     <td><?= $enquiry->hasValue('user') ? $this->Html->link($enquiry->user->email, ['controller' => 'Users', 'action' => 'view', $enquiry->user->id]) : '' ?></td>
-                    <td><?= h($enquiry->SUBJECT) ?></td>
-                    <td><?= h($enquiry->STATUS) ?></td>
+                    <td><?= h($enquiry->subject) ?></td>
+                    <td><?= h($enquiry->status) ?></td>
                     <td><?= h($enquiry->created_at) ?></td>
                     <td><?= h($enquiry->updated_at) ?></td>
                     <td class="actions">

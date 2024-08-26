@@ -19,8 +19,8 @@
             <h3><?= h($product->NAME) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('NAME') ?></th>
-                    <td><?= h($product->NAME) ?></td>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($product->name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Category') ?></th>
@@ -104,7 +104,7 @@
                             <th><?= __('User Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Rating') ?></th>
-                            <th><?= __('COMMENT') ?></th>
+                            <th><?= __('Comment') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -115,7 +115,7 @@
                             <td><?= h($review->user_id) ?></td>
                             <td><?= h($review->product_id) ?></td>
                             <td><?= h($review->rating) ?></td>
-                            <td><?= h($review->COMMENT) ?></td>
+                            <td><?= h($review->comment) ?></td>
                             <td><?= h($review->created_at) ?></td>
                             <td><?= h($review->updated_at) ?></td>
                             <td class="actions">

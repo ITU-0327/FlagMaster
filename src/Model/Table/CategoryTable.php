@@ -57,10 +57,10 @@ class CategoryTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('NAME')
-            ->maxLength('NAME', 100)
-            ->requirePresence('NAME', 'create')
-            ->notEmptyString('NAME');
+            ->scalar('name')
+            ->maxLength('name', 100)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name');
 
         $validator
             ->scalar('description')

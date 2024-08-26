@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('NAME') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('created_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -22,7 +22,7 @@
                 <?php foreach ($category as $category): ?>
                 <tr>
                     <td><?= $this->Number->format($category->id) ?></td>
-                    <td><?= h($category->NAME) ?></td>
+                    <td><?= h($category->name) ?></td>
                     <td><?= h($category->created_at) ?></td>
                     <td><?= h($category->updated_at) ?></td>
                     <td class="actions">

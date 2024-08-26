@@ -30,8 +30,8 @@ class DeliveryFixture extends TestFixture
                 'address_id' => 1,
                 'delivery_status' => 'Lorem ipsum dolor sit amet',
                 'estimated_delivery_date' => '2024-08-26',
-                'created_at' => 1724681904,
-                'updated_at' => 1724681904,
+                'created_at' => 1724685316,
+                'updated_at' => 1724685316,
             ],
         ];
         parent::init();

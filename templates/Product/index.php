@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('NAME') ?></th>
+                    <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
                     <th><?= $this->Paginator->sort('stock_quantity') ?></th>
                     <th><?= $this->Paginator->sort('category_id') ?></th>
@@ -26,7 +26,7 @@
                 <?php foreach ($product as $product): ?>
                 <tr>
                     <td><?= $this->Number->format($product->id) ?></td>
-                    <td><?= h($product->NAME) ?></td>
+                    <td><?= h($product->name) ?></td>
                     <td><?= $this->Number->format($product->price) ?></td>
                     <td><?= $this->Number->format($product->stock_quantity) ?></td>
                     <td><?= $product->hasValue('category') ? $this->Html->link($product->category->NAME, ['controller' => 'Category', 'action' => 'view', $product->category->id]) : '' ?></td>

@@ -23,7 +23,7 @@
                     echo $this->Form->control('amount');
                     echo $this->Form->control('payment_method');
                     echo $this->Form->control('stripe_payment_id');
-                    echo $this->Form->control('STATUS');
+                    echo $this->Form->control('status');
                     echo $this->Form->control('created_at');
                     echo $this->Form->control('updated_at');
                 ?>

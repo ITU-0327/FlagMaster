@@ -18,7 +18,7 @@
             <fieldset>
                 <legend><?= __('Add Product') ?></legend>
                 <?php
-                    echo $this->Form->control('NAME');
+                    echo $this->Form->control('name');
                     echo $this->Form->control('description');
                     echo $this->Form->control('price');
                     echo $this->Form->control('stock_quantity');

@@ -27,7 +27,7 @@
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
                     echo $this->Form->control('product_id', ['options' => $product, 'empty' => true]);
                     echo $this->Form->control('rating');
-                    echo $this->Form->control('COMMENT');
+                    echo $this->Form->control('comment');
                     echo $this->Form->control('created_at');
                     echo $this->Form->control('updated_at');
                 ?>

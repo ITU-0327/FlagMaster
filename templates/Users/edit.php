@@ -24,7 +24,7 @@
                 <?php
                     echo $this->Form->control('username');
                     echo $this->Form->control('email');
-                    echo $this->Form->control('PASSWORD');
+                    echo $this->Form->control('password');
                     echo $this->Form->control('role');
                     echo $this->Form->control('oauth_provider');
                     echo $this->Form->control('oauth_id');

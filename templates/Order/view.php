@@ -23,8 +23,8 @@
                     <td><?= $order->hasValue('user') ? $this->Html->link($order->user->email, ['controller' => 'Users', 'action' => 'view', $order->user->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('STATUS') ?></th>
-                    <td><?= h($order->STATUS) ?></td>
+                    <th><?= __('Status') ?></th>
+                    <td><?= h($order->status) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>
@@ -131,7 +131,7 @@
                             <th><?= __('Amount') ?></th>
                             <th><?= __('Payment Method') ?></th>
                             <th><?= __('Stripe Payment Id') ?></th>
-                            <th><?= __('STATUS') ?></th>
+                            <th><?= __('Status') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -144,7 +144,7 @@
                             <td><?= h($payment->amount) ?></td>
                             <td><?= h($payment->payment_method) ?></td>
                             <td><?= h($payment->stripe_payment_id) ?></td>
-                            <td><?= h($payment->STATUS) ?></td>
+                            <td><?= h($payment->status) ?></td>
                             <td><?= h($payment->created_at) ?></td>
                             <td><?= h($payment->updated_at) ?></td>
                             <td class="actions">

@@ -44,9 +44,9 @@
                 </tr>
             </table>
             <div class="text">
-                <strong><?= __('COMMENT') ?></strong>
+                <strong><?= __('Comment') ?></strong>
                 <blockquote>
-                    <?= $this->Text->autoParagraph(h($review->COMMENT)); ?>
+                    <?= $this->Text->autoParagraph(h($review->comment)); ?>
                 </blockquote>
             </div>
         </div>

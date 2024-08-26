@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property int|null $user_id
  * @property int|null $product_id
  * @property int|null $rating
- * @property string|null $COMMENT
+ * @property string|null $comment
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
@@ -34,7 +34,7 @@ class Review extends Entity
         'user_id' => true,
         'product_id' => true,
         'rating' => true,
-        'COMMENT' => true,
+        'comment' => true,
         'created_at' => true,
         'updated_at' => true,
         'user' => true,

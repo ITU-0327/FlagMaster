@@ -27,13 +27,13 @@ class PaymentFixture extends TestFixture
             [
                 'id' => 1,
                 'order_id' => 1,
-                'payment_date' => 1724681914,
+                'payment_date' => 1724685356,
                 'amount' => 1.5,
                 'payment_method' => 'Lorem ipsum dolor sit amet',
                 'stripe_payment_id' => 'Lorem ipsum dolor sit amet',
-                'STATUS' => 'Lorem ipsum dolor sit amet',
-                'created_at' => 1724681914,
-                'updated_at' => 1724681914,
+                'status' => 'Lorem ipsum dolor sit amet',
+                'created_at' => 1724685356,
+                'updated_at' => 1724685356,
             ],
         ];
         parent::init();

@@ -31,8 +31,8 @@
                     <td><?= h($payment->stripe_payment_id) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('STATUS') ?></th>
-                    <td><?= h($payment->STATUS) ?></td>
+                    <th><?= __('Status') ?></th>
+                    <td><?= h($payment->status) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Id') ?></th>

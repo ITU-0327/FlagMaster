@@ -27,10 +27,6 @@
                     <td><?= h($user->email) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('PASSWORD') ?></th>
-                    <td><?= h($user->PASSWORD) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Role') ?></th>
                     <td><?= h($user->role) ?></td>
                 </tr>
@@ -63,9 +59,9 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('User Id') ?></th>
-                            <th><?= __('SUBJECT') ?></th>
+                            <th><?= __('Subject') ?></th>
                             <th><?= __('Message') ?></th>
-                            <th><?= __('STATUS') ?></th>
+                            <th><?= __('Status') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -74,9 +70,9 @@
                         <tr>
                             <td><?= h($enquiry->id) ?></td>
                             <td><?= h($enquiry->user_id) ?></td>
-                            <td><?= h($enquiry->SUBJECT) ?></td>
+                            <td><?= h($enquiry->subject) ?></td>
                             <td><?= h($enquiry->message) ?></td>
-                            <td><?= h($enquiry->STATUS) ?></td>
+                            <td><?= h($enquiry->status) ?></td>
                             <td><?= h($enquiry->created_at) ?></td>
                             <td><?= h($enquiry->updated_at) ?></td>
                             <td class="actions">
@@ -100,7 +96,7 @@
                             <th><?= __('User Id') ?></th>
                             <th><?= __('Order Date') ?></th>
                             <th><?= __('Total Amount') ?></th>
-                            <th><?= __('STATUS') ?></th>
+                            <th><?= __('Status') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -111,7 +107,7 @@
                             <td><?= h($order->user_id) ?></td>
                             <td><?= h($order->order_date) ?></td>
                             <td><?= h($order->total_amount) ?></td>
-                            <td><?= h($order->STATUS) ?></td>
+                            <td><?= h($order->status) ?></td>
                             <td><?= h($order->created_at) ?></td>
                             <td><?= h($order->updated_at) ?></td>
                             <td class="actions">
@@ -172,7 +168,7 @@
                             <th><?= __('User Id') ?></th>
                             <th><?= __('Product Id') ?></th>
                             <th><?= __('Rating') ?></th>
-                            <th><?= __('COMMENT') ?></th>
+                            <th><?= __('Comment') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
@@ -183,7 +179,7 @@
                             <td><?= h($review->user_id) ?></td>
                             <td><?= h($review->product_id) ?></td>
                             <td><?= h($review->rating) ?></td>
-                            <td><?= h($review->COMMENT) ?></td>
+                            <td><?= h($review->comment) ?></td>
                             <td><?= h($review->created_at) ?></td>
                             <td><?= h($review->updated_at) ?></td>
                             <td class="actions">

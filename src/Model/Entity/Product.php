@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Product Entity
  *
  * @property int $id
- * @property string $NAME
+ * @property string $name
  * @property string|null $description
  * @property string $price
  * @property int $stock_quantity
@@ -34,7 +34,7 @@ class Product extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'NAME' => true,
+        'name' => true,
         'description' => true,
         'price' => true,
         'stock_quantity' => true,
