@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Catalog</title>
     <style>
-
+        /* catalog.css */
 
         body {
             font-family: Arial, sans-serif;
@@ -143,22 +143,27 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
         .product {
             background-color: #fff;
             border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 20px;
+            padding: 20px;
             box-sizing: border-box;
             text-align: center;
             flex: 1 1 calc(33.333% - 20px);
             max-width: calc(33.333% - 20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
         }
 
         .product img {
             width: 100%;
             height: auto;
+            margin-bottom: 15px;
         }
 
         .product h3 {
@@ -169,12 +174,47 @@
         .product .price {
             font-size: 18px;
             color: #555;
+            margin-bottom: 10px;
         }
 
         .product .label {
             font-size: 12px;
             color: #f00;
-            margin-top: 10px;
+            margin-top: auto;
+            margin-bottom: 15px; /* Ensures consistent spacing above the size circles */
+        }
+
+        .size-options {
+            display: flex;
+            justify-content: center;
+            margin-top: auto;
+            margin-bottom: 0; /* Ensures consistent alignment across products */
+        }
+
+        .size-circle {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            color: #333;
+            user-select: none;
+            border: none;
+        }
+
+        .size-circle:hover {
+            background-color: #ccc;
+        }
+
+        .size-circle.selected {
+            background-color: #333;
+            color: #fff;
         }
 
         footer {
@@ -187,7 +227,31 @@
             bottom: 0;
             width: 100%;
         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+
+            .filters {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
+
+            .products {
+                flex-direction: column;
+            }
+
+            .product {
+                max-width: 100%;
+                flex: 1 1 100%;
+            }
+        }
     </style>
+
 </head>
 <body>
 
@@ -212,7 +276,7 @@
 <main>
     <section class="catalog-header">
         <h1>Flags</h1>
-        <p>Crafted from premium, durable materials, our flags feel great wherever and age beautifully as the years go by. </p>
+        <p>Crafted from premium, durable materials, our flags feel great wherever and age beautifully as the years go by.</p>
     </section>
 
     <div class="content-container">
@@ -270,18 +334,34 @@
                     <h3>Australian Flag</h3>
                     <p class="price">$249</p>
                     <p class="label">Bestseller</p>
+                    <div class="size-options">
+                        <button class="size-circle" data-size="S">S</button>
+                        <button class="size-circle" data-size="M">M</button>
+                        <button class="size-circle" data-size="L">L</button>
+                    </div>
                 </div>
                 <div class="product">
                     <img src="path/to/product2.jpg" alt="Product 2">
                     <h3>China Flag</h3>
                     <p class="price">$189 - $229</p>
                     <p class="label">Bestseller</p>
+                    <div class="size-options">
+                        <button class="size-circle" data-size="S">S</button>
+                        <button class="size-circle" data-size="M">M</button>
+                        <button class="size-circle" data-size="L">L</button>
+                    </div>
                 </div>
                 <div class="product">
                     <img src="path/to/product3.jpg" alt="Product 3">
                     <h3>American Flag</h3>
                     <p class="price">$99 - $129</p>
+                    <div class="size-options">
+                        <button class="size-circle" data-size="S">S</button>
+                        <button class="size-circle" data-size="M">M</button>
+                        <button class="size-circle" data-size="L">L</button>
+                    </div>
                 </div>
+                <!-- Add more products as needed -->
             </div>
         </section>
     </div>
@@ -290,6 +370,42 @@
 <footer>
     <p>&copy; 2024 Your Company</p>
 </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sizeCircles = document.querySelectorAll('.size-circle');
+
+        sizeCircles.forEach(circle => {
+            circle.addEventListener('click', () => {
+                // Remove 'selected' class from all circles in the same product
+                const product = circle.closest('.product');
+                const circles = product.querySelectorAll('.size-circle');
+                circles.forEach(c => c.classList.remove('selected'));
+
+                // Add 'selected' class to the clicked circle
+                circle.classList.add('selected');
+
+                // Optionally, handle the selected size
+                const selectedSize = circle.getAttribute('data-size');
+                console.log(`Selected size: ${selectedSize} for product: ${product.querySelector('h3').innerText}`);
+
+                // You can add further actions here, such as updating a hidden input or sending the selection to the server
+            });
+        });
+    });
+
+
+        // Function to clear all selected filters
+        function clearFilters() {
+        const filters = document.querySelectorAll('.filter-category select');
+        filters.forEach(filter => {
+        filter.selectedIndex = 0; // Reset each filter to the first option
+    });
+    }
+
+        // Attach the clearFilters function to the button's click event
+        document.querySelector('.clear-filters').addEventListener('click', clearFilters);
+</script>
 
 </body>
 </html>
