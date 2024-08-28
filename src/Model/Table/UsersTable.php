@@ -11,10 +11,10 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\EnquiryTable&\Cake\ORM\Association\HasMany $Enquiry
- * @property \App\Model\Table\OrderTable&\Cake\ORM\Association\HasMany $Order
- * @property \App\Model\Table\ProfileTable&\Cake\ORM\Association\HasMany $Profile
- * @property \App\Model\Table\ReviewTable&\Cake\ORM\Association\HasMany $Review
+ * @property \App\Model\Table\EnquiriesTable&\Cake\ORM\Association\HasMany $Enquiries
+ * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\HasMany $Orders
+ * @property \App\Model\Table\ProfilesTable&\Cake\ORM\Association\HasMany $Profiles
+ * @property \App\Model\Table\ReviewsTable&\Cake\ORM\Association\HasMany $Reviews
  *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
@@ -46,16 +46,16 @@ class UsersTable extends Table
         $this->setDisplayField('email');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('Enquiry', [
+        $this->hasMany('Enquiries', [
             'foreignKey' => 'user_id',
         ]);
-        $this->hasMany('Order', [
+        $this->hasMany('Orders', [
             'foreignKey' => 'user_id',
         ]);
-        $this->hasMany('Profile', [
+        $this->hasMany('Profiles', [
             'foreignKey' => 'user_id',
         ]);
-        $this->hasMany('Review', [
+        $this->hasMany('Reviews', [
             'foreignKey' => 'user_id',
         ]);
     }

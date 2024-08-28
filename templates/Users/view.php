@@ -52,8 +52,8 @@
                 </tr>
             </table>
             <div class="related">
-                <h4><?= __('Related Enquiry') ?></h4>
-                <?php if (!empty($user->enquiry)) : ?>
+                <h4><?= __('Related Enquiries') ?></h4>
+                <?php if (!empty($user->enquiries)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -66,7 +66,7 @@
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($user->enquiry as $enquiry) : ?>
+                        <?php foreach ($user->enquiries as $enquiry) : ?>
                         <tr>
                             <td><?= h($enquiry->id) ?></td>
                             <td><?= h($enquiry->user_id) ?></td>
@@ -76,9 +76,9 @@
                             <td><?= h($enquiry->created_at) ?></td>
                             <td><?= h($enquiry->updated_at) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Enquiry', 'action' => 'view', $enquiry->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Enquiry', 'action' => 'edit', $enquiry->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Enquiry', 'action' => 'delete', $enquiry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'Enquiries', 'action' => 'view', $enquiry->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Enquiries', 'action' => 'edit', $enquiry->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Enquiries', 'action' => 'delete', $enquiry->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -87,8 +87,8 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Order') ?></h4>
-                <?php if (!empty($user->order)) : ?>
+                <h4><?= __('Related Orders') ?></h4>
+                <?php if (!empty($user->orders)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -101,7 +101,7 @@
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($user->order as $order) : ?>
+                        <?php foreach ($user->orders as $order) : ?>
                         <tr>
                             <td><?= h($order->id) ?></td>
                             <td><?= h($order->user_id) ?></td>
@@ -111,9 +111,9 @@
                             <td><?= h($order->created_at) ?></td>
                             <td><?= h($order->updated_at) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Order', 'action' => 'view', $order->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Order', 'action' => 'edit', $order->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Order', 'action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'Orders', 'action' => 'view', $order->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Orders', 'action' => 'edit', $order->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Orders', 'action' => 'delete', $order->id], ['confirm' => __('Are you sure you want to delete # {0}?', $order->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -122,8 +122,8 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Profile') ?></h4>
-                <?php if (!empty($user->profile)) : ?>
+                <h4><?= __('Related Profiles') ?></h4>
+                <?php if (!empty($user->profiles)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -137,7 +137,7 @@
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($user->profile as $profile) : ?>
+                        <?php foreach ($user->profiles as $profile) : ?>
                         <tr>
                             <td><?= h($profile->id) ?></td>
                             <td><?= h($profile->user_id) ?></td>
@@ -148,9 +148,9 @@
                             <td><?= h($profile->created_at) ?></td>
                             <td><?= h($profile->updated_at) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Profile', 'action' => 'view', $profile->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Profile', 'action' => 'edit', $profile->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Profile', 'action' => 'delete', $profile->id], ['confirm' => __('Are you sure you want to delete # {0}?', $profile->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'Profiles', 'action' => 'view', $profile->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Profiles', 'action' => 'edit', $profile->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Profiles', 'action' => 'delete', $profile->id], ['confirm' => __('Are you sure you want to delete # {0}?', $profile->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -159,8 +159,8 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Review') ?></h4>
-                <?php if (!empty($user->review)) : ?>
+                <h4><?= __('Related Reviews') ?></h4>
+                <?php if (!empty($user->reviews)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -173,7 +173,7 @@
                             <th><?= __('Updated At') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($user->review as $review) : ?>
+                        <?php foreach ($user->reviews as $review) : ?>
                         <tr>
                             <td><?= h($review->id) ?></td>
                             <td><?= h($review->user_id) ?></td>
@@ -183,9 +183,9 @@
                             <td><?= h($review->created_at) ?></td>
                             <td><?= h($review->updated_at) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Review', 'action' => 'view', $review->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Review', 'action' => 'edit', $review->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Review', 'action' => 'delete', $review->id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'Reviews', 'action' => 'view', $review->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'Reviews', 'action' => 'edit', $review->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Reviews', 'action' => 'delete', $review->id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

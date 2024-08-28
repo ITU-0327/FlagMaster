@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $updated_at
  *
  * @property \App\Model\Entity\Order $order
- * @property \App\Model\Entity\Addres $addres
+ * @property \App\Model\Entity\Address $address
  */
 class Delivery extends Entity
 {
@@ -38,6 +38,6 @@ class Delivery extends Entity
         'created_at' => true,
         'updated_at' => true,
         'order' => true,
-        'addres' => true,
+        'address' => true,
     ];
 }

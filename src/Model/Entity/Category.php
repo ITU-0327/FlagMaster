@@ -14,7 +14,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
- * @property \App\Model\Entity\Product[] $product
+ * @property \App\Model\Entity\Product[] $products
  */
 class Category extends Entity
 {
@@ -32,6 +32,6 @@ class Category extends Entity
         'description' => true,
         'created_at' => true,
         'updated_at' => true,
-        'product' => true,
+        'products' => true,
     ];
 }

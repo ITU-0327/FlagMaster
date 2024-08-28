@@ -25,10 +25,10 @@ class UsersTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Users',
-        'app.Enquiry',
-        'app.Order',
-        'app.Profile',
-        'app.Review',
+        'app.Enquiries',
+        'app.Orders',
+        'app.Profiles',
+        'app.Reviews',
     ];
 
     /**

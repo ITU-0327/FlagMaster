@@ -26,8 +26,8 @@ class UsersFixture extends TestFixture
                 'role' => 'Lorem ipsum dolor sit amet',
                 'oauth_provider' => 'Lorem ipsum dolor sit amet',
                 'oauth_id' => 'Lorem ipsum dolor sit amet',
-                'created_at' => 1724685216,
-                'updated_at' => 1724685216,
+                'created_at' => 1724861428,
+                'updated_at' => 1724861428,
             ],
         ];
         parent::init();

@@ -18,7 +18,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $updated_at
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Addres $addres
+ * @property \App\Model\Entity\Address $address
  */
 class Profile extends Entity
 {
@@ -40,6 +40,6 @@ class Profile extends Entity
         'created_at' => true,
         'updated_at' => true,
         'user' => true,
-        'addres' => true,
+        'address' => true,
     ];
 }

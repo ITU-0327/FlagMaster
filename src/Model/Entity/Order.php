@@ -17,9 +17,9 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $updated_at
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Delivery[] $delivery
- * @property \App\Model\Entity\OrderItem[] $order_item
- * @property \App\Model\Entity\Payment[] $payment
+ * @property \App\Model\Entity\Delivery[] $deliveries
+ * @property \App\Model\Entity\Payment[] $payments
+ * @property \App\Model\Entity\Product[] $products
  */
 class Order extends Entity
 {
@@ -40,8 +40,8 @@ class Order extends Entity
         'created_at' => true,
         'updated_at' => true,
         'user' => true,
-        'delivery' => true,
-        'order_item' => true,
-        'payment' => true,
+        'deliveries' => true,
+        'payments' => true,
+        'products' => true,
     ];
 }

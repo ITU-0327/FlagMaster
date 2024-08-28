@@ -18,10 +18,10 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
- * @property \App\Model\Entity\Enquiry[] $enquiry
- * @property \App\Model\Entity\Order[] $order
- * @property \App\Model\Entity\Profile[] $profile
- * @property \App\Model\Entity\Review[] $review
+ * @property \App\Model\Entity\Enquiry[] $enquiries
+ * @property \App\Model\Entity\Order[] $orders
+ * @property \App\Model\Entity\Profile[] $profiles
+ * @property \App\Model\Entity\Review[] $reviews
  */
 class User extends Entity
 {
@@ -43,10 +43,10 @@ class User extends Entity
         'oauth_id' => true,
         'created_at' => true,
         'updated_at' => true,
-        'enquiry' => true,
-        'order' => true,
-        'profile' => true,
-        'review' => true,
+        'enquiries' => true,
+        'orders' => true,
+        'profiles' => true,
+        'reviews' => true,
     ];
 
     /**

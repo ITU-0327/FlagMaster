@@ -12,15 +12,19 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string|null $description
  * @property string $price
+ * @property string|null $discount_type
+ * @property string|null $discount_value
  * @property int $stock_quantity
- * @property int|null $category_id
- * @property string|null $image_url
+ * @property string|null $thumbnail_url
+ * @property string|null $status
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *
- * @property \App\Model\Entity\Category $category
- * @property \App\Model\Entity\OrderItem[] $order_item
- * @property \App\Model\Entity\Review[] $review
+ * @property \App\Model\Entity\ProductImage[] $product_images
+ * @property \App\Model\Entity\ProductVariation[] $product_variations
+ * @property \App\Model\Entity\Review[] $reviews
+ * @property \App\Model\Entity\Category[] $categories
+ * @property \App\Model\Entity\Order[] $orders
  */
 class Product extends Entity
 {
@@ -37,13 +41,17 @@ class Product extends Entity
         'name' => true,
         'description' => true,
         'price' => true,
+        'discount_type' => true,
+        'discount_value' => true,
         'stock_quantity' => true,
-        'category_id' => true,
-        'image_url' => true,
+        'thumbnail_url' => true,
+        'status' => true,
         'created_at' => true,
         'updated_at' => true,
-        'category' => true,
-        'order_item' => true,
-        'review' => true,
+        'product_images' => true,
+        'product_variations' => true,
+        'reviews' => true,
+        'categories' => true,
+        'orders' => true,
     ];
 }
