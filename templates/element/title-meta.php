@@ -1,0 +1,11 @@
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Favicon icon-->
+<!--<link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />-->  // Put in default.php for now
+
+<!-- Core Css -->
+<?= $this->Html->css(['styles']) ?>
+
+<title>FlagMaster</title>
