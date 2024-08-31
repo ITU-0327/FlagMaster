@@ -18,12 +18,12 @@
 
             <ul class="navbar-nav quick-links d-none d-lg-flex align-items-center">
               <!-- ------------------------------- -->
-              <!-- start apps Dropdown -->
+              <!-- start shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-block mx-0">
                 <div class="hover-dd">
                   <a class="nav-link" href="javascript:void(0)">
-                    Apps<span class="mt-1">
+                      Shop By Category<span class="mt-1">
                       <i class="ti ti-chevron-down fs-3"></i>
                     </span>
                   </a>
@@ -175,16 +175,16 @@
                 </div>
               </li>
               <!-- ------------------------------- -->
-              <!-- end apps Dropdown -->
+              <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="chat">Chat</a>
+                <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="calendar">Calendar</a>
+                <a class="nav-link" href="faqs">FAQs</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="email">Email</a>
+                <a class="nav-link" href="about-us">About Us</a>
               </li>
             </ul>
 
@@ -203,9 +203,6 @@
                   <i class="ti ti-align-justified fs-7"></i>
                 </a>
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
-                  <!-- ------------------------------- -->
-                  <!-- start language Dropdown -->
-                  <!-- ------------------------------- -->
                   <li class="nav-item nav-icon-hover-bg rounded-circle">
                     <a class="nav-link moon dark-layout" href="javascript:void(0)">
                       <i class="ti ti-moon moon"></i>
@@ -214,42 +211,6 @@
                       <i class="ti ti-sun sun"></i>
                     </a>
                   </li>
-                  <li class="nav-item nav-icon-hover-bg rounded-circle dropdown">
-                    <a class="nav-link" href="javascript:void(0)" id="drop2" aria-expanded="false">
-                      <img src="../assets/images/svgs/icon-flag-en.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                      <div class="message-body">
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
-                          <div class="position-relative">
-                            <img src="../assets/images/svgs/icon-flag-en.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                          </div>
-                          <p class="mb-0 fs-3">English (UK)</p>
-                        </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
-                          <div class="position-relative">
-                            <img src="../assets/images/svgs/icon-flag-cn.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                          </div>
-                          <p class="mb-0 fs-3">中国人 (Chinese)</p>
-                        </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
-                          <div class="position-relative">
-                            <img src="../assets/images/svgs/icon-flag-fr.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                          </div>
-                          <p class="mb-0 fs-3">français (French)</p>
-                        </a>
-                        <a href="javascript:void(0)" class="d-flex align-items-center gap-2 py-3 px-4 dropdown-item">
-                          <div class="position-relative">
-                            <img src="../assets/images/svgs/icon-flag-sa.svg" alt="modernize-img" width="20px" height="20px" class="rounded-circle object-fit-cover round-20" />
-                          </div>
-                          <p class="mb-0 fs-3">عربي (Arabic)</p>
-                        </a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- ------------------------------- -->
-                  <!-- end language Dropdown -->
-                  <!-- ------------------------------- -->
 
                   <!-- ------------------------------- -->
                   <!-- start shopping cart Dropdown -->
@@ -428,7 +389,7 @@
           <!-- ---------------------------------- -->
 
           <!-- ------------------------------- -->
-          <!-- apps Dropdown in Small screen -->
+          <!-- shop Dropdown in Small screen -->
           <!-- ------------------------------- -->
           <!--  Mobilenavbar -->
           <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobilenavbar" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -444,7 +405,7 @@
                       <span>
                         <i class="ti ti-apps"></i>
                       </span>
-                      <span class="hide-menu">Apps</span>
+                      <span class="hide-menu">Shop By Category</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level my-3">
                       <li class="sidebar-item py-2">
@@ -565,27 +526,27 @@
                     </ul>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="chat" aria-expanded="false">
+                    <a class="sidebar-link" href="custom-products" aria-expanded="false">
                       <span>
                         <i class="ti ti-message-dots"></i>
                       </span>
-                      <span class="hide-menu">Chat</span>
+                      <span class="hide-menu">Custom Products</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="calendar" aria-expanded="false">
+                    <a class="sidebar-link" href="faqs" aria-expanded="false">
                       <span>
                         <i class="ti ti-calendar"></i>
                       </span>
-                      <span class="hide-menu">Calendar</span>
+                      <span class="hide-menu">FAQs</span>
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="email" aria-expanded="false">
+                    <a class="sidebar-link" href="about-us" aria-expanded="false">
                       <span>
                         <i class="ti ti-mail"></i>
                       </span>
-                      <span class="hide-menu">Email</span>
+                      <span class="hide-menu">About Us</span>
                     </a>
                   </li>
                 </ul>
@@ -615,12 +576,12 @@
             </ul>
             <ul class="navbar-nav quick-links d-none d-xl-flex align-items-center">
               <!-- ------------------------------- -->
-              <!-- start apps Dropdown -->
+              <!-- start shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-flex">
                 <div class="hover-dd">
                   <a class="nav-link" href="javascript:void(0)">
-                    Apps<span class="mt-1">
+                      Shop By Category<span class="mt-1">
                       <i class="ti ti-chevron-down fs-3"></i>
                     </span>
                   </a>
@@ -772,16 +733,16 @@
                 </div>
               </li>
               <!-- ------------------------------- -->
-              <!-- end apps Dropdown -->
+              <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="chat">Chat</a>
+                <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="calendar">Calendar</a>
+                <a class="nav-link" href="faqs">FAQs</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="email">Email</a>
+                <a class="nav-link" href="about-us">About Us</a>
               </li>
             </ul>
             <div class="d-block d-xl-none">
