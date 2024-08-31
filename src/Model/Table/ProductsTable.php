@@ -52,6 +52,8 @@ class ProductsTable extends Table
         ]);
         $this->hasMany('ProductVariations', [
             'foreignKey' => 'product_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'product_id',

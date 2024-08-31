@@ -43,20 +43,71 @@ class ProductsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('admin');
         $product = $this->Products->newEmptyEntity();
+
         if ($this->request->is('post')) {
-            $product = $this->Products->patchEntity($product, $this->request->getData());
-            if ($this->Products->save($product)) {
+            $data = $this->request->getData();
+
+            // Handle discount value based on discount type
+            if ($data['discount_type'] === 'none') {
+                $data['discount_value'] = NULL;
+            } elseif ($data['discount_type'] === 'percentage') {
+                $basePrice = (float)$data['price'];
+                $percentage = (float)$data['discount_value_percentage'];
+                $data['discount_value'] = $basePrice - ($basePrice * ($percentage / 100));
+            }
+
+            // Now patch the entity with the modified data
+            $product = $this->Products->patchEntity($product, $data,[
+                'associated' => ['Categories', 'ProductVariations']
+            ]);
+
+            if ($this->Products->save($product, ['associated' => ['Categories', 'ProductVariations']])) {
                 $this->Flash->success(__('The product has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The product could not be saved. Please, try again.'));
         }
+
+        // Fetching categories
         $categories = $this->Products->Categories->find('list', limit: 200)->all();
-        $orders = $this->Products->Orders->find('list', limit: 200)->all();
-        $this->set(compact('product', 'categories', 'orders'));
+
+        // Fetching ENUM values for the status field
+        $connection = \Cake\Datasource\ConnectionManager::get('default');
+
+        $enumValues = [];
+        $results = $connection->execute(
+            "SHOW COLUMNS FROM products WHERE Field = 'status'"
+        )->fetch('assoc');
+
+        if (isset($results['Type'])) {
+            preg_match("/^enum\(\'(.*)\'\)$/", $results['Type'], $matches);
+            $enumValues = explode("','", $matches[1]);
+
+            // Capitalize the first letter for display
+            $enumValues = array_map('ucfirst', $enumValues);
+        }
+
+        // Fetching variation types from enum
+        $variationTypes = [];
+        $results = $connection->execute(
+            "SHOW COLUMNS FROM product_variations WHERE Field = 'variation_type'"
+        )->fetch('assoc');
+
+        if (isset($results['Type'])) {
+            preg_match("/^enum\(\'(.*)\'\)$/", $results['Type'], $matches);
+            $variationTypes = explode("','", $matches[1]);
+
+            // Capitalize the first letter for display
+            $variationTypes = array_map('ucfirst', $variationTypes);
+        }
+
+        // Passing the fetched values to the view
+        $this->set(compact('product', 'categories', 'enumValues', 'variationTypes'));
     }
+
 
     /**
      * Edit method
