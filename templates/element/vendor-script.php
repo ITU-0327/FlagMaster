@@ -1,8 +1,8 @@
-<script src="../assets/js/vendor.min.js"></script>
-  <!-- Import Js Files -->
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.min.js"></script>
-  <script src="../assets/js/theme/app.init.js"></script>
-  <script src="../assets/js/theme/theme.js"></script>
-  <script src="../assets/js/theme/app.min.js"></script>
-  <script src="../assets/js/theme/sidebarmenu.js"></script>
+<?= $this->Html->script(['vendor.min']) ?>
+<!-- Import Js Files -->
+<?= $this->Html->script(['/libs/bootstrap/dist/js/bootstrap.bundle.min.js']) ?>
+<?= $this->Html->script(['/libs/simplebar/dist/simplebar.min.js']) ?>
+<?= $this->Html->script(['theme/app.init']) ?>
+<?= $this->Html->script(['theme/theme']) ?>
+<?= $this->Html->script(['theme/app.min']) ?>
+<?= $this->Html->script(['theme/sidebarmenu']) ?>

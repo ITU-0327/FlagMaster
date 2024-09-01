@@ -8,9 +8,9 @@
 
 <?php $this->start('css'); ?>
 
-<?= $this->Html->css(['/assets/libs/quill/dist/quill.snow']) ?>
-<?= $this->Html->css(['/assets/libs/dropzone/dist/min/dropzone.min']) ?>
-<?= $this->Html->css(['/assets/libs/select2/dist/css/select2.min']) ?>
+<?= $this->Html->css(['/libs/quill/dist/quill.snow']) ?>
+<?= $this->Html->css(['/libs/dropzone/dist/min/dropzone.min']) ?>
+<?= $this->Html->css(['/libs/select2/dist/css/select2.min']) ?>
 
 <?php $this->end(); ?>
 
@@ -240,15 +240,15 @@
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
-<?= $this->Html->script(['/assets/libs/quill/dist/quill.min']) ?>
-<?= $this->Html->script(['/assets/js/forms/quill-init']) ?>
-<?= $this->Html->script(['/assets/libs/dropzone/dist/min/dropzone.min']) ?>
-<?= $this->Html->script(['/assets/libs/select2/dist/js/select2.full.min']) ?>
-<?= $this->Html->script(['/assets/libs/select2/dist/js/select2.min']) ?>
-<?= $this->Html->script(['/assets/js/forms/select2.init']) ?>
-<?= $this->Html->script(['/assets/libs/jquery.repeater/jquery.repeater.min']) ?>
-<?= $this->Html->script(['/assets/libs/jquery-validation/dist/jquery.validate.min']) ?>
-<?= $this->Html->script(['/assets/js/forms/repeater-init']) ?>
+<?= $this->Html->script(['/libs/quill/dist/quill.min']) ?>
+<?= $this->Html->script(['forms/quill-init']) ?>
+<?= $this->Html->script(['/libs/dropzone/dist/min/dropzone.min']) ?>
+<?= $this->Html->script(['/libs/select2/dist/js/select2.full.min']) ?>
+<?= $this->Html->script(['/libs/select2/dist/js/select2.min']) ?>
+<?= $this->Html->script(['forms/select2.init']) ?>
+<?= $this->Html->script(['/libs/jquery.repeater/jquery.repeater.min']) ?>
+<?= $this->Html->script(['/libs/jquery-validation/dist/jquery.validate.min']) ?>
+<?= $this->Html->script(['forms/repeater-init']) ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

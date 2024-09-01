@@ -6,20 +6,9 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
-    <?= $this->Html->meta('icon') ?>
 </head>
 
 <body>
-<div class="toast toast-onload align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body hstack align-items-start gap-6">
-        <i class="ti ti-alert-circle fs-6"></i>
-        <div>
-            <h5 class="text-white fs-3 mb-1">Welcome to Modernize</h5>
-            <h6 class="text-white fs-2 mb-0">Easy to costomize the Template!!!</h6>
-        </div>
-        <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-</div>
 <!-- Preloader -->
 <!--<div class="preloader">-->
 <!--    --><?php //= $this->Html->image('cake.icon.png', ['alt' => 'loader', 'class' => 'lds-ripple img-fluid']) ?>
@@ -85,7 +74,12 @@
             <ul class="mb-0">
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <imp src="../assets/images/products/product-1.jpg" width="95" height="75" class="rounded-1 me-9 flex-shrink-0" alt="modernize-img" />
+                        <?= $this->Html->image('products/product-1.jpg', [
+                            'alt' => 'flagmaster-img',
+                            'class' => 'rounded-1 me-9 flex-shrink-0',
+                            'width' => 95,
+                            'height' => 75
+                        ]) ?>
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
                             <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
