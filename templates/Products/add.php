@@ -31,7 +31,10 @@
             </div>
             <div class="col-3">
                 <div class="text-center mb-n5">
-                    <img src="../assets/images/breadcrumb/ChatBc.png" alt="modernize-img" class="img-fluid mb-n4" />
+                    <?= $this->Html->image('breadcrumb/ChatBc.png', [
+                        'alt' => 'modernize-img',
+                        'class' => 'img-fluid mb-n4',
+                    ]) ?>
                 </div>
             </div>
         </div>

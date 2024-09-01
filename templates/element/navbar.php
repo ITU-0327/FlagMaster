@@ -38,7 +38,7 @@
                                   <a href="chat" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -54,7 +54,7 @@
                                   <a href="invoice" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -68,7 +68,7 @@
                                   <a href="contact-list" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -84,7 +84,7 @@
                                   <a href="email" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -102,7 +102,7 @@
                                   <a href="user-profile" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -118,7 +118,7 @@
                                   <a href="calendar" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -134,7 +134,7 @@
                                   <a href="contact-table" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -150,7 +150,7 @@
                                   <a href="notes" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -387,7 +387,7 @@
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
                             <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'modernize-img',
+                                'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
                                 'height' => '35'
@@ -402,16 +402,16 @@
                         </div>
                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                             <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'modernize-img',
+                                'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
                                 'height' => '80'
                             ]) ?>
                           <div class="ms-3">
-                            <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                            <span class="mb-1 d-block">Designer</span>
+                            <h5 class="mb-1 fs-3">Lucas Anderson</h5>
+                            <span class="mb-1 d-block">Business Owner</span>
                             <p class="mb-0 d-flex align-items-center gap-2">
-                              <i class="ti ti-mail fs-4"></i> info@modernize.com
+                              <i class="ti ti-mail fs-4"></i> info@flagmaster.com
                             </p>
                           </div>
                         </div>
@@ -419,7 +419,7 @@
                           <a href="user-profile" class="py-8 px-7 mt-8 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                                 <?= $this->Html->image('svgs/icon-account.svg', [
-                                    'alt' => 'modernize-img',
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
@@ -432,7 +432,7 @@
                           <a href="email" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                                 <?= $this->Html->image('svgs/icon-inbox.svg', [
-                                    'alt' => 'modernize-img',
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
@@ -442,37 +442,21 @@
                               <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
                             </div>
                           </a>
-                          <a href="notes" class="py-8 px-7 d-flex align-items-center">
+                          <a href="order" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-tasks.svg', [
-                                    'alt' => 'modernize-img',
+                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
                             </span>
                             <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Task</h6>
-                              <span class="fs-2 d-block text-body-secondary">To-do and Daily Tasks</span>
+                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>
+                              <span class="fs-2 d-block text-body-secondary">Order History</span>
                             </div>
                           </a>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <div class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-4 p-4 mb-9">
-                            <div class="row">
-                              <div class="col-6">
-                                <h5 class="fs-4 mb-3 fw-semibold">Unlimited Access</h5>
-                                <button class="btn btn-primary">Upgrade</button>
-                              </div>
-                              <div class="col-6">
-                                <div class="m-n4 unlimited-img">
-                                    <?= $this->Html->image('backgrounds/unlimited-bg.png', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'w-100',
-                                    ]) ?>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
                         </div>
                       </div>
@@ -497,7 +481,7 @@
             <nav class="sidebar-nav scroll-sidebar">
               <div class="offcanvas-header justify-content-between">
                   <?= $this->Html->image('logos/favicon.ico', [
-                      'alt' => 'modernize-img',
+                      'alt' => 'flagmaster-img',
                       'class' => 'img-fluid',
                   ]) ?>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -516,7 +500,7 @@
                         <a href="chat" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -532,7 +516,7 @@
                         <a href="invoice" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -548,7 +532,7 @@
                         <a href="cotact" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -564,7 +548,7 @@
                         <a href="email" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -580,7 +564,7 @@
                         <a href="user-profile" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -596,7 +580,7 @@
                         <a href="calendar" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -612,7 +596,7 @@
                         <a href="contact-list" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -628,7 +612,7 @@
                         <a href="notes" class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                  'alt' => 'modernize-img',
+                                  'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
                                   'height' => '24'
@@ -709,12 +693,12 @@
               <li class="nav-item d-none d-xl-block">
                 <a href="/" class="text-nowrap nav-link">
                     <?= $this->Html->image('logos/dark-logo.svg', [
-                        'alt' => 'modernize-img',
+                        'alt' => 'flagmaster-img',
                         'class' => 'dark-logo',
                         'width' => '120',
                     ]) ?>
                     <?= $this->Html->image('logos/light-logo.svg', [
-                        'alt' => 'modernize-img',
+                        'alt' => 'flagmaster-img',
                         'class' => 'light-logo',
                         'width' => '120',
                     ]) ?>
@@ -748,7 +732,7 @@
                                   <a href="chat" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -764,7 +748,7 @@
                                   <a href="invoice" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -778,7 +762,7 @@
                                   <a href="contact-list" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -794,7 +778,7 @@
                                   <a href="email" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -812,7 +796,7 @@
                                   <a href="user-profile" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -828,7 +812,7 @@
                                   <a href="calendar" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -844,7 +828,7 @@
                                   <a href="contact-table" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -860,7 +844,7 @@
                                   <a href="notes" class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                            'alt' => 'modernize-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
                                             'height' => '24'
@@ -940,7 +924,7 @@
             <div class="d-block d-xl-none">
               <a href="/" class="text-nowrap nav-link">
                   <?= $this->Html->image('logos/dark-logo.svg', [
-                      'alt' => 'modernize-img',
+                      'alt' => 'flagmaster-img',
                       'class' => 'img-fluid',
                       'width' => '180',
                   ]) ?>
@@ -1095,7 +1079,7 @@
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
                             <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'modernize-img',
+                                'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
                                 'height' => '35'
@@ -1110,16 +1094,16 @@
                         </div>
                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                             <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'modernize-img',
+                                'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
                                 'height' => '80'
                             ]) ?>
                           <div class="ms-3">
-                            <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                            <span class="mb-1 d-block">Designer</span>
+                            <h5 class="mb-1 fs-3">Lucas Anderson</h5>
+                            <span class="mb-1 d-block">Business Owner</span>
                             <p class="mb-0 d-flex align-items-center gap-2">
-                              <i class="ti ti-mail fs-4"></i> info@modernize.com
+                              <i class="ti ti-mail fs-4"></i> info@flagmaster.com
                             </p>
                           </div>
                         </div>
@@ -1127,7 +1111,7 @@
                           <a href="user-profile" class="py-8 px-7 mt-8 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                                 <?= $this->Html->image('svgs/icon-account.svg', [
-                                    'alt' => 'modernize-img',
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
@@ -1140,7 +1124,7 @@
                           <a href="email" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
                                 <?= $this->Html->image('svgs/icon-inbox.svg', [
-                                    'alt' => 'modernize-img',
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
@@ -1150,37 +1134,21 @@
                               <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
                             </div>
                           </a>
-                          <a href="notes" class="py-8 px-7 d-flex align-items-center">
+                          <a href="order" class="py-8 px-7 d-flex align-items-center">
                             <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-tasks.svg', [
-                                    'alt' => 'modernize-img',
+                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                    'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
                                 ]) ?>
                             </span>
                             <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Task</h6>
-                              <span class="fs-2 d-block text-body-secondary">To-do and Daily Tasks</span>
+                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>
+                              <span class="fs-2 d-block text-body-secondary">Order History</span>
                             </div>
                           </a>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <div class="upgrade-plan bg-primary-subtle position-relative overflow-hidden rounded-4 p-4 mb-9">
-                            <div class="row">
-                              <div class="col-6">
-                                <h5 class="fs-4 mb-3 fw-semibold">Unlimited Access</h5>
-                                <button class="btn btn-primary">Upgrade</button>
-                              </div>
-                              <div class="col-6">
-                                <div class="m-n4 unlimited-img">
-                                    <?= $this->Html->image('backgrounds/unlimited-bg.png', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'w-100',
-                                    ]) ?>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
                           <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
                         </div>
                       </div>
