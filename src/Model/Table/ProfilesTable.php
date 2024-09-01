@@ -46,6 +46,7 @@ class ProfilesTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
+            'joinType' => 'INNER',
         ]);
         $this->belongsTo('Addresses', [
             'foreignKey' => 'address_id',

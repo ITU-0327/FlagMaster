@@ -52,8 +52,9 @@ class UsersTable extends Table
         $this->hasMany('Orders', [
             'foreignKey' => 'user_id',
         ]);
-        $this->hasMany('Profiles', [
+        $this->hasOne('Profiles', [
             'foreignKey' => 'user_id',
+            'joinType' => 'INNER',
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'user_id',
