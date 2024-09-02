@@ -21,11 +21,11 @@ class OrdersFixture extends TestFixture
             [
                 'id' => 1,
                 'user_id' => 1,
-                'order_date' => 1724847115,
+                'order_date' => 1725008483,
                 'total_amount' => 1.5,
                 'status' => 'Lorem ipsum dolor sit amet',
-                'created_at' => 1724847115,
-                'updated_at' => 1724847115,
+                'created_at' => 1725008483,
+                'updated_at' => 1725008483,
             ],
         ];
         parent::init();

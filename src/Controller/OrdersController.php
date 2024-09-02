@@ -17,9 +17,10 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $query = $this->Orders->find()
-            ->contain(['Users']);
-        $orders = $this->paginate($query);
+        $this->viewBuilder()->setLayout('user');
+        $orders = $this->Orders->find()
+            ->contain(['Users.Profiles', 'Users.Profiles.Addresses', 'Products'])
+            ->all();
 
         $this->set(compact('orders'));
     }
