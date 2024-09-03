@@ -6,7 +6,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\AddressesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\AddressesTable Test Case
@@ -147,4 +146,104 @@ class AddressesTableTest extends TestCase
         $this->assertNotEmpty($errors);
         $this->assertArrayHasKey('_existsIn', $errors);
     }
+
+    /**
+     * Test HasMany association with Deliveries
+     *
+     * @return void
+     */
+    public function testHasManyDeliveries(): void
+    {
+        $data = [
+            'street' => '789 Main St',
+            'city' => 'Sample City',
+            'state' => 'Sample State',
+            'postal_code' => '54321',
+            'country' => 'Sample Country',
+            'deliveries' => [
+                ['delivery_id' => 1, 'delivery_date' => '2024-01-01'],
+                ['delivery_id' => 2, 'delivery_date' => '2024-01-02'],
+            ],
+        ];
+
+        $address = $this->Addresses->newEntity($data, ['associated' => ['Deliveries']]);
+        $this->Addresses->save($address);
+
+        $this->assertNotEmpty($address->deliveries);
+        $this->assertCount(2, $address->deliveries);
+    }
+
+    /**
+     * Test HasMany association with Profiles
+     *
+     * @return void
+     */
+    public function testHasManyProfiles(): void
+    {
+        $data = [
+            'street' => '456 Main St',
+            'city' => 'Another City',
+            'state' => 'Another State',
+            'postal_code' => '67890',
+            'country' => 'Another Country',
+            'profiles' => [
+                ['profile_id' => 1, 'name' => 'John Doe'],
+                ['profile_id' => 2, 'name' => 'Jane Doe'],
+            ],
+        ];
+
+        $address = $this->Addresses->newEntity($data, ['associated' => ['Profiles']]);
+        $this->Addresses->save($address);
+
+        $this->assertNotEmpty($address->profiles);
+        $this->assertCount(2, $address->profiles);
+    }
+
+    /**
+     * Test handling of empty strings vs. null values
+     *
+     * @return void
+     */
+    public function testEmptyStringVsNull(): void
+    {
+        $data = [
+            'street' => '',
+            'city' => 'Null City',
+            'state' => 'Null State',
+            'postal_code' => '',
+            'country' => 'Null Country',
+        ];
+
+        $address = $this->Addresses->newEntity($data);
+        $errors = $address->getErrors();
+
+        $this->assertArrayHasKey('street', $errors);
+        $this->assertArrayHasKey('postal_code', $errors);
+    }
+
+    /**
+     * Test long text input for fields
+     *
+     * @return void
+     */
+    public function testLongTextInput(): void
+    {
+        $data = [
+            'street' => str_repeat('a', 500),
+            'city' => str_repeat('b', 500),
+            'state' => str_repeat('c', 500),
+            'postal_code' => str_repeat('d', 500),
+            'country' => str_repeat('e', 500),
+        ];
+
+        $address = $this->Addresses->newEntity($data);
+        $errors = $address->getErrors();
+
+        $this->assertArrayHasKey('street', $errors);
+        $this->assertArrayHasKey('city', $errors);
+        $this->assertArrayHasKey('state', $errors);
+        $this->assertArrayHasKey('postal_code', $errors);
+        $this->assertArrayHasKey('country', $errors);
+    }
+
 }
