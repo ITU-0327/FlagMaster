@@ -795,7 +795,7 @@
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
                                             <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
-                                            <?= $this->Html->image('apps/profile/user-1.jpg', [
+                                            <?= $this->Html->image('profile/user-1.jpg', [
                                                 'alt' => 'modernize-img',
                                                 'class' => 'w-auto me-3 rounded-circle',
                                                 'width' => '40',
@@ -2342,7 +2342,11 @@
                     </div>
                     <div class="col-lg-5 col-xl-5">
                         <div class="text-center text-lg-end">
-                            <img src="../assets/images/backgrounds/business-woman-checking-her-mail.png" alt="modernize-img" class="img-fluid" />
+                            <!--<img src="../assets/images/backgrounds/business-woman-checking-her-mail.png" alt="modernize-img" class="img-fluid" />-->
+                            <?= $this->Html->image('backgrounds/business-woman-checking-her-mail.png', [
+                                'alt' => 'modernize-img',
+                                'class' => 'img-fluid',
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -2355,7 +2359,11 @@
                 <div class="col-lg-4">
                     <div class="text-center">
                         <a href="index-new">
-                            <img src="../assets/images/logos/favicon.ico" alt="modernize-img" class="img-fluid pb-3" />
+                            <!--<img src="../assets/images/logos/favicon.ico" alt="modernize-img" class="img-fluid pb-3" />-->
+                            <?= $this->Html->image('logos/favicon.ico', [
+                                'alt' => 'modernize-img',
+                                'class' => 'img-fluid pb-3',
+                            ]) ?>
                         </a>
                         <p class="mb-0 text-dark">
                             All rights reserved by Modernize. Designed & Developed by
@@ -2368,7 +2376,12 @@
     </footer>
     <div class="offcanvas offcanvas-start modernize-lp-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header p-4">
-            <img src="../assets/images/logos/dark-logo.svg" alt="modernize-img" class="img-fluid" width="150" />
+            <!--<img src="../assets/images/logos/dark-logo.svg" alt="modernize-img" class="img-fluid" width="150" />-->
+            <?= $this->Html->image('logos/dark-logo.svg', [
+                'alt' => 'modernize-img',
+                'class' => 'img-fluid',
+                'width' => '150',
+            ]) ?>
         </div>
         <div class="offcanvas-body p-4">
             <ul class="navbar-nav justify-content-end flex-grow-1">
@@ -2545,8 +2558,8 @@
 
 <?php
 $this->start('customScript'); ?>
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-<script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
-<script src="../assets/libs/aos/dist/aos.js"></script>
-<script src="../assets/js/landingpage/landingpage.js"></script>
+<?= $this->Html->script('libs/iconify-icon/iconify-icon.min.js') ?>
+<?= $this->Html->script('libs/owl.carousel/dist/owl.carousel.min.js') ?>
+<?= $this->Html->script('libs/aos/dist/aos.js') ?>
+<?= $this->Html->script('js/landingpage/landingpage.js') ?>
 <?php $this->end(); ?>
