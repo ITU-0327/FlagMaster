@@ -1,9 +1,27 @@
-﻿<div id="main-wrapper flex-column">
+﻿<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Product $product
+ * @var \Cake\Collection\CollectionInterface|string[] $categories
+ */
+?>
+
+<?php $this->start('css'); ?>
+
+<?= $this->Html->css('styles') ?>
+<?= $this->Html->css('styles-rtl') ?>
+<?= $this->Html->css('plugins/some-plugin/some-plugin') ?>
+<?php $this->end(); ?>
+
+
+<div id="main-wrapper flex-column">
     <header class="header">
         <nav class="navbar navbar-expand-lg py-0">
             <div class="container">
                 <a class="navbar-brand me-0 py-0" href="/">
-                    <img src="../assets/images/logos/dark-logo.svg" alt="img-fluid" />
+                    <?= $this->Html->image('logos/dark-logo.svg', [
+                        'alt' => 'img-fluid',
+                    ]) ?>
                 </a>
                 <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="ti ti-menu-2 fs-9"></i>
@@ -32,7 +50,10 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/demos/demo-main.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('demos/demo-main.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -42,7 +63,11 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/demos/demo-dark.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('demos/demo-dark.jpg', [
+                                                        'alt' => 'img-fluid',
+                                                        'alt' => "modernize-img",
+                                                        'class' => "img-fluid"
+                                                    ]) ?>
                                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -52,7 +77,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/demos/demo-horizontal.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('demos/demo-horizontal.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -62,7 +90,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/demos/demo-minisidebar.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('demos/demo-minisidebar.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -72,7 +103,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/demos/demo-rtl.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('demos/demo-rtl.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -91,7 +125,10 @@
                                         <div class="row justify-content-between">
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/apps/app-calendar.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('apps/app-calendar.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="calendar" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -101,7 +138,10 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/apps/app-chat.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <?= $this->Html->image('apps/app-chat.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="chat" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -111,7 +151,11 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/apps/app-email.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <!--<img src="../assets/images/apps/app-email.jpg" alt="modernize-img" class="img-fluid" />-->
+                                                    <?= $this->Html->image('apps/app-email.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="email" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -121,7 +165,11 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/apps/app-contact.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <!--<img src="../assets/images/apps/app-contact.jpg" alt="modernize-img" class="img-fluid" />-->
+                                                    <?= $this->Html->image('apps/app-contact.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="contact-list" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -131,7 +179,11 @@
                                             </div>
                                             <div class="col">
                                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                                    <img src="../assets/images/apps/app-invoice.jpg" alt="modernize-img" class="img-fluid" />
+                                                    <!--<img src="../assets/images/apps/app-invoice.jpg" alt="modernize-img" class="img-fluid" />-->
+                                                    <?= $this->Html->image('apps/app-invoice.jpg', [
+                                                        'alt' => 'modernize-img',
+                                                        'class' => 'img-fluid',
+                                                    ]) ?>
                                                     <a target="_blank" href="invoice" class="btn btn-primary lp-demos-btn fs-2 p-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                                         Preview</a>
                                                 </div>
@@ -161,7 +213,13 @@
                                                         <div class="position-relative">
                                                             <a target="_blank" href="chat" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-chat.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-chat.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -172,7 +230,13 @@
                                                             </a>
                                                             <a target="_blank" href="invoice" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-invoice.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-invoice.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -183,7 +247,13 @@
                                                             </a>
                                                             <a target="_blank" href="contact-list" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-mobile.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-mobile.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -194,7 +264,13 @@
                                                             </a>
                                                             <a target="_blank" href="email" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-message-box.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-message-box.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -209,7 +285,13 @@
                                                         <div class="position-relative">
                                                             <a target="_blank" href="page-user-profile" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-cart.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-cart.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -220,7 +302,13 @@
                                                             </a>
                                                             <a target="_blank" href="calendar" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-date.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-date.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -231,7 +319,13 @@
                                                             </a>
                                                             <a target="_blank" href="contact_table" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-lifebuoy.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-lifebuoy.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -242,7 +336,13 @@
                                                             </a>
                                                             <a target="_blank" href="notes" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                    <img src="../assets/images/svgs/icon-dd-application.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                                                    <!--<img src="../assets/images/svgs/icon-dd-application.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                                                    <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
                                                                 </div>
                                                                 <div>
                                                                     <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -333,18 +433,34 @@
                             <div class="d-flex flex-row">
                                 <div class="">
                                     <div class="banner-img-1 slideup">
-                                        <img src="../assets/images/hero-img/bannerimg1.svg" alt="modernize-img" class="img-fluid" />
+                                        <!--<img src="../assets/images/hero-img/bannerimg1.svg" alt="modernize-img" class="img-fluid" />-->
+                                        <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
                                     </div>
                                     <div class="banner-img-1 slideup">
-                                        <img src="../assets/images/hero-img/bannerimg1.svg" alt="modernize-img" class="img-fluid" />
+                                        <!--<img src="../assets/images/hero-img/bannerimg1.svg" alt="modernize-img" class="img-fluid" />-->
+                                        <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
                                     </div>
                                 </div>
                                 <div class="">
                                     <div class="banner-img-2 slideDown">
-                                        <img src="../assets/images/hero-img/bannerimg2.svg" alt="modernize-img" class="img-fluid" />
+                                        <!--<img src="../assets/images/hero-img/bannerimg2.svg" alt="modernize-img" class="img-fluid" />-->
+                                        <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
                                     </div>
                                     <div class="banner-img-2 slideDown">
-                                        <img src="../assets/images/hero-img/bannerimg2.svg" alt="modernize-img" class="img-fluid" />
+                                        <!--<img src="../assets/images/hero-img/bannerimg2.svg" alt="modernize-img" class="img-fluid" />-->
+                                        <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
                                     </div>
                                 </div>
                             </div>
@@ -361,17 +477,35 @@
                             <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-sm-start mb-2 mb-sm-0">
                                 <li class="">
                                     <a class="d-block" href="javascript:void(0)">
-                                        <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" />
+                                        <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" -->
+                                        <?= $this->Html->image('profile/user-1.jpg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                            'width' => '32',
+                                            'height' => '32',
+                                        ]) ?>
                                     </a>
                                 </li>
                                 <li class="ms-n2">
                                     <a class="d-block" href="javascript:void(0)">
-                                        <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" />
+                                        <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" />-->
+                                        <?= $this->Html->image('profile/user-2.jpg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                            'width' => '32',
+                                            'height' => '32',
+                                        ]) ?>
                                     </a>
                                 </li>
                                 <li class="ms-n2">
                                     <a class="d-block" href="javascript:void(0)">
-                                        <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" />
+                                        <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="img-fluid border border-2 rounded-circle border-white" width="32" height="32" />-->
+                                        <?= $this->Html->image('profile/user-3.jpg', [
+                                            'alt' => 'modernize-img',
+                                            'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                            'width' => '32',
+                                            'height' => '32',
+                                        ]) ?>
                                     </a>
                                 </li>
                             </ul>
@@ -390,7 +524,11 @@
                         <div class="row justify-content-center">
                             <div class="col-sm-6 col-lg-4 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/demos/demo-main.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--img src="../assets/images/demos/demo-main.jpg" alt="modernize-img" class="img-fluid" />-->f
+                                    <?= $this->Html->image('demos/demo-main.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -398,7 +536,11 @@
                             </div>
                             <div class="col-sm-6 col-lg-4 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/demos/demo-dark.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/demos/demo-dark.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('demos/demo-dark.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -406,7 +548,11 @@
                             </div>
                             <div class="col-sm-6 col-lg-4 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/demos/demo-horizontal.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/demos/demo-horizontal.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('demos/demo-horizontal.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -414,7 +560,11 @@
                             </div>
                             <div class="col-sm-6 col-lg-4 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/demos/demo-minisidebar.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/demos/demo-minisidebar.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('demos/demo-minisidebar.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -422,7 +572,11 @@
                             </div>
                             <div class="col-sm-6 col-lg-4 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/demos/demo-rtl.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/demos/demo-rtl.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('demos/demo-rtl.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -437,7 +591,11 @@
                         <div class="row justify-content-center">
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-calendar.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-calendar.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-calendar.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="calendar" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -445,7 +603,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-chat.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-chat.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-chat.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="chat" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -453,7 +615,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-email.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-email.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-email.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="email" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -461,7 +627,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-contact.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-contact.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-contact.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="contact-list" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -469,7 +639,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-invoice.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-invoice.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-invoice.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="invoice" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -477,7 +651,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/modernize-bt-app-contact-list.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/modernize-bt-app-contact-list.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/modernize-bt-app-contact-list.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="contact_table" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -485,7 +663,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-user-profile.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-user-profile.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-user-profile.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="page-user-profile" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -493,7 +675,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/modernize-vue-app-blog.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/modernize-vue-app-blog.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/modernize-vue-app-blog.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="blog-posts" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -501,7 +687,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/modernize-vue-app-blog-detail.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/modernize-vue-app-blog-detail.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/modernize-vue-app-blog-detail.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="blog-detail" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -509,7 +699,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/modernize-vue-app-shop.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/modernize-vue-app-shop.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/modernize-vue-app-shop.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="eco-shop" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -517,7 +711,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-ecommerce-detail.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-ecommerce-detail.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-ecommerce-detail.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="eco-shop-detail" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -525,7 +723,11 @@
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <img src="../assets/images/apps/app-ecommerce-list.jpg" alt="modernize-img" class="img-fluid" />
+                                    <!--<img src="../assets/images/apps/app-ecommerce-list.jpg" alt="modernize-img" class="img-fluid" />-->
+                                    <?= $this->Html->image('apps/app-ecommerce-list.jpg', [
+                                        'alt' => 'modernize-img',
+                                        'class' => 'img-fluid',
+                                    ]) ?>
                                     <a target="_blank" href="eco-product-list" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
@@ -551,13 +753,25 @@
                 <div class="sliding-wrapper position-relative overflow-hidden">
                     <div class="slide-background d-flex flex-row w-100">
                         <div class="slide">
-                            <img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />
+                            <!--<img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />-->
+                            <?= $this->Html->image('slider/slider-group.png', [
+                                'alt' => 'slide',
+                                'class' => '100%',
+                            ]) ?>
                         </div>
                         <div class="slide">
-                            <img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />
+                            <!--<img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />-->
+                            <?= $this->Html->image('slider/slider-group.png', [
+                                'alt' => 'slide',
+                                'class' => '100%',
+                            ]) ?>
                         </div>
                         <div class="slide">
-                            <img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />
+                            <!--<img src="../assets/images/slider/slider-group.png" alt="slide" height="100%" />-->
+                            <?= $this->Html->image('slider/slider-group.png', [
+                                'alt' => 'slide',
+                                'class' => '100%',
+                            ]) ?>
                         </div>
                     </div>
                 </div>
@@ -580,7 +794,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('apps/profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -590,27 +810,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -630,7 +870,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -640,27 +886,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -680,7 +946,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -692,27 +964,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -731,7 +1023,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -741,27 +1039,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -781,7 +1099,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -791,27 +1115,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -831,7 +1175,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -843,27 +1193,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" /-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -882,7 +1252,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -892,27 +1268,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -932,7 +1328,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -942,27 +1344,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                    <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -982,7 +1404,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -994,27 +1422,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1033,7 +1481,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1043,27 +1497,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1083,7 +1557,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1093,27 +1573,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1133,7 +1633,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -1145,27 +1651,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1184,7 +1710,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1194,27 +1726,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1234,7 +1786,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1244,27 +1802,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />--->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1284,7 +1862,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -1296,27 +1880,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1335,7 +1939,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1385,7 +1995,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
@@ -1395,27 +2011,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -1435,7 +2071,13 @@
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between mb-4">
                                         <div class="d-flex align-items-center">
-                                            <img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
                                                     Eminson Mendoza
@@ -1447,27 +2089,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>

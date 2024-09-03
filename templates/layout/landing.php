@@ -8,8 +8,8 @@
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
 
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../assets/libs/aos/dist/aos.css" />
+    <link rel="stylesheet" href="assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="assets/libs/aos/dist/aos.css" />
 </head>
 
 <body>
