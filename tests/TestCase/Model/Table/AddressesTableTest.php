@@ -107,4 +107,44 @@ class AddressesTableTest extends TestCase
         $this->assertArrayHasKey('postal_code', $errors);
         $this->assertArrayHasKey('country', $errors);
     }
+
+    /**
+     * Test unique id validation
+     *
+     * @return void
+     */
+    public function testUniqueId(): void
+    {
+        // First, create and save an address entity with a specific id
+        $data1 = [
+            'id' => 1,
+            'street' => '123 Main St',
+            'city' => 'Sample City',
+            'state' => 'Sample State',
+            'postal_code' => '12345',
+            'country' => 'Sample Country',
+        ];
+        $address1 = $this->Addresses->newEntity($data1);
+        $this->Addresses->save($address1);
+
+        // Now, try to create and save another address entity with the same id
+        $data2 = [
+            'id' => 1, // Same id as above
+            'street' => '456 Another St',
+            'city' => 'Another City',
+            'state' => 'Another State',
+            'postal_code' => '67890',
+            'country' => 'Another Country',
+        ];
+        $address2 = $this->Addresses->newEntity($data2);
+        $result = $this->Addresses->save($address2);
+
+        // Assert that the second save attempt fails because of the unique id constraint
+        $this->assertFalse($result);
+
+        // Alternatively, you can check for errors in the second entity
+        $errors = $address2->getErrors();
+        $this->assertNotEmpty($errors);
+        $this->assertArrayHasKey('_existsIn', $errors);
+    }
 }
