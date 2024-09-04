@@ -7,11 +7,6 @@ use App\Controller\ProductImagesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
-/**
- * App\Controller\ProductImagesController Test Case
- *
- * @uses \App\Controller\ProductImagesController
- */
 class ProductImagesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
@@ -19,9 +14,9 @@ class ProductImagesControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var list<string>
+     * @var array
      */
-    protected array $fixtures = [
+    public array$fixtures = [
         'app.ProductImages',
         'app.Products',
     ];
@@ -30,54 +25,77 @@ class ProductImagesControllerTest extends TestCase
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\ProductImagesController::index()
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/product-images');
+        $this->assertResponseOk(); // Check response status 200
+        $this->assertResponseContains('Product Images'); // Check content
     }
 
     /**
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\ProductImagesController::view()
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/product-images/view/1'); // Assuming '1' is a valid ID in your fixture
+        $this->assertResponseOk();
+        $this->assertResponseContains('Product Image');
     }
 
     /**
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\ProductImagesController::add()
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $postData = [
+            'product_id' => 1, // Assuming valid product_id
+            'image_path' => 'path/to/image.jpg'
+        ];
+
+        $this->post('/product-images/add', $postData);
+        $this->assertResponseSuccess();
+        $this->assertRedirect(['action' => 'index']); // Redirect on success
     }
 
     /**
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\ProductImagesController::edit()
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $postData = [
+            'product_id' => 1,
+            'image_path' => 'new/path/to/image.jpg'
+        ];
+
+        $this->put('/product-images/edit/1', $postData); // Assuming '1' is a valid ID
+        $this->assertResponseSuccess();
+        $this->assertRedirect(['action' => 'index']);
     }
 
     /**
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\ProductImagesController::delete()
      */
     public function testDelete(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $this->delete('/product-images/delete/1'); // Assuming '1' is a valid ID
+        $this->assertRedirect(['action' => 'index']);
     }
 }
