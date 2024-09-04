@@ -1,9 +1,8 @@
 <?php
 /**
-
-@var \App\View\AppView $this
-@var \App\Model\Entity\Enquiry $enquiry
-@var \Cake\Collection\CollectionInterface|string[] $users
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Enquiry $enquiry
+ * @var \Cake\Collection\CollectionInterface|string[] $users
  */
 ?>
 <div class="row">
