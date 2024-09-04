@@ -14,9 +14,9 @@ $this->disableAutoLayout();
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
 
     <!-- Owl Carousel  -->
-    <?= $this->Html->css('/libs/owl.carousel/dist/assets/owl.carousel.min.css') ?>
-    <?= $this->Html->css('/libs/aos/dist/aos.css') ?>
-
+    <?= $this->Html->css('/libs/owl.carousel/dist/assets/owl.carousel.min') ?>
+    <?= $this->Html->css('/libs/aos/dist/aos') ?>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') ?>
 </head>
 
 <body>
@@ -52,179 +52,165 @@ $this->disableAutoLayout();
                                 <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" aria-expanded="false">
                                     Shop
                                     <span class="d-flex align-items-center">
-                                    <i class="ti ti-chevron-down"></i>
-                                </span>
+                                        <i class="ti ti-chevron-down"></i>
+                                    </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-animate-up py-0">
                                     <div class="row">
+                                        <!-- Flag Categories Section -->
                                         <div class="col-md-8">
                                             <div class="p-4">
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="position-relative">
-                                                                <a target="_blank" href="chat" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Chat Application
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">New messages arrived</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="invoice" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Invoice App
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">Get latest invoice</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="contact-list" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Contact Application
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">2 Unsaved Contacts</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="email" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Email App
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">Get new emails</span>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="position-relative">
+                                                            <a href="/shop/national-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">National Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Explore national flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/custom-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Custom Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Create custom flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Cape Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Wearable cape flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/car-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Car Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for your car</span>
+                                                                </div>
+                                                            </a>
                                                         </div>
-                                                        <div class="col-6">
-                                                            <div class="position-relative">
-                                                                <a target="_blank" href="page-user-profile" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            User Profile
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">learn more information</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="calendar" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Calendar App
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">Get dates</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="contact_table" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Contact List Table
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">Add new contact</span>
-                                                                    </div>
-                                                                </a>
-                                                                <a target="_blank" href="notes" class="d-flex align-items-center pb-9 position-relative lh-base">
-                                                                    <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                                                        <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                                                            'alt' => 'modernize-img',
-                                                                            'class' => 'img-fluid',
-                                                                            'width' => '24',
-                                                                            'height' => '24',
-                                                                        ]) ?>
-                                                                    </div>
-                                                                    <div>
-                                                                        <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                                            Notes Application
-                                                                        </h6>
-                                                                        <span class="fs-2 d-block text-muted">To-do and Daily tasks</span>
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="position-relative">
+                                                            <a href="/shop/garden-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Garden Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for gardens</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Hand Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Perfect for parades</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/hanging-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Hanging Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for decoration</span>
+                                                                </div>
+                                                            </a>
+                                                            <!-- String Flags -->
+                                                            <a href="/shop/string-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                                        'alt' => 'modernize-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">String Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Perfect for events</span>
+                                                                </div>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- Recommended Products Section -->
                                         <div class="col-md-4">
                                             <div class="position-relative p-4 border-start h-100">
                                                 <h5 class="fs-5 mb-7 fw-semibold">Quick Links</h5>
                                                 <ul class="list-unstyled">
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="page-pricing">Pricing Page</a>
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/national-flag-australia">
+                                                            Australian Flag
+                                                        </a>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="authentication-login">Authentication Design</a>
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/custom-flag-pirate">
+                                                            Pirate Skull Flag
+                                                        </a>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="authentication-register">Register Now</a>
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/garden-flag-sunflower">
+                                                            Sunflower Flag
+                                                        </a>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="authentication-error">404 Error Page</a>
-                                                    </li>
-                                                    <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="notes">Notes App</a>
-                                                    </li>
-                                                    <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="page-user-profile">User Application</a>
-                                                    </li>
-                                                    <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" target="_blank" href="page-account-settings">Account Settings</a>
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/hand-flag-switzerland">
+                                                            Switzerland Hand Flag
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -232,17 +218,30 @@ $this->disableAutoLayout();
                                     </div>
                                 </div>
                             </li>
+
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" target="_blank">Custom Flag</a>
+                                <a class="nav-link active" aria-current="page" href="#">Custom Flag</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" target="_blank">FAQs</a>
+                                <?= $this->Html->link(
+                                    'FAQs',
+                                    ['controller' => 'Pages', 'action' => 'faqs'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" target="_blank">About Us</a>
+                                <?= $this->Html->link(
+                                    'About Us',
+                                    ['controller' => 'Pages', 'action' => 'about-us'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#" target="_blank">Contact Us</a>
+                                <?= $this->Html->link(
+                                    'Contact Us',
+                                    ['controller' => 'Enquiries', 'action' => 'add'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
                             </li>
                             <li class="nav-item ms-2">
                                 <a class="btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2" href="authentication-login">Login</a>
@@ -272,8 +271,7 @@ $this->disableAutoLayout();
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                                     <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
-                                    <a class="btn btn-outline-primary d-block scroll-link px-7 py-6" href="#production-template">Live
-                                        Preview</a>
+                                    <a class="btn btn-outline-primary d-block scroll-link px-7 py-6" href="authentication-register">Register</a>
                                 </div>
                             </div>
                         </div>
@@ -296,7 +294,6 @@ $this->disableAutoLayout();
                                     </div>
                                     <div class="">
                                         <div class="banner-img-2 slideDown">
-                                            <!--<img src="../assets/images/hero-img/bannerimg2.svg" alt="modernize-img" class="img-fluid" />-->
                                             <?= $this->Html->image('hero-img/bannerimg2.svg', [
                                                 'alt' => 'modernize-img',
                                                 'class' => 'img-fluid',
@@ -373,8 +370,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="calendar" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">National</h6>
                                 </div>
@@ -384,8 +380,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="chat" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Custom</h6>
                                 </div>
@@ -395,8 +390,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="email" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Cape</h6>
                                 </div>
@@ -406,8 +400,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="contact-list" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Car</h6>
                                 </div>
@@ -417,8 +410,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="invoice" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Garden</h6>
                                 </div>
@@ -428,8 +420,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="contact_table" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
                                 </div>
@@ -439,8 +430,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="page-user-profile" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
                                 </div>
@@ -450,8 +440,7 @@ $this->disableAutoLayout();
                                             'alt' => 'modernize-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a target="_blank" href="blog-posts" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                            Preview</a>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">String</h6>
                                 </div>
@@ -1699,9 +1688,8 @@ $this->disableAutoLayout();
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                <small class="text-primary fw-bold mb-2 d-block fs-3">ALMOST COVERED EVERYTHING</small>
                                 <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
-                                    Other Amazing Options Provided
+                                    Why Choose Flag Master?
                                 </h2>
                             </div>
                         </div>
@@ -1709,74 +1697,73 @@ $this->disableAutoLayout();
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-wand text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">6 Theme Colors</h5>
+                                <i class="fas fa-paint-brush text-primary fs-10"></i> <!-- Font Awesome Paint Brush Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Customizable Flag Designs</h5>
                                 <p class="mb-0 text-dark">
-                                    We have included 6 pre-defined Theme Colors
+                                    Easily customize your flags with real-time previews.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-adjustments text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">150+ Styles</h5>
+                                <i class="fas fa-boxes text-primary fs-10"></i> <!-- Font Awesome Boxes Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Bulk Orders for Institutions</h5>
                                 <p class="mb-0 text-dark">
-                                    Almost 150+ Styles can be found
-                                    Pack.
+                                    Streamlined bulk ordering for schools, organizations, and more.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-diamond text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">200+ Colors Available</h5>
+                                <i class="fas fa-globe text-primary fs-10"></i> <!-- Font Awesome Globe Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Global Shipping</h5>
                                 <p class="mb-0 text-dark">
-                                    Lots of Icon Fonts are included here in the package
+                                    Fast and reliable worldwide shipping options.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-device-desktop text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">Fully Sizes</h5>
+                                <i class="fas fa-credit-card text-primary fs-10"></i> <!-- Font Awesome Credit Card Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Secure Payment Options</h5>
                                 <p class="mb-0 text-dark">
-                                    Available in all sizes and types to suit customer needs.
+                                    Multiple secure payment methods, including buy-now, pay-later.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-database text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">Saving Favourites</h5>
+                                <i class="fas fa-heart text-primary fs-10"></i> <!-- Font Awesome Heart Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Save Favorite Designs</h5>
                                 <p class="mb-0 text-dark">
-                                    Keep customers favourite styles for next shopping
+                                    Save your favorite flag designs for easy re-ordering.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-arrows-shuffle text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">Easy to Customize</h5>
+                                <i class="fas fa-tools text-primary fs-10"></i> <!-- Font Awesome Tools Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Easy Customization Tools</h5>
                                 <p class="mb-0 text-dark">
-                                    Customization will be easy to customize.
+                                    Intuitive tools for easy flag design customization.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-chart-pie text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">Lots of Options</h5>
+                                <i class="fas fa-shipping-fast text-primary fs-10"></i> <!-- Font Awesome Shipping Fast Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Track Your Orders</h5>
                                 <p class="mb-0 text-dark">
-                                    You name it and we have it, Yes lots of variations
+                                    Track your orders in real-time from production to delivery.
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="d-block ti ti-calendar text-primary fs-10"></i>
-                                <h5 class="fs-5 fw-semibold mt-8">Always Cheapest</h5>
+                                <i class="fas fa-headset text-primary fs-10"></i> <!-- Font Awesome Headset Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Customer Support</h5>
                                 <p class="mb-0 text-dark">
-                                    In any times all will be the cheapest in the marketplace
+                                    Dedicated support to help with your custom orders and inquiries.
                                 </p>
                             </div>
                         </div>
@@ -1810,7 +1797,7 @@ $this->disableAutoLayout();
                     <div class="row justify-content-between">
                         <div class="col-lg-7 col-xl-5 pt-lg-5 mb-5 mb-lg-0">
                             <h2 class="fs-9 text-white text-center text-lg-start fw-bolder mb-7">
-                                Start your shopping
+                                Start your journey with Flag Master
                             </h2>
                             <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
                                 <a href="authentication-login" class="btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6">Login</a>
@@ -2037,13 +2024,25 @@ $this->disableAutoLayout();
                         <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">Custom Flag</a>
                     </li>
                     <li class="nav-item mt-3">
-                        <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">FAQs</a>
+                        <?= $this->Html->link(
+                            'FAQs',
+                            ['controller' => 'Pages', 'action' => 'faqs'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
                     </li>
                     <li class="nav-item mt-3">
-                        <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">About Us</a>
+                        <?= $this->Html->link(
+                            'About Us',
+                            ['controller' => 'Pages', 'action' => 'about-us'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
                     </li>
                     <li class="nav-item mt-3">
-                        <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">Contact Us</a>
+                        <?= $this->Html->link(
+                            'Contact Us',
+                            ['controller' => 'Enquiries', 'action' => 'add'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
                     </li>
                 </ul>
                 <form class="d-flex mt-3" role="search">
