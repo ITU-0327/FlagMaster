@@ -224,11 +224,19 @@
                 <a class="nav-link" href="faqs">FAQs</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="about-us">About Us</a>
+                  <?= $this->Html->link(
+                      'About Us',
+                      ['controller' => 'Pages', 'action' => 'about-us'],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
-                <li class="nav-item dropdown-hover d-none d-lg-block">
-                    <a class="nav-link" href="contact-us">Contact Us</a>
-                </li>
+              <li class="nav-item dropdown-hover d-none d-lg-block">
+                  <?= $this->Html->link(
+                    'Contact Us',
+                    ['controller' => 'Enquiries', 'action' => 'add'],
+                    ['class' => 'nav-link']
+                  ); ?>
+              </li>
             </ul>
 
             <div class="d-block d-lg-none py-4">
@@ -419,45 +427,51 @@
                           </div>
                         </div>
                         <div class="message-body">
-                          <a href="user-profile" class="py-8 px-7 mt-8 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-account.svg', [
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-account.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                              <span class="fs-2 d-block text-body-secondary">Account Settings</span>
-                            </div>
-                          </a>
-                          <a href="email" class="py-8 px-7 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-inbox.svg', [
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
+                                '</div>',
+                                ['controller' => 'Profiles'],
+                                ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                            ); ?>
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-inbox.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                              <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
-                            </div>
-                          </a>
-                          <a href="order" class="py-8 px-7 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
+                                '</div>',
+                                ['controller' => 'Enquiries'],
+                                ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                            ); ?>
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-dd-invoice.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>
-                              <span class="fs-2 d-block text-body-secondary">Order History</span>
-                            </div>
-                          </a>
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
+                                '</div>',
+                                ['controller' => 'Orders'],
+                                ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                            ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
                           <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
@@ -1148,19 +1162,21 @@
                               <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
                             </div>
                           </a>
-                          <a href="order" class="py-8 px-7 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-dd-invoice.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24'
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>
-                              <span class="fs-2 d-block text-body-secondary">Order History</span>
-                            </div>
-                          </a>
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
+                                '</div>',
+                                ['controller' => 'Orders'],
+                                ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                            ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
                           <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
