@@ -67,17 +67,17 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-7">Media</h4>
+<!--        <div class="card">-->
+<!--            <div class="card-body">-->
+<!--                <h4 class="card-title mb-7">Media</h4>-->
 <!--            TODO: May need to adjust this section if the dropzone requires specific form handling -->
-                <div class="dropzone dz-clickable mb-2">
-                    <div class="dz-default dz-message">
-                        <button class="dz-button" type="button">Drop files here to upload</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--                <div class="dropzone dz-clickable mb-2">-->
+<!--                    <div class="dz-default dz-message">-->
+<!--                        <button class="dz-button" type="button">Drop files here to upload</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="card">
             <div class="card-body">
@@ -177,20 +177,20 @@
     </div>
     <div class="col-lg-4">
         <div class="offcanvas-md offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-7">Thumbnail</h4>
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title mb-7">Thumbnail</h4>-->
 <!--                TODO: May need to adjust this section if the dropzone requires specific form handling -->
-                    <div class="dropzone dz-clickable mb-2">
-                        <div class="dz-default dz-message">
-                            <button class="dz-button" type="button">Drop Thumbnail here to upload</button>
-                        </div>
-                    </div>
-                    <p class="fs-2 text-center mb-0">
-                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.
-                    </p>
-                </div>
-            </div>
+<!--                    <div class="dropzone dz-clickable mb-2">-->
+<!--                        <div class="dz-default dz-message">-->
+<!--                            <button class="dz-button" type="button">Drop Thumbnail here to upload</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <p class="fs-2 text-center mb-0">-->
+<!--                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-7">
@@ -217,10 +217,15 @@
                         </p>
                     </div>
 <!--                    TODO: Create New Category-->
-                    <button type="button" class="btn bg-primary-subtle text-primary ">
-                        <span class="fs-4 me-1">+</span>
-                        Create New Category
-                    </button>
+                    <?= $this->Html->link(
+                        '<span class="fs-4 me-1">+</span>Create New Category',
+                        ['controller' => 'Categories', 'action' => 'add'],
+                        ['class' => 'btn bg-primary-subtle text-primary', 'escape' => false]
+                    ) ?>
+<!--                    <button type="button" class="btn bg-primary-subtle text-primary ">-->
+<!--                        <span class="fs-4 me-1">+</span>-->
+<!--                        Create New Category-->
+<!--                    </button>-->
                 </div>
             </div>
             <div class="card">
