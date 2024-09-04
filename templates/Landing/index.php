@@ -411,17 +411,16 @@
                     <div class="col-xl-6">
                         <div class="hero-content my-5 my-xl-0">
                             <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                <i class="ti ti-rocket text-secondary fs-6"></i>Kick start
-                                your project with
+                                <i class="ti ti-rocket text-secondary fs-6"></i>Start your flag shopping journey.
                             </h6>
                             <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                                Most powerful &
-                                <span class="text-primary"> Developer friendly</span>
-                                dashboard
+                                Most type &
+                                <span class="text-primary"> Best Quality</span>
+                                Sale
+
                             </h1>
                             <p class="fs-5 mb-5 text-dark fw-normal" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                Modernize comes with light & dark color skins, well designed
-                                dashboards, applications and pages.
+                                Flagmaster is the Largest flag supplier in Australia
                             </p>
                             <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                                 <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
@@ -512,228 +511,115 @@
                                 </li>
                             </ul>
                             <p class="mb-0 fw-semibold fs-4 text-dark">
-                                <span>52,589+</span> developers & agencies using our
-                                templates
+                                <span>52,589+</span> users buying from us
                             </p>
                         </div>
                         <h2 class="text-center mb-0 fs-9 fw-bolder">
-                            Production Ready & Developer Friendly Bootstrap Admin Template
+                            A variety of flag designs available for selection
                         </h2>
                     </div>
                 </div>
                 <div class="domo-contect position-relative">
-                    <div class="demos-view mt-5 pt-lg-5">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-6 col-lg-4 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--img src="../assets/images/demos/demo-main.jpg" alt="modernize-img" class="img-fluid" />-->f
-                                    <?= $this->Html->image('demos/demo-main.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">Main</h6>
-                            </div>
-                            <div class="col-sm-6 col-lg-4 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/demos/demo-dark.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('demos/demo-dark.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">Dark</h6>
-                            </div>
-                            <div class="col-sm-6 col-lg-4 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/demos/demo-horizontal.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('demos/demo-horizontal.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">Horizontal</h6>
-                            </div>
-                            <div class="col-sm-6 col-lg-4 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/demos/demo-minisidebar.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('demos/demo-minisidebar.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">Minisidebar</h6>
-                            </div>
-                            <div class="col-sm-6 col-lg-4 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/demos/demo-rtl.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('demos/demo-rtl.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="/" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">RTL</h6>
-                            </div>
-                        </div>
-                    </div>
                     <div class="demos-view mt-4">
                         <div class="badge text-bg-primary text-center mb-7 fs-4 py-6 px-4 d-table mx-auto rounded-pill">
-                            Apps
+                            Styles
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-calendar.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-calendar.jpg', [
+                                    <?= $this->Html->image('apps/National-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="calendar" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Calendar</h6>
+                                <h6 class="mb-0 text-center fs-3">National</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-chat.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-chat.jpg', [
+                                    <?= $this->Html->image('apps/Custom-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="chat" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Chat</h6>
+                                <h6 class="mb-0 text-center fs-3">Custom</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-email.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-email.jpg', [
+                                    <?= $this->Html->image('apps/Cape-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="email" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Email</h6>
+                                <h6 class="mb-0 text-center fs-3">Cape</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-contact.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-contact.jpg', [
+                                    <?= $this->Html->image('apps/Car-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="contact-list" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Contact</h6>
+                                <h6 class="mb-0 text-center fs-3">Car</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-invoice.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-invoice.jpg', [
+                                    <?= $this->Html->image('apps/Garden-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="invoice" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Invoice</h6>
+                                <h6 class="mb-0 text-center fs-3">Garden</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/modernize-bt-app-contact-list.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/modernize-bt-app-contact-list.jpg', [
+                                    <?= $this->Html->image('apps/Hand-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="contact_table" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Contact List</h6>
+                                <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/app-user-profile.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-user-profile.jpg', [
+                                    <?= $this->Html->image('apps/Hanging-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="page-user-profile" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">User Profile</h6>
+                                <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
                             </div>
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                 <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                     <!--<img src="../assets/images/apps/modernize-vue-app-blog.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/modernize-vue-app-blog.jpg', [
+                                    <?= $this->Html->image('apps/String-Flag.png', [
                                         'alt' => 'modernize-img',
                                         'class' => 'img-fluid',
                                     ]) ?>
                                     <a target="_blank" href="blog-posts" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
                                         Preview</a>
                                 </div>
-                                <h6 class="mb-0 text-center fs-3">Blog</h6>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/apps/modernize-vue-app-blog-detail.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/modernize-vue-app-blog-detail.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="blog-detail" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">Blog Detail</h6>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/apps/modernize-vue-app-shop.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/modernize-vue-app-shop.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="eco-shop" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">eCommerce Shop</h6>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/apps/app-ecommerce-detail.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-ecommerce-detail.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="eco-shop-detail" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">eCommerce Detail</h6>
-                            </div>
-                            <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                    <!--<img src="../assets/images/apps/app-ecommerce-list.jpg" alt="modernize-img" class="img-fluid" />-->
-                                    <?= $this->Html->image('apps/app-ecommerce-list.jpg', [
-                                        'alt' => 'modernize-img',
-                                        'class' => 'img-fluid',
-                                    ]) ?>
-                                    <a target="_blank" href="eco-product-list" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">Live
-                                        Preview</a>
-                                </div>
-                                <h6 class="mb-0 text-center fs-3">eCommerce List</h6>
+                                <h6 class="mb-0 text-center fs-3">String</h6>
                             </div>
                         </div>
                     </div>
@@ -746,8 +632,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-xxl-8">
                             <h2 class="fs-9 text-center mb-5 fw-bolder">
-                                Increase speed of your development and launch quickly with
-                                Modernize
+                                Our sales performance
                             </h2>
                         </div>
                     </div>
@@ -784,7 +669,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                            Don’t just take our words for it, See what developers like you
+                            Don’t just take our words for it, See what customers like you
                             are saying
                         </h2>
                     </div>
@@ -804,7 +689,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Anna K.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -859,10 +744,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
+                                        The flag I ordered exceeded my expectations! The colors are vibrant, and the fabric feels durable. It’s been waving proudly outside my house for weeks. I’ll definitely be purchasing from here again!
                                     </p>
                                 </div>
                             </div>
@@ -880,7 +762,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Sarah L.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -935,10 +817,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
+                                        Great quality and fast shipping! I was able to find the perfect size for my event, and the custom design turned out beautifully. Thank you for the excellent service!
                                     </p>
                                 </div>
                             </div>
@@ -957,7 +836,7 @@
                                             ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
-                                                    Eminson Mendoza
+                                                    Samantha R.
                                                 </h6>
                                                 <p class="mb-0 fw-normal">Features avaibility</p>
                                             </div>
@@ -1013,9 +892,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
+                                        I was impressed with the variety of flag types available. The customer support team helped me choose the right one for my business, and it looks fantastic outside our office. Highly recommend!
                                     </p>
                                 </div>
                             </div>
@@ -1033,7 +910,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">James F.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -1088,10 +965,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
+                                        I purchased several flags for an international festival, and they were perfect! The quality is top-notch, and the selection of designs made it easy to find exactly what I needed. Great experience!
                                     </p>
                                 </div>
                             </div>
@@ -1109,7 +983,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">John D</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -1164,10 +1038,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
+                                        The flag is exactly what I was looking for! The material is durable, and the stitching is impeccable. It’s clear this company takes pride in their products. I’ll be coming back for more!
                                     </p>
                                 </div>
                             </div>
@@ -1186,7 +1057,7 @@
                                             ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
-                                                    Eminson Mendoza
+                                                    Tom H.
                                                 </h6>
                                                 <p class="mb-0 fw-normal">Features avaibility</p>
                                             </div>
@@ -1242,9 +1113,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
+                                        The flag I bought looks amazing! The design is sharp, and the colors are bold. It’s holding up well even in strong winds. Great product and fantastic customer service!
                                     </p>
                                 </div>
                             </div>
@@ -1262,7 +1131,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Rebecca T.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -1317,10 +1186,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
+                                        I was pleasantly surprised by the variety of options available. The flag I ordered was delivered quickly, and the quality is excellent. It’s exactly what I needed for my event. Highly recommend this company!
                                     </p>
                                 </div>
                             </div>
@@ -1338,7 +1204,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Michael P.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -1393,10 +1259,228 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
+                                        The attention to detail on the flag is impressive. I ordered a custom size, and it turned out perfectly. The material is high quality, and I couldn’t be happier with my purchase!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
+                                            <div>
+                                                <h6 class="fs-4 mb-1 fw-semibold">
+                                                    Emily G.
+                                                </h6>
+                                                <p class="mb-0 fw-normal">Features avaibility</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p class="fs-4 text-dark mb-0">
+                                        Amazing selection and excellent craftsmanship. The flag looks even better in person, and I appreciate the fast shipping. I’ve already recommended this company to my friends!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
+                                            <div>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Peter M.</h6>
+                                                <p class="mb-0 text-dark">Features avaibility</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p class="fs-4 mb-0 text-dark">
+                                        I ordered a flag for my business, and it really adds a professional touch. The customer service team was incredibly helpful in choosing the right size and style. I’m thrilled with how it turned out!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <div class="d-flex align-items-center">
+                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'w-auto me-3 rounded-circle',
+                                                'width' => '40',
+                                                'height' => '40',
+                                            ]) ?>
+                                            <div>
+                                                <h6 class="fs-4 mb-1 fw-semibold">Emily R.</h6>
+                                                <p class="mb-0 text-dark">Features avaibility</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="">
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <p class="fs-4 text-dark mb-0">
+                                        The flag exceeded my expectations! The fabric is durable, and the colors are vibrant. It’s been a great addition to my outdoor display. I’ll definitely be purchasing more in the future!
                                     </p>
                                 </div>
                             </div>
@@ -1471,9 +1555,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
+                                        I’m so impressed with the customization options. The flag I ordered fits perfectly with my decor, and the quality is top-notch. Great job!
                                     </p>
                                 </div>
                             </div>
@@ -1546,10 +1628,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
+                                        I bought a flag for our sports team, and it was a hit! The logo came out perfectly, and the material feels strong and long-lasting. Couldn’t ask for more!
                                     </p>
                                 </div>
                             </div>
@@ -1567,236 +1646,7 @@
                                                 'height' => '40',
                                             ]) ?>
                                             <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
-                                                <p class="mb-0 text-dark">Features avaibility</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <div class="d-flex align-items-center">
-                                            <!--<img src="../assets/images/profile/user-3.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
-                                            <?= $this->Html->image('profile/user-3.jpg', [
-                                                'alt' => 'modernize-img',
-                                                'class' => 'w-auto me-3 rounded-circle',
-                                                'width' => '40',
-                                                'height' => '40',
-                                            ]) ?>
-                                            <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">
-                                                    Eminson Mendoza
-                                                </h6>
-                                                <p class="mb-0 fw-normal">Features avaibility</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <div class="d-flex align-items-center">
-                                            <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
-                                            <?= $this->Html->image('profile/user-1.jpg', [
-                                                'alt' => 'modernize-img',
-                                                'class' => 'w-auto me-3 rounded-circle',
-                                                'width' => '40',
-                                                'height' => '40',
-                                            ]) ?>
-                                            <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
-                                                <p class="mb-0 text-dark">Features avaibility</p>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="">
-                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
-                                                        <?= $this->Html->image('svgs/icon-star.svg', [
-                                                            'alt' => 'modernize-img',
-                                                            'class' => 'img-fluid',
-                                                        ]) ?>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card">
-                                <div class="card-body p-4">
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <div class="d-flex align-items-center">
-                                            <!--<img src="../assets/images/profile/user-2.jpg" alt="modernize-img" class="w-auto me-3 rounded-circle" width="40" height="40" />-->
-                                            <?= $this->Html->image('profile/user-2.jpg', [
-                                                'alt' => 'modernize-img',
-                                                'class' => 'w-auto me-3 rounded-circle',
-                                                'width' => '40',
-                                                'height' => '40',
-                                            ]) ?>
-                                            <div>
-                                                <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
+                                                <h6 class="fs-4 mb-1 fw-semibold">David G.</h6>
                                                 <p class="mb-0 text-dark">Features avaibility</p>
                                             </div>
                                         </div>
@@ -1851,10 +1701,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
+                                        Absolutely love my new flag! It’s exactly what I was looking for, and the attention to detail is fantastic. The team was very responsive and helpful throughout the process.
                                     </p>
                                 </div>
                             </div>
@@ -1873,7 +1720,7 @@
                                             ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
-                                                    Eminson Mendoza
+                                                    Laura S.
                                                 </h6>
                                                 <p class="mb-0 fw-normal">Features avaibility</p>
                                             </div>
@@ -1929,9 +1776,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
+                                        This company is now my go-to for flags. The quality is always reliable, and the service is fast and friendly. Highly recommend them for any flag needs!
                                     </p>
                                 </div>
                             </div>
@@ -2004,10 +1849,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 mb-0 text-dark">
-                                        The dashboard template from adminmart has helped me
-                                        provide a clean and sleek look to my dashboard and made
-                                        it look exactly the way I wanted it to, mainly without
-                                        having.
+                                        We ordered a flag for our office, and it looks incredible. The colors are bright, and the stitching is very well done. We’re very happy with our purchase!
                                     </p>
                                 </div>
                             </div>
@@ -2080,10 +1922,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        The quality of design is excellent, customizability and
-                                        flexibility much better than the other products
-                                        available in the market. I strongly recommend the
-                                        AdminMart to other buyers.
+                                        I purchased a flag as a gift, and it turned out to be the perfect choice. The recipient loved it, and the quality was better than expected. I’ll be back for more!
                                     </p>
                                 </div>
                             </div>
@@ -2102,7 +1941,7 @@
                                             ]) ?>
                                             <div>
                                                 <h6 class="fs-4 mb-1 fw-semibold">
-                                                    Eminson Mendoza
+                                                    John L.
                                                 </h6>
                                                 <p class="mb-0 fw-normal">Features avaibility</p>
                                             </div>
@@ -2158,9 +1997,7 @@
                                         </div>
                                     </div>
                                     <p class="fs-4 text-dark mb-0">
-                                        This template is great, UI-rich and up-to-date. Although
-                                        it is pretty much complete, I suggest to improve a bit
-                                        of documentation. Thanks & Highly recomended!
+                                        The flag is stunning, and the print quality is fantastic. It’s been up for a few months now, and it still looks brand new despite the weather. Couldn’t be happier!
                                     </p>
                                 </div>
                             </div>
@@ -2176,7 +2013,7 @@
                         <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                             <small class="text-primary fw-bold mb-2 d-block fs-3">ALMOST COVERED EVERYTHING</small>
                             <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
-                                Other Amazing Features & Flexibility Provided
+                                Other Amazing Options Provided
                             </h2>
                         </div>
                     </div>
@@ -2187,75 +2024,44 @@
                             <i class="d-block ti ti-wand text-primary fs-10"></i>
                             <h5 class="fs-5 fw-semibold mt-8">6 Theme Colors</h5>
                             <p class="mb-0 text-dark">
-                                We have included 6 pre-defined Theme Colors with Modernize
-                                Admin.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-layout-sidebar text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Dark & Light Sidebar</h5>
-                            <p class="mb-0 text-dark">
-                                Included Dark and Light Sidebar for getting desire look and
-                                feel.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-archive text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">425+ Page Templates</h5>
-                            <p class="mb-0 text-dark">
-                                Yes, we have 5 demos & 79+ Pages per demo to make it easier.
+                                We have included 6 pre-defined Theme Colors
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                         <div class="text-center mb-5">
                             <i class="d-block ti ti-adjustments text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">150+ UI Components</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">150+ Styles</h5>
                             <p class="mb-0 text-dark">
-                                Almost 150+ UI Components being given with Modernize Admin
+                                Almost 150+ Styles can be found
                                 Pack.
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                         <div class="text-center mb-5">
-                            <i class="d-block ti ti-tag text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Bootstrap 5x</h5>
-                            <p class="mb-0 text-dark">
-                                Its been made with Bootstrap 5 and full responsive layout.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
-                        <div class="text-center mb-5">
                             <i class="d-block ti ti-diamond text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">200+ Font Icons</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">200+ Colors Available</h5>
                             <p class="mb-0 text-dark">
-                                Lots of Icon Fonts are included here in the package of
-                                Modernize Admin.
+                                Lots of Icon Fonts are included here in the package
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                         <div class="text-center mb-5">
                             <i class="d-block ti ti-device-desktop text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Fully Responsive</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">Fully Sizes</h5>
                             <p class="mb-0 text-dark">
-                                All the layout of Modernize Admin is Fully Responsive and
-                                widely tested.
+                                Available in all sizes and types to suit customer needs.
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                         <div class="text-center mb-5">
                             <i class="d-block ti ti-database text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">SassBase CSS</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">Saving Favourites</h5>
                             <p class="mb-0 text-dark">
-                                Our Css is written Sass Base to make your life easier.
+                                Keep customers favourite styles for next shopping
                             </p>
                         </div>
                     </div>
@@ -2264,62 +2070,25 @@
                             <i class="d-block ti ti-arrows-shuffle text-primary fs-10"></i>
                             <h5 class="fs-5 fw-semibold mt-8">Easy to Customize</h5>
                             <p class="mb-0 text-dark">
-                                Customization will be easy as we understand your pain.
+                                Customization will be easy to customize.
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                         <div class="text-center mb-5">
                             <i class="d-block ti ti-chart-pie text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Lots of Chart Options</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">Lots of Options</h5>
                             <p class="mb-0 text-dark">
-                                You name it and we have it, Yes lots of variations for
-                                Charts.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-layers-intersect text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Lots of Table Examples</h5>
-                            <p class="mb-0 text-dark">
-                                Data Tables are initial requirement and we added them.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-refresh text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Regular Updates</h5>
-                            <p class="mb-0 text-dark">
-                                We are constantly updating our pack with new features.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-book text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Detailed Documentation</h5>
-                            <p class="mb-0 text-dark">
-                                We have made detailed documentation, so it will easy to use.
+                                You name it and we have it, Yes lots of variations
                             </p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
                         <div class="text-center mb-5">
                             <i class="d-block ti ti-calendar text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Calendar Design</h5>
+                            <h5 class="fs-5 fw-semibold mt-8">Always Cheapest</h5>
                             <p class="mb-0 text-dark">
-                                Calendar is available with our package & in nice design.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
-                        <div class="text-center mb-5">
-                            <i class="d-block ti ti-brand-wechat text-primary fs-10"></i>
-                            <h5 class="fs-5 fw-semibold mt-8">Dedicated Support</h5>
-                            <p class="mb-0 text-dark">
-                                We believe in supreme support is key and we offer that.
+                                In any times all will be the cheapest in the marketplace
                             </p>
                         </div>
                     </div>
@@ -2336,12 +2105,11 @@
                                     Haven't found an answer to your question?
                                 </h3>
                                 <p class="mb-7 pb-2 text-dark">
-                                    Connect with us either on discord or email us
+                                    Connect with us
                                 </p>
                                 <div class="d-sm-flex align-items-center justify-content-center gap-3 mb-4">
-                                    <a href="https://discord.com/invite/eMzE8F6Wqs" target="_blank" class="btn btn-primary d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6" type="button">Ask on
-                                        Discord</a>
-                                    <a href="https://adminmart.com/support" target="_blank" class="btn btn-outline-secondary d-block px-7 py-6" type="button">Submit Ticket</a>
+                                    <a href="https://www.youtube.com/watch?v=YASXk7Pu8HA" target="_blank" class="btn btn-primary d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6" type="button">Ask Us</a>
+                                    <a href="https://www.youtube.com/" target="_blank" class="btn btn-outline-secondary d-block px-7 py-6" type="button">Email to Us</a>
                                 </div>
                             </div>
                         </div>
@@ -2354,8 +2122,7 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-7 col-xl-5 pt-lg-5 mb-5 mb-lg-0">
                         <h2 class="fs-9 text-white text-center text-lg-start fw-bolder mb-7">
-                            Build your app with our highly customizable Bootstrap based
-                            Dashboard
+                            Start your shopping
                         </h2>
                         <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
                             <a href="authentication-login" class="btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6">Login</a>
@@ -2388,8 +2155,8 @@
                             ]) ?>
                         </a>
                         <p class="mb-0 text-dark">
-                            All rights reserved by Modernize. Designed & Developed by
-                            <a class="text-dark text-hover-primary border-bottom border-primary" href="https://adminmart.com/">AdminMart.</a>
+                            All rights reserved by FlagMaster. Designed & Developed by
+                            <a class="text-dark text-hover-primary border-bottom border-primary" href="https://adminmart.com/">FlagMaster</a>
                         </p>
                     </div>
                 </div>
