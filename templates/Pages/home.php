@@ -1,243 +1,2080 @@
-<?php
+﻿<?php
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     0.10.0
- * @license   https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Http\Exception\NotFoundException;
-
 $this->disableAutoLayout();
-
-$checkConnection = function (string $name) {
-    $error = null;
-    $connected = false;
-    try {
-        ConnectionManager::get($name)->getDriver()->connect();
-        // No exception means success
-        $connected = true;
-    } catch (Exception $connectionError) {
-        $error = $connectionError->getMessage();
-        if (method_exists($connectionError, 'getAttributes')) {
-            $attributes = $connectionError->getAttributes();
-            if (isset($attributes['message'])) {
-                $error .= '<br />' . $attributes['message'];
-            }
-        }
-        if ($name === 'debug_kit') {
-            $error = 'Try adding your current <b>top level domain</b> to the
-                <a href="https://book.cakephp.org/debugkit/5/en/index.html#configuration" target="_blank">DebugKit.safeTld</a>
-            config and reload.';
-            if (!in_array('sqlite', \PDO::getAvailableDrivers())) {
-                $error .= '<br />You need to install the PHP extension <code>pdo_sqlite</code> so DebugKit can work properly.';
-            }
-        }
-    }
-
-    return compact('connected', 'error');
-};
-
-if (!Configure::read('debug')) :
-    throw new NotFoundException(
-        'Please replace templates/Pages/home.php with your own version or re-enable debug mode.'
-    );
-endif;
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        CakePHP: the rapid development PHP framework:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake', 'home']) ?>
-
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
+
+    <!-- Owl Carousel  -->
+    <?= $this->Html->css('/libs/owl.carousel/dist/assets/owl.carousel.min') ?>
+    <?= $this->Html->css('/libs/aos/dist/aos') ?>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') ?>
 </head>
+
 <body>
-    <header>
-        <div class="container text-center">
-            <a href="https://cakephp.org/" target="_blank" rel="noopener">
-                <img alt="CakePHP" src="https://cakephp.org/v2/img/logos/CakePHP_Logo.svg" width="350" />
-            </a>
-            <h1>
-                Welcome to CakePHP <?= h(Configure::version()) ?> Chiffon (🍰)
-            </h1>
+    <!-- Preloader -->
+    <div class="preloader">
+        <?= $this->Html->image('logos/favicon.png', [
+            'alt' => 'loader',
+            'class' => 'lds-ripple img-fluid',
+        ]) ?>
+    </div>
+
+
+    <div id="main-wrapper flex-column">
+        <header class="header">
+            <nav class="navbar navbar-expand-lg py-0">
+                <div class="container">
+                    <?= $this->Html->link(
+                        $this->Html->image('logos/dark-logo.svg', [
+                            'alt' => 'Logo-Dark',
+                            'class' => 'dark-logo',
+                            'width' => '180',
+                        ]),
+                        ['controller' => 'Pages', 'action' => 'home'],
+                        ['class' => 'navbar-brand me-0 py-0', 'escape' => false]
+                    ) ?>
+                    <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti ti-menu-2 fs-9"></i>
+                    </button>
+                    <button class="navbar-toggler border-0 p-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <i class="ti ti-menu-2 fs-9"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav align-items-center mb-2 mb-lg-0 ms-auto">
+                            <li class="nav-item dropdown hover-dd mega-dropdown pages-dropdown">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" aria-expanded="false">
+                                    Shop
+                                    <span class="d-flex align-items-center">
+                                        <i class="ti ti-chevron-down"></i>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-animate-up py-0">
+                                    <div class="row">
+                                        <!-- Flag Categories Section -->
+                                        <div class="col-md-8">
+                                            <div class="p-4">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="position-relative">
+                                                            <a href="/shop/national-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">National Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Explore national flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/custom-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Custom Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Create custom flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Cape Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Wearable cape flags</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/car-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Car Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for your car</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <div class="position-relative">
+                                                            <a href="/shop/garden-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Garden Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for gardens</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Hand Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Perfect for parades</span>
+                                                                </div>
+                                                            </a>
+                                                            <a href="/shop/hanging-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">Hanging Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Flags for decoration</span>
+                                                                </div>
+                                                            </a>
+                                                            <!-- String Flags -->
+                                                            <a href="/shop/string-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                                <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                    <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                                        'alt' => 'flagmast-img',
+                                                                        'class' => 'img-fluid',
+                                                                        'width' => '24',
+                                                                        'height' => '24',
+                                                                    ]) ?>
+                                                                </div>
+                                                                <div>
+                                                                    <h6 class="mb-1 fw-semibold text-hover-primary">String Flags</h6>
+                                                                    <span class="fs-2 d-block text-muted">Perfect for events</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Recommended Products Section -->
+                                        <div class="col-md-4">
+                                            <div class="position-relative p-4 border-start h-100">
+                                                <h5 class="fs-5 mb-7 fw-semibold">Quick Links</h5>
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-3">
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/national-flag-australia">
+                                                            Australian Flag
+                                                        </a>
+                                                    </li>
+                                                    <li class="mb-3">
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/custom-flag-pirate">
+                                                            Pirate Skull Flag
+                                                        </a>
+                                                    </li>
+                                                    <li class="mb-3">
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/garden-flag-sunflower">
+                                                            Sunflower Flag
+                                                        </a>
+                                                    </li>
+                                                    <li class="mb-3">
+                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/hand-flag-switzerland">
+                                                            Switzerland Hand Flag
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Custom Flag</a>
+                            </li>
+                            <li class="nav-item">
+                                <?= $this->Html->link(
+                                    'FAQs',
+                                    ['controller' => 'Pages', 'action' => 'faqs'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
+                            </li>
+                            <li class="nav-item">
+                                <?= $this->Html->link(
+                                    'About Us',
+                                    ['controller' => 'Pages', 'action' => 'about-us'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
+                            </li>
+                            <li class="nav-item">
+                                <?= $this->Html->link(
+                                    'Contact Us',
+                                    ['controller' => 'Enquiries', 'action' => 'add'],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
+                            </li>
+                            <li class="nav-item ms-2">
+                                <a class="btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2" href="authentication-login">Login</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="body-wrapper overflow-hidden pt-0">
+            <section class="hero-section position-relative overflow-hidden mb-0 mb-lg-5">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6">
+                            <div class="hero-content my-5 my-xl-0">
+                                <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                                    <i class="ti ti-rocket text-secondary fs-6"></i>Start your flag shopping journey.
+                                </h6>
+                                <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                                    Most type &
+                                    <span class="text-primary"> Best Quality</span>
+                                    Sale
+
+                                </h1>
+                                <p class="fs-5 mb-5 text-dark fw-normal" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                                    Flagmaster is the Largest flag supplier in Australia
+                                </p>
+                                <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                                    <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
+                                    <a class="btn btn-outline-primary d-block scroll-link px-7 py-6" href="authentication-register">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 d-none d-xl-block">
+                            <div class="hero-img-slide position-relative bg-primary-subtle p-4 rounded">
+                                <div class="d-flex flex-row">
+                                    <div class="">
+                                        <div class="banner-img-1 slideup">
+                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid',
+                                            ]) ?>
+                                        </div>
+                                        <div class="banner-img-1 slideup">
+                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid',
+                                            ]) ?>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="banner-img-2 slideDown">
+                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid',
+                                            ]) ?>
+                                        </div>
+                                        <div class="banner-img-2 slideDown">
+                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid',
+                                            ]) ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="text-bg-light production pt-5 pb-5 pb-md-5 mb-5" id="production-template">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                            <div class="d-sm-flex align-items-center text-center gap-2 justify-content-center mb-7">
+                                <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-sm-start mb-2 mb-sm-0">
+                                    <li class="">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                    <li class="ms-n2">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                    <li class="ms-n2">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'flagmast-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p class="mb-0 fw-semibold fs-4 text-dark">
+                                    <span>52,589+</span> users buying from us
+                                </p>
+                            </div>
+                            <h2 class="text-center mb-0 fs-9 fw-bolder">
+                                A variety of flag designs available for selection
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="domo-contect position-relative">
+                        <div class="demos-view mt-4">
+                            <div class="badge text-bg-primary text-center mb-7 fs-4 py-6 px-4 d-table mx-auto rounded-pill">
+                                Styles
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/National-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">National</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Custom-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Custom</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Cape-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Cape</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Car-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Car</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Garden-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Garden</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Hand-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/Hanging-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->Html->image('apps/String-Flag.png', [
+                                            'alt' => 'flagmast-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">String</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="review-section pt-5">
+                <div class="container pt-md-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                                Don’t just take our words for it, See what customers like you
+                                are saying
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="review-slider" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                        <div class="owl-carousel owl-theme">
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Anna K.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            The flag I ordered exceeded my expectations! The colors are vibrant, and the fabric feels durable. It’s been waving proudly outside my house for weeks. I’ll definitely be purchasing from here again!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Sarah L.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            Great quality and fast shipping! I was able to find the perfect size for my event, and the custom design turned out beautifully. Thank you for the excellent service!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        Samantha R.
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            I was impressed with the variety of flag types available. The customer support team helped me choose the right one for my business, and it looks fantastic outside our office. Highly recommend!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">James F.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            I purchased several flags for an international festival, and they were perfect! The quality is top-notch, and the selection of designs made it easy to find exactly what I needed. Great experience!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">John D</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            The flag is exactly what I was looking for! The material is durable, and the stitching is impeccable. It’s clear this company takes pride in their products. I’ll be coming back for more!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        Tom H.
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            The flag I bought looks amazing! The design is sharp, and the colors are bold. It’s holding up well even in strong winds. Great product and fantastic customer service!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Rebecca T.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            I was pleasantly surprised by the variety of options available. The flag I ordered was delivered quickly, and the quality is excellent. It’s exactly what I needed for my event. Highly recommend this company!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Michael P.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            The attention to detail on the flag is impressive. I ordered a custom size, and it turned out perfectly. The material is high quality, and I couldn’t be happier with my purchase!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        Emily G.
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            Amazing selection and excellent craftsmanship. The flag looks even better in person, and I appreciate the fast shipping. I’ve already recommended this company to my friends!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Peter M.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            I ordered a flag for my business, and it really adds a professional touch. The customer service team was incredibly helpful in choosing the right size and style. I’m thrilled with how it turned out!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Emily R.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            The flag exceeded my expectations! The fabric is durable, and the colors are vibrant. It’s been a great addition to my outdoor display. I’ll definitely be purchasing more in the future!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        Eminson Mendoza
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            I’m so impressed with the customization options. The flag I ordered fits perfectly with my decor, and the quality is top-notch. Great job!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            I bought a flag for our sports team, and it was a hit! The logo came out perfectly, and the material feels strong and long-lasting. Couldn’t ask for more!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">David G.</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            Absolutely love my new flag! It’s exactly what I was looking for, and the attention to detail is fantastic. The team was very responsive and helpful throughout the process.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        Laura S.
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            This company is now my go-to for flags. The quality is always reliable, and the service is fast and friendly. Highly recommend them for any flag needs!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-1.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 mb-0 text-dark">
+                                            We ordered a flag for our office, and it looks incredible. The colors are bright, and the stitching is very well done. We’re very happy with our purchase!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-2.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
+                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            I purchased a flag as a gift, and it turned out to be the perfect choice. The recipient loved it, and the quality was better than expected. I’ll be back for more!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <div class="d-flex align-items-center">
+                                                <?= $this->Html->image('profile/user-3.jpg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'w-auto me-3 rounded-circle',
+                                                    'width' => '40',
+                                                    'height' => '40',
+                                                ]) ?>
+                                                <div>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">
+                                                        John L.
+                                                    </h6>
+                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="">
+                                                            <?= $this->Html->image('svgs/icon-star.svg', [
+                                                                'alt' => 'flagmast-img',
+                                                                'class' => 'img-fluid',
+                                                            ]) ?>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="fs-4 text-dark mb-0">
+                                            The flag is stunning, and the print quality is fantastic. It’s been up for a few months now, and it still looks brand new despite the weather. Couldn’t be happier!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="features-section py-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                                <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
+                                    Why Choose Flag Master?
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-paint-brush text-primary fs-10"></i> <!-- Font Awesome Paint Brush Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Customizable Flag Designs</h5>
+                                <p class="mb-0 text-dark">
+                                    Easily customize your flags with real-time previews.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-boxes text-primary fs-10"></i> <!-- Font Awesome Boxes Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Bulk Orders for Institutions</h5>
+                                <p class="mb-0 text-dark">
+                                    Streamlined bulk ordering for schools, organizations, and more.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-globe text-primary fs-10"></i> <!-- Font Awesome Globe Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Global Shipping</h5>
+                                <p class="mb-0 text-dark">
+                                    Fast and reliable worldwide shipping options.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-credit-card text-primary fs-10"></i> <!-- Font Awesome Credit Card Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Secure Payment Options</h5>
+                                <p class="mb-0 text-dark">
+                                    Multiple secure payment methods, including buy-now, pay-later.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-heart text-primary fs-10"></i> <!-- Font Awesome Heart Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Save Favorite Designs</h5>
+                                <p class="mb-0 text-dark">
+                                    Save your favorite flag designs for easy re-ordering.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-tools text-primary fs-10"></i> <!-- Font Awesome Tools Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Easy Customization Tools</h5>
+                                <p class="mb-0 text-dark">
+                                    Intuitive tools for easy flag design customization.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-shipping-fast text-primary fs-10"></i> <!-- Font Awesome Shipping Fast Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Track Your Orders</h5>
+                                <p class="mb-0 text-dark">
+                                    Track your orders in real-time from production to delivery.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <i class="fas fa-headset text-primary fs-10"></i> <!-- Font Awesome Headset Icon -->
+                                <h5 class="fs-5 fw-semibold mt-8">Customer Support</h5>
+                                <p class="mb-0 text-dark">
+                                    Dedicated support to help with your custom orders and inquiries.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-md-5 mb-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card c2a-box" data-aos="fade-up" data-aos-delay="1600" data-aos-duration="1000">
+                                <div class="card-body text-center p-4 pt-7">
+                                    <h3 class="fs-7 fw-semibold pt-6">
+                                        Haven't found an answer to your question?
+                                    </h3>
+                                    <p class="mb-7 pb-2 text-dark">
+                                        Connect with us either by enquiry or email us
+                                    </p>
+                                    <div class="d-sm-flex align-items-center justify-content-center gap-3 mb-4">
+                                        <?= $this->Html->link(
+                                            'Ask Us',
+                                            ['controller' => 'Enquiries', 'action' => 'add'],
+                                            ['class' => 'btn btn-primary d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6', 'type' => 'button']
+                                        ) ?>
+                                        <?= $this->Html->link(
+                                            'Email to Us',
+                                            'mailto:info@flagmaster.com',
+                                            ['class' => 'btn btn-outline-secondary d-block px-7 py-6', 'type' => 'button']
+                                        ) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-primary pt-5 pb-8">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-7 col-xl-5 pt-lg-5 mb-5 mb-lg-0">
+                            <h2 class="fs-9 text-white text-center text-lg-start fw-bolder mb-7">
+                                Start your journey with Flag Master
+                            </h2>
+                            <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
+                                <a href="authentication-login" class="btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6">Login</a>
+                                <a href="authentication-register" class="btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6">Register</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-xl-5">
+                            <div class="text-center text-lg-end">
+                                <?= $this->Html->image('backgrounds/business-woman-checking-her-mail.png', [
+                                    'alt' => 'flagmast-img',
+                                    'class' => 'img-fluid',
+                                ]) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </header>
-    <main class="main">
-        <div class="container">
-            <div class="content">
-                <div class="row">
-                    <div class="column">
-                        <div class="message default text-center">
-                            <small>Please be aware that this page will not be shown if you turn off debug mode unless you replace templates/Pages/home.php with your own version.</small>
+        <footer class="footer-part pt-7 pb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4">
+                        <div class="text-center">
+                            <a href="index-new">
+                                <?= $this->Html->image('logos/favicon.ico', [
+                                    'alt' => 'flagmast-img',
+                                    'class' => 'img-fluid pb-3',
+                                ]) ?>
+                            </a>
+                            <p class="mb-0 text-dark">
+                                All rights reserved by FlagMaster. Designed & Developed by
+                                <a class="text-dark text-hover-primary border-bottom border-primary" href="https://u24s2123.iedev.org/">FlagMaster</a>
+                            </p>
                         </div>
-                        <div id="url-rewriting-warning" style="padding: 1rem; background: #fcebea; color: #cc1f1a; border-color: #ef5753;">
-                            <ul>
-                                <li class="bullet problem">
-                                    URL rewriting is not properly configured on your server.<br />
-                                    1) <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/installation.html#url-rewriting">Help me configure it</a><br />
-                                    2) <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <?php Debugger::checkSecurityKeys(); ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="column">
-                        <h4>Environment</h4>
-                        <ul>
-                        <?php if (version_compare(PHP_VERSION, '8.1.0', '>=')) : ?>
-                            <li class="bullet success">Your version of PHP is 8.1.0 or higher (detected <?= PHP_VERSION ?>).</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your version of PHP is too low. You need PHP 8.1.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-                        <?php endif; ?>
-
-                        <?php if (extension_loaded('mbstring')) : ?>
-                            <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>
-                        <?php endif; ?>
-
-                        <?php if (extension_loaded('openssl')) : ?>
-                            <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-                        <?php elseif (extension_loaded('mcrypt')) : ?>
-                            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-                        <?php endif; ?>
-
-                        <?php if (extension_loaded('intl')) : ?>
-                            <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-                        <?php endif; ?>
-
-                        <?php if (ini_get('zend.assertions') !== '1') : ?>
-                            <li class="bullet problem">You should set <code>zend.assertions</code> to <code>1</code> in your <code>php.ini</code> for your development environment.</li>
-                        <?php endif; ?>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h4>Filesystem</h4>
-                        <ul>
-                        <?php if (is_writable(TMP)) : ?>
-                            <li class="bullet success">Your tmp directory is writable.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your tmp directory is NOT writable.</li>
-                        <?php endif; ?>
-
-                        <?php if (is_writable(LOGS)) : ?>
-                            <li class="bullet success">Your logs directory is writable.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your logs directory is NOT writable.</li>
-                        <?php endif; ?>
-
-                        <?php $settings = Cache::getConfig('_cake_core_'); ?>
-                        <?php if (!empty($settings)) : ?>
-                            <li class="bullet success">The <em><?= h($settings['className']) ?></em> is being used for core caching. To change the config edit config/app.php</li>
-                        <?php else : ?>
-                            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-                        <?php endif; ?>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="column">
-                        <h4>Database</h4>
-                        <?php
-                        $result = $checkConnection('default');
-                        ?>
-                        <ul>
-                        <?php if ($result['connected']) : ?>
-                            <li class="bullet success">CakePHP is able to connect to the database.</li>
-                        <?php else : ?>
-                            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= h($result['error']) ?></li>
-                        <?php endif; ?>
-                        </ul>
-                    </div>
-                    <div class="column">
-                        <h4>DebugKit</h4>
-                        <ul>
-                        <?php if (Plugin::isLoaded('DebugKit')) : ?>
-                            <li class="bullet success">DebugKit is loaded.</li>
-                            <?php
-                            $result = $checkConnection('debug_kit');
-                            ?>
-                            <?php if ($result['connected']) : ?>
-                                <li class="bullet success">DebugKit can connect to the database.</li>
-                            <?php else : ?>
-                                <li class="bullet problem">There are configuration problems present which need to be fixed:<br /><?= $result['error'] ?></li>
-                            <?php endif; ?>
-                        <?php else : ?>
-                            <li class="bullet problem">DebugKit is <strong>not</strong> loaded.</li>
-                        <?php endif; ?>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="column links">
-                        <h3>Getting Started</h3>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/">CakePHP Documentation</a>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/tutorials-and-examples/cms/installation.html">The 20 min CMS Tutorial</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="column links">
-                        <h3>Help and Bug Reports</h3>
-                        <a target="_blank" rel="noopener" href="https://slack-invite.cakephp.org/">Slack</a>
-                        <a target="_blank" rel="noopener" href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                        <a target="_blank" rel="noopener" href="https://discourse.cakephp.org/">CakePHP Forum</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="column links">
-                        <h3>Docs and Downloads</h3>
-                        <a target="_blank" rel="noopener" href="https://api.cakephp.org/">CakePHP API</a>
-                        <a target="_blank" rel="noopener" href="https://bakery.cakephp.org">The Bakery</a>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/">CakePHP Documentation</a>
-                        <a target="_blank" rel="noopener" href="https://plugins.cakephp.org">CakePHP plugins repo</a>
-                        <a target="_blank" rel="noopener" href="https://github.com/cakephp/">CakePHP Code</a>
-                        <a target="_blank" rel="noopener" href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                        <a target="_blank" rel="noopener" href="https://www.cakephp.org">CakePHP</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="column links">
-                        <h3>Training and Certification</h3>
-                        <a target="_blank" rel="noopener" href="https://cakefoundation.org/">Cake Software Foundation</a>
-                        <a target="_blank" rel="noopener" href="https://training.cakephp.org/">CakePHP Training</a>
                     </div>
                 </div>
             </div>
+        </footer>
+        <div class="offcanvas offcanvas-start modernize-lp-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header p-4">
+                <?= $this->Html->image('logos/dark-logo.svg', [
+                    'alt' => 'flagmast-img',
+                    'class' => 'img-fluid',
+                    'width' => '150',
+                ]) ?>
+            </div>
+            <div class="offcanvas-body p-4">
+                <ul class="navbar-nav justify-content-end flex-grow-1">
+                    <li class="nav-item mt-3 dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-between fs-3 text-dark" href="javascript:void(0)" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Shop <i class="ti ti-chevron-down fs-14"></i>
+                        </a>
+                        <div class="dropdown-menu mt-3 ps-1">
+                            <!-- apps -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="position-relative">
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Chat Application
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">New messages arrived</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Invoice App
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">Get latest invoice</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Contact Application
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">2 Unsaved Contacts</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Email App
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">Get new emails</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="position-relative">
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    User Profile
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">learn more information</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Calendar App
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">Get dates</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Contact List Table
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">Add new contact</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                            <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
+                                                <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                    'alt' => 'flagmast-img',
+                                                    'class' => 'img-fluid',
+                                                    'width' => '24',
+                                                    'height' => '24',
+                                                ]) ?>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-1 fw-semibold text-hover-primary">
+                                                    Notes Application
+                                                </h6>
+                                                <span class="fs-2 d-block text-muted">To-do and Daily tasks</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <!-- quick links -->
+                                    <h5 class="fs-5 mb-7 fw-semibold">Quick Links</h5>
+                                    <ul class="list-unstyled px-1">
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Pricing Page</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Authentication
+                                                Design</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Register Now</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">404 Error Page</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Notes App</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">User Application</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Account Settings</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">Custom Flag</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <?= $this->Html->link(
+                            'FAQs',
+                            ['controller' => 'Pages', 'action' => 'faqs'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <?= $this->Html->link(
+                            'About Us',
+                            ['controller' => 'Pages', 'action' => 'about-us'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <?= $this->Html->link(
+                            'Contact Us',
+                            ['controller' => 'Enquiries', 'action' => 'add'],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
+                    </li>
+                </ul>
+                <form class="d-flex mt-3" role="search">
+                    <a href="authentication-login" class="btn btn-primary w-100 py-2">Login</a>
+                </form>
+            </div>
         </div>
-    </main>
+    </div>
+
+
+    <div class="dark-transparent sidebartoggler"></div>
+    <?= $this->Html->script('vendor.min') ?>
+    <?= $this->element('vendor-script') ?>
+    <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
+    <?= $this->Html->script('/libs/owl.carousel/dist/owl.carousel.min') ?>
+    <?= $this->Html->script('/libs/aos/dist/aos') ?>
+    <?= $this->Html->script('homepage/homepage') ?>
+    <script>
+        function handleColorTheme(e) {
+            document.documentElement.setAttribute("data-color-theme", e);
+        }
+    </script>
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * @var \App\View\AppView $this
  * @var string $message
@@ -19,8 +19,31 @@ if (Configure::read('debug')) :
     $this->end();
 endif;
 ?>
-<h2><?= h($message) ?></h2>
-<p class="error">
-    <strong><?= __d('cake', 'Error') ?>: </strong>
-    <?= __d('cake', 'The requested address {0} was not found on this server.', "<strong>'{$url}'</strong>") ?>
-</p>
+<div class="position-relative overflow-hidden min-vh-100 w-100 d-flex align-items-center justify-content-center">
+    <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="row justify-content-center w-100">
+            <div class="col-lg-4">
+                <div class="text-center">
+                    <?= $this->Html->image('backgrounds/maintenance.svg', ['alt' => 'modernize-img', 'class' => 'img-fluid', 'width' => 500]) ?>
+                    <h1 class="fw-semibold my-7 fs-9">Maintenance Mode!!!</h1>
+                    <h4 class="fw-semibold mb-7">Website is Under Construction. Check back later!</h4>
+                    <?= $this->Html->link(
+                        __('Back'),
+                        'javascript:history.back()',
+                        ['class' => 'btn btn-primary me-2', 'role' => 'button']
+                    ) ?>
+                    <?= $this->Html->link(
+                        'Go Back to Home',
+                        ['controller' => 'Pages', 'action' => 'home'],
+                        ['class' => 'btn btn-primary', 'role' => 'button']
+                    ) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$this->start('customScript'); ?>
+<?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
+<?php $this->end(); ?>
