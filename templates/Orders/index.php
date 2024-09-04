@@ -8,13 +8,13 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">Invoice</h4>
+                <h4 class="fw-semibold mb-8">Order</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a class="text-muted text-decoration-none" href="/">Home</a>
                         </li>
-                        <li class="breadcrumb-item" aria-current="page">Invoice</li>
+                        <li class="breadcrumb-item" aria-current="page">Order</li>
                     </ol>
                 </nav>
             </div>
@@ -43,7 +43,7 @@
         <div class="w-25 d-none d-lg-block border-end user-chat-box">
             <div class="p-3 border-bottom">
                 <form class="position-relative">
-                    <input type="search" class="form-control search-invoice ps-5" id="text-srh" placeholder="Search Invoice" />
+                    <input type="search" class="form-control search-invoice ps-5" id="text-srh" placeholder="Search Order" />
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
@@ -138,7 +138,7 @@
             <div class="invoice-inner-part h-100">
                 <div class="invoiceing-box">
                     <div class="invoice-header d-flex align-items-center border-bottom p-3">
-                        <h4 class=" text-uppercase mb-0">Invoice</h4>
+                        <h4 class=" text-uppercase mb-0">Order</h4>
                         <div class="ms-auto">
                             <h4 class="invoice-number"></h4>
                         </div>
@@ -173,7 +173,7 @@
                                                     <br /><?= $address ? h($address->state) : 'State not available' ?> - <?= $address ? h($address->postal_code) : 'Postal code not available' ?>
                                                 </p>
                                                 <p class="mt-4 mb-1">
-                                                    <span>Invoice Date :</span>
+                                                    <span>Order Date :</span>
                                                     <i class="ti ti-calendar"></i>
                                                     <?= h($order->order_date->format('jS M Y')) ?>
                                                 </p>
@@ -270,7 +270,7 @@
                                                 Collins - 80524
                                             </p>
                                             <p class="mt-4 mb-1">
-                                                <span>Invoice Date :</span>
+                                                <span>Order Date :</span>
                                                 <i class="ti ti-calendar"></i>
                                                 23rd Jan 2021
                                             </p>
@@ -390,7 +390,7 @@
                                                 Collins - 80524
                                             </p>
                                             <p class="mt-4 mb-1">
-                                                <span>Invoice Date :</span>
+                                                <span>Order Date :</span>
                                                 <i class="ti ti-calendar"></i>
                                                 23rd Jan 2021
                                             </p>
@@ -510,7 +510,7 @@
                                                 Collins - 80524
                                             </p>
                                             <p class="mt-4 mb-1">
-                                                <span>Invoice Date :</span>
+                                                <span>Order Date :</span>
                                                 <i class="ti ti-calendar"></i>
                                                 23rd Jan 2021
                                             </p>
@@ -630,7 +630,7 @@
                                                 Collins - 80524
                                             </p>
                                             <p class="mt-4 mb-1">
-                                                <span>Invoice Date :</span>
+                                                <span>Order Date :</span>
                                                 <i class="ti ti-calendar"></i>
                                                 23rd Jan 2021
                                             </p>
@@ -750,7 +750,7 @@
                                                 Collins - 80524
                                             </p>
                                             <p class="mt-4 mb-1">
-                                                <span>Invoice Date :</span>
+                                                <span>Order Date :</span>
                                                 <i class="ti ti-calendar"></i>
                                                 23rd Jan 2021
                                             </p>
@@ -849,13 +849,13 @@
         <div class="offcanvas offcanvas-start user-chat-box" tabindex="-1" id="chat-sidebar" aria-labelledby="offcanvasExampleLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasExampleLabel">
-                    Invoice
+                    Order
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="p-3 border-bottom">
                 <form class="position-relative">
-                    <input type="search" class="form-control search-invoice ps-5" id="text-srh" placeholder="Search Invoice">
+                    <input type="search" class="form-control search-invoice ps-5" id="text-srh" placeholder="Search Order">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
