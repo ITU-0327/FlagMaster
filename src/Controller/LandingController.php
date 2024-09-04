@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-class LandingpageController  extends AppController
+class LandingController  extends AppController
 {
     public function index()
     {
-        $this->viewBuilder()->setLayout('landing'); // Optional if your layout is named 'default'
+        $this->viewBuilder()->setLayout('landing');
         $this->set('title', 'Your Page Title');
     }
 }

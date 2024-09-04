@@ -20,7 +20,9 @@
             <div class="container">
                 <a class="navbar-brand me-0 py-0" href="/">
                     <?= $this->Html->image('logos/dark-logo.svg', [
-                        'alt' => 'img-fluid',
+                        'alt' => 'flagmaster-img',
+                        'class' => 'img-fluid',
+                        'width' => '180',
                     ]) ?>
                 </a>
                 <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
