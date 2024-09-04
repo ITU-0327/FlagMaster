@@ -17,6 +17,7 @@ class EnquiriesController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('admin');
         $query = $this->Enquiries->find()
             ->contain(['Users']);
         $enquiries = $this->paginate($query);

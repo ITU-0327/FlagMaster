@@ -226,6 +226,9 @@
               <li class="nav-item dropdown-hover d-none d-lg-block">
                 <a class="nav-link" href="about-us">About Us</a>
               </li>
+                <li class="nav-item dropdown-hover d-none d-lg-block">
+                    <a class="nav-link" href="contact-us">Contact Us</a>
+                </li>
             </ul>
 
             <div class="d-block d-lg-none py-4">
@@ -677,6 +680,14 @@
                       <span class="hide-menu">About Us</span>
                     </a>
                   </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="contact-us" aria-expanded="false">
+                      <span>
+                        <i class="ti ti-calendar"></i>
+                      </span>
+                            <span class="hide-menu">Contact Us</span>
+                        </a>
+                    </li>
                 </ul>
               </div>
             </nav>
@@ -920,6 +931,9 @@
               <li class="nav-item dropdown-hover d-none d-lg-block">
                 <a class="nav-link" href="about-us">About Us</a>
               </li>
+                <li class="nav-item dropdown-hover d-none d-lg-block">
+                    <a class="nav-link" href="contact-us">Contact Us</a>
+                </li>
             </ul>
             <div class="d-block d-xl-none">
               <a href="/" class="text-nowrap nav-link">

@@ -2,19 +2,22 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">Email</h4>
+                <h4 class="fw-semibold mb-8">Contact Us</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a class="text-muted text-decoration-none" href="/">Home</a>
                         </li>
-                        <li class="breadcrumb-item" aria-current="page">Email</li>
+                        <li class="breadcrumb-item" aria-current="page">Contact Us</li>
                     </ol>
                 </nav>
             </div>
             <div class="col-3">
                 <div class="text-center mb-n5">
-                    <img src="../assets/images/breadcrumb/ChatBc.png" alt="modernize-img" class="img-fluid mb-n4" />
+                    <?= $this->Html->image('breadcrumb/ChatBc.png', [
+                        'alt' => 'flagmaster-img',
+                        'class' => 'img-fluid mb-n4',
+                    ]) ?>
                 </div>
             </div>
         </div>
@@ -31,73 +34,6 @@
         </form>
     </div>
     <div class="d-flex w-100">
-        <div class="left-part border-end w-20 flex-shrink-0 d-none d-lg-block">
-            <div class="px-9 pt-4 pb-3">
-                <button type="button" class="btn btn-primary fw-semibold py-8 w-100" data-bs-toggle="modal" data-bs-target="#compose">
-                    Compose
-                </button>
-            </div>
-            <ul class="list-group mh-n100" data-simplebar>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-inbox fs-5"></i>Inbox
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-brand-telegram fs-5"></i>Sent
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-file-text fs-5"></i>Draft
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-inbox fs-5"></i>Spam
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-trash fs-5"></i>Trash
-                    </a>
-                </li>
-                <li class="border-bottom my-3"></li>
-                <li class="fw-semibold text-dark text-uppercase mx-9 my-2 px-3 fs-2">
-                    IMPORTANT
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-star fs-5"></i>Starred
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)" class="d-block">
-                        <i class="ti ti-badge fs-5"></i>Important
-                    </a>
-                </li>
-                <li class="border-bottom my-3"></li>
-                <li class="fw-semibold text-dark text-uppercase mx-9 my-2 px-3 fs-2">
-                    LABELS
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-primary"></i>Promotional
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-warning"></i>Social
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-success"></i>Health
-                    </a>
-                </li>
-            </ul>
-        </div>
         <div class="d-flex w-100">
             <div class="min-width-340">
                 <div class="border-end user-chat-box h-100">
@@ -363,7 +299,12 @@
                                         <div class="chat-list chat active-chat" data-user-id="1">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-8.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-8.jpg', [
+                                                        'alt' => 'user8',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             James Smith
@@ -403,7 +344,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -419,7 +364,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -438,7 +387,12 @@
                                         <div class="chat-list chat" data-user-id="2">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-5.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-5.jpg', [
+                                                        'alt' => 'user5',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Katherine Flintoff
@@ -478,7 +432,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -494,7 +452,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -513,7 +475,12 @@
                                         <div class="chat-list chat" data-user-id="3">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-3.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-3.jpg', [
+                                                        'alt' => 'user3',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Bianca Macdowells
@@ -553,7 +520,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -569,7 +540,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -588,7 +563,12 @@
                                         <div class="chat-list chat" data-user-id="4">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-3.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-3.jpg', [
+                                                        'alt' => 'user3',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Michael Knight
@@ -628,7 +608,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -644,7 +628,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -663,7 +651,12 @@
                                         <div class="chat-list chat" data-user-id="5">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-11.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-11.jpg', [
+                                                        'alt' => 'user11',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Jonathan Higgings
@@ -703,7 +696,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -719,7 +716,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -738,7 +739,12 @@
                                         <div class="chat-list chat" data-user-id="6">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-5.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-5.jpg', [
+                                                        'alt' => 'user6',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Mike Torello
@@ -778,7 +784,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -794,7 +804,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -813,7 +827,12 @@
                                         <div class="chat-list chat" data-user-id="7">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-6.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-6.jpg', [
+                                                        'alt' => 'user6',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Bianca Macdowells
@@ -853,7 +872,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -869,7 +892,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -888,7 +915,12 @@
                                         <div class="chat-list chat" data-user-id="8">
                                             <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                 <div class="d-flex align-items-center gap-2">
-                                                    <img src="../assets/images/profile/user-7.jpg" alt="user8" width="48" height="48" class="rounded-circle" />
+                                                    <?= $this->Html->image('profile/user-7.jpg', [
+                                                        'alt' => 'user8',
+                                                        'class' => 'rounded-circle',
+                                                        'width' => '48',
+                                                        'height' => '48'
+                                                    ]) ?>
                                                     <div>
                                                         <h6 class="fw-semibold mb-0">
                                                             Michael Knight
@@ -928,7 +960,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-adobe.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -944,7 +980,11 @@
                                                     <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
                                                         <div class="d-flex align-items-center gap-3">
                                                             <div class="rounded-1 text-bg-light p-6">
-                                                                <img src="../assets/images/chat/icon-zip-folder.svg" alt="matdash-img" width="24" height="24" />
+                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
+                                                                    'alt' => 'matdash-img',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
                                                             </div>
                                                             <div>
                                                                 <h6 class="fw-semibold">
@@ -986,84 +1026,10 @@
                 </div>
             </div>
         </div>
-
-        <div class="offcanvas offcanvas-start user-chat-box" tabindex="-1" id="chat-sidebar" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExampleLabel">
-                    Email
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="px-9 pt-4 pb-3">
-                <button class="btn btn-primary fw-semibold py-8 w-100" data-bs-toggle="modal" data-bs-target="#compose">
-                    Compose
-                </button>
-            </div>
-            <ul class="list-group h-n150" data-simplebar>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-inbox fs-5"></i>Inbox
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-brand-telegram fs-5"></i>Sent
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-file-text fs-5"></i>Draft
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-inbox fs-5"></i>Spam
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-trash fs-5"></i>Trash
-                    </a>
-                </li>
-                <li class="border-bottom my-3"></li>
-                <li class="fw-semibold text-dark text-uppercase mx-9 my-2 px-3 fs-2">
-                    IMPORTANT
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-star fs-5"></i>Starred
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)" class="d-block">
-                        <i class="ti ti-badge fs-5"></i>Important
-                    </a>
-                </li>
-                <li class="border-bottom my-3"></li>
-                <li class="fw-semibold text-dark text-uppercase mx-9 my-2 px-3 fs-2">
-                    LABELS
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-primary"></i>Promotional
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-warning"></i>Social
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-9">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-8 mb-1 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-bookmark fs-5 text-success"></i>Health
-                    </a>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
 <?php
 $this->start('customScript'); ?>
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-<script src="../assets/js/apps/chat.js"></script>
+<?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
+<?= $this->Html->script('apps/chat') ?>
 <?php $this->end(); ?>
