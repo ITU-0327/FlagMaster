@@ -1792,7 +1792,7 @@ $this->disableAutoLayout();
                                         ) ?>
                                         <?= $this->Html->link(
                                             'Email to Us',
-                                            'mailto:flagmaster@info.com',
+                                            'mailto:info@flagmaster.com',
                                             ['class' => 'btn btn-outline-secondary d-block px-7 py-6', 'type' => 'button']
                                         ) ?>
                                     </div>
