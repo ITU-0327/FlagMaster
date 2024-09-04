@@ -8,8 +8,11 @@
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
 
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="assets/libs/owl.carousel/dist/assets/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/libs/aos/dist/aos.css" />
+    <!--<link rel="stylesheet" href="/libs/owl.carousel/dist/assets/owl.carousel.min.css" />-->
+    <!--<link rel="stylesheet" href="/libs/aos/dist/aos.css" />-->
+    <?= $this->Html->css('/libs/owl.carousel/dist/assets/owl.carousel.min.css') ?>
+    <?= $this->Html->css('/libs/aos/dist/aos.css') ?>
+
 </head>
 
 <body>
@@ -25,7 +28,11 @@
     </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="../assets/images/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />
+        <!--<img src="/img/logos/favicon.png" alt="loader" class="lds-ripple img-fluid" />-->
+        <?= $this->Html->image('logos/favicon.png', [
+            'alt' => 'loader',
+            'class' => 'lds-ripple img-fluid',
+        ]) ?>
     </div>
 
 
@@ -34,7 +41,8 @@
 
 
     <div class="dark-transparent sidebartoggler"></div>
-    <script src="../assets/js/vendor.min.js"></script>
+    <!--<script src="../assets/js/vendor.min.js"></script>-->
+    <?= $this->Html->script('vendor.min.js') ?>
     <?= $this->element('vendor-script') ?>
     <?= $this->fetch('customScript') ?>
     <script>

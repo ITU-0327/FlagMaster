@@ -1957,27 +1957,47 @@
                                             <ul class="list-unstyled d-flex align-items-center justify-content-end gap-1 mb-0">
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a href="">
-                                                        <img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />
+                                                        <!--<img src="../assets/images/svgs/icon-star.svg" alt="modernize-img" class="img-fluid" />-->
+                                                        <?= $this->Html->image('svgs/icon-star.svg', [
+                                                            'alt' => 'modernize-img',
+                                                            'class' => 'img-fluid',
+                                                        ]) ?>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -2420,7 +2440,13 @@
                                 <div class="position-relative">
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-chat.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-chat.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2431,7 +2457,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-invoice.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-invoice.svg" alt="modernize-img" class="img-fluid" width="24" height="24" /-->
+                                            <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2442,7 +2474,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-mobile.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-mobile.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2453,7 +2491,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-message-box.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-message-box.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2468,7 +2512,13 @@
                                 <div class="position-relative">
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-cart.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-cart.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2479,7 +2529,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-date.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-date.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2490,7 +2546,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-lifebuoy.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-lifebuoy.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2501,7 +2563,13 @@
                                     </a>
                                     <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                         <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
-                                            <img src="../assets/images/svgs/icon-dd-application.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />
+                                            <!--<img src="../assets/images/svgs/icon-dd-application.svg" alt="modernize-img" class="img-fluid" width="24" height="24" />-->
+                                            <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                'alt' => 'modernize-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
                                         </div>
                                         <div>
                                             <h6 class="mb-1 fw-semibold text-hover-primary">
@@ -2560,8 +2628,8 @@
 
 <?php
 $this->start('customScript'); ?>
-<?= $this->Html->script('libs/iconify-icon/iconify-icon.min.js') ?>
-<?= $this->Html->script('libs/owl.carousel/dist/owl.carousel.min.js') ?>
-<?= $this->Html->script('libs/aos/dist/aos.js') ?>
-<?= $this->Html->script('js/landingpage/landingpage.js') ?>
+<?= $this->Html->script('/libs/iconify-icon/iconify-icon.min') ?>
+<?= $this->Html->script('/libs/owl.carousel/dist/owl.carousel.min') ?>
+<?= $this->Html->script('/libs/aos/dist/aos') ?>
+<?= $this->Html->script('homepage/homepage') ?>
 <?php $this->end(); ?>
