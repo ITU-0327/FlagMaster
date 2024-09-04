@@ -33,13 +33,15 @@ $this->disableAutoLayout();
         <header class="header">
             <nav class="navbar navbar-expand-lg py-0">
                 <div class="container">
-                    <a class="navbar-brand me-0 py-0" href="/">
-                        <?= $this->Html->image('logos/dark-logo.svg', [
-                            'alt' => 'flagmaster-img',
-                            'class' => 'img-fluid',
+                    <?= $this->Html->link(
+                        $this->Html->image('logos/dark-logo.svg', [
+                            'alt' => 'Logo-Dark',
+                            'class' => 'dark-logo',
                             'width' => '180',
-                        ]) ?>
-                    </a>
+                        ]),
+                        ['controller' => 'Pages', 'action' => 'home'],
+                        ['class' => 'navbar-brand me-0 py-0', 'escape' => false]
+                    ) ?>
                     <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="ti ti-menu-2 fs-9"></i>
                     </button>
@@ -1780,11 +1782,19 @@ $this->disableAutoLayout();
                                         Haven't found an answer to your question?
                                     </h3>
                                     <p class="mb-7 pb-2 text-dark">
-                                        Connect with us
+                                        Connect with us either by enquiry or email us
                                     </p>
                                     <div class="d-sm-flex align-items-center justify-content-center gap-3 mb-4">
-                                        <a href="https://www.youtube.com/watch?v=YASXk7Pu8HA" target="_blank" class="btn btn-primary d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6" type="button">Ask Us</a>
-                                        <a href="https://www.youtube.com/" target="_blank" class="btn btn-outline-secondary d-block px-7 py-6" type="button">Email to Us</a>
+                                        <?= $this->Html->link(
+                                            'Ask Us',
+                                            ['controller' => 'Enquiries', 'action' => 'add'],
+                                            ['class' => 'btn btn-primary d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6', 'type' => 'button']
+                                        ) ?>
+                                        <?= $this->Html->link(
+                                            'Email to Us',
+                                            'mailto:flagmaster@info.com',
+                                            ['class' => 'btn btn-outline-secondary d-block px-7 py-6', 'type' => 'button']
+                                        ) ?>
                                     </div>
                                 </div>
                             </div>

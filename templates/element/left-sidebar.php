@@ -4,18 +4,20 @@
         <!-- Start Vertical Layout Sidebar -->
         <!-- ---------------------------------- -->
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="/" class="text-nowrap logo-img">
-                <?= $this->Html->image('logos/dark-logo.svg', [
+            <?= $this->Html->link(
+                $this->Html->image('logos/dark-logo.svg', [
                     'alt' => 'Logo-Dark',
                     'class' => 'dark-logo',
                     'width' => '180',
-                ]) ?>
-                <?= $this->Html->image('logos/light-logo.svg', [
+                ]) .
+                $this->Html->image('logos/light-logo.svg', [
                     'alt' => 'Logo-light',
                     'class' => 'light-logo',
                     'width' => '180',
-                ]) ?>
-            </a>
+                ]),
+                ['controller' => 'Pages', 'action' => 'home'],
+                ['class' => 'text-nowrap logo-img', 'escape' => false]
+            ) ?>
             <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
                 <i class="ti ti-x"></i>
             </a>
