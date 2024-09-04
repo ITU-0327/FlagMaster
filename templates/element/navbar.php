@@ -20,200 +20,199 @@
               <!-- ------------------------------- -->
               <!-- start shop Dropdown -->
               <!-- ------------------------------- -->
-              <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-block mx-0">
-                <div class="hover-dd">
-                  <a class="nav-link" href="javascript:void(0)">
-                      Shop By Category<span class="mt-1">
-                      <i class="ti ti-chevron-down fs-3"></i>
-                    </span>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
-                    <div class="row">
-                      <div class="col-8">
-                        <div class="ps-7 pt-7">
-                          <div class="border-bottom">
+                <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-block mx-0">
+                    <div class="hover-dd">
+                        <a class="nav-link" href="javascript:void(0)">
+                            Shop By Category
+                            <span class="mt-1">
+                                <i class="ti ti-chevron-down fs-3"></i>
+                            </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
                             <div class="row">
-                              <div class="col-6">
-                                <div class="position-relative">
-                                  <a href="chat" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
+                                <div class="col-8">
+                                    <div class="ps-7 pt-7">
+                                        <div class="border-bottom">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="position-relative">
+                                                        <a href="/shop/national-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-chat.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    National Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Explore national flags</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/custom-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">Custom Flags</h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Create custom designs</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    Cape Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Wearable cape flags</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    Car Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Flags for your car</span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="position-relative">
+                                                        <a href="/shop/garden-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    Garden Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Decorate your garden</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    Hand Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Perfect for parades</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    Hanging Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Flags for decoration</span>
+                                                            </div>
+                                                        </a>
+                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                            <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                                                <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                                    'alt' => 'flagmaster-img',
+                                                                    'class' => 'img-fluid',
+                                                                    'width' => '24',
+                                                                    'height' => '24'
+                                                                ]) ?>
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-1 fw-semibold fs-3">
+                                                                    String Flags
+                                                                </h6>
+                                                                <span class="fs-2 d-block text-body-secondary">Perfect for events</span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row align-items-center py-3">
+                                            <div class="col-8">
+                                                <?= $this->Html->link(
+                                                    '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
+                                                    ['controller' => 'Pages', 'action' => 'faqs'],
+                                                    ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
+                                                ); ?>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="d-flex justify-content-end pe-4">
+                                                    <button class="btn btn-primary">Check</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Chat Application
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">New messages arrived</span>
-                                    </div>
-                                  </a>
-                                  <a href="invoice" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">Invoice App</h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get latest invoice</span>
-                                    </div>
-                                  </a>
-                                  <a href="contact-list" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Contact Application
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">2 Unsaved Contacts</span>
-                                    </div>
-                                  </a>
-                                  <a href="email" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">Email App</h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get new emails</span>
-                                    </div>
-                                  </a>
                                 </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="position-relative">
-                                  <a href="user-profile" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
+
+                                <!-- Quick Links Section -->
+                                <div class="col-4 ms-n4">
+                                    <div class="position-relative p-7 border-start h-100">
+                                        <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
+                                        <ul class="">
+                                            <li class="mb-3">
+                                                <a class="fw-semibold bg-hover-primary" href="page-pricing">Australian Flag</a>
+                                            </li>
+                                            <li class="mb-3">
+                                                <a class="fw-semibold bg-hover-primary" href="authentication-login">Pirate Skull Flag</a>
+                                            </li>
+                                            <li class="mb-3">
+                                                <a class="fw-semibold bg-hover-primary" href="authentication-register">Sunflower Flag</a>
+                                            </li>
+                                            <li class="mb-3">
+                                                <a class="fw-semibold bg-hover-primary" href="authentication-error">Switzerland Hand Flag</a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        User Profile
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">learn more information</span>
-                                    </div>
-                                  </a>
-                                  <a href="calendar" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Calendar App
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get dates</span>
-                                    </div>
-                                  </a>
-                                  <a href="contact-table" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Contact List Table
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">Add new contact</span>
-                                    </div>
-                                  </a>
-                                  <a href="notes" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24'
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Notes Application
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">To-do and Daily tasks</span>
-                                    </div>
-                                  </a>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                          <div class="row align-items-center py-3">
-                            <div class="col-8">
-                              <a class="fw-semibold d-flex align-items-center lh-1" href="javascript:void(0)">
-                                <i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions
-                              </a>
-                            </div>
-                            <div class="col-4">
-                              <div class="d-flex justify-content-end pe-4">
-                                <button class="btn btn-primary">Check</button>
-                              </div>
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                      <div class="col-4 ms-n4">
-                        <div class="position-relative p-7 border-start h-100">
-                          <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
-                          <ul class="">
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="page-pricing">Pricing Page</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-login">Authentication
-                                Design</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-register">Register Now</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-error">404 Error Page</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="notes">Notes App</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="user-profile">User Application</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="page-account-settings">Account Settings</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-              </li>
+                </li>
               <!-- ------------------------------- -->
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
