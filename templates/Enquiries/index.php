@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var iterable<\App\Model\Entity\Enquiry> $enquiries
+ */
+?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -45,222 +51,50 @@
                     </div>
                     <div class="app-chat">
                         <ul class="chat-users mh-n100" data-simplebar>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start chat-user bg-light-subtle" id="chat_user_1" data-user-id="1">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">James Smith</h6>
-                                            <span class="badge text-bg-primary">Promotional</span>
+                            <?php $first = true; ?>
+                            <?php foreach ($enquiries as $enquiry): ?>
+                                <li>
+                                    <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start chat-user <?= $first ? 'bg-light-subtle' : 'justify-content-between'; ?>" id="chat_user_<?= h($enquiry->id); ?>" data-user-id="<?= h($enquiry->id); ?>">
+                                        <div class="form-check mb-0">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault_<?= h($enquiry->id); ?>" />
                                         </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Kindly check this latest updated
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-dark"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_2" data-user-id="2">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Katherine Flintoff</h6>
-                                            <span class="badge text-bg-danger">Social</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Newsletter from AdminMart Team
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-warning"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
+                                        <div class="position-relative w-100 ms-2">
+                                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                                <h6 class="mb-0">
+                                                    <?= h($enquiry->user->profile->first_name ?? 'First name not available') ?>
+                                                    <?= h($enquiry->user->profile->last_name ?? 'Last name not available') ?>
+                                                </h6>
+                                                <span class="badge text-bg-<?php
+                                                    if ($enquiry->status == 'open') {
+                                                        echo 'primary';
+                                                    } elseif ($enquiry->status == 'closed') {
+                                                        echo 'danger';
+                                                    } elseif ($enquiry->status == 'pending') {
+                                                        echo 'warning';
+                                                    }
+                                                ?>">
+                                                    <?= h($enquiry->status); ?>
                                                 </span>
                                             </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_3" data-user-id="3">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Bianca Macdowells</h6>
-                                            <span class="badge text-bg-success">Health</span>
-                                        </div>
-                                        <h6 class="text-dark">
-                                            Kindly check this latest updated
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-warning"></i>
-                                                </span>
+                                            <h6 class="fw-semibold text-dark">
+                                                <?= h($enquiry->subject); ?>
+                                            </h6>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <span>
+                                                        <i class="ti ti-star fs-4 me-2 text-dark"></i>
+                                                    </span>
+                                                    <span class="d-block">
+                                                        <i class="ti ti-alert-circle text-muted"></i>
+                                                    </span>
+                                                </div>
+                                                <p class="mb-0 fs-2 text-muted"><?= h($enquiry->created_at->format('h:ia')); ?></p>
                                             </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
                                         </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_4" data-user-id="4">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Michael Knight</h6>
-                                            <span class="badge text-bg-primary">Social</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Developer Community needs help
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_5" data-user-id="5">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Jonathan Higgings</h6>
-                                            <span class="badge text-bg-primary">Promotional</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Kindly check this latest updated
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_6" data-user-id="6">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault5" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Mike Torello</h6>
-                                            <span class="badge text-bg-primary">Health</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            From your hosting provider - action
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_7" data-user-id="7">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault6" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Bianca Macdowells</h6>
-                                            <span class="badge text-bg-success">Health</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Kindly check this latest updated
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-warning"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_8" data-user-id="8">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7" />
-                                    </div>
-                                    <div class="position-relative w-100 ms-2">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <h6 class="mb-0">Michael Knight</h6>
-                                            <span class="badge text-bg-primary">Social</span>
-                                        </div>
-                                        <h6 class="fw-semibold text-dark">
-                                            Developer Community
-                                        </h6>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex align-items-center">
-                                                <span>
-                                                    <i class="ti ti-star fs-4 me-2 text-muted"></i>
-                                                </span>
-                                                <span class="d-block">
-                                                    <i class="ti ti-alert-circle text-muted"></i>
-                                                </span>
-                                            </div>
-                                            <p class="mb-0 fs-2 text-muted">04:00pm</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+                                    </a>
+                                </li>
+                                <?php $first = false; ?>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                 </div>
@@ -296,710 +130,80 @@
                             <div class="position-relative overflow-hidden">
                                 <div class="position-relative">
                                     <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
-                                        <div class="chat-list chat active-chat" data-user-id="1">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-8.jpg', [
-                                                        'alt' => 'user8',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            James Smith
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
+                                        <?php if (!empty($enquiries)): ?>
+                                            <?php $first = true; ?>
+                                            <?php foreach ($enquiries as $enquiry): ?>
+                                                <div class="chat-list chat <?= $first ? 'active-chat' : ''; ?>" data-user-id="<?= h($enquiry->id); ?>">
+                                                    <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
+                                                        <div class="d-flex align-items-center gap-2">
+                                                            <?= $this->Html->image('profile/user-' . h($enquiry->user->id) % 12 . '.jpg', [
+                                                                'alt' => h($enquiry->user->username),
+                                                                'class' => 'rounded-circle',
+                                                                'width' => '48',
+                                                                'height' => '48'
+                                                            ]) ?>
+                                                            <div>
+                                                                <h6 class="fw-semibold mb-0">
+                                                                    <?= h($enquiry->user->username); ?>
+                                                                </h6>
+                                                                <p class="mb-0"><?= h($enquiry->user->email); ?></p>
+                                                            </div>
+                                                        </div>
+                                                        <span class="badge text-bg-<?php
+                                                            if ($enquiry->status == 'open') {
+                                                                echo 'primary';
+                                                            } elseif ($enquiry->status == 'closed') {
+                                                                echo 'danger';
+                                                            } elseif ($enquiry->status == 'pending') {
+                                                                echo 'warning';
+                                                            }
+                                                        ?>">
+                                                            <?= h($enquiry->status); ?>
+                                                        </span>
                                                     </div>
-                                                </div>
-                                                <span class="badge text-bg-primary">Promotional</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    James Smith
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="2">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-5.jpg', [
-                                                        'alt' => 'user5',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Katherine Flintoff
+                                                    <div class="border-bottom pb-7 mb-7">
+                                                        <h4 class="fw-semibold text-dark mb-3">
+                                                            <?= h($enquiry->subject); ?>
+                                                        </h4>
+                                                        <p class="mb-3 text-dark">
+                                                            <?= nl2br(h($enquiry->message)); ?>
+                                                        </p>
+                                                        <p class="mb-0 text-dark">Regards,</p>
+                                                        <h6 class="fw-semibold mb-0 text-dark pb-1">
+                                                            <?= h($enquiry->user->profile->first_name ?? 'First name not available') ?>
+                                                            <?= h($enquiry->user->profile->last_name ?? 'Last name not available') ?>
                                                         </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
                                                     </div>
+                                                    <!-- You can render attachments here if needed -->
+<!--                                                    <div class="mb-3">-->
+<!--                                                        <h6 class="fw-semibold mb-0 text-dark mb-3">Attachments</h6>-->
+<!--                                                        <div class="d-block d-sm-flex align-items-center gap-4">-->
+<!--                                                            <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">-->
+<!--                                                                <div class="d-flex align-items-center gap-3">-->
+<!--                                                                    <div class="rounded-1 text-bg-light p-6">-->
+<!--                                                                        --><?php //= $this->Html->image('chat/icon-adobe.svg', [
+//                                                                            'alt' => 'service-task.pdf',
+//                                                                            'width' => '24',
+//                                                                            'height' => '24'
+//                                                                        ]) ?>
+<!--                                                                    </div>-->
+<!--                                                                    <div>-->
+<!--                                                                        <h6 class="fw-semibold">service-task.pdf</h6>-->
+<!--                                                                        <div class="d-flex align-items-center gap-3 fs-2 text-muted">-->
+<!--                                                                            <span>2 MB</span>-->
+<!--                                                                            <span>--><?php //= date('d M Y', strtotime($enquiry->created_at)); ?><!--</span>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </a>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
                                                 </div>
-                                                <span class="badge text-bg-danger">Social</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Katherine Flintoff
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="3">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-3.jpg', [
-                                                        'alt' => 'user3',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Bianca Macdowells
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-success">Health</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Bianca Macdowells
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="4">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-3.jpg', [
-                                                        'alt' => 'user3',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Michael Knight
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-primary">Social</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Michael Knight
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="5">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-11.jpg', [
-                                                        'alt' => 'user11',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Jonathan Higgings
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-primary">Promotional</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Jonathan Higgings
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="6">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-5.jpg', [
-                                                        'alt' => 'user6',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Mike Torello
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-primary">Health</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Mike Torello
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="7">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-6.jpg', [
-                                                        'alt' => 'user6',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Bianca Macdowells
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-success">Health</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Bianca Macdowells
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chat-list chat" data-user-id="8">
-                                            <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
-                                                <div class="d-flex align-items-center gap-2">
-                                                    <?= $this->Html->image('profile/user-7.jpg', [
-                                                        'alt' => 'user8',
-                                                        'class' => 'rounded-circle',
-                                                        'width' => '48',
-                                                        'height' => '48'
-                                                    ]) ?>
-                                                    <div>
-                                                        <h6 class="fw-semibold mb-0">
-                                                            Michael Knight
-                                                        </h6>
-                                                        <p class="mb-0">hello@loremipsum.com</p>
-                                                    </div>
-                                                </div>
-                                                <span class="badge text-bg-primary">Social</span>
-                                            </div>
-                                            <div class="border-bottom pb-7 mb-7">
-                                                <h4 class="fw-semibold text-dark mb-3">
-                                                    Kindly check this latest updated
-                                                </h4>
-                                                <p class="mb-3 text-dark">Hello Andrew,</p>
-                                                <p class="mb-3 text-dark">
-                                                    Lorem ipsum dolor sit amet, consectetur
-                                                    adipiscing elit. Quisque bibendum
-                                                    hendrerit lobortis. Nullam ut lacus eros.
-                                                    Sed at luctus urna, eu fermentum diam. In
-                                                    et tristique mauris.
-                                                </p>
-                                                <p class="mb-3 text-dark">
-                                                    Ut id ornare metus, sed auctor enim.
-                                                    Pellentesque nisi magna, laoreet a augue
-                                                    eget, tempor volutpat diam.
-                                                </p>
-                                                <p class="mb-0 text-dark">Regards,</p>
-                                                <h6 class="fw-semibold mb-0 text-dark pb-1">
-                                                    Michael Knight
-                                                </h6>
-                                            </div>
-                                            <div class="mb-3">
-                                                <h6 class="fw-semibold mb-0 text-dark mb-3">
-                                                    Attachments
-                                                </h6>
-                                                <div class="d-block d-sm-flex align-items-center gap-4">
-                                                    <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-adobe.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    service-task.pdf
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                    <a href="javascript:void(0)" class="hstack gap-3 file-chat-hover">
-                                                        <div class="d-flex align-items-center gap-3">
-                                                            <div class="rounded-1 text-bg-light p-6">
-                                                                <?= $this->Html->image('chat/icon-zip-folder.svg', [
-                                                                    'alt' => 'matdash-img',
-                                                                    'width' => '24',
-                                                                    'height' => '24'
-                                                                ]) ?>
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="fw-semibold">
-                                                                    work-project.zip
-                                                                </h6>
-                                                                <div class="d-flex align-items-center gap-3 fs-2 text-muted">
-                                                                    <span>2 MB</span>
-                                                                    <span>2 Dec 2024</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <?php $first = false; ?>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p>No enquiries found.</p>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="px-9 py-3 border-top chat-send-message-footer">
                                         <div class="d-flex align-items-center justify-content-between">
