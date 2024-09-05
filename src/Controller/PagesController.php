@@ -70,4 +70,8 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+    public function aboutUs()
+    {
+        $this->viewBuilder()->setLayout('user');
+    }
 }
