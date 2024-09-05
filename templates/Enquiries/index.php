@@ -51,9 +51,10 @@
                     </div>
                     <div class="app-chat">
                         <ul class="chat-users mh-n100" data-simplebar>
+                            <?php $first = true; ?>
                             <?php foreach ($enquiries as $enquiry): ?>
                                 <li>
-                                    <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start justify-content-between chat-user" id="chat_user_<?= h($enquiry->id); ?>" data-user-id="<?= h($enquiry->id); ?>">
+                                    <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start chat-user <?= $first ? 'bg-light-subtle' : 'justify-content-between'; ?>" id="chat_user_<?= h($enquiry->id); ?>" data-user-id="<?= h($enquiry->id); ?>">
                                         <div class="form-check mb-0">
                                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault_<?= h($enquiry->id); ?>" />
                                         </div>
@@ -84,6 +85,7 @@
                                         </div>
                                     </a>
                                 </li>
+                                <?php $first = false; ?>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -121,8 +123,9 @@
                                 <div class="position-relative">
                                     <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
                                         <?php if (!empty($enquiries)): ?>
+                                            <?php $first = true; ?>
                                             <?php foreach ($enquiries as $enquiry): ?>
-                                                <div class="chat-list chat" data-user-id="<?= h($enquiry->id); ?>">
+                                                <div class="chat-list chat <?= $first ? 'active-chat' : ''; ?>" data-user-id="<?= h($enquiry->id); ?>">
                                                     <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                         <div class="d-flex align-items-center gap-2">
                                                             <?= $this->Html->image('profile/user-' . h($enquiry->user->id) % 12 . '.jpg', [
@@ -180,6 +183,7 @@
 <!--                                                        </div>-->
 <!--                                                    </div>-->
                                                 </div>
+                                                <?php $first = false; ?>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <p>No enquiries found.</p>
