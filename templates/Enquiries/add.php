@@ -18,9 +18,8 @@
             <fieldset>
                 <legend><?= __('Add Enquiry') ?></legend>
                 <?php
-                echo $this->Form->control('first_name', ['label' => 'First Name']);
-                echo $this->Form->control('last_name', ['label' => 'Last Name']);
-                echo $this->Form->control('email', ['label' => 'Email']);
+                echo $this->Form->control('user_id', ['options' => $users]);
+                echo $this->Form->control('subject', ['label' => 'Subject']);
                 echo $this->Form->control('message', ['label' => 'Message', 'type' => 'textarea']);
                 ?>
             </fieldset>
