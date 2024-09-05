@@ -51,12 +51,7 @@ $this->disableAutoLayout();
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav align-items-center mb-2 mb-lg-0 ms-auto">
                             <li class="nav-item dropdown hover-dd mega-dropdown pages-dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" aria-expanded="false">
-                                    Shop
-                                    <span class="d-flex align-items-center">
-                                        <i class="ti ti-chevron-down"></i>
-                                    </span>
-                                </a>
+
                                 <div class="dropdown-menu dropdown-menu-animate-up py-0">
                                     <div class="row">
                                         <!-- Flag Categories Section -->
@@ -221,9 +216,7 @@ $this->disableAutoLayout();
                                 </div>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Custom Flag</a>
-                            </li>
+
 
                             <li class="nav-item">
                                 <?= $this->Html->link(
