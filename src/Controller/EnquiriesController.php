@@ -19,7 +19,9 @@ class EnquiriesController extends AppController
     {
         $this->viewBuilder()->setLayout('admin');
         $query = $this->Enquiries->find()
-            ->contain(['Users']);
+            ->contain(['Users', 'Users.Profiles'])
+            ->order(['Enquiries.created_at' => 'DESC']);
+
         $enquiries = $this->paginate($query);
 
         $this->set(compact('enquiries'));
