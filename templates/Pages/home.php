@@ -224,13 +224,7 @@ $this->disableAutoLayout();
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Custom Flag</a>
                             </li>
-                            <li class="nav-item">
-                                <?= $this->Html->link(
-                                    'FAQs',
-                                    ['controller' => 'Pages', 'action' => 'faqs'],
-                                    ['class' => 'nav-link active', 'aria-current' => 'page']
-                                ); ?>
-                            </li>
+
                             <li class="nav-item">
                                 <?= $this->Html->link(
                                     'About Us',
@@ -2033,13 +2027,7 @@ $this->disableAutoLayout();
                     <li class="nav-item mt-3">
                         <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">Custom Flag</a>
                     </li>
-                    <li class="nav-item mt-3">
-                        <?= $this->Html->link(
-                            'FAQs',
-                            ['controller' => 'Pages', 'action' => 'faqs'],
-                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
-                        ); ?>
-                    </li>
+
                     <li class="nav-item mt-3">
                         <?= $this->Html->link(
                             'About Us',
