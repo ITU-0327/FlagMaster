@@ -64,7 +64,15 @@
                                                     <?= h($enquiry->user->profile->first_name ?? 'First name not available') ?>
                                                     <?= h($enquiry->user->profile->last_name ?? 'Last name not available') ?>
                                                 </h6>
-                                                <span class="badge text-bg-<?= ($enquiry->status == 'open') ? 'primary' : 'danger'; ?>">
+                                                <span class="badge text-bg-<?php
+                                                    if ($enquiry->status == 'open') {
+                                                        echo 'primary';
+                                                    } elseif ($enquiry->status == 'closed') {
+                                                        echo 'danger';
+                                                    } elseif ($enquiry->status == 'pending') {
+                                                        echo 'warning';
+                                                    }
+                                                ?>">
                                                     <?= h($enquiry->status); ?>
                                                 </span>
                                             </div>
@@ -141,7 +149,15 @@
                                                                 <p class="mb-0"><?= h($enquiry->user->email); ?></p>
                                                             </div>
                                                         </div>
-                                                        <span class="badge text-bg-<?= ($enquiry->status == 'open') ? 'primary' : 'danger'; ?>">
+                                                        <span class="badge text-bg-<?php
+                                                            if ($enquiry->status == 'open') {
+                                                                echo 'primary';
+                                                            } elseif ($enquiry->status == 'closed') {
+                                                                echo 'danger';
+                                                            } elseif ($enquiry->status == 'pending') {
+                                                                echo 'warning';
+                                                            }
+                                                        ?>">
                                                             <?= h($enquiry->status); ?>
                                                         </span>
                                                     </div>
