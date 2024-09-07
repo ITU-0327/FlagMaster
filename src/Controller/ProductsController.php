@@ -15,64 +15,22 @@ class ProductsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index()
+    public function index($categoryId = null)
     {
-        // Set pagination limit to 9 products per page
-        $this->paginate = [
-            'limit' => 9,
-            'order' => ['Products.created_at' => 'desc'],
-        ];
-
-        // Initialize the query
-        $query = $this->Products->find('all', [
-            'contain' => ['Categories']
-        ]);
-
-        // Search Filter
-        $search = $this->request->getQuery('search');
-        if (!empty($search)) {
-            $query->where([
-                'OR' => [
-                    'Products.name LIKE' => '%' . $search . '%',
-                    'Products.description LIKE' => '%' . $search . '%',
-                ]
-            ]);
+        if ($categoryId) {
+            $query = $this->Products->find()
+                ->matching('Categories', function ($q) use ($categoryId) {
+                    return $q->where(['Categories.id' => $categoryId]);
+                });
+        } else {
+            $query = $this->Products->find();
         }
 
-        // Category Filter
-        $categoryId = $this->request->getQuery('category');
-        if (!empty($categoryId)) {
-            $query->matching('Categories', function ($q) use ($categoryId) {
-                return $q->where(['Categories.id' => $categoryId]);
-            });
-        }
-
-        // Price Filter
-        $priceRange = $this->request->getQuery('price_range');
-        if (!empty($priceRange)) {
-            switch ($priceRange) {
-                case '0-50':
-                    $query->where(['Products.price <=' => 50]);
-                    break;
-                case '50-100':
-                    $query->where(['Products.price >=' => 50, 'Products.price <=' => 100]);
-                    break;
-                case '100-200':
-                    $query->where(['Products.price >=' => 100, 'Products.price <=' => 200]);
-                    break;
-                case 'over-200':
-                    $query->where(['Products.price >=' => 200]);
-                    break;
-            }
-        }
-
-        // Fetch paginated products
         $products = $this->paginate($query);
 
-        // Fetch categories for filters
-        $categories = $this->Products->Categories->find('list')->all();
+        $categories = $this->Products->Categories->find()->all();
 
-        $this->set(compact('products', 'categories', 'search', 'categoryId', 'priceRange'));
+        $this->set(compact('products', 'categories'));
     }
 
     /**

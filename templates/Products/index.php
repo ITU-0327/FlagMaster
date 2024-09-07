@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var iterable<\App\Model\Entity\Category> $categories
+ * @var iterable<\App\Model\Entity\Product> $products
+ */
+?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -14,7 +21,10 @@
             </div>
             <div class="col-3">
                 <div class="text-center mb-n5">
-                    <img src="../assets/images/breadcrumb/ChatBc.png" alt="modernize-img" class="img-fluid mb-n4" />
+                    <?= $this->Html->image(
+                        'breadcrumb/ChatBc.png',
+                        ['alt' => 'flagmaster-img', 'class' => 'img-fluid mb-n4']
+                    )?>
                 </div>
             </div>
         </div>
@@ -26,30 +36,17 @@
             <ul class="list-group pt-2 border-bottom rounded-0">
                 <h6 class="my-3 mx-4">Filter by Category</h6>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-circles fs-5"></i>All
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
+                        <i class="ti ti-circles fs-5"></i> All
                     </a>
                 </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-hanger fs-5"></i>Fashion
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-notebook fs-5"></i>Books
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-mood-smile fs-5"></i>Toys
-                    </a>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-device-laptop fs-5"></i>Electronics
-                    </a>
-                </li>
+                <?php foreach ($categories as $category): ?>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', $category->id]) ?>">
+                            <i class="ti ti-category fs-5"></i> <?= h($category->name) ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
             </ul>
             <ul class="list-group pt-2 border-bottom rounded-0">
                 <h6 class="my-3 mx-4">Sort By</h6>
@@ -65,8 +62,7 @@
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-sort-descending-2 fs-5"></i>
-                        </i>Price: Low-High
+                        <i class="ti ti-sort-descending-2 fs-5"></i>Price: Low-High
                     </a>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
@@ -121,46 +117,57 @@
                     <i class="ti ti-menu-2 fs-6"></i>
                 </a>
                 <h5 class="fs-5 mb-0 d-none d-lg-block">Products</h5>
+<!--                TODO: Search Bar not working-->
                 <form class="position-relative">
                     <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Product">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
             </div>
             <div class="row">
-                <?php foreach ($products as $product): ?>
-                    <div class="col-sm-6 col-xxl-4">
-                        <div class="card hover-img overflow-hidden">
-                            <div class="position-relative">
-                                <a href="/products/view/<?= $product->id ?>">
-                                    <img src="<?= h($product->thumbnail_url) ?>" class="card-img-top" alt="<?= h($product->name) ?>">
-                                </a>
-                                <a href="javascript:void(0)" class="text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
-                                    <i class="ti ti-basket fs-4"></i>
-                                </a>
-                            </div>
-                            <div class="card-body pt-3 p-4">
-                                <h6 class="fs-4"><?= h($product->name) ?></h6>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="fs-4 mb-0">$<?= h($product->price) ?>
+                <?php if ($products->isEmpty()): ?>
+                    <div class="col-12">
+                        <p class="text-center">No products available for this category.</p>
+                    </div>
+                <?php else: ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="col-sm-6 col-xxl-4">
+                            <div class="card hover-img overflow-hidden">
+                                <div class="position-relative">
+                                    <?= $this->Html->link(
+                                        $this->Html->image('products/Brazil-Flag.png', ['alt' => h($product->name), 'class' => 'card-img-top']),
+                                        ['controller' => 'Products', 'action' => 'view', $product->id],
+                                        ['escape' => false]
+                                    ) ?>
+                                    <a href="javascript:void(0)" class="text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
+                                        <i class="ti ti-basket fs-4"></i>
+                                    </a>
+                                </div>
+                                <div class="card-body pt-3 p-4">
+                                    <h6 class="fs-4"><?= h($product->name) ?></h6>
+                                    <div class="d-flex align-items-center justify-content-between">
                                         <?php if ($product->discount_value): ?>
-                                            <span class="ms-2 fw-normal text-muted fs-3">
-                        <del>$<?= h($product->price + $product->discount_value) ?></del>
-                    </span>
+                                            <h6 class="fs-4 mb-0">$<?= h($this->Number->format($product->discount_value, ['thousands' => ','])) ?>
+                                                <span class="ms-2 fw-normal text-muted fs-3">
+                                                    <del>$<?= h($this->Number->format($product->price, ['thousands' => ','])) ?></del>
+                                                </span>
+                                            </h6>
+                                        <?php else: ?>
+                                            <h6 class="fs-4 mb-0">$<?= h($this->Number->format($product->price, ['thousands' => ','])) ?></h6>
                                         <?php endif; ?>
-                                    </h6>
-                                    <ul class="list-unstyled d-flex align-items-center mb-0">
-                                        <!-- Assuming a static 5-star rating for now -->
-                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                                        <li><a href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
-                                    </ul>
+                                        <ul class="list-unstyled d-flex align-items-center mb-0">
+                                            <!-- Assuming a static 5-star rating for now -->
+                                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                            <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                            <li><a href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="offcanvas offcanvas-start" tabindex="-1" id="filtercategory" aria-labelledby="filtercategoryLabel">
@@ -168,31 +175,17 @@
                 <ul class="list-group pt-2 border-bottom rounded-0">
                     <h6 class="my-3 mx-4">Filter by Category</h6>
                     <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
                             <i class="ti ti-circles fs-5"></i>All
                         </a>
                     </li>
-                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                            <i class="ti ti-hanger fs-5"></i>Fashion
-                        </a>
-                    </li>
-                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                            <i class="ti ti-notebook fs-5"></i>
-                            </i>Books
-                        </a>
-                    </li>
-                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                            <i class="ti ti-mood-smile fs-5"></i>Toys
-                        </a>
-                    </li>
-                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                            <i class="ti ti-device-laptop fs-5"></i>Electronics
-                        </a>
-                    </li>
+                    <?php foreach ($categories as $category): ?>
+                        <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                            <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', $category->id]) ?>">
+                                <i class="ti ti-category-icon fs-5"></i><?= h($category->name) ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
                 <ul class="list-group pt-2 border-bottom rounded-0">
                     <h6 class="my-3 mx-4">Sort By</h6>
@@ -208,8 +201,7 @@
                     </li>
                     <li class="list-group-item border-0 p-0 mx-4 mb-2">
                         <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                            <i class="ti ti-sort-descending-2 fs-5"></i>
-                            </i>Price: Low-High
+                            <i class="ti ti-sort-descending-2 fs-5"></i>Price: Low-High
                         </a>
                     </li>
                     <li class="list-group-item border-0 p-0 mx-4 mb-2">
@@ -265,5 +257,5 @@
 
 <?php
 $this->start('customScript'); ?>
-<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?php $this->end(); ?>
