@@ -51,24 +51,32 @@
             <ul class="list-group pt-2 border-bottom rounded-0">
                 <h6 class="my-3 mx-4">Sort By</h6>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-ad-2 fs-5"></i>Newest
-                    </a>
+                    <?= $this->Html->link(
+                        '<i class="ti ti-ad-2 fs-5"></i>Newest',
+                        ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'newest']],
+                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                    ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-sort-ascending-2 fs-5"></i>Price: High-Low
-                    </a>
+                    <?= $this->Html->link(
+                        '<i class="ti ti-sort-descending-2 fs-5"></i> Price: Low-High',
+                        ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'price_low_high']],
+                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                    ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-sort-descending-2 fs-5"></i>Price: Low-High
-                    </a>
+                    <?= $this->Html->link(
+                        '<i class="ti ti-sort-ascending-2 fs-5"></i>Price: High-Low',
+                        ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'price_high_low']],
+                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                    ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
-                        <i class="ti ti-ad-2 fs-5"></i>Discounted
-                    </a>
+                    <?= $this->Html->link(
+                        '<i class="ti ti-ad-2 fs-5"></i> Discounted',
+                        ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'discounted']],
+                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                    ) ?>
                 </li>
             </ul>
 

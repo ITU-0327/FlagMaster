@@ -17,20 +17,29 @@ class ProductsController extends AppController
      */
     public function index($categoryId = null)
     {
+        $sort = $this->request->getQuery('sort');
+
+        $query = $this->Products->find();
+
         if ($categoryId) {
-            $query = $this->Products->find()
-                ->matching('Categories', function ($q) use ($categoryId) {
-                    return $q->where(['Categories.id' => $categoryId]);
-                });
-        } else {
-            $query = $this->Products->find();
+            $query = $query->matching('Categories', function ($q) use ($categoryId) {
+                return $q->where(['Categories.id' => $categoryId]);
+            });
         }
+
+        $query = match ($sort) {
+            'newest' => $query->order(['Products.created_at' => 'DESC']),
+            'price_high_low' => $query->order(['Products.price' => 'DESC']),
+            'price_low_high' => $query->order(['Products.price' => 'ASC']),
+            'discounted' => $query->where(['Products.discount_type !=' => 'none']),
+            default => $query->order(['Products.created_at' => 'DESC']),
+        };
 
         $products = $this->paginate($query);
 
         $categories = $this->Products->Categories->find()->all();
 
-        $this->set(compact('products', 'categories'));
+        $this->set(compact('products', 'categories', 'sort'));
     }
 
     /**
