@@ -4,7 +4,16 @@
  * @var iterable<\App\Model\Entity\Category> $categories
  * @var iterable<\App\Model\Entity\Product> $products
  */
+$sort = $this->request->getQuery('sort', 'newest');
 ?>
+
+<?php $this->start('css'); ?>
+
+<?= $this->Html->css(['sorting-filters']) ?>
+
+<?php $this->end(); ?>
+
+
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -36,13 +45,13 @@
             <ul class="list-group pt-2 border-bottom rounded-0">
                 <h6 class="my-3 mx-4">Filter by Category</h6>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 <?= empty($this->request->getParam('pass')) ? 'active' : '' ?>" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
                         <i class="ti ti-circles fs-5"></i> All
                     </a>
                 </li>
                 <?php foreach ($categories as $category): ?>
                     <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', $category->id]) ?>">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 <?= ($this->request->getParam('pass.0') == $category->id) ? 'active' : '' ?>" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', $category->id]) ?>">
                             <i class="ti ti-category fs-5"></i> <?= h($category->name) ?>
                         </a>
                     </li>
@@ -54,28 +63,28 @@
                     <?= $this->Html->link(
                         '<i class="ti ti-ad-2 fs-5"></i>Newest',
                         ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'newest']],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        ['escape' => false, 'class' => ($sort === 'newest' ? 'active ' : '') . 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-sort-descending-2 fs-5"></i> Price: Low-High',
                         ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'price_low_high']],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        ['escape' => false, 'class' => ($sort === 'price_low_high' ? 'active ' : '') . 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-sort-ascending-2 fs-5"></i>Price: High-Low',
                         ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'price_high_low']],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        ['escape' => false, 'class' => ($sort === 'price_high_low' ? 'active ' : '') . 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-ad-2 fs-5"></i> Discounted',
                         ['controller' => 'Products', 'action' => 'index', '?' => ['sort' => 'discounted']],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        ['escape' => false, 'class' => ($sort === 'discounted' ? 'active ' : '') . 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
                     ) ?>
                 </li>
             </ul>
