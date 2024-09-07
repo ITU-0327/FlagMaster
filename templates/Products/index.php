@@ -1,216 +1,269 @@
-<style>
-    /* General Styling */
-    .shop-container {
-        display: flex;
-    }
-
-    .shop-sidebar {
-        width: 20%;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-right: 1px solid #e1e1e1;
-    }
-
-    .shop-main {
-        width: 80%;
-        padding: 20px;
-    }
-
-    .page-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    .search-input {
-        padding: 10px;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    /* Product Grid */
-    .product-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
-
-    .product-card {
-        width: 30%;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-    }
-
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .product-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .product-info {
-        padding: 15px;
-    }
-
-    .product-name {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .product-price {
-        font-size: 16px;
-        color: #ff6a00;
-    }
-
-    .product-discount {
-        color: #999;
-        font-size: 14px;
-    }
-
-    .product-rating i {
-        font-size: 14px;
-        color: #ffc107;
-    }
-
-    .star-icon {
-        font-family: FontAwesome;
-        content: "\f005"; /* star icon */
-    }
-
-    .star-icon.active {
-        color: #ffd700;
-    }
-
-    /* Filters Styling */
-    .shop-filters {
-        margin-bottom: 20px;
-    }
-
-    .shop-filters ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    .shop-filters ul li {
-        margin-bottom: 10px;
-    }
-
-    .shop-filters ul li a {
-        color: #333;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .paginator ul {
-        list-style: none;
-        display: flex;
-        gap: 10px;
-    }
-    .paginator ul li {
-        display: inline;
-    }
-    .paginator p {
-        margin-top: 10px;
-        color: #666;
-    }
-</style>
-
-<div class="shop-container">
-    <div class="shop-sidebar">
-        <!-- Sidebar Filters -->
-        <div class="shop-filters">
-            <h6>Filter by Category</h6>
-            <ul>
-                <?php foreach ($categories as $id => $category): ?>
-                    <li>
-                        <?= $this->Html->link(h($category), ['?' => array_merge($this->request->getQuery(), ['category' => $id])]) ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-            <h6>Filter by Price</h6>
-            <ul>
-                <li><?= $this->Html->link('0-50', ['?' => array_merge($this->request->getQuery(), ['price_range' => '0-50'])]) ?></li>
-                <li><?= $this->Html->link('50-100', ['?' => array_merge($this->request->getQuery(), ['price_range' => '50-100'])]) ?></li>
-                <li><?= $this->Html->link('100-200', ['?' => array_merge($this->request->getQuery(), ['price_range' => '100-200'])]) ?></li>
-                <li><?= $this->Html->link('Over 200', ['?' => array_merge($this->request->getQuery(), ['price_range' => 'over-200'])]) ?></li>
-            </ul>
-        </div>
-        <div class="p-4">
-            <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
-        </div>
-    </div>
-
-    <div class="shop-main">
-        <!-- Page Header -->
-        <div class="page-header">
-            <h4 class="page-title">Shop</h4>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><?= $this->Html->link(__('Home'), '/') ?></li>
-                    <li class="breadcrumb-item" aria-current="page">Shop</li>
-                </ol>
-            </nav>
-            <div class="card-body p-4 pb-0">
-                <div class="d-flex justify-content-between align-items-center gap-6 mb-4">
-            <div class="shop-banner">
-                <?= $this->Html->image('breadcrumb/ChatBc.png', ['alt' => 'Shop Banner', 'class' => 'img-fluid mb-n4']) ?>
+<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold mb-8">Shop</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">Shop</li>
+                    </ol>
+                </nav>
             </div>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="d-flex justify-content-between align-items-center gap-6 mb-4">
-            <h5 class="fs-5 mb-0">Products</h5>
-            <?= $this->Form->create(null, ['type' => 'get']) ?>
-            <?= $this->Form->control('search', ['value' => $search, 'label' => false, 'class' => 'form-control search-input', 'placeholder' => 'Search Product']) ?>
-            <?= $this->Form->end() ?>
-        </div>
-
-        <!-- Product Grid -->
-        <div class="product-grid">
-            <?php foreach ($products as $product): ?>
-                <div class="product-card">
-                    <div class="product-image">
-                        <?= $this->Html->link(
-                            $this->Html->image('/img/products/Brazil-Flag.png' . $product->thumbnail_url, ['alt' => $product->name]),
-                            ['action' => 'view', $product->id],
-                            ['escape' => false]
-                        ) ?>
-                    </div>
-                    <div class="product-info">
-                        <h6 class="product-name"><?= h($product->name) ?></h6>
-                        <div class="product-price">
-                            $<?= $this->Number->format($product->price) ?>
-                            <?php if (!empty($product->discount_value)): ?>
-                                <span class="product-discount">
-                                    <del>$<?= $this->Number->format($product->price + $product->discount_value) ?></del>
-                                </span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="product-rating">
-                            <?php for ($i = 0; $i < 5; $i++): ?>
-                                <i class="star-icon <?= $i < $product->rating ? 'active' : '' ?>"></i>
-                            <?php endfor; ?>
-                        </div>
-                    </div>
+            <div class="col-3">
+                <div class="text-center mb-n5">
+                    <img src="../assets/images/breadcrumb/ChatBc.png" alt="modernize-img" class="img-fluid mb-n4" />
                 </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- Pagination -->
-        <div class="paginator">
-            <ul class="pagination">
-                <?= $this->Paginator->first('<< ' . __('first')) ?>
-                <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                <?= $this->Paginator->numbers() ?>
-                <?= $this->Paginator->next(__('next') . ' >') ?>
-                <?= $this->Paginator->last(__('last') . ' >>') ?>
-            </ul>
-            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+            </div>
         </div>
     </div>
 </div>
+<div class="card position-relative overflow-hidden">
+    <div class="shop-part d-flex w-100">
+        <div class="shop-filters flex-shrink-0 border-end d-none d-lg-block">
+            <ul class="list-group pt-2 border-bottom rounded-0">
+                <h6 class="my-3 mx-4">Filter by Category</h6>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-circles fs-5"></i>All
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-hanger fs-5"></i>Fashion
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-notebook fs-5"></i>Books
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-mood-smile fs-5"></i>Toys
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-device-laptop fs-5"></i>Electronics
+                    </a>
+                </li>
+            </ul>
+            <ul class="list-group pt-2 border-bottom rounded-0">
+                <h6 class="my-3 mx-4">Sort By</h6>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-ad-2 fs-5"></i>Newest
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-sort-ascending-2 fs-5"></i>Price: High-Low
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-sort-descending-2 fs-5"></i>
+                        </i>Price: Low-High
+                    </a>
+                </li>
+                <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                    <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                        <i class="ti ti-ad-2 fs-5"></i>Discounted
+                    </a>
+                </li>
+            </ul>
+
+            <div class="by-pricing border-bottom rounded-0">
+                <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
+                <div class="pb-4 px-4">
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios5" value="option1" checked>
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios5">
+                            All
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios6" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios6">
+                            0-50
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios7" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios7">
+                            50-100
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios8" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios8">
+                            100-200
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios9" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios9">
+                            Over 200
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4">
+                <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
+            </div>
+        </div>
+        <div class="card-body p-4 pb-0">
+            <div class="d-flex justify-content-between align-items-center gap-6 mb-4">
+                <a class="btn btn-primary d-lg-none d-flex" data-bs-toggle="offcanvas" href="#filtercategory" role="button" aria-controls="filtercategory">
+                    <i class="ti ti-menu-2 fs-6"></i>
+                </a>
+                <h5 class="fs-5 mb-0 d-none d-lg-block">Products</h5>
+                <form class="position-relative">
+                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Product">
+                    <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
+                </form>
+            </div>
+            <div class="row">
+                <?php foreach ($products as $product): ?>
+                    <div class="col-sm-6 col-xxl-4">
+                        <div class="card hover-img overflow-hidden">
+                            <div class="position-relative">
+                                <a href="/products/view/<?= $product->id ?>">
+                                    <img src="<?= h($product->thumbnail_url) ?>" class="card-img-top" alt="<?= h($product->name) ?>">
+                                </a>
+                                <a href="javascript:void(0)" class="text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
+                                    <i class="ti ti-basket fs-4"></i>
+                                </a>
+                            </div>
+                            <div class="card-body pt-3 p-4">
+                                <h6 class="fs-4"><?= h($product->name) ?></h6>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="fs-4 mb-0">$<?= h($product->price) ?>
+                                        <?php if ($product->discount_value): ?>
+                                            <span class="ms-2 fw-normal text-muted fs-3">
+                        <del>$<?= h($product->price + $product->discount_value) ?></del>
+                    </span>
+                                        <?php endif; ?>
+                                    </h6>
+                                    <ul class="list-unstyled d-flex align-items-center mb-0">
+                                        <!-- Assuming a static 5-star rating for now -->
+                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                        <li><a class="me-1" href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                        <li><a href="javascript:void(0)"><i class="ti ti-star text-warning"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="filtercategory" aria-labelledby="filtercategoryLabel">
+            <div class="offcanvas-body shop-filters w-100 p-0">
+                <ul class="list-group pt-2 border-bottom rounded-0">
+                    <h6 class="my-3 mx-4">Filter by Category</h6>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-circles fs-5"></i>All
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-hanger fs-5"></i>Fashion
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-notebook fs-5"></i>
+                            </i>Books
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-mood-smile fs-5"></i>Toys
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-device-laptop fs-5"></i>Electronics
+                        </a>
+                    </li>
+                </ul>
+                <ul class="list-group pt-2 border-bottom rounded-0">
+                    <h6 class="my-3 mx-4">Sort By</h6>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-ad-2 fs-5"></i>Newest
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-sort-ascending-2 fs-5"></i>Price: High-Low
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-sort-descending-2 fs-5"></i>
+                            </i>Price: Low-High
+                        </a>
+                    </li>
+                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
+                        <a class="d-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1" href="javascript:void(0)">
+                            <i class="ti ti-ad-2 fs-5"></i>Discounted
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="by-pricing border-bottom rounded-0">
+                    <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
+                    <div class="pb-4 px-4">
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios14" value="option1" checked>
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios14">
+                                All
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios15" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios15">
+                                0-50
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios16" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios16">
+                                50-100
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios17" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios17">
+                                100-200
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios18" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios18">
+                                Over 200
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4">
+                    <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$this->start('customScript'); ?>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+<?php $this->end(); ?>
