@@ -91,48 +91,41 @@ $sort = $this->request->getQuery('sort', 'newest');
 
             <div class="by-pricing border-bottom rounded-0">
                 <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
-                <form id="pricingFilterForm" method="get" action="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
-                    <div class="pb-4 px-4">
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_all" value="all" <?= $priceFilter === 'all' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_all">
-                                All
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_0_50" value="0-50" <?= $priceFilter === '0-50' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_0_50">
-                                0-50
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_50_100" value="50-100" <?= $priceFilter === '50-100' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_50_100">
-                                50-100
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_100_200" value="100-200" <?= $priceFilter === '100-200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_100_200">
-                                100-200
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_over_200" value="over_200" <?= $priceFilter === 'over_200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_over_200">
-                                Over 200
-                            </label>
-                        </div>
+                <div class="pb-4 px-4">
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios5" value="option1" checked>
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios5">
+                            All
+                        </label>
                     </div>
-                </form>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios6" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios6">
+                            0-50
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios7" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios7">
+                            50-100
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios8" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios8">
+                            100-200
+                        </label>
+                    </div>
+                    <div class="form-check py-2 mb-0">
+                        <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios9" value="option1">
+                        <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios9">
+                            Over 200
+                        </label>
+                    </div>
+                </div>
             </div>
-
             <div class="p-4">
-                <?= $this->Html->link(
-                    'Reset Filters',
-                    ['controller' => 'Products', 'action' => 'index'],  // Base URL without query params
-                    ['class' => 'btn btn-primary w-100']
-                ) ?>
+                <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
             </div>
         </div>
         <div class="card-body p-4 pb-0">
@@ -142,11 +135,10 @@ $sort = $this->request->getQuery('sort', 'newest');
                 </a>
                 <h5 class="fs-5 mb-0 d-none d-lg-block">Products</h5>
 <!--                TODO: Search Bar not working-->
-                <form class="position-relative" method="get" action="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
-                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" name="q" value="<?= h($this->request->getQuery('q')) ?>" placeholder="Search Product">
+                <form class="position-relative">
+                    <input type="text" class="form-control search-chat py-2 ps-5" id="text-srh" placeholder="Search Product">
                     <i class="ti ti-search position-absolute top-50 start-0 translate-middle-y fs-6 text-dark ms-3"></i>
                 </form>
-
             </div>
             <div class="row">
                 <?php if ($products->isEmpty()): ?>
@@ -238,49 +230,42 @@ $sort = $this->request->getQuery('sort', 'newest');
 
                 <div class="by-pricing border-bottom rounded-0">
                     <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
-                    <form id="pricingFilterForm" method="get" action="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
-                        <div class="pb-4 px-4">
-                            <div class="form-check py-2 mb-0">
-                                <input class="form-check-input p-2" type="radio" name="price_filter" id="price_all" value="all" <?= $priceFilter === 'all' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                                <label class="form-check-label d-flex align-items-center ps-2" for="price_all">
-                                    All
-                                </label>
-                            </div>
-                            <div class="form-check py-2 mb-0">
-                                <input class="form-check-input p-2" type="radio" name="price_filter" id="price_0_50" value="0-50" <?= $priceFilter === '0-50' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                                <label class="form-check-label d-flex align-items-center ps-2" for="price_0_50">
-                                    0-50
-                                </label>
-                            </div>
-                            <div class="form-check py-2 mb-0">
-                                <input class="form-check-input p-2" type="radio" name="price_filter" id="price_50_100" value="50-100" <?= $priceFilter === '50-100' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                                <label class="form-check-label d-flex align-items-center ps-2" for="price_50_100">
-                                    50-100
-                                </label>
-                            </div>
-                            <div class="form-check py-2 mb-0">
-                                <input class="form-check-input p-2" type="radio" name="price_filter" id="price_100_200" value="100-200" <?= $priceFilter === '100-200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                                <label class="form-check-label d-flex align-items-center ps-2" for="price_100_200">
-                                    100-200
-                                </label>
-                            </div>
-                            <div class="form-check py-2 mb-0">
-                                <input class="form-check-input p-2" type="radio" name="price_filter" id="price_over_200" value="over_200" <?= $priceFilter === 'over_200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                                <label class="form-check-label d-flex align-items-center ps-2" for="price_over_200">
-                                    Over 200
-                                </label>
-                            </div>
+                    <div class="pb-4 px-4">
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios14" value="option1" checked>
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios14">
+                                All
+                            </label>
                         </div>
-                    </form>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios15" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios15">
+                                0-50
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios16" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios16">
+                                50-100
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios17" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios17">
+                                100-200
+                            </label>
+                        </div>
+                        <div class="form-check py-2 mb-0">
+                            <input class="form-check-input p-2" type="radio" name="exampleRadios" id="exampleRadios18" value="option1">
+                            <label class="form-check-label d-flex align-items-center ps-2" for="exampleRadios18">
+                                Over 200
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
-
                 <div class="p-4">
-                    <?= $this->Html->link(
-                        'Reset Filters',
-                        ['controller' => 'Products', 'action' => 'index'],
-                        ['class' => 'btn btn-primary w-100']
-                    ) ?>
+                    <a href="javascript:void(0)" class="btn btn-primary w-100">Reset Filters</a>
                 </div>
             </div>
         </div>
