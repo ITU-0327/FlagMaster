@@ -10,9 +10,12 @@
 
 <body>
 <!-- Preloader -->
-<!--<div class="preloader">-->
-<!--    --><?php //= $this->Html->image('cake.icon.png', ['alt' => 'loader', 'class' => 'lds-ripple img-fluid']) ?>
-<!--</div>-->
+<div class="preloader">
+    <?= $this->Html->image('logos/favicon.png', [
+        'alt' => 'loader',
+        'class' => 'lds-ripple img-fluid',
+    ]) ?>
+</div>
 <div id="main-wrapper">
     <?= $this->element('left-sidebar') ?>
 

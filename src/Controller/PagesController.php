@@ -70,4 +70,14 @@ class PagesController extends AppController
             throw new NotFoundException();
         }
     }
+
+    /**
+     * aboutUs method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function aboutUs()
+    {
+        $this->viewBuilder()->setLayout('user');
+    }
 }

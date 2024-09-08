@@ -60,7 +60,7 @@ $this->disableAutoLayout();
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="position-relative">
-                                                            <a href="/shop/national-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -74,7 +74,7 @@ $this->disableAutoLayout();
                                                                     <span class="fs-2 d-block text-muted">Explore national flags</span>
                                                                 </div>
                                                             </a>
-                                                            <a href="/shop/custom-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -88,7 +88,7 @@ $this->disableAutoLayout();
                                                                     <span class="fs-2 d-block text-muted">Create custom flags</span>
                                                                 </div>
                                                             </a>
-                                                            <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -102,7 +102,7 @@ $this->disableAutoLayout();
                                                                     <span class="fs-2 d-block text-muted">Wearable cape flags</span>
                                                                 </div>
                                                             </a>
-                                                            <a href="/shop/car-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -121,7 +121,7 @@ $this->disableAutoLayout();
 
                                                     <div class="col-6">
                                                         <div class="position-relative">
-                                                            <a href="/shop/garden-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-cart.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -135,7 +135,7 @@ $this->disableAutoLayout();
                                                                     <span class="fs-2 d-block text-muted">Flags for gardens</span>
                                                                 </div>
                                                             </a>
-                                                            <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-date.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -149,7 +149,7 @@ $this->disableAutoLayout();
                                                                     <span class="fs-2 d-block text-muted">Perfect for parades</span>
                                                                 </div>
                                                             </a>
-                                                            <a href="/shop/hanging-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -164,7 +164,7 @@ $this->disableAutoLayout();
                                                                 </div>
                                                             </a>
                                                             <!-- String Flags -->
-                                                            <a href="/shop/string-flags" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                                            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-application.svg', [
                                                                         'alt' => 'flagmast-img',
@@ -190,24 +190,32 @@ $this->disableAutoLayout();
                                                 <h5 class="fs-5 mb-7 fw-semibold">Quick Links</h5>
                                                 <ul class="list-unstyled">
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/national-flag-australia">
-                                                            Australian Flag
-                                                        </a>
+                                                        <?= $this->Html->link(
+                                                            'Australian Flag',
+                                                            ['controller' => 'Products', 'action' => 'view', 65],
+                                                            ['class' => 'fw-semibold text-dark text-hover-primary']
+                                                        ); ?>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/custom-flag-pirate">
-                                                            Pirate Skull Flag
-                                                        </a>
+                                                        <?= $this->Html->link(
+                                                            'Pirate Skull Flag',
+                                                            ['controller' => 'Products', 'action' => 'view', 66],
+                                                            ['class' => 'fw-semibold text-dark text-hover-primary']
+                                                        ); ?>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/garden-flag-sunflower">
-                                                            Sunflower Flag
-                                                        </a>
+                                                        <?= $this->Html->link(
+                                                            'Sunflower Flag',
+                                                            ['controller' => 'Products', 'action' => 'view', 67],
+                                                            ['class' => 'fw-semibold text-dark text-hover-primary']
+                                                        ); ?>
                                                     </li>
                                                     <li class="mb-3">
-                                                        <a class="fw-semibold text-dark text-hover-primary" href="/shop/product/hand-flag-switzerland">
-                                                            Switzerland Hand Flag
-                                                        </a>
+                                                        <?= $this->Html->link(
+                                                            'Switzerland Hand Flag',
+                                                            ['controller' => 'Products', 'action' => 'view', 68],
+                                                            ['class' => 'fw-semibold text-dark text-hover-primary']
+                                                        ); ?>
                                                     </li>
                                                 </ul>
                                             </div>
