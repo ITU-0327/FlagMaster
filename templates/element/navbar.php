@@ -10,11 +10,6 @@
                   <i class="ti ti-menu-2"></i>
                 </a>
               </li>
-              <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-lg-flex">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="ti ti-search"></i>
-                </a>
-              </li>
             </ul>
 
             <ul class="navbar-nav quick-links d-none d-lg-flex align-items-center">
@@ -23,12 +18,14 @@
               <!-- ------------------------------- -->
                 <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-block mx-0">
                     <div class="hover-dd">
-                        <a class="nav-link" href="javascript:void(0)">
-                            Shop By Category
+                        <?= $this->Html->link(
+                            'Shop By Category
                             <span class="mt-1">
                                 <i class="ti ti-chevron-down fs-3"></i>
-                            </span>
-                        </a>
+                            </span>',
+                            ['controller' => 'Products'],
+                            ['class' => 'nav-link', 'escape' => false]
+                        ); ?>
                         <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
                             <div class="row">
                                 <div class="col-8">
@@ -180,21 +177,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="row align-items-center py-3">
-                                            <div class="col-8">
-                                                <?= $this->Html->link(
-                                                    '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
-                                                    ['controller' => 'Pages', 'action' => 'faqs'],
-                                                    ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
-                                                ); ?>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="d-flex justify-content-end pe-4">
-                                                    <button class="btn btn-primary">Check</button>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -241,12 +223,6 @@
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="custom-products">Custom Products</a>
-              </li>
-              <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="faqs">FAQs</a>
-              </li>
-              <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'About Us',
                       ['controller' => 'Pages', 'action' => 'about-us'],
@@ -291,127 +267,6 @@
                       <i class="ti ti-sun sun"></i>
                     </a>
                   </li>
-
-                  <!-- ------------------------------- -->
-                  <!-- start shopping cart Dropdown -->
-                  <!-- ------------------------------- -->
-                  <li class="nav-item nav-icon-hover-bg rounded-circle">
-                    <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                      <i class="ti ti-basket"></i>
-                      <span class="popup-badge rounded-pill bg-danger text-white fs-2">2</span>
-                    </a>
-                  </li>
-                  <!-- ------------------------------- -->
-                  <!-- end shopping cart Dropdown -->
-                  <!-- ------------------------------- -->
-
-                  <!-- ------------------------------- -->
-                  <!-- start notification Dropdown -->
-                  <!-- ------------------------------- -->
-                  <li class="nav-item nav-icon-hover-bg rounded-circle dropdown">
-                    <a class="nav-link position-relative" href="javascript:void(0)" id="drop2" aria-expanded="false">
-                      <i class="ti ti-bell-ringing"></i>
-                      <div class="notification bg-primary rounded-circle"></div>
-                    </a>
-                    <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
-                      <div class="d-flex align-items-center justify-content-between py-3 px-7">
-                        <h5 class="mb-0 fs-5 fw-semibold">Notifications</h5>
-                        <span class="badge text-bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
-                      </div>
-                      <div class="message-body" data-simplebar>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-2.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
-                          </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-3.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">New message</h6>
-                            <span class="fs-2 d-block text-body-secondary">Salma sent you new message</span>
-                          </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-4.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">Bianca sent payment</h6>
-                            <span class="fs-2 d-block text-body-secondary">Check your earnings</span>
-                          </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-5.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">Jolly completed tasks</h6>
-                            <span class="fs-2 d-block text-body-secondary">Assign her new tasks</span>
-                          </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-6.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">John received payment</h6>
-                            <span class="fs-2 d-block text-body-secondary">$230 deducted from account</span>
-                          </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                          <span class="me-3">
-                              <?= $this->Html->image('profile/user-7.jpg', [
-                                  'alt' => 'user',
-                                  'class' => 'rounded-circle',
-                                  'width' => '48',
-                                  'height' => '48'
-                              ]) ?>
-                          </span>
-                          <div class="w-100">
-                            <h6 class="mb-1 fw-semibold lh-base">Roman Joined the Team!</h6>
-                            <span class="fs-2 d-block text-body-secondary">Congratulate him</span>
-                          </div>
-                        </a>
-                      </div>
-                      <div class="py-6 px-7 mb-1">
-                        <button class="btn btn-outline-primary w-100">See All Notifications</button>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- ------------------------------- -->
-                  <!-- end notification Dropdown -->
-                  <!-- ------------------------------- -->
 
                   <!-- ------------------------------- -->
                   <!-- start profile Dropdown -->
@@ -462,7 +317,7 @@
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles'],
+                                ['controller' => 'Users', 'action' => 'view', 1],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -497,7 +352,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Html->link(
+                                'Log Out',
+                                ['controller' => 'Pages', 'action' => 'home'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>
@@ -529,12 +388,14 @@
               <div class="offcanvas-body h-n80" data-simplebar="" data-simplebar>
                 <ul id="sidebarnav">
                   <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-apps"></i>
-                      </span>
-                      <span class="hide-menu">Shop By Category</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                            <i class="ti ti-apps"></i>
+                          </span>
+                          <span class="hide-menu">Shop By Category</span>',
+                          ['controller' => 'Products'],
+                          ['class' => 'sidebar-link has-arrow', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                     <ul aria-expanded="false" class="collapse first-level my-3">
                       <li class="sidebar-item py-2">
                         <a href="chat" class="d-flex align-items-center">
@@ -909,19 +770,6 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row align-items-center py-3">
-                            <div class="col-8">
-                              <a class="fw-semibold d-flex align-items-center lh-1" href="javascript:void(0)">
-                                <i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions
-                              </a>
-                            </div>
-                            <div class="col-4">
-                              <div class="d-flex justify-content-end pe-4">
-                                <button class="btn btn-primary">Check</button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                       <div class="col-4 ms-n4">
                         <div class="position-relative p-7 border-start h-100">
@@ -1202,7 +1050,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Html->link(
+                                'Log Out',
+                                ['controller' => 'Pages', 'action' => 'home'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>

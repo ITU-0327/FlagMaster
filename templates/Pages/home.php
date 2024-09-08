@@ -51,7 +51,14 @@ $this->disableAutoLayout();
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav align-items-center mb-2 mb-lg-0 ms-auto">
                             <li class="nav-item dropdown hover-dd mega-dropdown pages-dropdown">
-
+                                <?= $this->Html->link(
+                                    'Shop
+                                    <span class="d-flex align-items-center">
+                                        <i class="ti ti-chevron-down"></i>
+                                    </span>',
+                                    ['controller' => 'Products'],
+                                    ['class' => 'nav-link dropdown-toggle', 'role' => 'button', 'aria-expanded' => 'false', 'escape' => false]
+                                ); ?>
                                 <div class="dropdown-menu dropdown-menu-animate-up py-0">
                                     <div class="row">
                                         <!-- Flag Categories Section -->
@@ -241,7 +248,11 @@ $this->disableAutoLayout();
                                 ); ?>
                             </li>
                             <li class="nav-item ms-2">
-                                <a class="btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2" href="authentication-login">Login</a>
+                                <?= $this->Html->link(
+                                    'Login',
+                                    ['controller' => 'Products'],
+                                    ['class' => 'btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2']
+                                ); ?>
                             </li>
                         </ul>
                     </div>
@@ -267,8 +278,16 @@ $this->disableAutoLayout();
                                     Flagmaster is the Largest flag supplier in Australia
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                                    <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
-                                    <a class="btn btn-outline-primary d-block scroll-link px-7 py-6" href="authentication-register">Register</a>
+                                    <?= $this->Html->link(
+                                        'Login',
+                                        ['controller' => 'Products'],
+                                        ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'Register',
+                                        ['controller' => 'Users', 'action' => 'add'],
+                                        ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                    ); ?>
                                 </div>
                             </div>
                         </div>
@@ -367,7 +386,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">National</h6>
                                 </div>
@@ -377,7 +400,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Custom</h6>
                                 </div>
@@ -387,7 +414,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Cape</h6>
                                 </div>
@@ -397,7 +428,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Car</h6>
                                 </div>
@@ -407,7 +442,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Garden</h6>
                                 </div>
@@ -417,7 +456,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
                                 </div>
@@ -427,7 +470,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
                                 </div>
@@ -437,7 +484,11 @@ $this->disableAutoLayout();
                                             'alt' => 'flagmast-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <?= $this->Html->link(
+                                            'View Product',
+                                            ['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]],
+                                            ['class' => 'btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle']
+                                        ); ?>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">String</h6>
                                 </div>
@@ -1805,8 +1856,16 @@ $this->disableAutoLayout();
                                 Start your journey with Flag Master
                             </h2>
                             <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-                                <a href="authentication-login" class="btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6">Login</a>
-                                <a href="authentication-register" class="btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6">Register</a>
+                                <?= $this->Html->link(
+                                    'Login',
+                                    ['controller' => 'Products'],
+                                    ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                ) ?>
+                                <?= $this->Html->link(
+                                    'Register',
+                                    ['controller' => 'Users', 'action' => 'add'],
+                                    ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                ) ?>
                             </div>
                         </div>
                         <div class="col-lg-5 col-xl-5">
@@ -2045,7 +2104,11 @@ $this->disableAutoLayout();
                     </li>
                 </ul>
                 <form class="d-flex mt-3" role="search">
-                    <a href="authentication-login" class="btn btn-primary w-100 py-2">Login</a>
+                    <?= $this->Html->link(
+                        'Login',
+                        ['controller' => 'Products'],
+                        ['class' => 'btn btn-primary w-100 py-2']
+                    ) ?>
                 </form>
             </div>
         </div>
