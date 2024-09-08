@@ -11,7 +11,10 @@
 <body>
 <!-- Preloader -->
 <div class="preloader">
-    <?= $this->html->image('logos/favicon.png', ['alt' => 'loader', 'class' => 'lds-ripple img-fluid']) ?>
+    <?= $this->Html->image('logos/favicon.png', [
+        'alt' => 'loader',
+        'class' => 'lds-ripple img-fluid',
+    ]) ?>
 </div>
 <div id="main-wrapper">
     <?= $this->element('left-sidebar') ?>
@@ -69,7 +72,12 @@
             <ul class="mb-0">
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
-                        <?= $this->Html->image('products/product-1.jpg', ['width' => '95', 'height' => '75', 'class' => 'rounded-1 me-9 flex-shrink-0', 'alt' => 'modernize-img']) ?>
+                        <?= $this->Html->image('products/product-1.jpg', [
+                            'alt' => 'modernize-img',
+                            'class' => 'rounded-1 me-9 flex-shrink-0',
+                            'width' => '95',
+                            'height' => '75',
+                        ]) ?>
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
                             <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
@@ -114,5 +122,4 @@
         }
     </script>
 </body>
-
 </html>
