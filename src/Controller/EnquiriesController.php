@@ -48,6 +48,7 @@ class EnquiriesController extends AppController
     public function add()
     {
         $enquiry = $this->Enquiries->newEmptyEntity();
+        $enquiry->user_id = 1;
         if ($this->request->is('post')) {
             $enquiry = $this->Enquiries->patchEntity($enquiry, $this->request->getData());
             if ($this->Enquiries->save($enquiry)) {

@@ -55,10 +55,6 @@
                             <del class="fs-5 text-muted">$<?= $this->Number->format($product->price * 1.1) ?></del>
                             $<?= $this->Number->format($product->price) ?>
                         </h4>
-                        <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
-                            <a href="javascript:void(0)" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Buy Now</a>
-                            <a href="javascript:void(0)" class="btn d-block btn-danger px-7 py-8">Add to Cart</a>
-                        </div>
                     </div>
                 </div>
             </div>

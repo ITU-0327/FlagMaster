@@ -9,7 +9,7 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">Order</h4>
+                <h4 class="fw-semibold mb-8">Add New User</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
@@ -78,35 +78,12 @@
                     ]) ?>
                 </div>
                 <label>
-                    <i class="ti ti-settings me-2 fs-4"></i>Role
+                    <i class="ti ti-lock me-2 fs-4"></i>Confirm Password
                 </label>
                 <div class="form-floating mb-3">
-                    <?= $this->Form->control('role', [
-                        'label' => false,
-                        'class' => 'form-control',
-                        'placeholder' => 'Role'
-                    ]) ?>
-                </div>
-                <label>
-                    <i class="ti ti-cloud me-2 fs-4"></i>OAuth Provider
-                </label>
-                <div class="form-floating mb-3">
-                    <?= $this->Form->control('oauth_provider', [
-                        'label' => false,
-                        'class' => 'form-control',
-                        'placeholder' => 'OAuth Provider'
-                    ]) ?>
-                </div>
-                <label>
-                    <i class="ti ti-id me-2 fs-4"></i>OAuth ID
-                </label>
-                <div class="form-floating mb-3">
-                    <?= $this->Form->control('oauth_id', [
-                        'label' => false,
-                        'class' => 'form-control',
-                        'placeholder' => 'OAuth ID'
-                    ]) ?>
-                </div>
+                    <div class="input">
+                        <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Password">
+                    </div>
                 </div>
             </fieldset>
             <div class="mt-3 mt-md-0 ms-auto">

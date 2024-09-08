@@ -52,19 +52,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="user_id" class="form-label">User</label>
-                    <?= $this->Form->control('user_id', [
-                        'options' => $users,
-                        'label' => false,
-                        'class' => 'form-control',
-                        'id' => 'user_id',
-                        'placeholder' => 'Select a User'
-                    ]) ?>
-                </div>
-            </div>
-
-            <div class="col-12">
-                <div class="mb-3">
                     <label for="subject" class="form-label">Subject</label>
                     <?= $this->Form->control('subject', [
                         'label' => false,

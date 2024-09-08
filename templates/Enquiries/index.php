@@ -115,15 +115,12 @@
                                             <i class="ti ti-star"></i>
                                         </a>
                                     </li>
-                                    <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="important">
-                                        <a class="d-block text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-alert-circle"></i>
-                                        </a>
-                                    </li>
                                     <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete">
-                                        <a class="text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-trash"></i>
-                                        </a>
+                                        <?= $this->Form->postLink(
+                                            '<i class="ti ti-trash"></i>',
+                                            ['action' => 'delete', $enquiry->id],
+                                            ['confirm' => __('Are you sure you want to delete # {0}?', $enquiry->id), 'class' => 'text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5', 'escapeTitle' => false]
+                                        ) ?>
                                     </li>
                                 </ul>
                             </div>
@@ -174,54 +171,12 @@
                                                             <?= h($enquiry->user->profile->last_name ?? 'Last name not available') ?>
                                                         </h6>
                                                     </div>
-                                                    <!-- You can render attachments here if needed -->
-<!--                                                    <div class="mb-3">-->
-<!--                                                        <h6 class="fw-semibold mb-0 text-dark mb-3">Attachments</h6>-->
-<!--                                                        <div class="d-block d-sm-flex align-items-center gap-4">-->
-<!--                                                            <a href="javascript:void(0)" class="hstack gap-3 mb-2 mb-sm-0">-->
-<!--                                                                <div class="d-flex align-items-center gap-3">-->
-<!--                                                                    <div class="rounded-1 text-bg-light p-6">-->
-<!--                                                                        --><?php //= $this->Html->image('chat/icon-adobe.svg', [
-//                                                                            'alt' => 'service-task.pdf',
-//                                                                            'width' => '24',
-//                                                                            'height' => '24'
-//                                                                        ]) ?>
-<!--                                                                    </div>-->
-<!--                                                                    <div>-->
-<!--                                                                        <h6 class="fw-semibold">service-task.pdf</h6>-->
-<!--                                                                        <div class="d-flex align-items-center gap-3 fs-2 text-muted">-->
-<!--                                                                            <span>2 MB</span>-->
-<!--                                                                            <span>--><?php //= date('d M Y', strtotime($enquiry->created_at)); ?><!--</span>-->
-<!--                                                                        </div>-->
-<!--                                                                    </div>-->
-<!--                                                                </div>-->
-<!--                                                            </a>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
                                                 </div>
                                                 <?php $first = false; ?>
                                             <?php endforeach; ?>
                                         <?php else: ?>
                                             <p>No enquiries found.</p>
                                         <?php endif; ?>
-                                    </div>
-                                    <div class="px-9 py-3 border-top chat-send-message-footer">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <ul class="list-unstyled mb-0 d-flex align-items-center gap-7">
-                                                <li>
-                                                    <a class="text-dark bg-hover-primary d-flex align-items-center gap-1" href="javascript:void(0)">
-                                                        <i class="ti ti-arrow-back-up fs-5"></i>
-                                                        Reply
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="text-dark bg-hover-primary d-flex align-items-center gap-1" href="javascript:void(0)">
-                                                        <i class="ti ti-arrow-forward-up fs-5"></i>
-                                                        Forward
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

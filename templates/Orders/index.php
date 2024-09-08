@@ -29,13 +29,6 @@
         </div>
     </div>
 </div>
-<div class="side-nav">
-    <?= $this->Form->button(__('Add Orders'), [
-        'type' => 'button',
-        'onclick' => "location.href='" . $this->Url->build(['action' => 'add']) . "'",
-        'class' => 'btn btn-primary mb-3',
-    ]) ?>
-</div>
 <div class="card overflow-hidden invoice-application">
     <div class="d-flex align-items-center justify-content-between gap-6 m-3 d-lg-none">
         <button class="btn btn-primary d-flex" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat-sidebar" aria-controls="chat-sidebar">
@@ -165,7 +158,7 @@
                                     <div class="col-md-12">
                                         <div class="pull-right mt-4 text-end">
                                             <p>Sub - Total amount: $<?= h($this->Number->format($order->total_amount, ['thousands' => ','])) ?></p>
-                                            <p>VAT (10%) : $<?= h($order->total_amount * 0.1) ?></p>
+                                            <p>GST (10%) : $<?= h($order->total_amount * 0.1) ?></p>
                                             <hr />
                                             <h3>
                                                 <b>Total :</b> $<?= h($this->Number->format($order->total_amount * 1.1, ['thousands' => ','])) ?>
