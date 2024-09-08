@@ -1,21 +1,3 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
- */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,16 +9,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
-<div class="toast toast-onload align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body hstack align-items-start gap-6">
-        <i class="ti ti-alert-circle fs-6"></i>
-        <div>
-            <h5 class="text-white fs-3 mb-1">Welcome to Modernize</h5>
-            <h6 class="text-white fs-2 mb-0">Easy to costomize the Template!!!</h6>
-        </div>
-        <button type="button" class="btn-close btn-close-white fs-2 m-0 ms-auto shadow-none" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-</div>
 <!-- Preloader -->
 <div class="preloader">
     <?= $this->Html->image('logos/favicon.png', [
@@ -56,10 +28,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <?= $this->fetch('content') ?>
             </div>
         </div>
-
-        <button class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-            <i class="icon ti ti-settings fs-7"></i>
-        </button>
 
         <?= $this->element('right-sidebar') ?>
     </div>

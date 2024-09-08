@@ -17,9 +17,79 @@ class ProductsController extends AppController
      */
     public function index()
     {
+        $categoryId = $this->request->getQuery('category');
+        $sort = $this->request->getQuery('sort');
+        $priceFilter = $this->request->getQuery('price_filter', 'all');
+        $searchQuery = $this->request->getQuery('q', '');
+
         $query = $this->Products->find();
+
+        // Filter by category if selected
+        if ($categoryId) {
+            $query->matching('Categories', function ($q) use ($categoryId) {
+                return $q->where(['Categories.id' => $categoryId]);
+            });
+        }
+
+        // Apply sorting (adjusted for final price with discount)
+        switch ($sort) {
+            case 'price_low_high':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
+                break;
+            case 'price_high_low':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
+                break;
+            case 'discounted':
+                $query->where(['Products.discount_type !=' => 'none']);
+                break;
+            case 'newest':
+            default:
+                $query->order(['Products.created_at' => 'DESC']);
+                break;
+        }
+
+        // Filter by price
+        if ($priceFilter !== 'all') {
+            switch ($priceFilter) {
+                case '0-50':
+                    $query->where(function ($exp, $q) {
+                        return $exp->lte('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 50);
+                    });
+                    break;
+                case '50-100':
+                    $query->where(function ($exp, $q) {
+                        return $exp->between('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 50, 100);
+                    });
+                    break;
+                case '100-200':
+                    $query->where(function ($exp, $q) {
+                        return $exp->between('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 100, 200);
+                    });
+                    break;
+                case 'over_200':
+                    $query->where(function ($exp, $q) {
+                        return $exp->gte('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 200);
+                    });
+                    break;
+            }
+        }
+
+        // Filter by search query
+        if (!empty($searchQuery)) {
+            $query->where([
+                'OR' => [
+                    'Products.name LIKE' => '%' . $searchQuery . '%',
+                    'Products.description LIKE' => '%' . $searchQuery . '%'
+                ]
+            ]);
+        }
+
+        // Paginate the query results
         $products = $this->paginate($query);
-        $this->set(compact('products'));
+        $categories = $this->Products->Categories->find()->all();
+
+        // Pass products, categories, sorting, and price filter to the view
+        $this->set(compact('products', 'categories', 'sort', 'priceFilter', 'categoryId', 'searchQuery'));
     }
 
     /**
@@ -43,7 +113,9 @@ class ProductsController extends AppController
      */
     public function view($id = null)
     {
-        $product = $this->Products->get($id, ['contain' => ['Categories', 'Orders', 'ProductImages', 'ProductVariations', 'Reviews']]);
+        $product = $this->Products->get($id, [
+            'contain' => ['Categories', 'ProductImages', 'ProductVariations', 'Reviews']
+        ]);
         $this->set(compact('product'));
     }
 
@@ -64,6 +136,7 @@ class ProductsController extends AppController
             $product = $this->Products->patchEntity($product, $data, ['associated' => ['Categories', 'ProductVariations']]);
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The product could not be saved. Please, try again.'));
@@ -75,6 +148,7 @@ class ProductsController extends AppController
 
         $this->set(compact('product', 'categories', 'enumValues', 'variationTypes'));
     }
+
 
     /**
      * Edit method
@@ -93,6 +167,7 @@ class ProductsController extends AppController
             $product = $this->Products->patchEntity($product, $data, ['associated' => ['Categories', 'ProductVariations']]);
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The product could not be saved. Please, try again.'));

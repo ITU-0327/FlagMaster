@@ -1,0 +1,6 @@
+﻿ul.list-group .active {
+    background-color: #e9ecef;
+    color: #007bff;
+    border-left: 3px solid #007bff; /* Add a blue border on the left */
+    font-weight: bold;
+}
