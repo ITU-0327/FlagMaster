@@ -1,5 +1,6 @@
 <header class="topbar">
-        <div class="with-vertical"><!-- ---------------------------------- -->
+        <div class="with-vertical">
+          <!-- ---------------------------------- -->
           <!-- Start Vertical Layout Header -->
           <!-- ---------------------------------- -->
           <nav class="navbar navbar-expand-lg p-0">
@@ -36,7 +37,8 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="/shop/national-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -52,7 +54,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Explore national flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/custom-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -66,7 +69,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Create custom designs</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -82,7 +86,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Wearable cape flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/cape-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -103,7 +108,8 @@
 
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="/shop/garden-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-cart.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -119,7 +125,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Decorate your garden</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-date.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -135,7 +142,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Perfect for parades</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -151,7 +159,8 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Flags for decoration</span>
                                                             </div>
                                                         </a>
-                                                        <a href="/shop/hand-flags" class="d-flex align-items-center pb-9 position-relative">
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
+                                                           class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-application.svg', [
                                                                     'alt' => 'flagmaster-img',
@@ -189,22 +198,37 @@
                                     </div>
                                 </div>
 
-                                <!-- Quick Links Section -->
                                 <div class="col-4 ms-n4">
                                     <div class="position-relative p-7 border-start h-100">
                                         <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
                                         <ul class="">
                                             <li class="mb-3">
-                                                <a class="fw-semibold bg-hover-primary" href="page-pricing">Australian Flag</a>
+                                                <?= $this->Html->link(
+                                                    'Australian Flag',
+                                                    ['controller' => 'Products', 'action' => 'view', 65],
+                                                    ['class' => 'fw-semibold bg-hover-primary']
+                                                ); ?>
                                             </li>
                                             <li class="mb-3">
-                                                <a class="fw-semibold bg-hover-primary" href="authentication-login">Pirate Skull Flag</a>
+                                                <?= $this->Html->link(
+                                                    'Pirate Skull Flag',
+                                                    ['controller' => 'Products', 'action' => 'view', 66],
+                                                    ['class' => 'fw-semibold bg-hover-primary']
+                                                ); ?>
                                             </li>
                                             <li class="mb-3">
-                                                <a class="fw-semibold bg-hover-primary" href="authentication-register">Sunflower Flag</a>
+                                                <?= $this->Html->link(
+                                                    'Sunflower Flag',
+                                                    ['controller' => 'Products', 'action' => 'view', 67],
+                                                    ['class' => 'fw-semibold bg-hover-primary']
+                                                ); ?>
                                             </li>
                                             <li class="mb-3">
-                                                <a class="fw-semibold bg-hover-primary" href="authentication-error">Switzerland Hand Flag</a>
+                                                <?= $this->Html->link(
+                                                    'Switzerland Hand Flag',
+                                                    ['controller' => 'Products', 'action' => 'view', 68],
+                                                    ['class' => 'fw-semibold bg-hover-primary']
+                                                ); ?>
                                             </li>
                                         </ul>
                                     </div>

@@ -84,7 +84,7 @@
             </tr>
             <tr>
                 <th><?= __('Discount Value') ?></th>
-                <td><?= $this->Number->format($product->discount_value) ?></td>
+                <td><?= $product->discount_value ?></td>
             </tr>
             <tr>
                 <th><?= __('Stock Quantity') ?></th>
