@@ -17,9 +17,19 @@ class UsersController extends AppController
      */
     public function index()
     {
+        // Set pagination limit to 5 users per page, ordered by username ascending
+        $this->paginate = [
+            'limit' => 5,
+            'order' => ['Users.username' => 'asc']
+        ];
+
+        // Initialize the query to fetch users
         $query = $this->Users->find();
+
+        // Paginate the result
         $users = $this->paginate($query);
 
+        // Pass the paginated users to the view
         $this->set(compact('users'));
     }
 
