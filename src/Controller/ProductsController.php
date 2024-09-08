@@ -15,21 +15,23 @@ class ProductsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public function index($categoryId = null)
+    public function index()
     {
+        $categoryId = $this->request->getQuery('category');
         $sort = $this->request->getQuery('sort');
-        $priceFilter = $this->request->getQuery('price_filter', 'all'); // Get the price filter from the query
+        $priceFilter = $this->request->getQuery('price_filter', 'all');
         $searchQuery = $this->request->getQuery('q', '');
 
         $query = $this->Products->find();
 
-        // Filter by category if categoryId is provided
+        // Filter by category if selected
         if ($categoryId) {
-            $query = $query->matching('Categories', function ($q) use ($categoryId) {
+            $query->matching('Categories', function ($q) use ($categoryId) {
                 return $q->where(['Categories.id' => $categoryId]);
             });
         }
 
+        // Filter by search query
         if (!empty($searchQuery)) {
             $query->where([
                 'OR' => [
@@ -39,50 +41,59 @@ class ProductsController extends AppController
             ]);
         }
 
-        // Apply price filter based on the final price after discount (if applicable)
+        // Filter by price
         if ($priceFilter !== 'all') {
             switch ($priceFilter) {
                 case '0-50':
-                    $query = $query->where(function ($exp, $q) {
+                    $query->where(function ($exp, $q) {
                         return $exp->lte('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 50);
                     });
                     break;
                 case '50-100':
-                    $query = $query->where(function ($exp, $q) {
+                    $query->where(function ($exp, $q) {
                         return $exp->between('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 50, 100);
                     });
                     break;
                 case '100-200':
-                    $query = $query->where(function ($exp, $q) {
+                    $query->where(function ($exp, $q) {
                         return $exp->between('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 100, 200);
                     });
                     break;
                 case 'over_200':
-                    $query = $query->where(function ($exp, $q) {
+                    $query->where(function ($exp, $q) {
                         return $exp->gte('IF(Products.discount_type != "none", Products.discount_value, Products.price)', 200);
                     });
                     break;
             }
         }
 
-        // Apply sorting based on the query parameter
-        $query = match ($sort) {
-            'newest' => $query->order(['Products.created_at' => 'DESC']),
-            'price_high_low' => $query->order(['Products.price' => 'DESC']),
-            'price_low_high' => $query->order(['Products.price' => 'ASC']),
-            'discounted' => $query->where(['Products.discount_type !=' => 'none']),
-            default => $query->order(['Products.created_at' => 'DESC']),
-        };
+        // Apply sorting (adjusted for final price with discount)
+        switch ($sort) {
+            case 'newest':
+                $query->order(['Products.created_at' => 'DESC']);
+                break;
+            case 'price_low_high':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
+                break;
+            case 'price_high_low':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
+                break;
+            case 'discounted':
+                $query->where(['Products.discount_type !=' => 'none']);
+                break;
+            default:
+                $query->order(['Products.created_at' => 'DESC']);
+                break;
+        }
 
         // Paginate the query results
         $products = $this->paginate($query);
-
-        // Fetch all categories to pass to the view
         $categories = $this->Products->Categories->find()->all();
 
         // Pass products, categories, sorting, and price filter to the view
-        $this->set(compact('products', 'categories', 'sort', 'priceFilter'));
+        $this->set(compact('products', 'categories', 'sort', 'priceFilter', 'categoryId', 'searchQuery'));
     }
+
 
     /**
      * View method
