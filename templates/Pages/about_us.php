@@ -1,4 +1,5 @@
 <?php
+
 // Dynamic content array
 $sections = [
     [
@@ -27,6 +28,31 @@ $sections = [
     ],
 ];
 ?>
+<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold mb-8">About Us</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">About Us</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3">
+                <div class="text-center mb-n5">
+                    <?= $this->Html->image('breadcrumb/ChatBc.png', [
+                        'alt' => 'flagmaster-img',
+                        'class' => 'img-fluid mb-n4',
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +64,7 @@ $sections = [
 </head>
 <body>
 <div class="container">
+    <h1 class="page-title">About Us</h1>
     <?php foreach ($sections as $section): ?>
         <div class="section <?= $section['reverse'] ? 'reverse' : '' ?>">
             <div class="image">
@@ -67,7 +94,7 @@ $sections = [
 
     body {
         font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
+        background-color: #FFFFFF;
         color: #333;
     }
 

@@ -4,11 +4,42 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
+
+<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold mb-8">Order</h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">User</li>
+                        <li class="breadcrumb-item" aria-current="page">Add</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3">
+                <div class="text-center mb-n5">
+                    <?= $this->Html->image('breadcrumb/ChatBc.png', [
+                        'alt' => 'flagmaster-img',
+                        'class' => 'img-fluid mb-n4',
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Form->button(__('View Exist User'), [
+                'type' => 'button',
+                'onclick' => "location.href='" . $this->Url->build(['action' => 'index']) . "'",
+                'class' => 'btn btn-primary mb-3',
+            ]) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -16,18 +47,74 @@
             <?= $this->Form->create($user) ?>
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
-                <?php
-                    echo $this->Form->control('username');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('role');
-                    echo $this->Form->control('oauth_provider');
-                    echo $this->Form->control('oauth_id');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('updated_at');
-                ?>
+                <label>
+                    <i class="ti ti-user me-2 fs-4"></i>Username
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('username', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'Username'
+                    ]) ?>
+                </div>
+                <label>
+                    <i class="ti ti-mail me-2 fs-4"></i>Email Address
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('email', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'Email'
+                    ]) ?>
+                </div>
+                <label>
+                    <i class="ti ti-lock me-2 fs-4"></i>Password
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('password', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'Password'
+                    ]) ?>
+                </div>
+                <label>
+                    <i class="ti ti-settings me-2 fs-4"></i>Role
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('role', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'Role'
+                    ]) ?>
+                </div>
+                <label>
+                    <i class="ti ti-cloud me-2 fs-4"></i>OAuth Provider
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('oauth_provider', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'OAuth Provider'
+                    ]) ?>
+                </div>
+                <label>
+                    <i class="ti ti-id me-2 fs-4"></i>OAuth ID
+                </label>
+                <div class="form-floating mb-3">
+                    <?= $this->Form->control('oauth_id', [
+                        'label' => false,
+                        'class' => 'form-control',
+                        'placeholder' => 'OAuth ID'
+                    ]) ?>
+                </div>
+                </div>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <div class="mt-3 mt-md-0 ms-auto">
+                <?= $this->Form->button(__('Submit'), [
+                    'type' => 'submit',
+                    'class' => 'btn btn-primary hstack gap-6'
+                ]) ?>
+            </div>
             <?= $this->Form->end() ?>
         </div>
     </div>

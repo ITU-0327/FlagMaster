@@ -54,7 +54,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-box"></i></span><span class="hide-menu">Products</span>',
-                        ['controller' => 'Products'],
+                        ['controller' => 'Products', 'action' => 'list'],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -98,7 +98,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
-                        ['controller' => 'Products'], // TODO: Change to Stock Management
+                        ['controller' => 'Products', 'action' => 'list'], // TODO: Change to Stock Management
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
