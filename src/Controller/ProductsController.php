@@ -31,14 +31,21 @@ class ProductsController extends AppController
             });
         }
 
-        // Filter by search query
-        if (!empty($searchQuery)) {
-            $query->where([
-                'OR' => [
-                    'Products.name LIKE' => '%' . $searchQuery . '%',
-                    'Products.description LIKE' => '%' . $searchQuery . '%'
-                ]
-            ]);
+        // Apply sorting (adjusted for final price with discount)
+        switch ($sort) {
+            case 'price_low_high':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
+                break;
+            case 'price_high_low':
+                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
+                break;
+            case 'discounted':
+                $query->where(['Products.discount_type !=' => 'none']);
+                break;
+            case 'newest':
+            default:
+                $query->order(['Products.created_at' => 'DESC']);
+                break;
         }
 
         // Filter by price
@@ -67,23 +74,14 @@ class ProductsController extends AppController
             }
         }
 
-        // Apply sorting (adjusted for final price with discount)
-        switch ($sort) {
-            case 'newest':
-                $query->order(['Products.created_at' => 'DESC']);
-                break;
-            case 'price_low_high':
-                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
-                break;
-            case 'price_high_low':
-                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
-                break;
-            case 'discounted':
-                $query->where(['Products.discount_type !=' => 'none']);
-                break;
-            default:
-                $query->order(['Products.created_at' => 'DESC']);
-                break;
+        // Filter by search query
+        if (!empty($searchQuery)) {
+            $query->where([
+                'OR' => [
+                    'Products.name LIKE' => '%' . $searchQuery . '%',
+                    'Products.description LIKE' => '%' . $searchQuery . '%'
+                ]
+            ]);
         }
 
         // Paginate the query results

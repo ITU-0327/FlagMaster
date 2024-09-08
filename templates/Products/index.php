@@ -4,7 +4,18 @@
  * @var iterable<\App\Model\Entity\Category> $categories
  * @var iterable<\App\Model\Entity\Product> $products
  */
+$sort = $this->request->getQuery('sort', 'newest');
+$categoryId = $this->request->getQuery('category', 'all');
+$priceFilter = $this->request->getQuery('price_filter', 'all');
 ?>
+
+<?php $this->start('css'); ?>
+
+<?= $this->Html->css(['sorting-filters']) ?>
+
+<?php $this->end(); ?>
+
+
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -36,8 +47,12 @@
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-circles fs-5"></i> All',
-                        ['controller' => 'Products', 'action' => 'index'],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        ['controller' => 'Products', 'action' => 'index', '?' => array_diff_key($this->request->getQueryParams(), ['category' => ''])],
+                        [
+                            'escape' => false,
+                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                ($categoryId === 'all' ? 'active ' : '')
+                        ]
                     ) ?>
                 </li>
                 <?php foreach ($categories as $category): ?>
@@ -45,7 +60,11 @@
                         <?= $this->Html->link(
                             '<i class="ti ti-category fs-5"></i> ' . h($category->name),
                             ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['category' => $category->id])],
-                            ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                            [
+                                'escape' => false,
+                                'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                    ($categoryId == $category->id ? 'active ' : '')
+                            ]
                         ) ?>
                     </li>
                 <?php endforeach; ?>
@@ -57,28 +76,44 @@
                     <?= $this->Html->link(
                         '<i class="ti ti-ad-2 fs-5"></i> Newest',
                         ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'newest'])],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        [
+                            'escape' => false,
+                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                ($sort === 'newest' ? 'active ' : '')
+                        ]
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-sort-descending-2 fs-5"></i> Price: Low-High',
                         ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_low_high'])],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        [
+                            'escape' => false,
+                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                ($sort === 'price_low_high' ? 'active ' : '')
+                        ]
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-sort-ascending-2 fs-5"></i> Price: High-Low',
                         ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_high_low'])],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        [
+                            'escape' => false,
+                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                ($sort === 'price_high_low' ? 'active ' : '')
+                        ]
                     ) ?>
                 </li>
                 <li class="list-group-item border-0 p-0 mx-4 mb-2">
                     <?= $this->Html->link(
                         '<i class="ti ti-ad-2 fs-5"></i> Discounted',
                         ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'discounted'])],
-                        ['escape' => false, 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1']
+                        [
+                            'escape' => false,
+                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
+                                ($sort === 'discounted' ? 'active ' : '')
+                        ]
                     ) ?>
                 </li>
             </ul>
