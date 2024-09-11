@@ -36,7 +36,10 @@ class EnquiriesController extends AppController
      */
     public function view($id = null)
     {
-        $enquiry = $this->Enquiries->get($id, contain: ['Users']);
+        $enquiry = $this->Enquiries->get($id, [
+            'contain' => ['Users', 'Users.Profiles'], // Assuming relations are already set up
+        ]);
+
         $this->set(compact('enquiry'));
     }
 
