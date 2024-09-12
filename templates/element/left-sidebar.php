@@ -46,7 +46,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-shopping-cart"></i></span><span class="hide-menu">Orders</span>',
-                        ['controller' => 'Orders'],
+                        ['controller' => 'Orders', 'action' => 'index'],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -55,7 +55,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-user"></i></span><span class="hide-menu">Customers</span>',
-                        ['controller' => 'Users'], // TODO: Change to Customers
+                        ['controller' => 'Users', 'action' => 'index'], // TODO: Change to Customers
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -64,7 +64,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-message-circle"></i></span><span class="hide-menu">Enquiries</span>',
-                        ['controller' => 'Enquiries'],
+                        ['controller' => 'Enquiries', 'action' => 'index'],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -72,19 +72,19 @@
                 <!-- ---------------------------------- -->
                 <!-- Apps Section -->
                 <!-- ---------------------------------- -->
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Apps</span>
-                </li>
+<!--                <li class="nav-small-cap">-->
+<!--                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>-->
+<!--                    <span class="hide-menu">Apps</span>-->
+<!--                </li>-->
 
                 <!-- Stock Management -->
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
-                        ['controller' => 'Products', 'action' => 'list'], // TODO: Change to Stock Management
-                        ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
-                    ); ?>
-                </li>
+<!--                <li class="sidebar-item">-->
+<!--                    --><?php //= $this->Html->link(
+//                        '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
+//                        ['controller' => 'Products', 'action' => 'list'], // TODO: Change to Stock Management
+//                        ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
+//                    ); ?>
+<!--                </li>-->
             </ul>
         </nav>
 
