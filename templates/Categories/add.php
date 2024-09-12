@@ -63,27 +63,6 @@
                             <?= $this->Form->control('description', ['class' => 'form-control', 'label' => false, 'placeholder' => 'Description']) ?>
                         </div>
                     </div>
-                    <!-- Created At field -->
-                    <div class="col-md-6">
-                        <label for="created-at"><?= __('Created At') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('created_at', ['class' => 'form-control', 'label' => false, 'placeholder' => 'Created At']) ?>
-                        </div>
-                    </div>
-                    <!-- Updated At field -->
-                    <div class="col-md-6">
-                        <label for="updated-at"><?= __('Updated At') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('updated_at', ['class' => 'form-control', 'label' => false, 'placeholder' => 'Updated At']) ?>
-                        </div>
-                    </div>
-                    <!-- Products field -->
-                    <div class="col-md-12">
-                        <label for="products"><?= __('Products') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('products._ids', ['options' => $products, 'class' => 'form-control', 'label' => false, 'placeholder' => 'Products']) ?>
-                        </div>
-                    </div>
                     <!-- Submit button -->
                     <div class="col-12">
                         <div class="d-md-flex align-items-center">
