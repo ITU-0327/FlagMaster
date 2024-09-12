@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\Enquiry $enquiry
  */
 ?>
+
+<!-- Back to Index Button, placed outside of the card -->
+<div class="d-flex justify-content-start mb-3">
+    <?= $this->Html->link(__('Back'), ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+</div>
+
 <div class="card overflow-hidden">
     <div class="chat-container h-100 w-100">
         <div class="chat-box-inner-part h-100">
