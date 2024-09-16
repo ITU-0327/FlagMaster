@@ -31,9 +31,16 @@ class LandingPageContentBlocksSeeder extends AbstractSeed
             ],
             [
                 'parent' => 'global',
-                'slug' => 'logo',
-                'label' => 'Website Logo',
-                'description' => 'Logo displayed on the website.',
+                'slug' => 'logo-dark',
+                'label' => 'Dark Website Logo',
+                'description' => 'Logo displayed on the website when it\'s light mode.',
+                'type' => 'image',
+            ],
+            [
+                'parent' => 'global',
+                'slug' => 'logo-light',
+                'label' => 'Light Website Logo',
+                'description' => 'Logo displayed on the website when it\'s dark mode.',
                 'type' => 'image',
             ],
             [
