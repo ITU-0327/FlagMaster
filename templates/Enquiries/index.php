@@ -12,7 +12,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Contact Us</li>
                     </ol>
@@ -52,7 +52,7 @@
                     <div class="app-chat">
                         <ul class="chat-users mh-n100" data-simplebar>
                             <?php $first = true; ?>
-                            <?php foreach ($enquiries as $enquiry): ?>
+                            <?php foreach ($enquiries as $enquiry) : ?>
                                 <li>
                                     <a href="javascript:void(0)" class="px-4 py-3 bg-hover-light-black d-flex align-items-start chat-user <?= $first ? 'bg-light-subtle' : 'justify-content-between'; ?>" id="chat_user_<?= h($enquiry->id); ?>" data-user-id="<?= h($enquiry->id); ?>">
                                         <div class="form-check mb-0">
@@ -65,13 +65,13 @@
                                                     <?= h($enquiry->user->profile->last_name ?? 'Last name not available') ?>
                                                 </h6>
                                                 <span class="badge text-bg-<?php
-                                                    if ($enquiry->status == 'open') {
-                                                        echo 'primary';
-                                                    } elseif ($enquiry->status == 'closed') {
-                                                        echo 'danger';
-                                                    } elseif ($enquiry->status == 'pending') {
-                                                        echo 'warning';
-                                                    }
+                                                if ($enquiry->status == 'open') {
+                                                    echo 'primary';
+                                                } elseif ($enquiry->status == 'closed') {
+                                                    echo 'danger';
+                                                } elseif ($enquiry->status == 'pending') {
+                                                    echo 'warning';
+                                                }
                                                 ?>">
                                                     <?= h($enquiry->status); ?>
                                                 </span>
@@ -130,9 +130,9 @@
                             <div class="position-relative overflow-hidden">
                                 <div class="position-relative">
                                     <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
-                                        <?php if (!empty($enquiries)): ?>
+                                        <?php if (!empty($enquiries)) : ?>
                                             <?php $first = true; ?>
-                                            <?php foreach ($enquiries as $enquiry): ?>
+                                            <?php foreach ($enquiries as $enquiry) : ?>
                                                 <div class="chat-list chat <?= $first ? 'active-chat' : ''; ?>" data-user-id="<?= h($enquiry->id); ?>">
                                                     <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                         <div class="d-flex align-items-center gap-2">
@@ -140,7 +140,7 @@
                                                                 'alt' => h($enquiry->user->username),
                                                                 'class' => 'rounded-circle',
                                                                 'width' => '48',
-                                                                'height' => '48'
+                                                                'height' => '48',
                                                             ]) ?>
                                                             <div>
                                                                 <h6 class="fw-semibold mb-0">
@@ -150,13 +150,13 @@
                                                             </div>
                                                         </div>
                                                         <span class="badge text-bg-<?php
-                                                            if ($enquiry->status == 'open') {
-                                                                echo 'primary';
-                                                            } elseif ($enquiry->status == 'closed') {
-                                                                echo 'danger';
-                                                            } elseif ($enquiry->status == 'pending') {
-                                                                echo 'warning';
-                                                            }
+                                                        if ($enquiry->status == 'open') {
+                                                            echo 'primary';
+                                                        } elseif ($enquiry->status == 'closed') {
+                                                            echo 'danger';
+                                                        } elseif ($enquiry->status == 'pending') {
+                                                            echo 'warning';
+                                                        }
                                                         ?>">
                                                             <?= h($enquiry->status); ?>
                                                         </span>
@@ -201,7 +201,7 @@
                                                 </div>
                                                 <?php $first = false; ?>
                                             <?php endforeach; ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <p>No enquiries found.</p>
                                         <?php endif; ?>
                                     </div>

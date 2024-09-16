@@ -12,7 +12,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Users</li>
                     </ol>
@@ -49,7 +49,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($users as $user) : ?>
                 <tr>
                     <td><?= $this->Number->format($user->id) ?></td>
                     <td>
@@ -68,11 +68,11 @@
                     <td><?= h($user->email) ?></td>
                     <td>
                         <span class="badge text-bg-light text-dark fw-semibold fs-2 gap-1 d-inline-flex align-items-center">
-                            <?php if ($user->role == 'admin'): ?>
+                            <?php if ($user->role == 'admin') : ?>
                                 <i class="ti ti-user-shield fs-3"></i> Admin
-                            <?php elseif ($user->role == 'editor'): ?>
+                            <?php elseif ($user->role == 'editor') : ?>
                                 <i class="ti ti-pencil fs-3"></i> Editor
-                            <?php else: ?>
+                            <?php else : ?>
                                 <i class="ti ti-user fs-3"></i> User
                             <?php endif; ?>
                         </span>

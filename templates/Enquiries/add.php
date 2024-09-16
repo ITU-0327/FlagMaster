@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Enquiry $enquiry
- * @var \Cake\Collection\CollectionInterface|string[] $users
+ * @var \Cake\Collection\CollectionInterface|array<string> $users
  */
 ?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Contact Us</li>
                     </ol>
@@ -58,7 +58,7 @@
                         'label' => false,
                         'class' => 'form-control',
                         'id' => 'user_id',
-                        'placeholder' => 'Select a User'
+                        'placeholder' => 'Select a User',
                     ]) ?>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                         'label' => false,
                         'class' => 'form-control',
                         'id' => 'subject',
-                        'placeholder' => 'Subject Here'
+                        'placeholder' => 'Subject Here',
                     ]) ?>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         'class' => 'form-control',
                         'id' => 'message',
                         'rows' => '4',
-                        'placeholder' => 'Your message here'
+                        'placeholder' => 'Your message here',
                     ]) ?>
                 </div>
             </div>

@@ -18,7 +18,7 @@ $this->start('css'); ?>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Products</li>
                     </ol>
@@ -61,7 +61,7 @@ $this->start('css'); ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($products as $product): ?>
+                        <?php foreach ($products as $product) : ?>
                         <tr>
                             <td><?= $this->Number->format($product->id) ?></td>
                             <td><?= h($product->name) ?></td>
@@ -97,7 +97,7 @@ $this->start('css'); ?>
                                                 [
                                                     'confirm' => __('Are you sure you want to delete {0}?', $product->name),
                                                     'class' => 'dropdown-item d-flex align-items-center gap-3',
-                                                    'escape' => false
+                                                    'escape' => false,
                                                 ]
                                             ) ?>
                                         </li>

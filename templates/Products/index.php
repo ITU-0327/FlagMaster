@@ -24,7 +24,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Shop</li>
                     </ol>
@@ -32,7 +32,10 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
             </div>
             <div class="col-3">
                 <div class="text-center mb-n5">
-                    <?= $this->Html->image('breadcrumb/ChatBc.png', ['alt' => 'flagmaster-img', 'class' => 'img-fluid mb-n4']) ?>
+                    <?= $this->Html->image(
+                        'breadcrumb/ChatBc.png',
+                        ['alt' => 'flagmaster-img', 'class' => 'img-fluid mb-n4']
+                    ) ?>
                 </div>
             </div>
         </div>
@@ -51,11 +54,11 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         [
                             'escape' => false,
                             'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($categoryId === 'all' ? 'active ' : '')
+                                ($categoryId === 'all' ? 'active ' : ''),
                         ]
                     ) ?>
                 </li>
-                <?php foreach ($categories as $category): ?>
+                <?php foreach ($categories as $category) : ?>
                     <li class="list-group-item border-0 p-0 mx-4 mb-2">
                         <?= $this->Html->link(
                             '<i class="ti ti-category fs-5"></i> ' . h($category->name),
@@ -63,7 +66,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                             [
                                 'escape' => false,
                                 'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                    ($categoryId == $category->id ? 'active ' : '')
+                                    ($categoryId == $category->id ? 'active ' : ''),
                             ]
                         ) ?>
                     </li>
@@ -79,7 +82,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         [
                             'escape' => false,
                             'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'newest' ? 'active ' : '')
+                                ($sort === 'newest' ? 'active ' : ''),
                         ]
                     ) ?>
                 </li>
@@ -90,7 +93,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         [
                             'escape' => false,
                             'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'price_low_high' ? 'active ' : '')
+                                ($sort === 'price_low_high' ? 'active ' : ''),
                         ]
                     ) ?>
                 </li>
@@ -101,7 +104,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         [
                             'escape' => false,
                             'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'price_high_low' ? 'active ' : '')
+                                ($sort === 'price_high_low' ? 'active ' : ''),
                         ]
                     ) ?>
                 </li>
@@ -112,7 +115,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         [
                             'escape' => false,
                             'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'discounted' ? 'active ' : '')
+                                ($sort === 'discounted' ? 'active ' : ''),
                         ]
                     ) ?>
                 </li>
@@ -122,8 +125,8 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                 <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
                 <form id="pricingFilterForm" method="get" action="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
                     <!-- Retain other query parameters except price_filter -->
-                    <?php foreach ($this->request->getQueryParams() as $param => $value): ?>
-                        <?php if ($param !== 'price_filter'): ?>
+                    <?php foreach ($this->request->getQueryParams() as $param => $value) : ?>
+                        <?php if ($param !== 'price_filter') : ?>
                             <input type="hidden" name="<?= h($param) ?>" value="<?= h($value) ?>">
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -183,12 +186,12 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                 </form>
             </div>
             <div class="row">
-                <?php if ($products->isEmpty()): ?>
+                <?php if ($products->isEmpty()) : ?>
                     <div class="col-12">
                         <p class="text-center">No products available for this category.</p>
                     </div>
-                <?php else: ?>
-                    <?php foreach ($products as $product): ?>
+                <?php else : ?>
+                    <?php foreach ($products as $product) : ?>
                         <div class="col-sm-6 col-xxl-4">
                             <div class="card hover-img overflow-hidden">
                                 <div class="position-relative">
@@ -204,13 +207,13 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                                 <div class="card-body pt-3 p-4">
                                     <h6 class="fs-4"><?= h($product->name) ?></h6>
                                     <div class="d-flex align-items-center justify-content-between">
-                                        <?php if ($product->discount_value): ?>
+                                        <?php if ($product->discount_value) : ?>
                                             <h6 class="fs-4 mb-0">$<?= h($this->Number->format($product->discount_value, ['thousands' => ','])) ?>
                                                 <span class="ms-2 fw-normal text-muted fs-3">
                                                     <del>$<?= h($this->Number->format($product->price, ['thousands' => ','])) ?></del>
                                                 </span>
                                             </h6>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             <h6 class="fs-4 mb-0">$<?= h($this->Number->format($product->price, ['thousands' => ','])) ?></h6>
                                         <?php endif; ?>
                                         <ul class="list-unstyled d-flex align-items-center mb-0">
