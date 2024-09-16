@@ -22,7 +22,7 @@ $this->disableAutoLayout();
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <?= $this->Html->image('logos/favicon.png', [
+        <?= $this->ContentBlock->image('preloader-logo', [
             'alt' => 'loader',
             'class' => 'lds-ripple img-fluid',
         ]) ?>
@@ -268,16 +268,14 @@ $this->disableAutoLayout();
                         <div class="col-xl-6">
                             <div class="hero-content my-5 my-xl-0">
                                 <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                    <i class="ti ti-rocket text-secondary fs-6"></i>Start your flag shopping journey.
+                                    <i class="ti ti-rocket text-secondary fs-6"></i>
+                                    <?= $this->ContentBlock->text('tagline'); ?>
                                 </h6>
                                 <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                                    Most type &
-                                    <span class="text-primary"> Best Quality</span>
-                                    Sale
-
+                                    <?= $this->ContentBlock->html('main-headline'); ?>
                                 </h1>
                                 <p class="fs-5 mb-5 text-dark fw-normal" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                    Flagmaster is the Largest flag supplier in Australia
+                                    <?= $this->ContentBlock->text('sub-headline'); ?>
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                                     <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
@@ -290,13 +288,13 @@ $this->disableAutoLayout();
                                 <div class="d-flex flex-row">
                                     <div class="">
                                         <div class="banner-img-1 slideup">
-                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                            <?= $this->ContentBlock->image('hero-image-1', [
                                                 'alt' => 'flagmast-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
                                         <div class="banner-img-1 slideup">
-                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
+                                            <?= $this->ContentBlock->image('hero-image-1', [
                                                 'alt' => 'flagmast-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
@@ -304,13 +302,13 @@ $this->disableAutoLayout();
                                     </div>
                                     <div class="">
                                         <div class="banner-img-2 slideDown">
-                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                            <?= $this->ContentBlock->image('hero-image-2', [
                                                 'alt' => 'flagmast-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
                                         <div class="banner-img-2 slideDown">
-                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
+                                            <?= $this->ContentBlock->image('hero-image-2', [
                                                 'alt' => 'flagmast-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
@@ -364,7 +362,7 @@ $this->disableAutoLayout();
                                 </p>
                             </div>
                             <h2 class="text-center mb-0 fs-9 fw-bolder">
-                                A variety of flag designs available for selection
+                                <?= $this->ContentBlock->text('styles-section-title'); ?>
                             </h2>
                         </div>
                     </div>
@@ -464,8 +462,7 @@ $this->disableAutoLayout();
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                Don’t just take our words for it, See what customers like you
-                                are saying
+                                <?= $this->ContentBlock->text('review-section-title'); ?>
                             </h2>
                         </div>
                     </div>
@@ -1699,7 +1696,7 @@ $this->disableAutoLayout();
                         <div class="col-lg-6">
                             <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                                 <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
-                                    Why Choose Flag Master?
+                                    <?= $this->ContentBlock->text('key-benefits-section-title') ?>
                                 </h2>
                             </div>
                         </div>
@@ -1707,74 +1704,42 @@ $this->disableAutoLayout();
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-paint-brush text-primary fs-10"></i> <!-- Font Awesome Paint Brush Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Customizable Flag Designs</h5>
-                                <p class="mb-0 text-dark">
-                                    Easily customize your flags with real-time previews.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-1') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-boxes text-primary fs-10"></i> <!-- Font Awesome Boxes Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Bulk Orders for Institutions</h5>
-                                <p class="mb-0 text-dark">
-                                    Streamlined bulk ordering for schools, organizations, and more.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-2') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-globe text-primary fs-10"></i> <!-- Font Awesome Globe Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Global Shipping</h5>
-                                <p class="mb-0 text-dark">
-                                    Fast and reliable worldwide shipping options.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-3') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-credit-card text-primary fs-10"></i> <!-- Font Awesome Credit Card Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Secure Payment Options</h5>
-                                <p class="mb-0 text-dark">
-                                    Multiple secure payment methods, including buy-now, pay-later.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-4') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-heart text-primary fs-10"></i> <!-- Font Awesome Heart Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Save Favorite Designs</h5>
-                                <p class="mb-0 text-dark">
-                                    Save your favorite flag designs for easy re-ordering.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-5') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-tools text-primary fs-10"></i> <!-- Font Awesome Tools Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Easy Customization Tools</h5>
-                                <p class="mb-0 text-dark">
-                                    Intuitive tools for easy flag design customization.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-6') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-shipping-fast text-primary fs-10"></i> <!-- Font Awesome Shipping Fast Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Track Your Orders</h5>
-                                <p class="mb-0 text-dark">
-                                    Track your orders in real-time from production to delivery.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-7') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-headset text-primary fs-10"></i> <!-- Font Awesome Headset Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Customer Support</h5>
-                                <p class="mb-0 text-dark">
-                                    Dedicated support to help with your custom orders and inquiries.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-8') ?>
                             </div>
                         </div>
                     </div>
@@ -1800,7 +1765,7 @@ $this->disableAutoLayout();
                                         ) ?>
                                         <?= $this->Html->link(
                                             'Email to Us',
-                                            'mailto:info@flagmaster.com',
+                                            'mailto:' . $this->ContentBlock->text('email'),
                                             ['class' => 'btn btn-outline-secondary d-block px-7 py-6', 'type' => 'button']
                                         ) ?>
                                     </div>
@@ -1846,8 +1811,10 @@ $this->disableAutoLayout();
                                 ]) ?>
                             </a>
                             <p class="mb-0 text-dark">
-                                All rights reserved by FlagMaster. Designed & Developed by
-                                <a class="text-dark text-hover-primary border-bottom border-primary" href="https://u24s2123.iedev.org/">FlagMaster</a>
+                                <?= $this->ContentBlock->text('footer-text') ?>
+                                <a class="text-dark text-hover-primary border-bottom border-primary" href="<?= $this->ContentBlock->text('footer-website-link')?>">
+                                    <?= $this->ContentBlock->text('company-name') ?>
+                                </a>
                             </p>
                         </div>
                     </div>

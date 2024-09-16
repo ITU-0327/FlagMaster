@@ -107,7 +107,7 @@
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-notebook"></i></span><span class="hide-menu">Content Management</span>',
-                        ['controller' => 'ContentManagement'],
+                        ['plugin' => 'ContentBlocks', 'controller' => 'ContentBlocks', 'action' => 'index'],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>

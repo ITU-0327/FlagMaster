@@ -38,6 +38,13 @@ class LandingPageContentBlocksSeeder extends AbstractSeed
             ],
             [
                 'parent' => 'global',
+                'slug' => 'preloader-logo',
+                'label' => 'Preloader Logo',
+                'description' => 'Logo displayed when the page is loading.',
+                'type' => 'image',
+            ],
+            [
+                'parent' => 'global',
                 'slug' => 'favicon',
                 'label' => 'Favicon',
                 'description' => 'Favicon displayed on the website.',
@@ -78,7 +85,7 @@ class LandingPageContentBlocksSeeder extends AbstractSeed
             ],
             [
                 'parent' => 'landing-page',
-                'slug' => 'hero-image-',
+                'slug' => 'hero-image-2',
                 'label' => 'Hero Image 2',
                 'description' => 'Second image displayed in the hero section. (needs to be a svg image)',
                 'type' => 'image',
@@ -90,14 +97,6 @@ class LandingPageContentBlocksSeeder extends AbstractSeed
                 'description' => 'Title of the styles section.',
                 'type' => 'text',
                 'value' => 'A variety of flag designs available for selection',
-            ],
-            [
-                'parent' => 'landing-page',
-                'slug' => 'review-section-title',
-                'label' => 'Review Section Title',
-                'description' => 'Title of the review section.',
-                'type' => 'text',
-                'value' => 'Don’t just take our words for it, See what customers like you are saying',
             ],
             [
                 'parent' => 'landing-page',
