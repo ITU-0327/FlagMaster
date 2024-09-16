@@ -8,7 +8,7 @@ $sectionNumbers = [1, 2, 3];
 
 <?php $this->start('css'); ?>
 
-<?= $this->Html->css(['sorting-filters']) ?>
+<?= $this->Html->css('about-us') ?>
 
 <?php $this->end(); ?>
 
@@ -49,7 +49,10 @@ $sectionNumbers = [1, 2, 3];
                     <div class="image">
                         <?= $this->ContentBlock->image(
                             "section-$number-image",
-                            ['alt' => $this->ContentBlock->text("section-$number-heading-main"), 'class' => 'img-fluid']
+                            [
+                                'alt' => $this->ContentBlock->text("section-$number-heading-main"),
+                                'class' => 'img-fluid',
+                            ]
                         ); ?>
                     </div>
                     <div class="text">
