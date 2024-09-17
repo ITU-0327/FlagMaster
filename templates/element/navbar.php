@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <header class="topbar">
         <div class="with-vertical">
           <!-- ---------------------------------- -->
@@ -23,12 +28,14 @@
               <!-- ------------------------------- -->
                 <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-block mx-0">
                     <div class="hover-dd">
-                        <a class="nav-link" href="javascript:void(0)">
-                            Shop By Category
-                            <span class="mt-1">
-                                <i class="ti ti-chevron-down fs-3"></i>
-                            </span>
-                        </a>
+                        <?= $this->Html->link(
+                            'Shop By Category
+                                <span class="mt-1">
+                                    <i class="ti ti-chevron-down fs-3"></i>
+                                </span>',
+                            ['controller' => 'Products', 'action' => 'index', 'plugin' => false],
+                            ['class' => 'nav-link', 'escape' => false]
+                        ); ?>
                         <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
                             <div class="row">
                                 <div class="col-8">
@@ -37,14 +44,14 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -54,14 +61,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Explore national flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -69,14 +76,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Create custom designs</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -86,14 +93,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Wearable cape flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -108,14 +115,14 @@
 
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-cart.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -125,14 +132,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Decorate your garden</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-date.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -142,14 +149,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Perfect for parades</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -159,14 +166,14 @@
                                                                 <span class="fs-2 d-block text-body-secondary">Flags for decoration</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'plugin' => false]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-application.svg', [
                                                                     'alt' => 'flagmaster-img',
                                                                     'class' => 'img-fluid',
                                                                     'width' => '24',
-                                                                    'height' => '24'
+                                                                    'height' => '24',
                                                                 ]) ?>
                                                             </div>
                                                             <div>
@@ -185,7 +192,7 @@
                                             <div class="col-8">
                                                 <?= $this->Html->link(
                                                     '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
-                                                    ['controller' => 'Pages', 'action' => 'faqs'],
+                                                    ['controller' => 'Pages', 'action' => 'faqs', 'plugin' => false],
                                                     ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
                                                 ); ?>
                                             </div>
@@ -205,28 +212,28 @@
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Australian Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 65],
+                                                    ['controller' => 'Products', 'action' => 'view', 65, 'plugin' => false],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Pirate Skull Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 66],
+                                                    ['controller' => 'Products', 'action' => 'view', 66, 'plugin' => false],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Sunflower Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 67],
+                                                    ['controller' => 'Products', 'action' => 'view', 67, 'plugin' => false],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Switzerland Hand Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 68],
+                                                    ['controller' => 'Products', 'action' => 'view', 68, 'plugin' => false],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
@@ -249,15 +256,15 @@
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'About Us',
-                      ['controller' => 'Pages', 'action' => 'about-us'],
+                      ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
-                    'Contact Us',
-                    ['controller' => 'Enquiries', 'action' => 'add'],
-                    ['class' => 'nav-link']
+                      'Contact Us',
+                      ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                      ['class' => 'nav-link']
                   ); ?>
               </li>
             </ul>
@@ -325,7 +332,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -339,7 +346,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -353,7 +360,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -367,7 +374,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -381,7 +388,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -395,7 +402,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -424,7 +431,7 @@
                                 'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
-                                'height' => '35'
+                                'height' => '35',
                             ]) ?>
                         </div>
                       </div>
@@ -439,7 +446,7 @@
                                 'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
-                                'height' => '80'
+                                'height' => '80',
                             ]) ?>
                           <div class="ms-3">
                             <h5 class="mb-1 fs-3">Lucas Anderson</h5>
@@ -455,14 +462,14 @@
                                 $this->Html->image('svgs/icon-account.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) .
                                 '</span>' .
                                 '<div class="w-100 ps-3">' .
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles'],
+                                ['controller' => 'Profiles', 'action' => 'index', 'plugin' => false],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -470,14 +477,14 @@
                                 $this->Html->image('svgs/icon-inbox.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) .
                                 '</span>' .
                                 '<div class="w-100 ps-3">' .
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
                                 '</div>',
-                                ['controller' => 'Enquiries'],
+                                ['controller' => 'Enquiries', 'action' => 'index', 'plugin' => false],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -485,14 +492,14 @@
                                 $this->Html->image('svgs/icon-dd-invoice.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) .
                                 '</span>' .
                                 '<div class="w-100 ps-3">' .
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
                                 '</div>',
-                                ['controller' => 'Orders'],
+                                ['controller' => 'Orders', 'action' => 'index', 'plugin' => false],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                         </div>
@@ -543,7 +550,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -559,7 +566,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -575,7 +582,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -591,7 +598,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -607,7 +614,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -623,7 +630,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -639,7 +646,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -655,7 +662,7 @@
                                   'alt' => 'flagmaster-img',
                                   'class' => 'img-fluid',
                                   'width' => '24',
-                                  'height' => '24'
+                                  'height' => '24',
                               ]) ?>
                           </div>
                           <div>
@@ -783,7 +790,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -799,7 +806,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -813,7 +820,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -829,7 +836,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -847,7 +854,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -863,7 +870,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -879,7 +886,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -895,7 +902,7 @@
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                             'width' => '24',
-                                            'height' => '24'
+                                            'height' => '24',
                                         ]) ?>
                                     </div>
                                     <div>
@@ -1034,7 +1041,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1048,7 +1055,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1062,7 +1069,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1076,7 +1083,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1090,7 +1097,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1104,7 +1111,7 @@
                                   'alt' => 'user',
                                   'class' => 'rounded-circle',
                                   'width' => '48',
-                                  'height' => '48'
+                                  'height' => '48',
                               ]) ?>
                           </span>
                           <div class="w-100">
@@ -1133,7 +1140,7 @@
                                 'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
-                                'height' => '35'
+                                'height' => '35',
                             ]) ?>
                         </div>
                       </div>
@@ -1148,7 +1155,7 @@
                                 'alt' => 'flagmaster-img',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
-                                'height' => '80'
+                                'height' => '80',
                             ]) ?>
                           <div class="ms-3">
                             <h5 class="mb-1 fs-3">Lucas Anderson</h5>
@@ -1164,7 +1171,7 @@
                                 <?= $this->Html->image('svgs/icon-account.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) ?>
                             </span>
                             <div class="w-100 ps-3">
@@ -1177,7 +1184,7 @@
                                 <?= $this->Html->image('svgs/icon-inbox.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) ?>
                             </span>
                             <div class="w-100 ps-3">
@@ -1190,14 +1197,14 @@
                                 $this->Html->image('svgs/icon-dd-invoice.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
-                                    'height' => '24'
+                                    'height' => '24',
                                 ]) .
                                 '</span>' .
                                 '<div class="w-100 ps-3">' .
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
                                 '</div>',
-                                ['controller' => 'Orders'],
+                                ['controller' => 'Orders', 'action' => 'index', 'plugin' => false],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                         </div>

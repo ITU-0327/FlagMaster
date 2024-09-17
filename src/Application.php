@@ -54,6 +54,9 @@ class Application extends BaseApplication
                 (new TableLocator())->allowFallbackClass(false)
             );
         }
+
+        // Load the ContentBlocks plugin
+        $this->addPlugin('ContentBlocks');
     }
 
     /**

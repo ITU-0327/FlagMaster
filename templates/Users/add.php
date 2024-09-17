@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">User</li>
                         <li class="breadcrumb-item" aria-current="page">Add</li>
@@ -54,7 +54,7 @@
                     <?= $this->Form->control('username', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'Username'
+                        'placeholder' => 'Username',
                     ]) ?>
                 </div>
                 <label>
@@ -64,7 +64,7 @@
                     <?= $this->Form->control('email', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'Email'
+                        'placeholder' => 'Email',
                     ]) ?>
                 </div>
                 <label>
@@ -74,7 +74,7 @@
                     <?= $this->Form->control('password', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'Password'
+                        'placeholder' => 'Password',
                     ]) ?>
                 </div>
                 <label>
@@ -84,7 +84,7 @@
                     <?= $this->Form->control('role', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'Role'
+                        'placeholder' => 'Role',
                     ]) ?>
                 </div>
                 <label>
@@ -94,7 +94,7 @@
                     <?= $this->Form->control('oauth_provider', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'OAuth Provider'
+                        'placeholder' => 'OAuth Provider',
                     ]) ?>
                 </div>
                 <label>
@@ -104,7 +104,7 @@
                     <?= $this->Form->control('oauth_id', [
                         'label' => false,
                         'class' => 'form-control',
-                        'placeholder' => 'OAuth ID'
+                        'placeholder' => 'OAuth ID',
                     ]) ?>
                 </div>
                 </div>
@@ -112,7 +112,7 @@
             <div class="mt-3 mt-md-0 ms-auto">
                 <?= $this->Form->button(__('Submit'), [
                     'type' => 'submit',
-                    'class' => 'btn btn-primary hstack gap-6'
+                    'class' => 'btn btn-primary hstack gap-6',
                 ]) ?>
             </div>
             <?= $this->Form->end() ?>

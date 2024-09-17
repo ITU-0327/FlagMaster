@@ -2,7 +2,9 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Product $product
- * @var \Cake\Collection\CollectionInterface|string[] $categories
+ * @var \Cake\Collection\CollectionInterface|array<string> $categories
+ * @var array<string> $variationTypes
+ * @var array<string> $enumValues
  */
 ?>
 
@@ -23,7 +25,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Add Product</li>
                     </ol>
@@ -88,15 +90,16 @@
                     <!-- Existing variation fields will be placed here -->
                     <div class="row mb-3 variation-row">
                         <div class="col-md-4">
-                            <?php /** @var string[] $variationTypes */ ?>
-                            <?= $this->Form->select('product_variations[0][variation_type]',
+                            <?= $this->Form->select(
+                                'product_variations[0][variation_type]',
                                 array_combine(array_map('strtolower', $variationTypes), $variationTypes),
-                                ['class' => 'select2 form-control', 'data-placeholder' => 'Select Variation Type']) ?>
+                                ['class' => 'select2 form-control', 'data-placeholder' => 'Select Variation Type']
+                            ) ?>
                         </div>
                         <div class="col-md-4 mt-3 mt-md-0">
                             <?= $this->Form->text('product_variations[0][variation_value]', [
                                 'class' => 'form-control',
-                                'placeholder' => 'Variation Value'
+                                'placeholder' => 'Variation Value',
                             ]) ?>
                         </div>
                         <div class="col-md-2 mt-3 mt-md-0">
@@ -150,7 +153,7 @@
                                     'id' => 'discountPercentage',
                                     'min' => 0,
                                     'max' => 100,
-                                    'step' => 10
+                                    'step' => 10,
                                 ]) ?>
                                 <p class="fs-2">Set a percentage discount to be applied on this product.</p>
                             </div>
@@ -161,7 +164,7 @@
                                 <?= $this->Form->text('discount_value', [
                                     'class' => 'form-control',
                                     'placeholder' => 'Discounted Price',
-                                    'id' => 'discountValue'
+                                    'id' => 'discountValue',
                                 ]) ?>
                                 <p class="fs-2">Set the discounted product price. The product will be reduced at the determined fixed price.</p>
                             </div>
@@ -198,10 +201,11 @@
                         <div class="p-2 h-100 bg-success rounded-circle"></div>
                     </div>
                     <div>
-                        <?php /** @var string[] $enumValues */ ?>
-                        <?= $this->Form->select('status',
+                        <?= $this->Form->select(
+                            'status',
                             array_combine(array_map('strtolower', $enumValues), $enumValues),
-                            ['class' => 'form-select mr-sm-2 mb-2']) ?>
+                            ['class' => 'form-select mr-sm-2 mb-2']
+                        ) ?>
                         <p class="fs-2 mb-0">Set the product status.</p>
                     </div>
                 </div>
@@ -337,7 +341,7 @@
             <div class="row mb-3 variation-row" style="display:none;">
                 <div class="col-md-4">
                     <select name="product_variations[${variationIndex}][variation_type]" class="select2 form-control" data-placeholder="Select Variation Type">
-                        <?php foreach ($variationTypes as $type): ?>
+                        <?php foreach ($variationTypes as $type) : ?>
                             <option value="<?= strtolower($type) ?>"><?= $type ?></option>
                         <?php endforeach; ?>
                     </select>

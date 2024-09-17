@@ -22,7 +22,7 @@ $this->disableAutoLayout();
 <body>
     <!-- Preloader -->
     <div class="preloader">
-        <?= $this->Html->image('logos/favicon.png', [
+        <?= $this->ContentBlock->image('preloader-logo', [
             'alt' => 'loader',
             'class' => 'lds-ripple img-fluid',
         ]) ?>
@@ -34,7 +34,7 @@ $this->disableAutoLayout();
             <nav class="navbar navbar-expand-lg py-0">
                 <div class="container">
                     <?= $this->Html->link(
-                        $this->Html->image('logos/dark-logo.svg', [
+                        $this->ContentBlock->image('logo-dark', [
                             'alt' => 'Logo-Dark',
                             'class' => 'dark-logo',
                             'width' => '180',
@@ -68,7 +68,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -82,7 +82,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -96,7 +96,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -110,7 +110,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -129,7 +129,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -143,7 +143,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -157,7 +157,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -172,7 +172,7 @@ $this->disableAutoLayout();
                                                             <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>" class="d-flex align-items-center pb-9 position-relative lh-base">
                                                                 <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                                     <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                                                        'alt' => 'flagmast-img',
+                                                                        'alt' => 'flagmaster-img',
                                                                         'class' => 'img-fluid',
                                                                         'width' => '24',
                                                                         'height' => '24',
@@ -268,16 +268,14 @@ $this->disableAutoLayout();
                         <div class="col-xl-6">
                             <div class="hero-content my-5 my-xl-0">
                                 <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                    <i class="ti ti-rocket text-secondary fs-6"></i>Start your flag shopping journey.
+                                    <i class="ti ti-rocket text-secondary fs-6"></i>
+                                    <?= $this->ContentBlock->text('tagline'); ?>
                                 </h6>
                                 <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                                    Most type &
-                                    <span class="text-primary"> Best Quality</span>
-                                    Sale
-
+                                    <?= $this->ContentBlock->html('main-headline'); ?>
                                 </h1>
                                 <p class="fs-5 mb-5 text-dark fw-normal" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                    Flagmaster is the Largest flag supplier in Australia
+                                    <?= $this->ContentBlock->text('sub-headline'); ?>
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                                     <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
@@ -290,28 +288,28 @@ $this->disableAutoLayout();
                                 <div class="d-flex flex-row">
                                     <div class="">
                                         <div class="banner-img-1 slideup">
-                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
-                                                'alt' => 'flagmast-img',
+                                            <?= $this->ContentBlock->image('hero-image-1', [
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
                                         <div class="banner-img-1 slideup">
-                                            <?= $this->Html->image('hero-img/bannerimg1.svg', [
-                                                'alt' => 'flagmast-img',
+                                            <?= $this->ContentBlock->image('hero-image-1', [
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
                                     </div>
                                     <div class="">
                                         <div class="banner-img-2 slideDown">
-                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
-                                                'alt' => 'flagmast-img',
+                                            <?= $this->ContentBlock->image('hero-image-2', [
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
                                         <div class="banner-img-2 slideDown">
-                                            <?= $this->Html->image('hero-img/bannerimg2.svg', [
-                                                'alt' => 'flagmast-img',
+                                            <?= $this->ContentBlock->image('hero-image-2', [
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid',
                                             ]) ?>
                                         </div>
@@ -331,7 +329,7 @@ $this->disableAutoLayout();
                                     <li class="">
                                         <a class="d-block" href="javascript:void(0)">
                                             <?= $this->Html->image('profile/user-1.jpg', [
-                                                'alt' => 'flagmast-img',
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid border border-2 rounded-circle border-white',
                                                 'width' => '32',
                                                 'height' => '32',
@@ -341,7 +339,7 @@ $this->disableAutoLayout();
                                     <li class="ms-n2">
                                         <a class="d-block" href="javascript:void(0)">
                                             <?= $this->Html->image('profile/user-2.jpg', [
-                                                'alt' => 'flagmast-img',
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid border border-2 rounded-circle border-white',
                                                 'width' => '32',
                                                 'height' => '32',
@@ -351,7 +349,7 @@ $this->disableAutoLayout();
                                     <li class="ms-n2">
                                         <a class="d-block" href="javascript:void(0)">
                                             <?= $this->Html->image('profile/user-3.jpg', [
-                                                'alt' => 'flagmast-img',
+                                                'alt' => 'flagmaster-img',
                                                 'class' => 'img-fluid border border-2 rounded-circle border-white',
                                                 'width' => '32',
                                                 'height' => '32',
@@ -364,7 +362,7 @@ $this->disableAutoLayout();
                                 </p>
                             </div>
                             <h2 class="text-center mb-0 fs-9 fw-bolder">
-                                A variety of flag designs available for selection
+                                <?= $this->ContentBlock->text('styles-section-title'); ?>
                             </h2>
                         </div>
                     </div>
@@ -377,7 +375,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/National-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -387,7 +385,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Custom-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -397,7 +395,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Cape-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -407,7 +405,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Car-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -417,7 +415,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Garden-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -427,7 +425,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Hand-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -437,7 +435,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/Hanging-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -447,7 +445,7 @@ $this->disableAutoLayout();
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
                                         <?= $this->Html->image('apps/String-Flag.png', [
-                                            'alt' => 'flagmast-img',
+                                            'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
                                         <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
@@ -464,8 +462,7 @@ $this->disableAutoLayout();
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                Don’t just take our words for it, See what customers like you
-                                are saying
+                                <?= $this->ContentBlock->text('review-section-title'); ?>
                             </h2>
                         </div>
                     </div>
@@ -477,14 +474,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Anna K.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -492,7 +489,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -500,7 +497,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -508,7 +505,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -516,7 +513,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -524,7 +521,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -544,14 +541,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Sarah L.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -559,7 +556,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -567,7 +564,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -575,7 +572,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -583,7 +580,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -591,7 +588,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -611,7 +608,7 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
@@ -620,7 +617,7 @@ $this->disableAutoLayout();
                                                     <h6 class="fs-4 mb-1 fw-semibold">
                                                         Samantha R.
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -628,7 +625,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -636,7 +633,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -644,7 +641,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -652,7 +649,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -660,7 +657,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -680,14 +677,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">James F.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -695,7 +692,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -703,7 +700,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -711,7 +708,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -719,7 +716,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -727,7 +724,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -747,14 +744,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">John D</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -762,7 +759,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -770,7 +767,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -778,7 +775,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -786,7 +783,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -794,7 +791,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -814,7 +811,7 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
@@ -823,7 +820,7 @@ $this->disableAutoLayout();
                                                     <h6 class="fs-4 mb-1 fw-semibold">
                                                         Tom H.
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -831,7 +828,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -839,7 +836,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -847,7 +844,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -855,7 +852,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -863,7 +860,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -883,14 +880,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Rebecca T.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -898,7 +895,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -906,7 +903,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -914,7 +911,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -922,7 +919,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -930,7 +927,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -950,14 +947,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Michael P.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -965,7 +962,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -973,7 +970,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -981,7 +978,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -989,7 +986,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -997,7 +994,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1017,7 +1014,7 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
@@ -1026,7 +1023,7 @@ $this->disableAutoLayout();
                                                     <h6 class="fs-4 mb-1 fw-semibold">
                                                         Emily G.
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1034,7 +1031,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1042,7 +1039,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1050,7 +1047,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1058,7 +1055,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1066,7 +1063,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1086,14 +1083,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Peter M.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1101,7 +1098,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1109,7 +1106,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1117,7 +1114,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1125,7 +1122,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1133,7 +1130,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1153,14 +1150,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Emily R.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1168,7 +1165,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1176,7 +1173,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1184,7 +1181,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1192,7 +1189,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1200,7 +1197,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1220,16 +1217,16 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">
-                                                        Eminson Mendoza
+                                                        Emission Mendoza
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1237,7 +1234,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1245,7 +1242,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1253,7 +1250,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1261,7 +1258,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1269,7 +1266,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1289,14 +1286,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1304,7 +1301,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1312,7 +1309,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1320,7 +1317,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1328,7 +1325,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1336,7 +1333,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1356,14 +1353,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">David G.</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1371,7 +1368,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1379,7 +1376,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1387,7 +1384,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1395,7 +1392,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1403,7 +1400,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1423,7 +1420,7 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
@@ -1432,7 +1429,7 @@ $this->disableAutoLayout();
                                                     <h6 class="fs-4 mb-1 fw-semibold">
                                                         Laura S.
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1440,7 +1437,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1448,7 +1445,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1456,7 +1453,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1464,7 +1461,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1472,7 +1469,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1492,14 +1489,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-1.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
                                                     <h6 class="fs-4 mb-1 fw-semibold">Jenny Wilson</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1507,7 +1504,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1515,7 +1512,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1523,7 +1520,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1531,7 +1528,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1539,7 +1536,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1559,14 +1556,14 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-2.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
                                                 ]) ?>
                                                 <div>
-                                                    <h6 class="fs-4 mb-1 fw-semibold">Minshan Cui</h6>
-                                                    <p class="mb-0 text-dark">Features avaibility</p>
+                                                    <h6 class="fs-4 mb-1 fw-semibold">MinHash Cui</h6>
+                                                    <p class="mb-0 text-dark">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1574,7 +1571,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1582,7 +1579,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1590,7 +1587,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1598,7 +1595,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1606,7 +1603,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1626,7 +1623,7 @@ $this->disableAutoLayout();
                                         <div class="d-flex justify-content-between mb-4">
                                             <div class="d-flex align-items-center">
                                                 <?= $this->Html->image('profile/user-3.jpg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'w-auto me-3 rounded-circle',
                                                     'width' => '40',
                                                     'height' => '40',
@@ -1635,7 +1632,7 @@ $this->disableAutoLayout();
                                                     <h6 class="fs-4 mb-1 fw-semibold">
                                                         John L.
                                                     </h6>
-                                                    <p class="mb-0 fw-normal">Features avaibility</p>
+                                                    <p class="mb-0 fw-normal">Features availability</p>
                                                 </div>
                                             </div>
                                             <div>
@@ -1643,7 +1640,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1651,7 +1648,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1659,7 +1656,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1667,7 +1664,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1675,7 +1672,7 @@ $this->disableAutoLayout();
                                                     <li>
                                                         <a href="">
                                                             <?= $this->Html->image('svgs/icon-star.svg', [
-                                                                'alt' => 'flagmast-img',
+                                                                'alt' => 'flagmaster-img',
                                                                 'class' => 'img-fluid',
                                                             ]) ?>
                                                         </a>
@@ -1699,7 +1696,7 @@ $this->disableAutoLayout();
                         <div class="col-lg-6">
                             <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                                 <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
-                                    Why Choose Flag Master?
+                                    <?= $this->ContentBlock->text('key-benefits-section-title') ?>
                                 </h2>
                             </div>
                         </div>
@@ -1707,74 +1704,42 @@ $this->disableAutoLayout();
                     <div class="row">
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-paint-brush text-primary fs-10"></i> <!-- Font Awesome Paint Brush Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Customizable Flag Designs</h5>
-                                <p class="mb-0 text-dark">
-                                    Easily customize your flags with real-time previews.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-1') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-boxes text-primary fs-10"></i> <!-- Font Awesome Boxes Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Bulk Orders for Institutions</h5>
-                                <p class="mb-0 text-dark">
-                                    Streamlined bulk ordering for schools, organizations, and more.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-2') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-globe text-primary fs-10"></i> <!-- Font Awesome Globe Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Global Shipping</h5>
-                                <p class="mb-0 text-dark">
-                                    Fast and reliable worldwide shipping options.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-3') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-credit-card text-primary fs-10"></i> <!-- Font Awesome Credit Card Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Secure Payment Options</h5>
-                                <p class="mb-0 text-dark">
-                                    Multiple secure payment methods, including buy-now, pay-later.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-4') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-heart text-primary fs-10"></i> <!-- Font Awesome Heart Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Save Favorite Designs</h5>
-                                <p class="mb-0 text-dark">
-                                    Save your favorite flag designs for easy re-ordering.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-5') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-tools text-primary fs-10"></i> <!-- Font Awesome Tools Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Easy Customization Tools</h5>
-                                <p class="mb-0 text-dark">
-                                    Intuitive tools for easy flag design customization.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-6') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-shipping-fast text-primary fs-10"></i> <!-- Font Awesome Shipping Fast Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Track Your Orders</h5>
-                                <p class="mb-0 text-dark">
-                                    Track your orders in real-time from production to delivery.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-7') ?>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
                             <div class="text-center mb-5">
-                                <i class="fas fa-headset text-primary fs-10"></i> <!-- Font Awesome Headset Icon -->
-                                <h5 class="fs-5 fw-semibold mt-8">Customer Support</h5>
-                                <p class="mb-0 text-dark">
-                                    Dedicated support to help with your custom orders and inquiries.
-                                </p>
+                                <?= $this->ContentBlock->html('key-benefits-8') ?>
                             </div>
                         </div>
                     </div>
@@ -1800,7 +1765,7 @@ $this->disableAutoLayout();
                                         ) ?>
                                         <?= $this->Html->link(
                                             'Email to Us',
-                                            'mailto:info@flagmaster.com',
+                                            'mailto:' . $this->ContentBlock->text('email'),
                                             ['class' => 'btn btn-outline-secondary d-block px-7 py-6', 'type' => 'button']
                                         ) ?>
                                     </div>
@@ -1825,7 +1790,7 @@ $this->disableAutoLayout();
                         <div class="col-lg-5 col-xl-5">
                             <div class="text-center text-lg-end">
                                 <?= $this->Html->image('backgrounds/business-woman-checking-her-mail.png', [
-                                    'alt' => 'flagmast-img',
+                                    'alt' => 'flagmaster-img',
                                     'class' => 'img-fluid',
                                 ]) ?>
                             </div>
@@ -1839,15 +1804,17 @@ $this->disableAutoLayout();
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="text-center">
-                            <a href="index-new">
-                                <?= $this->Html->image('logos/favicon.ico', [
-                                    'alt' => 'flagmast-img',
+                            <a href="index">
+                                <?= $this->ContentBlock->image('favicon', [
+                                    'alt' => 'flagmaster-img',
                                     'class' => 'img-fluid pb-3',
                                 ]) ?>
                             </a>
                             <p class="mb-0 text-dark">
-                                All rights reserved by FlagMaster. Designed & Developed by
-                                <a class="text-dark text-hover-primary border-bottom border-primary" href="https://u24s2123.iedev.org/">FlagMaster</a>
+                                <?= $this->ContentBlock->text('footer-text') ?>
+                                <a class="text-dark text-hover-primary border-bottom border-primary" href="<?= $this->ContentBlock->text('footer-website-link')?>">
+                                    <?= $this->ContentBlock->text('company-name') ?>
+                                </a>
                             </p>
                         </div>
                     </div>
@@ -1856,8 +1823,8 @@ $this->disableAutoLayout();
         </footer>
         <div class="offcanvas offcanvas-start modernize-lp-offcanvas" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header p-4">
-                <?= $this->Html->image('logos/dark-logo.svg', [
-                    'alt' => 'flagmast-img',
+                <?= $this->ContentBlock->image('logo-dark', [
+                    'alt' => 'flagmaster-img',
                     'class' => 'img-fluid',
                     'width' => '150',
                 ]) ?>
@@ -1876,7 +1843,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-chat.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1892,7 +1859,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1908,7 +1875,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1924,7 +1891,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1944,7 +1911,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1960,7 +1927,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1976,7 +1943,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',
@@ -1992,7 +1959,7 @@ $this->disableAutoLayout();
                                         <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                                    'alt' => 'flagmast-img',
+                                                    'alt' => 'flagmaster-img',
                                                     'class' => 'img-fluid',
                                                     'width' => '24',
                                                     'height' => '24',

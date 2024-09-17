@@ -12,7 +12,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">User Profile</li>
                     </ol>
@@ -20,7 +20,6 @@
             </div>
             <div class="col-3">
                 <div class="text-center mb-n5">
-                    <!--<img src="../assets/images/breadcrumb/ChatBc.png" alt="modernize-img" class="img-fluid mb-n4" />-->
                     <?= $this->Html->image('breadcrumb/ChatBc.png', [
                         'alt' => 'modernize-img',
                         'class' => 'img-fluid mb-n4',
@@ -33,7 +32,6 @@
 
 <div class="card overflow-hidden">
     <div class="card-body p-0">
-        <!--<img src="../assets/images/backgrounds/profilebg.jpg" alt="modernize-img" class="img-fluid">-->
         <?= $this->Html->image('backgrounds/profilebg.jpg', [
             'alt' => 'modernize-img',
             'class' => 'img-fluid',
@@ -47,7 +45,6 @@
                     <div class="d-flex align-items-center justify-content-center mb-2">
                         <div class="d-flex align-items-center justify-content-center round-110">
                             <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden round-100">
-                                <!--<img src="../assets/images/profile/user-1.jpg" alt="modernize-img" class="w-100 h-100">-->
                                 <?= $this->Html->image('profile/user-1.jpg', [
                                     'alt' => 'modernize-img',
                                     'class' => 'w-100 h-100',

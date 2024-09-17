@@ -56,7 +56,7 @@
             </div>
             <div class="app-invoice">
                 <ul class="overflow-auto invoice-users" data-simplebar>
-                    <?php foreach ($orders as $order): ?>
+                    <?php foreach ($orders as $order) : ?>
                         <li>
                             <a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user <?= $order->id % 2 == 0 ? 'bg-light-subtle' : '' ?>" id="invoice-<?= $order->id ?>" data-invoice-id="<?= $order->id ?>">
                                 <div class="btn <?= $order->id % 2 == 0 ? 'btn-primary' : 'btn-danger' ?> round rounded-circle d-flex align-items-center justify-content-center px-2">
@@ -64,9 +64,9 @@
                                 </div>
                                 <div class="ms-3 d-inline-block w-75">
                                     <h6 class="mb-0 invoice-customer">
-                                        <?php if ($order->user && $order->user->profile): ?>
+                                        <?php if ($order->user && $order->user->profile) : ?>
                                             <?= h($order->user->profile->first_name) ?> <?= h($order->user->profile->last_name) ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             Unknown User
                                         <?php endif; ?>
                                     </h6>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="p-3" id="custom-invoice">
-                        <?php foreach ($orders as $order): ?>
+                        <?php foreach ($orders as $order) : ?>
                             <div class="invoice-<?= $order->id ?>" id="printableArea">
                                 <div class="row pt-3">
                                     <div class="col-md-12">
@@ -142,19 +142,20 @@
                                                     <th class="text-end">Total</th>
                                                 </tr>
                                                 </thead>
-                                                <?php if (!empty($order->products)): ?>
+                                                <?php if (!empty($order->products)) : ?>
                                                     <tbody>
-                                                    <?php $counter = 1; foreach ($order->products as $product): ?>
+                                                    <?php $counter = 1; foreach ($order->products as $product) : ?>
                                                         <tr>
-                                                            <td class="text-center"><?= $counter++ ?></td>
+                                                            <td class="text-center"><?= $counter ?></td>
                                                             <td><?= h($product->name) ?></td>
                                                             <td class="text-end"><?= h($product->_joinData->quantity) ?></td>
                                                             <td class="text-end">$<?= h($this->Number->format($product->_joinData->unit_price, ['thousands' => ','])) ?></td>
                                                             <td class="text-end">$<?= h($this->Number->format($product->_joinData->total_price, ['thousands' => ','])) ?></td>
                                                         </tr>
+                                                        <?php $counter++; ?>
                                                     <?php endforeach; ?>
                                                     </tbody>
-                                                <?php else: ?>
+                                                <?php else : ?>
                                                     <tr>
                                                         <td colspan="5" class="text-center">No products available for this order.</td>
                                                     </tr>
@@ -208,7 +209,7 @@
             <div class="app-invoice overflow-auto">
                 <ul class="invoice-users">
                     <?= $first = true ?>
-                    <?php foreach ($orders as $order): ?>
+                    <?php foreach ($orders as $order) : ?>
                         <li>
                             <a href="javascript:void(0)" class="p-3 bg-hover-light-black border-bottom d-flex align-items-start invoice-user listing-user <?= $first ? 'bg-light' : '' ?>" id="invoice-<?= $order->id ?>" data-invoice-id="<?= $order->id ?>">
                                 <div class="btn <?= $order->id % 2 == 0 ? 'btn-primary' : 'btn-danger' ?> round rounded-circle d-flex align-items-center justify-content-center px-2">
@@ -216,9 +217,9 @@
                                 </div>
                                 <div class="ms-3 d-inline-block w-75">
                                     <h6 class="mb-0 invoice-customer">
-                                        <?php if ($order->user && $order->user->profile): ?>
+                                        <?php if ($order->user && $order->user->profile) : ?>
                                             <?= h($order->user->profile->first_name) ?> <?= h($order->user->profile->last_name) ?>
-                                        <?php else: ?>
+                                        <?php else : ?>
                                             Unknown User
                                         <?php endif; ?>
                                     </h6>
