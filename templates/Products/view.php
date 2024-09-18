@@ -56,8 +56,8 @@
                             $<?= $this->Number->format($product->price) ?>
                         </h4>
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
-                            <a href="javascript:void(0)" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Buy Now</a>
-                            <a href="javascript:void(0)" class="btn d-block btn-danger px-7 py-8">Add to Cart</a>
+                            <a href="javascript:void(0)" id="buyNowBtn" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Buy Now</a>
+                            <a href="javascript:void(0)" id="addToCartBtn" class="btn d-block btn-danger px-7 py-8">Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +65,21 @@
         </div>
     </div>
 </div>
+
+<!-- Consolidated Script -->
+<script>
+    // Handle "Buy Now" button click
+    document.getElementById('buyNowBtn').addEventListener('click', function() {
+        // Navigate to the checkout page with the product ID
+        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id], ['fullBase' => true]); ?>';
+    });
+
+    // Handle "Add to Cart" button click
+    document.getElementById('addToCartBtn').addEventListener('click', function() {
+        alert('Added to cart!');
+        // Optionally, you can implement AJAX to add the product to the cart without page reload
+    });
+</script>
 
 <div class="card shadow-none border">
     <div class="card-body p-4">

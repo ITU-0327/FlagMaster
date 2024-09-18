@@ -103,4 +103,16 @@ class OrdersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function checkout($productId = null)
+    {
+        $productsTable = $this->getTableLocator()->get('Products');
+        if ($productId) {
+            $product = $productsTable->get($productId);
+        } else {
+            return $this->redirect(['controller' => 'Products', 'action' => 'index']);
+        }
+
+        $this->set(compact('product'));
+    }
 }
