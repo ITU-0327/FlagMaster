@@ -7,52 +7,11 @@
 $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
 ?>
 
-<style>
-    .ck-editor__editable_inline {
-        min-height: 20rem;
-    }
-    .content-blocks--image-preview {
-        max-height: 300px;
-        width: auto;
-    }
+<?php $this->start('css'); ?>
 
-    .custom-dropzone {
-        position: relative;
-    }
+<?= $this->Html->css('dropzone') ?>
 
-    .custom-file-input {
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-    }
-
-    .dropzone {
-        border: 2px dashed #0087F7;
-        border-radius: 5px;
-        background: white;
-        padding: 20px;
-        min-height: 150px;
-        text-align: center;
-    }
-
-    .dropzone img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .dropzone .dz-message {
-        font-size: 1em;
-        color: #555;
-    }
-
-    /* Optional: Style for the dragover state */
-    .custom-dropzone.dragover .dropzone {
-        border-color: #0056b3;
-        background-color: #e6f7ff;
-    }
-</style>
+<?php $this->end(); ?>
 
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
@@ -188,66 +147,6 @@ $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const fileInput = document.getElementById('customFile');
-        const dropzone = document.querySelector('.custom-dropzone');
-        const dropzoneLabel = dropzone.querySelector('.dropzone');
-        const dropzonePreview = dropzoneLabel.querySelector('.dz-preview');
-
-        fileInput.addEventListener('change', function(e) {
-            const files = e.target.files;
-            if (files && files[0]) {
-                const file = files[0];
-
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        dropzonePreview.innerHTML = '';
-
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.className = 'content-blocks--image-preview';
-                        img.alt = 'New Image Preview';
-
-                        dropzonePreview.appendChild(img);
-                    }
-
-                    reader.readAsDataURL(file);
-                } else {
-                    dropzonePreview.innerHTML = '<div class="dz-message"><span>Selected file is not an image.</span></div>';
-                }
-            }
-        });
-
-        dropzone.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.add('dragover');
-        });
-
-        dropzone.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.remove('dragover');
-        });
-
-        dropzone.addEventListener('drop', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropzone.classList.remove('dragover');
-
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                fileInput.files = files;
-
-                const event = new Event('change');
-                fileInput.dispatchEvent(event);
-            }
-        });
-    });
-</script>
+<?= $this->Html->script('apps/dropzone') ?>
 
 <?php $this->end(); ?>
