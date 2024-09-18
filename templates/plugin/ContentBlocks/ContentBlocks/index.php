@@ -13,6 +13,28 @@ $slugify = function ($text) {
 }
 ?>
 
+<!--<style>-->
+<!--    .single-note-item .card {-->
+<!--        transition: all 0.3s ease;-->
+<!--        border: none;-->
+<!--    }-->
+<!---->
+<!--    .single-note-item .card:hover {-->
+<!--        transform: scale(1.05);-->
+<!--        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
+<!--    }-->
+<!---->
+<!--    .side-stick {-->
+<!--        width: 5px;-->
+<!--        height: 100%;-->
+<!--        position: absolute;-->
+<!--        top: 0;-->
+<!--        left: 0;-->
+<!--        border-top-left-radius: 10px;-->
+<!--        border-bottom-left-radius: 10px;-->
+<!--    }-->
+<!--</style>-->
+
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -84,53 +106,54 @@ $slugify = function ($text) {
             $colorIndex++;
 
             foreach ($contentBlocks as $contentBlock) { ?>
-            <div class="col-md-4 single-note-item all-category <?= $slugify($parent)?>">
-                <div class="card card-body">
-                    <span class="side-stick" style="background-color: <?= $color ?>"></span>
-<!--                    TODO: Figure out what is the data-noteHeading and data-noteContent for-->
-                    <h6 class="note-title text-truncate w-75 mb-0" data-noteHeading="<?= $contentBlock['label'] ?>"><?= $contentBlock['label'] ?></h6>
-                    <p class="note-date fs-2"><?= $contentBlock['type'] ?></p>
-                    <div class="note-content">
-                        <p class="note-inner-content" data-noteContent="<?= $contentBlock['description'] ?>">
-                            <?= $contentBlock['description'] ?>
-                        </p>
-                    </div>
+                <div class="col-md-4 single-note-item all-category <?= $slugify($parent)?>">
+                    <div class="card card-body shadow-sm">
+                        <span class="side-stick" style="background-color: <?= $color ?>;"></span>
 
-                    <div class="d-flex align-items-center">
-                        <?php if ($contentBlock['type'] === 'image') {
-                            echo $this->Html->link(
-                                '<i class="ti ti-photo-edit fs-4"></i>',
-                                ['action' => 'edit', $contentBlock['id']],
-                                ['class' => 'link me-1 ms-auto', 'escape' => false]
-                            );
-                        } else {
-                            echo $this->Html->link(
-                                '<i class="ti ti-edit fs-4"></i>',
-                                ['action' => 'edit', $contentBlock->id],
-                                ['class' => 'link me-1 ms-auto', 'escape' => false]
-                            );
-                        }
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="note-title text-truncate w-75 mb-0" data-noteHeading="<?= $contentBlock['label'] ?>" style="font-weight: bold;">
+                                <?= $contentBlock['label'] ?>
+                            </h6>
+                            <?php if ($contentBlock['type'] === 'image') {
+                                echo $this->Html->link(
+                                    '<i class="ti ti-photo-edit fs-6" title="Edit Image"></i>',
+                                    ['action' => 'edit', $contentBlock['id']],
+                                    ['class' => 'link ms-1 ms-auto', 'escape' => false]
+                                );
+                            } else {
+                                echo $this->Html->link(
+                                    '<i class="ti ti-edit fs-6" title="Edit Content"></i>',
+                                    ['action' => 'edit', $contentBlock->id],
+                                    ['class' => 'link ms-1 ms-auto', 'escape' => false]
+                                );
+                            }
 
-                        if (!empty($contentBlock->previous_value)) {
-                            echo $this->Form->postLink(
-                                '<i class="ti ti-trash fs-4"></i>',
-                                ['action' => 'restore', $contentBlock->id],
-                                [
-                                    'class' => 'link text-danger ms-2',
-                                    'escape' => false,
-                                    'confirm' => __(
-                                        "Are you sure you want to restore the previous version for this item?\n
-                                        {0}/{1}\n
-                                        Note: You cannot cancel this action!",
-                                        $contentBlock->parent,
-                                        $contentBlock->slug
-                                    ),
-                                ]
-                            );
-                        } ?>
+                            if (!empty($contentBlock->previous_value)) {
+                                echo $this->Form->postLink(
+                                    '<i class="ti ti-arrow-back-up fs-6 text-danger" title="Restore Previous Version"></i>',
+                                    ['action' => 'restore', $contentBlock->id],
+                                    [
+                                        'class' => 'link text-danger ms-2',
+                                        'escape' => false,
+                                        'confirm' => __(
+                                            "Are you sure you want to restore the previous version for this item?\n{0}/{1}\nNote: You cannot cancel this action!",
+                                            $contentBlock->parent,
+                                            $contentBlock->slug
+                                        ),
+                                    ]
+                                );
+                            } ?>
+                        </div>
+
+                        <p class="note-date fs-2"><?= ucfirst($contentBlock['type']) ?></p>
+
+                        <div class="note-content">
+                            <p class="note-inner-content" data-noteContent="<?= $contentBlock['description'] ?>" style="font-size: 0.9rem; margin-bottom: 0;">
+                                <?= $contentBlock['description'] ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php } ?>
         <?php } ?>
     </div>
