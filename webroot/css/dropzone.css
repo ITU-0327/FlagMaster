@@ -1,0 +1,74 @@
+﻿.ck-editor__editable_inline {
+    min-height: 20rem;
+}
+.content-blocks--image-preview {
+    max-height: 300px;
+    width: auto;
+}
+
+.custom-dropzone {
+    position: relative;
+}
+
+.custom-file-input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.dropzone {
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+    min-height: 150px;
+    text-align: center;
+}
+
+.dropzone img {
+    max-width: 100%;
+    height: auto;
+}
+
+.dropzone .dz-message {
+    font-size: 1em;
+    color: #555;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.image-container img {
+    display: block;
+    transition: filter 0.3s;
+}
+
+.image-container:hover img {
+    filter: blur(2px);
+}
+
+.delete-image-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.image-container:hover .delete-image-btn {
+    display: block;
+}
+
+.delete-image-btn iconify-icon {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
