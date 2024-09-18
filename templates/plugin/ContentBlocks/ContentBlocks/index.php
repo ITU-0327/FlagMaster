@@ -4,36 +4,34 @@
  * @var iterable<\ContentBlocks\Model\Entity\ContentBlock> $contentBlocksGrouped
  */
 
-/**
- * @return array|array<string>|string|null
- * @var \App\View\AppView $this
- */
+$icons = [
+    'global' => 'ti ti-world',
+    'landing-page' => 'ti ti-home',
+    'about-us' => 'ti ti-file-info',
+    'faq-page' => 'ti ti-zoom-question',
+];
+
 $slugify = function ($text) {
     return preg_replace('/[^A-Za-z0-9-]+/', '-', $text);
-}
+};
+
+$formatParent = function ($parent): string {
+    $formattedParent = str_replace('-', ' ', $parent);
+
+    return ucwords($formattedParent);
+};
 ?>
 
-<!--<style>-->
-<!--    .single-note-item .card {-->
-<!--        transition: all 0.3s ease;-->
-<!--        border: none;-->
-<!--    }-->
-<!---->
-<!--    .single-note-item .card:hover {-->
-<!--        transform: scale(1.05);-->
-<!--        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);-->
-<!--    }-->
-<!---->
-<!--    .side-stick {-->
-<!--        width: 5px;-->
-<!--        height: 100%;-->
-<!--        position: absolute;-->
-<!--        top: 0;-->
-<!--        left: 0;-->
-<!--        border-top-left-radius: 10px;-->
-<!--        border-bottom-left-radius: 10px;-->
-<!--    }-->
-<!--</style>-->
+<style>
+    .single-note-item .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    .note-content {
+        min-height: 45px;
+    }
+</style>
 
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
@@ -52,7 +50,7 @@ $slugify = function ($text) {
             <div class="col-3">
                 <div class="text-center mb-n5">
                     <?= $this->Html->image('breadcrumb/ChatBc.png', [
-                        'alt' => 'modernize-img',
+                        'alt' => 'flagmaster-img',
                         'class' => 'img-fluid mb-n4',
                     ]) ?>
                 </div>
@@ -77,20 +75,15 @@ $slugify = function ($text) {
             <span class="d-none d-md-block fw-medium">All Blocks</span>
         </a>
     </li>
-    <?php foreach (array_keys($contentBlocksGrouped) as $parent) { ?>
+    <?php foreach (array_keys($contentBlocksGrouped) as $parent) {
+        $iconClass = $icons[$parent] ?? 'ti ti-list'; ?>
         <li class="nav-item">
             <a href="javascript:void(0)" class="nav-link gap-6 note-link d-flex align-items-center justify-content-center px-3 px-md-3" id="<?= $slugify($parent) ?>">
-                <i class="ti ti-list fill-white"></i>
-                <span class="d-none d-md-block fw-medium"><?= $parent ?></span>
+                <i class="<?= $iconClass ?> fill-white"></i>
+                <span class="d-none d-md-block fw-medium"><?= $formatParent($parent) ?></span>
             </a>
         </li>
     <?php } ?>
-    <li class="nav-item ms-auto">
-        <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center px-3 gap-6" id="add-notes">
-            <i class="ti ti-file fs-4"></i>
-            <span class="d-none d-md-block fw-medium fs-3">Add Blocks</span>
-        </a>
-    </li>
 </ul>
 <div class="tab-content">
     <div id="note-full-container" class="note-has-grid row">
@@ -105,10 +98,10 @@ $slugify = function ($text) {
             $color = $availableColors[$colorIndex % count($availableColors)];
             $colorIndex++;
 
-            foreach ($contentBlocks as $contentBlock) { ?>
-                <div class="col-md-4 single-note-item all-category <?= $slugify($parent)?>">
-                    <div class="card card-body shadow-sm">
-                        <span class="side-stick" style="background-color: <?= $color ?>;"></span>
+            foreach ($contentBlocks as $contentBlock) {?>
+                <div class="col-md-4 single-note-item all-category <?= $slugify($parent) ?>">
+                    <div class="card card-body shadow-sm" style="padding-top: 20px; padding-bottom: 15px; border-radius: 10px;">
+                        <span class="side-stick" style="background-color: <?= $color ?>;" title="page: <?= $parent ?>"></span>
 
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="note-title text-truncate w-75 mb-0" data-noteHeading="<?= $contentBlock['label'] ?>" style="font-weight: bold;">
@@ -158,51 +151,17 @@ $slugify = function ($text) {
         <?php } ?>
     </div>
 </div>
-<!-- Modal Add notes -->
-<div class="modal fade" id="addnotesmodal" tabindex="-1" role="dialog" aria-labelledby="addnotesmodalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content border-0">
-            <div class="modal-header text-bg-primary">
-                <h6 class="modal-title text-white">Add Blocks</h6>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="notes-box">
-                    <div class="notes-content">
-                        <form action="javascript:void(0);" id="addnotesmodalTitle">
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <div class="note-title">
-                                        <label class="form-label">Note Title</label>
-                                        <input type="text" id="note-has-title" class="form-control" minlength="25" placeholder="Title" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="note-description">
-                                        <label class="form-label">Note Description</label>
-                                        <textarea id="note-has-description" class="form-control" minlength="60" placeholder="Description" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="d-flex gap-6">
-                    <button class="btn bg-danger-subtle text-danger" data-bs-dismiss="modal">Discard</button>
-                    <button id="btn-n-add" class="btn btn-primary" disabled>Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
-<!-- TODO: Figure out what is this script for. -->
-<?php //= $this->Html->script(['/libs/fullcalendar/index.global.min']) ?>
-<?= $this->Html->script(['apps/notes']) ?>
+<script>
+    const $btns = $(".note-link").click(function () {
+        const $el = $("." + this.id).fadeIn();
+        $("#note-full-container > div").not($el).hide();
+        $btns.removeClass("active");
+        $(this).addClass("active");
+    });
+</script>
 
 <?php $this->end(); ?>
