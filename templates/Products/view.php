@@ -149,8 +149,8 @@
                         </div>
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                             <?php if ($product->stock_quantity > 0) : ?>
-                                <?= $this->Html->link('Buy Now', ['action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0']) ?>
-                                <?= $this->Form->postLink('Add to Cart', ['action' => 'addToCart', $product->id], ['class' => 'btn d-block btn-danger px-7 py-8']) ?>
+                                <?= $this->Html->link('Buy Now', ['action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0', 'id' => 'buyNowBtn']) ?>
+                                <?= $this->Form->postLink('Add to Cart', ['action' => 'addToCart', $product->id], ['class' => 'btn d-block btn-danger px-7 py-8', 'id' => 'addToCartBtn']) ?>
                             <?php else : ?>
                                 <span class="text-danger fs-5">This product is currently out of stock.</span>
                             <?php endif; ?>
@@ -352,5 +352,18 @@
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?= $this->Html->script('/libs/owl.carousel/dist/owl.carousel.min') ?>
 <?= $this->Html->script('apps/productDetail') ?>
+
+<script>
+    document.getElementById('buyNowBtn').addEventListener('click', function() {
+        // Navigate to the checkout page with the product ID
+        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id], ['fullBase' => true]); ?>';
+    });
+
+    // Handle "Add to Cart" button click
+    document.getElementById('addToCartBtn').addEventListener('click', function() {
+        alert('Added to cart!');
+        // Optionally, you can implement AJAX to add the product to the cart without page reload
+    });
+</script>
 
 <?php $this->end(); ?>

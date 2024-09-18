@@ -85,7 +85,7 @@
                         <span class="text-dark fw-semibold fs-3">$6830</span>
                     </div>
                 </div>
-                <a href="ecommerce-checkout" class="btn btn-outline-primary w-100">Go to shopping cart</a>
+                <a href="<?= $this->Url->build(['controller' => 'Orders', 'action' => 'cart']); ?>" class="btn btn-outline-primary w-100">Go to shopping cart</a>
             </div>
         </div>
     </div>
