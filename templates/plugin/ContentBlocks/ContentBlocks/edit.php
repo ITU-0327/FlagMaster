@@ -15,6 +15,43 @@ $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
         max-height: 300px;
         width: auto;
     }
+
+    .custom-dropzone {
+        position: relative;
+    }
+
+    .custom-file-input {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .dropzone {
+        border: 2px dashed #0087F7;
+        border-radius: 5px;
+        background: white;
+        padding: 20px;
+        min-height: 150px;
+        text-align: center;
+    }
+
+    .dropzone img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .dropzone .dz-message {
+        font-size: 1em;
+        color: #555;
+    }
+
+    /* Optional: Style for the dragover state */
+    .custom-dropzone.dragover .dropzone {
+        border-color: #0056b3;
+        background-color: #e6f7ff;
+    }
 </style>
 
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -43,13 +80,13 @@ $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
     </div>
 </div>
 
+<?= $this->Form->create($contentBlock, ['type' => 'file']) ?>
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title mb-4 fs-6"><?= h($contentBlock->label) ?></h3>
-
-                <?= $this->Form->create($contentBlock, ['type' => 'file']) ?>
 
                 <div class="mb-4">
                     <label for="contentBlockDescription" class="form-label fs-4">Description</label>
@@ -111,15 +148,28 @@ $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
                         <label for="imageUpload" class="form-label">Image Upload</label>
                         <?php if ($contentBlock->value) { ?>
                             <div class="mb-3">
-                                <?= $this->Html->image($contentBlock->value, ['class' => 'img-fluid content-blocks--image-preview']) ?>
+                                <?= $this->Html->image($contentBlock->value, [
+                                    'class' => 'img-fluid content-blocks--image-preview',
+                                    'alt' => 'Current Image',
+                                ]) ?>
                             </div>
                         <?php } ?>
-                        <?= $this->Form->control('value', [
-                            'type' => 'file',
-                            'accept' => 'image/*',
-                            'label' => false,
-                            'class' => 'form-control',
-                        ]) ?>
+
+                        <div class="custom-dropzone">
+                            <?= $this->Form->file('value', [
+                                'accept' => 'image/*',
+                                'label' => false,
+                                'class' => 'custom-file-input',
+                                'id' => 'customFile',
+                            ]) ?>
+                            <label for="customFile" class="dropzone">
+                                <div class="dz-preview" id="dz-preview">
+                                    <div class="dz-message">
+                                        <span>Drag and drop a file here or click to select one</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 <?php } ?>
 
@@ -128,14 +178,76 @@ $this->Html->script('ContentBlocks.ckeditor/ckeditor', ['block' => true]);
                     <?= $this->Html->link('Cancel', ['action' => 'index'], ['class' => 'btn bg-danger-subtle text-danger']) ?>
                 </div>
 
-                <?= $this->Form->end() ?>
             </div>
         </div>
     </div>
 </div>
 
+<?= $this->Form->end() ?>
+
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const fileInput = document.getElementById('customFile');
+        const dropzone = document.querySelector('.custom-dropzone');
+        const dropzoneLabel = dropzone.querySelector('.dropzone');
+        const dropzonePreview = dropzoneLabel.querySelector('.dz-preview');
+
+        fileInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files && files[0]) {
+                const file = files[0];
+
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        dropzonePreview.innerHTML = '';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'content-blocks--image-preview';
+                        img.alt = 'New Image Preview';
+
+                        dropzonePreview.appendChild(img);
+                    }
+
+                    reader.readAsDataURL(file);
+                } else {
+                    dropzonePreview.innerHTML = '<div class="dz-message"><span>Selected file is not an image.</span></div>';
+                }
+            }
+        });
+
+        dropzone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.add('dragover');
+        });
+
+        dropzone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.remove('dragover');
+        });
+
+        dropzone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropzone.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+
+                const event = new Event('change');
+                fileInput.dispatchEvent(event);
+            }
+        });
+    });
+</script>
 
 <?php $this->end(); ?>
