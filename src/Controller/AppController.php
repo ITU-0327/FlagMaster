@@ -13,7 +13,7 @@ declare(strict_types=1);
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
- * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Auth
  */
 namespace App\Controller;
 
@@ -50,6 +50,6 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
 
-        $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('Auth.Auth');
     }
 }

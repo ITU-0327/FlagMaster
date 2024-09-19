@@ -62,8 +62,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 (new TableLocator())->allowFallbackClass(false)
             );
         }
-        //Load Authentication Plugin
-        $this->addPlugin('Authentication');
+        //Load Auth Plugin
+        $this->addPlugin('Auth');
     }
 
     /**
@@ -143,8 +143,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             AbstractIdentifier::CREDENTIAL_PASSWORD => 'password'
         ];
         // Load the authenticators. Session should be first.
-        $service->loadAuthenticator('Authentication.Session');
-        $service->loadAuthenticator('Authentication.Form', [
+        $service->loadAuthenticator('Auth.Session');
+        $service->loadAuthenticator('Auth.Form', [
             'fields' => $fields,
             'loginUrl' => Router::url([
                 'prefix' => false,
@@ -155,7 +155,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         // Load identifiers
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
+        $service->loadIdentifier('Auth.Password', compact('fields'));
 
         return $service;
     }
