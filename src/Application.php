@@ -16,6 +16,11 @@ declare(strict_types=1);
  */
 namespace App;
 
+use Authentication\AuthenticationService;
+use Authentication\AuthenticationServiceInterface;
+use Authentication\AuthenticationServiceProviderInterface;
+use Authentication\Identifier\AbstractIdentifier;
+use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Datasource\FactoryLocator;
@@ -27,12 +32,6 @@ use Cake\Http\MiddlewareQueue;
 use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
-use Authentication\AuthenticationService;
-use Authentication\AuthenticationServiceInterface;
-use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\AbstractIdentifier;
-use Authentication\Identifier\IdentifierInterface;
-use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -62,8 +61,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 (new TableLocator())->allowFallbackClass(false)
             );
         }
-        //Load Auth Plugin
-        $this->addPlugin('Auth');
+        //Load Authentication Plugin
+        $this->addPlugin('Authentication');
     }
 
     /**
@@ -132,7 +131,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             'unauthenticatedRedirect' => Router::url([
                 'prefix' => false,
                 'plugin' => null,
-                'controller' => 'Users',
+                'controller' => 'Auth',
                 'action' => 'login',
             ]),
             'queryParam' => 'redirect',
@@ -140,22 +139,22 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         $fields = [
             AbstractIdentifier::CREDENTIAL_USERNAME => 'email',
-            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password'
+            AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
         ];
         // Load the authenticators. Session should be first.
-        $service->loadAuthenticator('Auth.Session');
-        $service->loadAuthenticator('Auth.Form', [
+        $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
             'loginUrl' => Router::url([
                 'prefix' => false,
                 'plugin' => null,
-                'controller' => 'Users',
+                'controller' => 'Auth',
                 'action' => 'login',
             ]),
         ]);
 
         // Load identifiers
-        $service->loadIdentifier('Auth.Password', compact('fields'));
+        $service->loadIdentifier('Authentication.Password', compact('fields'));
 
         return $service;
     }

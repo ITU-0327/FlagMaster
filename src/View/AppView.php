@@ -37,7 +37,6 @@ class AppView extends View
      */
     public function initialize(): void
     {
-        $this->loadHelper('Auth.Identity');
-        $this->loadHelper('ContentBlock');
+        $this->loadHelper('Authentication.Identity');
     }
 }

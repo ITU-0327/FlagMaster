@@ -29,6 +29,8 @@ class AuthController extends AppController
     {
         parent::initialize();
 
+        $this->viewBuilder()->setLayout('auth');
+
         // By default, CakePHP will (sensibly) default to preventing users from accessing any actions on a controller.
         // These actions, however, are typically required for users who have not yet logged in.
         $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword']);
@@ -47,8 +49,7 @@ class AuthController extends AppController
     {
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-
-            if($this->request->getData('password') != $this->request->getData('password_confirm')){
+            if ($this->request->getData('password') != $this->request->getData('password_confirm')) {
                 $this->Flash->error('Password and confirm password do not match');
             } else {
                 $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -59,7 +60,6 @@ class AuthController extends AppController
                 }
                 $this->Flash->error('The user could not be registered. Please, try again.');
             }
-
         }
         $this->set(compact('user'));
     }
