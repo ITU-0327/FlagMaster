@@ -90,23 +90,23 @@
                 <label>
                     <i class="ti ti-cloud me-2 fs-4"></i>OAuth Provider
                 </label>
-                <div class="form-floating mb-3">
-                    <?= $this->Form->control('oauth_provider', [
-                        'label' => false,
-                        'class' => 'form-control',
-                        'placeholder' => 'OAuth Provider'
-                    ]) ?>
-                </div>
+<!--                <div class="form-floating mb-3">-->
+<!--                    --><?php //= $this->Form->control('oauth_provider', [
+//                        'label' => false,
+//                        'class' => 'form-control',
+//                        'placeholder' => 'OAuth Provider'
+//                    ]) ?>
+<!--                </div>-->
                 <label>
                     <i class="ti ti-id me-2 fs-4"></i>OAuth ID
                 </label>
-                <div class="form-floating mb-3">
-                    <?= $this->Form->control('oauth_id', [
-                        'label' => false,
-                        'class' => 'form-control',
-                        'placeholder' => 'OAuth ID'
-                    ]) ?>
-                </div>
+<!--                <div class="form-floating mb-3">-->
+<!--                    --><?php //= $this->Form->control('oauth_id', [
+//                        'label' => false,
+//                        'class' => 'form-control',
+//                        'placeholder' => 'OAuth ID'
+//                    ]) ?>
+<!--                </div>-->
                 </div>
             </fieldset>
             <div class="mt-3 mt-md-0 ms-auto">
