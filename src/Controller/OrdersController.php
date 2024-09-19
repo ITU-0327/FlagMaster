@@ -107,19 +107,15 @@ class OrdersController extends AppController
 
     public function checkout($productId = null)
     {
-        // 确保有传递 productId
         if ($productId === null) {
             $this->Flash->error(__('Product not found.'));
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
-        // 从产品表获取产品信息
         $product = $this->Orders->Products->get($productId);
 
-        // 创建一个新的订单实体
         $order = $this->Orders->newEmptyEntity();
 
-        // 当用户提交表单时
         if ($this->request->is('post')) {
             $orderData = $this->request->getData();
             $orderData['product_id'] = $productId;  // 关联产品ID
