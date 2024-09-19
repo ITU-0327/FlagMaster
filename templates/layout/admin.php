@@ -13,6 +13,7 @@
 <!--<div class="preloader">-->
 <!--    --><?php //= $this->Html->image('cake.icon.png', ['alt' => 'loader', 'class' => 'lds-ripple img-fluid']) ?>
 <!--</div>-->
+
 <div id="main-wrapper">
     <?= $this->element('left-sidebar') ?>
 
