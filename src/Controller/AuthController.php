@@ -49,12 +49,17 @@ class AuthController extends AppController
     {
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
-            if ($this->request->getData('password') != $this->request->getData('password_confirm')) {
+            $data = $this->request->getData();
+
+            if ($data['password'] !== $data['password_confirm']) {
                 $this->Flash->error('Password and confirm password do not match');
             } else {
-                $user = $this->Users->patchEntity($user, $this->request->getData());
+                // Remove password_confirm from data before patching entity
+                unset($data['password_confirm']);
+                $user = $this->Users->patchEntity($user, $data);
+
                 if ($this->Users->save($user)) {
-                    $this->Flash->success('You have been registered. Please log in. ');
+                    $this->Flash->success('You have been registered. Please log in.');
 
                     return $this->redirect(['action' => 'login']);
                 }
@@ -221,15 +226,14 @@ class AuthController extends AppController
      */
     public function logout()
     {
-        // We only need to log out a user when they're logged in
+        $this->request->allowMethod(['post']);
+
         $result = $this->Authentication->getResult();
         if ($result && $result->isValid()) {
             $this->Authentication->logout();
-
-            $this->Flash->success('You have been logged out successfully. ');
+            $this->Flash->success('You have been logged out successfully.');
         }
 
-        // Otherwise just send them to the login page
         return $this->redirect(['controller' => 'Auth', 'action' => 'login']);
     }
 }

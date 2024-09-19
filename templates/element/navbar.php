@@ -504,7 +504,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Form->postLink(
+                                'Log Out',
+                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>
@@ -1209,7 +1213,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Form->postLink(
+                                'Log Out',
+                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>

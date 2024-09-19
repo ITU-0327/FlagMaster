@@ -133,9 +133,19 @@
                     <h6 class="mb-0 fs-4 fw-semibold">Lucas</h6>
                     <span class="fs-2">Owner</span>
                 </div>
-                <button class="border-0 bg-transparent text-primary ms-auto" tabindex="0" type="button" aria-label="logout" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="logout">
-                    <i class="ti ti-power fs-6"></i>
-                </button>
+                <?= $this->Form->postLink(
+                    '<i class="ti ti-power fs-6"></i>',
+                    ['controller' => 'Auth', 'action' => 'logout'],
+                    [
+                        'escape' => false,
+                        'class' => 'border-0 bg-transparent text-primary ms-auto',
+                        'tabindex' => '0',
+                        'aria-label' => 'Logout',
+                        'data-bs-toggle' => 'tooltip',
+                        'data-bs-placement' => 'top',
+                        'title' => 'Logout',
+                    ]
+                ); ?>
             </div>
         </div>
 
