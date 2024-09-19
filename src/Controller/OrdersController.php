@@ -78,6 +78,7 @@ class OrdersController extends AppController
      */
     public function edit(?string $id = null)
     {
+        $quantity = $this->request->getData('quantityInput');
         $order = $this->Orders->get($id, contain: ['Products']);
         $this->Authorization->authorize($order);
 
@@ -119,13 +120,31 @@ class OrdersController extends AppController
 
     public function checkout($productId = null)
     {
-        $productsTable = $this->getTableLocator()->get('Products');
-        if ($productId) {
-            $product = $productsTable->get($productId);
-        } else {
+        // 确保有传递 productId
+        if ($productId === null) {
+            $this->Flash->error(__('Product not found.'));
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
-        $this->set(compact('product'));
+        // 从产品表获取产品信息
+        $product = $this->Orders->Products->get($productId);
+
+        // 创建一个新的订单实体
+        $order = $this->Orders->newEmptyEntity();
+
+        // 当用户提交表单时
+        if ($this->request->is('post')) {
+            $orderData = $this->request->getData();
+            $orderData['product_id'] = $productId;  // 关联产品ID
+            $order = $this->Orders->patchEntity($order, $orderData);
+
+            if ($this->Orders->save($order)) {
+                $this->Flash->success(__('Order has been placed successfully.'));
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('Unable to place the order.'));
+        }
+
+        $this->set(compact('product', 'order'));
     }
 }
