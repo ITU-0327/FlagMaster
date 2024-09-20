@@ -2,6 +2,23 @@
 /**
  * @var \App\View\AppView $this
  */
+
+$user = $this->request->getAttribute('identity');
+
+// Initialize variables with default values
+$profilePicture = 'profile/user-1.jpg'; // Default profile picture
+$fullName = h($user->username);
+$username = h($user->username);
+
+// Check if the user has a profile with first_name and last_name
+if (!empty($user->profile) && (!empty($user->profile->first_name) || !empty($user->profile->last_name))) {
+    $fullName = h(trim($user->profile->first_name . ' ' . $user->profile->last_name));
+}
+
+// Check if the user has a profile picture
+if (!empty($user->profile) && !empty($user->profile->profile_picture)) {
+    $profilePicture = $user->profile->profile_picture;
+}
 ?>
 <aside class="left-sidebar with-vertical">
     <div>
@@ -122,16 +139,16 @@
         <div class="fixed-profile p-3 mx-4 mb-2 bg-secondary-subtle rounded mt-3">
             <div class="hstack gap-3">
                 <div class="john-img">
-                    <?= $this->Html->image('profile/user-1.jpg', [
-                        'alt' => 'modernize-img',
+                    <?= $this->Html->image($profilePicture, [
+                        'alt' => 'Profile Picture',
                         'class' => 'rounded-circle',
                         'width' => 40,
                         'height' => 40,
                     ]) ?>
                 </div>
                 <div class="john-title">
-                    <h6 class="mb-0 fs-4 fw-semibold">Lucas</h6>
-                    <span class="fs-2">Owner</span>
+                    <h6 class="mb-0 fs-4 fw-semibold"><?= $fullName ?></h6>
+                    <span class="fs-2">@<?= $username ?></span>
                 </div>
                 <?= $this->Form->postLink(
                     '<i class="ti ti-power fs-6"></i>',

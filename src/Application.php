@@ -157,7 +157,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ]);
 
         // Load identifiers
-        $service->loadIdentifier('Authentication.Password', compact('fields'));
+        $service->loadIdentifier('Authentication.Password', [
+            compact('fields'),
+            'resolver' => [
+                'className' => 'Authentication.Orm',
+                'userModel' => 'Users',
+                'finder' => 'withProfile',
+            ],
+        ]);
 
         return $service;
     }
