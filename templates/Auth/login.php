@@ -1,31 +1,36 @@
-<?php
-?>
-
 <div class="position-relative overflow-hidden radial-gradient min-vh-100 w-100 d-flex align-items-center justify-content-center">
     <div class="d-flex align-items-center justify-content-center w-100">
         <div class="row justify-content-center w-100">
             <div class="col-md-8 col-lg-6 col-xxl-3 auth-card">
                 <div class="card mb-0">
                     <div class="card-body">
-                        <a href="" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                            <?= $this->Html->image(
-                                'logos/dark-logo.svg',
-                                ['alt' => 'Logo-Dark', 'class' => 'dark-logo']
-                            ); ?>
-                            <?= $this->Html->image(
-                                'logos/light-logo.svg',
-                                ['alt' => 'Logo-light', 'class' => 'light-logo']
-                            ); ?>
-                        </a>
+                        <?= $this->Html->link(
+                            $this->Html->image('logos/dark-logo.svg', [
+                                'alt' => 'Logo-Dark',
+                                'class' => 'dark-logo',
+                            ]) .
+                            $this->Html->image('logos/light-logo.svg', [
+                                'alt' => 'Logo-light',
+                                'class' => 'light-logo',
+                            ]),
+                            '/',
+                            ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
+                        ) ?>
                         <div class="row">
                             <div class="col-6 mb-2 mb-sm-0">
-                                <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
-                                    <?= $this->Html->image(
-                                        'svgs/google-icon.svg',
-                                        ['alt' => 'flagmaster-img', 'class' => 'img-fluid me-2', 'width' => 18, 'height' => 18]
-                                    ); ?>
-                                    <span class="flex-shrink-0">with Google</span>
-                                </a>
+                                <?= $this->Html->link(
+                                    $this->Html->image('svgs/google-icon.svg', [
+                                        'alt' => 'Google',
+                                        'class' => 'img-fluid me-2',
+                                        'width' => 18,
+                                        'height' => 18,
+                                    ]) . '<span class="flex-shrink-0">with Google</span>',
+                                    ['controller' => 'Auth', 'action' => 'googleLogin'],
+                                    [
+                                        'escape' => false,
+                                        'class' => 'btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8',
+                                    ]
+                                ); ?>
                             </div>
                             <div class="col-6">
                                 <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
@@ -44,7 +49,6 @@
                             <span class="border-top w-100 position-absolute top-50 start-50 translate-middle"></span>
                         </div>
                         <?= $this->Form->create(null, ['class' => '']) ?>
-                        <?= $this->Flash->render() ?>
                         <div class="mb-3">
                             <?= $this->Form->control('email', [
                                 'label' => 'Email',
@@ -79,7 +83,11 @@
                                     Remember this Device
                                 </label>
                             </div>
-                            <a class="text-primary fw-medium" href="authentication-forgot-password">Forgot Password?</a>
+                            <?= $this->Html->link(
+                                'Forgot Password?',
+                                ['controller' => 'Auth', 'action' => 'forgetPassword'],
+                                ['class' => 'text-primary fw-medium']
+                            ); ?>
                         </div>
                         <?= $this->Form->button(
                             'Sign In',
@@ -89,9 +97,11 @@
 
                         <div class="d-flex align-items-center justify-content-center">
                             <p class="fs-4 mb-0 fw-medium">New to flagmaster?</p>
-                            <a class="text-primary fw-medium ms-2" href="authentication-register">
-                                Create an account
-                            </a>
+                            <?= $this->Html->link(
+                                'Create an account',
+                                ['controller' => 'Auth', 'action' => 'register'],
+                                ['class' => 'text-primary fw-medium ms-2']
+                            ); ?>
                         </div>
                     </div>
                 </div>

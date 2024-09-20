@@ -11,11 +11,12 @@
 <body>
 <!-- Preloader -->
 <div class="preloader">
-    <?= $this->Html->image('logos/favicon.png', [
+    <?= $this->ContentBlock->image('preloader-logo', [
         'alt' => 'loader',
         'class' => 'lds-ripple img-fluid',
     ]) ?>
 </div>
+
 <div id="main-wrapper">
     <?= $this->element('left-sidebar') ?>
 
@@ -25,6 +26,7 @@
 
         <div class="body-wrapper">
             <div class="container-fluid">
+                <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
             </div>
         </div>
@@ -73,7 +75,7 @@
                 <li class="pb-7">
                     <div class="d-flex align-items-center">
                         <?= $this->Html->image('products/product-1.jpg', [
-                            'alt' => 'modernize-img',
+                            'alt' => 'flagmaster-img',
                             'class' => 'rounded-1 me-9 flex-shrink-0',
                             'width' => '95',
                             'height' => '75',

@@ -10,6 +10,7 @@
         "cakephp/cakephp": "^5.0.1",
         "cakephp/migrations": "^4.0.0",
         "cakephp/plugin-installer": "^2.0",
+        "google/apiclient": "2.17",
         "mobiledetect/mobiledetectlib": "^4.8.03",
         "ugie-cake/cakephp-content-blocks": "^1.3"
     },

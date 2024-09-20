@@ -55,6 +55,7 @@ class UsersTable extends Table
         $this->hasOne('Profiles', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
+            'dependent' => true,
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'user_id',

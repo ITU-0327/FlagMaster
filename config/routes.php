@@ -58,6 +58,10 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
         $builder->connect('/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
         $builder->connect('/pages/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
+
+        $builder->connect('/auth/google', ['controller' => 'Auth', 'action' => 'googleLogin']);
+        $builder->connect('/auth/google-callback', ['controller' => 'Auth', 'action' => 'googleCallback']);
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */

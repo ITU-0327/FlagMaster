@@ -3,23 +3,21 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\Table\UsersTable;
 use Cake\I18n\DateTime;
 use Cake\Mailer\Mailer;
 use Cake\Utility\Security;
+use Exception;
+use Google\Client as GoogleClient;
+use Google\Service\Oauth2 as Google_Service_Oauth2;
 
 /**
  * Auth Controller
  *
- * @property \Authentication\Controller\Component\AuthenticationComponent $Auth
+ * @property \App\Model\Table\UsersTable $Users
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  */
 class AuthController extends AppController
 {
-    /**
-     * @var \App\Model\Table\UsersTable $Users
-     */
-    private UsersTable $Users;
-
     /**
      * Controller initialize override
      *
@@ -33,7 +31,7 @@ class AuthController extends AppController
 
         // By default, CakePHP will (sensibly) default to preventing users from accessing any actions on a controller.
         // These actions, however, are typically required for users who have not yet logged in.
-        $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword']);
+        $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword', 'googleLogin', 'googleCallback']);
 
         // CakePHP loads the model with the same name as the controller by default.
         // Since we don't have an Auth model, we'll need to load "Users" model when starting the controller manually.
@@ -56,6 +54,11 @@ class AuthController extends AppController
             } else {
                 // Remove password_confirm from data before patching entity
                 unset($data['password_confirm']);
+
+                // Extract username from email
+                $email = $data['email'];
+                $data['username'] = substr($email, 0, strpos($email, '@'));
+
                 $user = $this->Users->patchEntity($user, $data);
 
                 if ($this->Users->save($user)) {
@@ -235,5 +238,137 @@ class AuthController extends AppController
         }
 
         return $this->redirect(['controller' => 'Auth', 'action' => 'login']);
+    }
+
+    /**
+     * Google Login method
+     *
+     * @return \Cake\Http\Response|null|void Redirect to Google login page
+     */
+    public function googleLogin()
+    {
+        $client = new GoogleClient();
+        $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URI'));
+        $client->addScope(['email', 'profile']);
+
+        $authUrl = $client->createAuthUrl();
+
+        return $this->redirect($authUrl);
+    }
+
+    /**
+     * Google Login method
+     *
+     * @return \Cake\Http\Response|null|void Redirect to Google login page
+     */
+    public function googleCallback()
+    {
+        $this->request->allowMethod(['get']);
+
+        $code = $this->request->getQuery('code');
+        if (empty($code)) {
+            $this->Flash->error('Login failed, no authorization code received.');
+
+            return $this->redirect(['action' => 'login']);
+        }
+
+        $client = new GoogleClient();
+        $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URI'));
+
+        try {
+            $accessToken = $client->fetchAccessTokenWithAuthCode($code);
+
+            if (isset($accessToken['error'])) {
+                $this->Flash->error('Login failed, unable to get access token.');
+
+                return $this->redirect(['action' => 'login']);
+            }
+
+            $client->setAccessToken($accessToken);
+
+            $oauth2 = new Google_Service_Oauth2($client);
+            $googleUser = $oauth2->userinfo->get();
+
+            // Now you have the user's information in $googleUser
+            // You can use $googleUser->email, $googleUser->name, etc.
+
+            $usersTable = $this->Users;
+
+            $user = $usersTable->find()
+                ->where([
+                    'oauth_provider' => 'google',
+                    'oauth_id' => $googleUser->id,
+                ])
+                ->contain(['Profiles'])
+                ->first();
+
+            if ($user) {
+                // User exists, log them in
+                $this->Authentication->setIdentity($user);
+            } else {
+                // Check if a user with the same email exists
+                $user = $usersTable->find()
+                    ->where(['email' => $googleUser->email])
+                    ->contain(['Profiles'])
+                    ->first();
+
+                if ($user) {
+                    // Update the user's oauth_provider and oauth_id
+                    $user = $usersTable->patchEntity($user, [
+                        'oauth_provider' => 'google',
+                        'oauth_id' => $googleUser->id,
+                    ]);
+                } else {
+                    $username = substr($googleUser->email, 0, strpos($googleUser->email, '@'));
+
+                    // Create a new user
+                    $user = $usersTable->newEntity([
+                        'email' => $googleUser->email,
+                        'username' => $username,
+                        'oauth_provider' => 'google',
+                        'oauth_id' => $googleUser->id,
+                        'role' => 'customer',
+                    ]);
+                }
+
+                if ($usersTable->save($user)) {
+                    $profilesTable = $this->getTableLocator()->get('Profiles');
+
+                    if (isset($user->profile)) {
+                        $profile = $profilesTable->patchEntity($user->profile, [
+                            'first_name' => $googleUser->givenName,
+                            'last_name' => $googleUser->familyName,
+                            'profile_picture' => $googleUser->picture,
+                        ]);
+                    } else {
+                        $profile = $profilesTable->newEntity([
+                            'user_id' => $user->id,
+                            'first_name' => $googleUser->givenName,
+                            'last_name' => $googleUser->familyName,
+                            'profile_picture' => $googleUser->picture,
+                        ]);
+                    }
+
+                    $profilesTable->save($profile);
+
+                    $this->Authentication->setIdentity($user);
+                } else {
+                    $this->Flash->error('Unable to register user.');
+
+                    return $this->redirect(['action' => 'login']);
+                }
+            }
+
+            // Redirect to desired page
+            return $this->redirect($this->Authentication->getLoginRedirect() ?? ['controller' => 'Users', 'action' => 'index']);
+        } catch (Exception $e) {
+            $this->Flash->error('Login failed: ' . $e->getMessage());
+
+            return $this->redirect(['action' => 'login']);
+        }
     }
 }

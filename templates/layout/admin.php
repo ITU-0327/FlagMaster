@@ -10,9 +10,12 @@
 
 <body>
 <!-- Preloader -->
-<!--<div class="preloader">-->
-<!--    --><?php //= $this->Html->image('cake.icon.png', ['alt' => 'loader', 'class' => 'lds-ripple img-fluid']) ?>
-<!--</div>-->
+<div class="preloader">
+    <?= $this->ContentBlock->image('preloader-logo', [
+        'alt' => 'loader',
+        'class' => 'lds-ripple img-fluid',
+    ]) ?>
+</div>
 
 <div id="main-wrapper">
     <?= $this->element('left-sidebar') ?>
@@ -75,7 +78,7 @@
                             'alt' => 'flagmaster-img',
                             'class' => 'rounded-1 me-9 flex-shrink-0',
                             'width' => 95,
-                            'height' => 75
+                            'height' => 75,
                         ]) ?>
                         <div>
                             <h6 class="mb-1">Supreme toys cooker</h6>
