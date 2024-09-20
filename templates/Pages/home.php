@@ -254,7 +254,12 @@ $this->disableAutoLayout();
                                 ); ?>
                             </li>
                             <li class="nav-item ms-2">
-                                <a class="btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2" href="authentication-login">Login</a>
+                                <?= $this->Html->link(
+                                    'Login',
+                                    ['controller' => 'Auth', 'action' => 'login'],
+                                    ['class' => 'btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2']
+                                ); ?>
+
                             </li>
                         </ul>
                     </div>
@@ -278,8 +283,16 @@ $this->disableAutoLayout();
                                     <?= $this->ContentBlock->text('sub-headline'); ?>
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                                    <a class="btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0" href="authentication-login">Login</a>
-                                    <a class="btn btn-outline-primary d-block scroll-link px-7 py-6" href="authentication-register">Register</a>
+                                    <?= $this->Html->link(
+                                        'Login',
+                                        ['controller' => 'Auth', 'action' => 'login'],
+                                        ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'Register',
+                                        ['controller' => 'Auth', 'action' => 'register'],
+                                        ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                    ); ?>
                                 </div>
                             </div>
                         </div>
@@ -1783,8 +1796,16 @@ $this->disableAutoLayout();
                                 Start your journey with Flag Master
                             </h2>
                             <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-                                <a href="authentication-login" class="btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6">Login</a>
-                                <a href="authentication-register" class="btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6">Register</a>
+                                <?= $this->Html->link(
+                                    'Login',
+                                    ['controller' => 'Auth', 'action' => 'login'],
+                                    ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                ); ?>
+                                <?= $this->Html->link(
+                                    'Register',
+                                    ['controller' => 'Auth', 'action' => 'register'],
+                                    ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                ); ?>
                             </div>
                         </div>
                         <div class="col-lg-5 col-xl-5">
@@ -2031,7 +2052,11 @@ $this->disableAutoLayout();
                     </li>
                 </ul>
                 <form class="d-flex mt-3" role="search">
-                    <a href="authentication-login" class="btn btn-primary w-100 py-2">Login</a>
+                    <?= $this->Html->link(
+                        'Login',
+                        ['controller' => 'Auth', 'action' => 'login'],
+                        ['class' => 'btn btn-primary w-100 py-2']
+                    ); ?>
                 </form>
             </div>
         </div>

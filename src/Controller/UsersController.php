@@ -17,19 +17,9 @@ class UsersController extends AppController
      */
     public function index()
     {
-        // Set pagination limit to 5 users per page, ordered by username ascending
-        $this->paginate = [
-            'limit' => 5,
-            'order' => ['Users.username' => 'asc']
-        ];
+        $users = $this->Users->find('all')
+            ->contain(['Profiles']);
 
-        // Initialize the query to fetch users
-        $query = $this->Users->find();
-
-        // Paginate the result
-        $users = $this->paginate($query);
-
-        // Pass the paginated users to the view
         $this->set(compact('users'));
     }
 
@@ -40,7 +30,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $user = $this->Users->get($id, contain: ['Enquiries', 'Orders', 'Profiles', 'Reviews']);
         $this->set(compact('user'));
@@ -73,7 +63,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $user = $this->Users->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -95,7 +85,7 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);

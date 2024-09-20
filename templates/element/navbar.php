@@ -2,6 +2,25 @@
 /**
  * @var \App\View\AppView $this
  */
+
+// Access the logged-in user's data
+$user = $this->request->getAttribute('identity');
+
+// Initialize variables with default values
+$profilePicture = 'profile/user-1.jpg';
+$fullName = h($user->username);
+$username = h($user->username);
+$email = h($user->email);
+
+// Check if the user has a profile with first_name and last_name
+if (!empty($user->profile) && (!empty($user->profile->first_name) || !empty($user->profile->last_name))) {
+    $fullName = h($user->profile->first_name . ' ' . $user->profile->last_name);
+}
+
+// Check if the user has a profile picture
+if (!empty($user->profile) && !empty($user->profile->profile_picture)) {
+    $profilePicture = $user->profile->profile_picture;
+}
 ?>
 <header class="topbar">
         <div class="with-vertical">
@@ -427,8 +446,8 @@
                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
-                            <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'flagmaster-img',
+                            <?= $this->Html->image($profilePicture, [
+                                'alt' => 'Profile Picture',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
                                 'height' => '35',
@@ -442,17 +461,17 @@
                           <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                         </div>
                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                            <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'flagmaster-img',
+                            <?= $this->Html->image($profilePicture, [
+                                'alt' => 'Profile Picture',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
                                 'height' => '80',
-                            ]) ?>
+                            ]); ?>
                           <div class="ms-3">
-                            <h5 class="mb-1 fs-3">Lucas Anderson</h5>
-                            <span class="mb-1 d-block">Business Owner</span>
+                            <h5 class="mb-1 fs-3"><?= $fullName ?></h5>
+                            <span class="mb-1 d-block">@<?= $username ?></span>
                             <p class="mb-0 d-flex align-items-center gap-2">
-                              <i class="ti ti-mail fs-4"></i> info@flagmaster.com
+                                <i class="ti ti-mail fs-4"></i> <?= $email ?>
                             </p>
                           </div>
                         </div>
@@ -504,7 +523,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Form->postLink(
+                                'Log Out',
+                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>
@@ -1136,8 +1159,8 @@
                     <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" aria-expanded="false">
                       <div class="d-flex align-items-center">
                         <div class="user-profile-img">
-                            <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'flagmaster-img',
+                            <?= $this->Html->image($profilePicture, [
+                                'alt' => 'Profile Picture',
                                 'class' => 'rounded-circle',
                                 'width' => '35',
                                 'height' => '35',
@@ -1151,47 +1174,51 @@
                           <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                         </div>
                         <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                            <?= $this->Html->image('profile/user-1.jpg', [
-                                'alt' => 'flagmaster-img',
+                            <?= $this->Html->image($profilePicture, [
+                                'alt' => 'Profile Picture',
                                 'class' => 'rounded-circle',
                                 'width' => '80',
                                 'height' => '80',
-                            ]) ?>
+                            ]); ?>
                           <div class="ms-3">
-                            <h5 class="mb-1 fs-3">Lucas Anderson</h5>
-                            <span class="mb-1 d-block">Business Owner</span>
+                            <h5 class="mb-1 fs-3"><?= $fullName ?></h5>
+                            <span class="mb-1 d-block">@<?= $username ?></span>
                             <p class="mb-0 d-flex align-items-center gap-2">
-                              <i class="ti ti-mail fs-4"></i> info@flagmaster.com
+                              <i class="ti ti-mail fs-4"></i> <?= $email ?>
                             </p>
                           </div>
                         </div>
                         <div class="message-body">
-                          <a href="user-profile" class="py-8 px-7 mt-8 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-account.svg', [
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-account.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24',
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>
-                              <span class="fs-2 d-block text-body-secondary">Account Settings</span>
-                            </div>
-                          </a>
-                          <a href="email" class="py-8 px-7 d-flex align-items-center">
-                            <span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">
-                                <?= $this->Html->image('svgs/icon-inbox.svg', [
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
+                                '</div>',
+                                ['controller' => 'Profiles', 'action' => 'index', 'plugin' => false],
+                                ['class' => 'py-8 px-7 mt-8 d-flex align-items-center', 'escape' => false]
+                            ); ?>
+                            <?= $this->Html->link(
+                                '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                $this->Html->image('svgs/icon-inbox.svg', [
                                     'alt' => 'flagmaster-img',
                                     'width' => '24',
                                     'height' => '24',
-                                ]) ?>
-                            </span>
-                            <div class="w-100 ps-3">
-                              <h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>
-                              <span class="fs-2 d-block text-body-secondary">Messages & Emails</span>
-                            </div>
-                          </a>
+                                ]) .
+                                '</span>' .
+                                '<div class="w-100 ps-3">' .
+                                '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
+                                '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
+                                '</div>',
+                                ['controller' => 'Enquiries', 'action' => 'index', 'plugin' => false],
+                                ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                            ); ?>
                             <?= $this->Html->link(
                                 '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
                                 $this->Html->image('svgs/icon-dd-invoice.svg', [
@@ -1209,7 +1236,11 @@
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
-                          <a href="authentication-login" class="btn btn-outline-primary">Log Out</a>
+                            <?= $this->Form->postLink(
+                                'Log Out',
+                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['class' => 'btn btn-outline-primary']
+                            ); ?>
                         </div>
                       </div>
                     </div>

@@ -37,6 +37,7 @@ class Profile extends Entity
         'first_name' => true,
         'last_name' => true,
         'phone' => true,
+        'profile_picture' => true,
         'created_at' => true,
         'updated_at' => true,
         'user' => true,

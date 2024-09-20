@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -15,7 +15,6 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\OrdersTable&\Cake\ORM\Association\HasMany $Orders
  * @property \App\Model\Table\ProfilesTable&\Cake\ORM\Association\HasMany $Profiles
  * @property \App\Model\Table\ReviewsTable&\Cake\ORM\Association\HasMany $Reviews
- *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\User> newEntities(array $data, array $options = [])
@@ -55,6 +54,7 @@ class UsersTable extends Table
         $this->hasOne('Profiles', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
+            'dependent' => true,
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'user_id',
@@ -123,5 +123,15 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['oauth_provider', 'oauth_id'], ['allowMultipleNulls' => true]), ['errorField' => 'oauth_provider']);
 
         return $rules;
+    }
+
+    /**
+     * @param \Cake\ORM\Query\SelectQuery $query Query object
+     * @param array<string, mixed> $options Options
+     * @return \Cake\ORM\Query
+     */
+    public function findWithProfile(Query $query, array $options): Query
+    {
+        return $query->contain(['Profiles']);
     }
 }
