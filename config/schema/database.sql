@@ -34,8 +34,10 @@ CREATE TABLE `profiles` (
     `first_name` VARCHAR(50),
     `last_name` VARCHAR(50),
     `phone` VARCHAR(20),
+    `profile_picture` varchar(255),
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY `unique_user_id` (`user_id`),
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`address_id`) REFERENCES `addresses`(`id`) ON DELETE SET NULL
 );
