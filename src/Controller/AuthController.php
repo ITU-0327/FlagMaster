@@ -338,18 +338,39 @@ class AuthController extends AppController
                 if ($usersTable->save($user)) {
                     $profilesTable = $this->getTableLocator()->get('Profiles');
 
+                    $profilePictureUrl = $googleUser->picture;
+
+                    $filename = $user->username . '.' . uniqid() . '.jpg';
+
+                    $uploadPath = WWW_ROOT . 'img' . DS . 'profile' . DS;
+
+                    if (!file_exists($uploadPath)) {
+                        mkdir($uploadPath, 0755, true);
+                    }
+
+                    $fullPath = $uploadPath . $filename;
+
+                    $imageContent = file_get_contents($profilePictureUrl);
+                    if ($imageContent !== false) {
+                        file_put_contents($fullPath, $imageContent);
+
+                        $profilePicturePath = 'profile/' . $filename;
+                    } else {
+                        $profilePicturePath = null;
+                    }
+
                     if (isset($user->profile)) {
                         $profile = $profilesTable->patchEntity($user->profile, [
                             'first_name' => $googleUser->givenName,
                             'last_name' => $googleUser->familyName,
-                            'profile_picture' => $googleUser->picture,
+                            'profile_picture' => $profilePicturePath,
                         ]);
                     } else {
                         $profile = $profilesTable->newEntity([
                             'user_id' => $user->id,
                             'first_name' => $googleUser->givenName,
                             'last_name' => $googleUser->familyName,
-                            'profile_picture' => $googleUser->picture,
+                            'profile_picture' => $profilePicturePath,
                         ]);
                     }
 

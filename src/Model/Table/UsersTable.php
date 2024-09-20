@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -129,7 +130,7 @@ class UsersTable extends Table
      * @param array<string, mixed> $options Options
      * @return \Cake\ORM\Query
      */
-    public function findWithProfile(Query $query, array $options): \Cake\ORM\Query
+    public function findWithProfile(Query $query, array $options): Query
     {
         return $query->contain(['Profiles']);
     }

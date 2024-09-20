@@ -158,7 +158,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         // Load identifiers
         $service->loadIdentifier('Authentication.Password', [
-            compact('fields'),
+            'fields' => $fields,
             'resolver' => [
                 'className' => 'Authentication.Orm',
                 'userModel' => 'Users',
