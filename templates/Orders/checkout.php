@@ -87,17 +87,27 @@
                         <div class="order-summary border rounded p-4 my-4">
                             <div class="p-3">
                                 <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
+                                <!-- 添加数量部分 -->
                                 <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 fs-4">Sub Total</p>
-                                    <h6 class="mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                    <p class="mb-0 fs-4">Quantity</p>
+                                    <!-- 添加类名 quantity，以便于JavaScript更新 -->
+                                    <h6 class="quantity mb-0 fs-4 fw-semibold">1</h6>
                                 </div>
+                                <!-- 将 "Sub Total" 改为 "Unit Price" -->
                                 <div class="d-flex justify-content-between mb-4">
+                                    <p class="mb-0 fs-4">Unit Price</p>
+                                    <!-- 添加类名 unitPrice，以便于JavaScript更新 -->
+                                    <h6 class="unitPrice mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                </div>
+                                <!-- 删除运费部分 -->
+                                <!-- <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 fs-4">Shipping</p>
                                     <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
-                                </div>
+                                </div> -->
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                    <h6 id="totalPrice" class="mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                    <h6 class="mb-0 fs-4 fw-semibold">Total Price</h6>
+                                    <!-- 添加类名 totalCost -->
+                                    <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -146,25 +156,6 @@
                                             </h6>
                                             <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- order summary -->
-                            <div class="order-summary border rounded p-4 my-4">
-                                <div class="p-3">
-                                    <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Sub Total</p>
-                                        <h6 class="subTotal mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Shipping</p>
-                                        <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -260,9 +251,14 @@
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Sub Total</p>
+                                        <p class="mb-0 fs-4">Unit price</p>
                                         <h6 class="subTotal mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <p class="mb-0 fs-4">Quantity</p>
+                                        <h6 class="quantity mb-0 fs-4 fw-semibold">1</h6>
+                                    </div>
+
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
                                         <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
@@ -297,42 +293,55 @@
             </div>
         </div>
         <script>
-            var productPrice = <?= $product->price ?>;
-            var shippingCost = 0;
+            var unitPrice = <?= $product->price ?>;
+            var shippingCost = 0; // The initial freight is 0
+            var currentQty = 1;   // The initial quantity is 1
 
             function updateTotal() {
                 var qtyInput = document.getElementById("quantityInput");
-                var currentQty = parseInt(qtyInput.value);
+                currentQty = parseInt(qtyInput.value);
                 if (isNaN(currentQty) || currentQty < 1) {
                     currentQty = 1;
                     qtyInput.value = 1;
                 }
 
-                var subTotal = productPrice * currentQty;
-                var total = subTotal + shippingCost;
+                var subTotal = unitPrice * currentQty;
+                var totalPrice = subTotal + shippingCost;
 
-                // 更新购物车中的行总价（步骤1）
-                var lineTotalElement = document.getElementById("lineTotal");
-                if (lineTotalElement) {
-                    lineTotalElement.innerText = '$' + subTotal.toFixed(2);
+                // The updated product price is displayed as the unit price.
+                var productPriceElement = document.getElementById("productPrice");
+                if (productPriceElement) {
+                    productPriceElement.innerText = '$' + unitPrice.toFixed(2);
                 }
 
-                // 更新所有具有 'subTotal' 类的元素
+                // Update the quantity in the order summary
+                var quantityElements = document.getElementsByClassName("quantity");
+                for (var i = 0; i < quantityElements.length; i++) {
+                    quantityElements[i].innerText = currentQty;
+                }
+
+                // Update the unit price in the order summary (Unit Price)
+                var unitPriceElements = document.getElementsByClassName("unitPrice");
+                for (var i = 0; i < unitPriceElements.length; i++) {
+                    unitPriceElements[i].innerText = '$' + unitPrice.toFixed(2);
+                }
+
+                // Subtotal in the update order summary (Sub Total)
                 var subTotalElements = document.getElementsByClassName("subTotal");
                 for (var i = 0; i < subTotalElements.length; i++) {
                     subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
                 }
 
-                // 更新所有具有 'shippingCost' 类的元素
+                // Update the freight in the order summary (Shipping)
                 var shippingCostElements = document.getElementsByClassName("shippingCost");
                 for (var i = 0; i < shippingCostElements.length; i++) {
                     shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
                 }
 
-                // 更新所有具有 'totalCost' 类的元素
+                // Update the total price in the order summary (TotaL)
                 var totalCostElements = document.getElementsByClassName("totalCost");
                 for (var i = 0; i < totalCostElements.length; i++) {
-                    totalCostElements[i].innerText = '$' + total.toFixed(2);
+                    totalCostElements[i].innerText = '$' + totalPrice.toFixed(2);
                 }
             }
 
@@ -343,7 +352,7 @@
 
             function increaseQuantity() {
                 var qtyInput = document.getElementById("quantityInput");
-                var currentQty = parseInt(qtyInput.value);
+                currentQty = parseInt(qtyInput.value);
                 if (!isNaN(currentQty)) {
                     qtyInput.value = currentQty + 1;
                     updateTotal();
@@ -352,7 +361,7 @@
 
             function decreaseQuantity() {
                 var qtyInput = document.getElementById("quantityInput");
-                var currentQty = parseInt(qtyInput.value);
+                currentQty = parseInt(qtyInput.value);
                 if (!isNaN(currentQty) && currentQty > 1) {
                     qtyInput.value = currentQty - 1;
                     updateTotal();
