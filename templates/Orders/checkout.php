@@ -44,7 +44,7 @@
                                 <tr>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-3 overflow-hidden">
-                                            <?= $this->Html->image('/img/products/Brazil-Flag.png', [
+                                            <?= $this->Html->image('products/Brazil-Flag.png', [
                                                 'alt' => h($product->name),
                                                 'class' => 'img-fluid rounded',
                                                 'width' => '80',
@@ -103,129 +103,96 @@
                         </div>
                     </section>
 
-                    <script>
-                        function updateTotal() {
-                            var qtyInput = document.getElementById("quantityInput");
-                            var price = parseFloat(document.getElementById("productPrice").innerText.replace('$', ''));
-                            var totalElement = document.getElementById("totalPrice");
-
-                            var currentQty = parseInt(qtyInput.value);
-                            if (!isNaN(currentQty)) {
-                                var total = price * currentQty;
-                                totalElement.innerText = '$' + total.toFixed(2);
-                            }
-                        }
-
-                        function increaseQuantity() {
-                            var qtyInput = document.getElementById("quantityInput");
-                            var currentQty = parseInt(qtyInput.value);
-                            if (!isNaN(currentQty)) {
-                                qtyInput.value = currentQty + 1;
-                                updateTotal();
-                            }
-                        }
-
-                        function decreaseQuantity() {
-                            var qtyInput = document.getElementById("quantityInput");
-                            var currentQty = parseInt(qtyInput.value);
-                            if (!isNaN(currentQty) && currentQty > 1) {
-                                qtyInput.value = currentQty - 1;
-                                updateTotal();
-                            } else {
-                                qtyInput.value = 1;
-                            }
-                        }
-
-                        window.onload = function() {
-                            updateTotal();
-                        }
-                    </script>
                     <!-- Step 2 -->
-                    <h6>Billing & address</h6>
+                    <h6>Billing & Address</h6>
                     <section>
                         <div class="billing-address-content">
+                            <!-- address card -->
                             <div class="row">
+                                <!-- address 1 -->
                                 <div class="col-lg-4">
                                     <div class="card shadow-none border">
                                         <div class="card-body p-4">
                                             <h6 class="mb-3 fs-4 fw-semibold">Johnathan Doe</h6>
-                                            <p class="mb-1 fs-2">E601 Vrundavan Heights, godrej garden city - 382481</p>
+                                            <p class="mb-1 fs-2">E601 Vrundavan Heights, Godrej Garden City - 382481</p>
                                             <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
                                                 <i class="ti ti-device-mobile fs-7"></i>9999501050
                                             </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                                this address</a>
+                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- address 2 -->
                                 <div class="col-lg-4">
                                     <div class="card shadow-none border">
                                         <div class="card-body p-4">
                                             <h6 class="mb-3 fs-4 fw-semibold">ParleG Doe</h6>
-                                            <p class="mb-1 fs-2">D201 Galexy Heights, godrej garden city - 382481</p>
+                                            <p class="mb-1 fs-2">D201 Galaxy Heights, Godrej Garden City - 382481</p>
                                             <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
                                                 <i class="ti ti-device-mobile fs-7"></i>9999501050
                                             </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                                this address</a>
+                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- address 3 -->
                                 <div class="col-lg-4">
                                     <div class="card shadow-none border">
                                         <div class="card-body p-4">
                                             <h6 class="mb-3 fs-4 fw-semibold">Guddu Bhaiya</h6>
-                                            <p class="mb-1 fs-2">Mumbai khao gali, Behind shukan, godrej garden city - 382481</p>
+                                            <p class="mb-1 fs-2">Mumbai Khao Gali, Behind Shukan, Godrej Garden City - 382481</p>
                                             <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
                                                 <i class="ti ti-device-mobile fs-7"></i>9999501050
                                             </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary  billing-address">Deliver To
-                                                this address</a>
+                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- order summary -->
                             <div class="order-summary border rounded p-4 my-4">
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Sub Total</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Discount 5%</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
+                                        <h6 class="subTotal mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
+                                        <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
+                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- delivery and pay -->
                         <div class="payment-method-list payment-method">
-                            <div class="delivery-option btn-group-active  card shadow-none border">
+                            <!-- delivery option -->
+                            <div class="delivery-option btn-group-active card shadow-none border">
                                 <div class="card-body p-4">
                                     <h6 class="mb-3 fw-semibold fs-4">Delivery Option</h6>
-                                    <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Basic radio toggle button group">
+                                    <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Delivery Options">
+                                        <!-- free -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt1" id="btnradio1" autocomplete="off" checked>
-                                            <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio1">
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" onclick="updateShipping(0)" checked>
+                                            <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFree">
                                                 <div class="text-start ps-2">
-                                                    <h6 class="fs-4 fw-semibold mb-0">Free delivery</h6>
-                                                    <p class="mb-0 text-muted">Delivered on Firday, May 10</p>
+                                                    <h6 class="fs-4 fw-semibold mb-0">Free Delivery</h6>
+                                                    <p class="mb-0 text-muted">Delivered on Friday, May 10</p>
                                                 </div>
                                             </label>
                                         </div>
+                                        <!-- delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt1" id="btnradio2" autocomplete="off">
-                                            <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio2">
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast" onclick="updateShipping(2)">
+                                            <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFast">
                                                 <div class="text-start ps-2">
-                                                    <h6 class="fs-4 fw-semibold mb-0">Fast delivery ($2,00)</h6>
+                                                    <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($2.00)</h6>
                                                     <p class="mb-0 text-muted">Delivered on Wednesday, May 8</p>
                                                 </div>
                                             </label>
@@ -233,75 +200,76 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="payment-option btn-group-active  card shadow-none border">
+
+                            <!-- pay option -->
+                            <div class="payment-option btn-group-active card shadow-none border">
                                 <div class="card-body p-4">
                                     <h6 class="mb-3 fw-semibold fs-4">Payment Option</h6>
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <div class="btn-group flex-column" role="group" aria-label="Basic radio toggle button group">
-                                                <div class="position-relative mb-3 w-100 form-check btn-custom-fill ps-0">
-
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio3" autocomplete="off" checked>
-
-                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio3">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="text-start ps-2">
-                                                                <h6 class="fs-4 fw-semibold mb-0">Pay with Paypal</h6>
-                                                                <p class="mb-0 text-muted">You will be redirected to PayPal website to
-                                                                    complete your purchase securely.</p>
-                                                            </div>
-                                                            <img src="../assets/images/svgs/paypal.svg" alt="matdash-img" class="img-fluid ms-auto">
-                                                        </div>
-                                                    </label>
-                                                </div>
+                                            <div class="btn-group flex-column" role="group" aria-label="Payment Options">
+                                                <!-- PayPal -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio4" autocomplete="off">
-                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio4">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentPaypal" checked>
+                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentPaypal">
                                                         <div class="d-flex align-items-center">
                                                             <div class="text-start ps-2">
-                                                                <h6 class="fs-4 fw-semibold mb-0">Credit / Debit Card</h6>
-                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover and Stripe.
-                                                                </p>
+                                                                <h6 class="fs-4 fw-semibold mb-0">Pay with PayPal</h6>
+                                                                <p class="mb-0 text-muted">You will be redirected to PayPal to complete your purchase.</p>
                                                             </div>
-                                                            <img src="../assets/images/svgs/mastercard.svg" alt="matdash-img" class="img-fluid ms-auto">
+                                                            <?= $this->Html->image('svgs/paypal.svg', ['alt' => 'paypal-img', 'class' => 'img-fluid ms-auto']) ?>
                                                         </div>
                                                     </label>
                                                 </div>
+                                                <!-- credit card -->
+                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">
+                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="text-start ps-2">
+                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>
+                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>
+                                                            </div>
+                                                            <?= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <!-- pay later -->
                                                 <div class="position-relative form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType1" id="btnradio5" autocomplete="off">
-                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="btnradio5">
-                                                        <div class="text-start ps-2">
-                                                            <h6 class="fs-4 fw-semibold mb-0">Cash on Delivery</h6>
-                                                            <p class="mb-0 text-muted">Pay with cash when your order is delivered.</p>
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCOD">
+                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCOD">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="text-start ps-2">
+                                                                <h6 class="fs-4 fw-semibold mb-0">Cash on Delivery</h6>
+                                                                <p class="mb-0 text-muted">Pay when your order is delivered.</p>
+                                                            </div>
                                                         </div>
                                                     </label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <img src="../assets/images/products/payment.svg" alt="matdash-img" class="img-fluid">
+                                            <?= $this->Html->image('products/payment.svg', ['alt' => 'payment-img', 'class' => 'img-fluid']) ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- summary -->
                             <div class="order-summary border rounded p-4 my-4">
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Sub Total</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Discount 5%</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
+                                        <h6 class="subTotal mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
+                                        <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
+                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -312,7 +280,11 @@
                     <section class="payment-method text-center">
                         <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
                         <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
-                        <img src="../assets/images/products/payment-complete.svg" alt="matdash-img" class="img-fluid mb-4" width="350">
+                        <?= $this->Html->image('products/payment-complete.svg', [
+                            'alt' => 'matdash-img',
+                            'class' => 'img-fluid mb-4',
+                            'width' => '350',
+                        ]) ?>
                         <p class="mb-0 fs-2">We will send you a notification
                             <br>within 2 days when it ships.
                         </p>
@@ -324,6 +296,73 @@
                 </form>
             </div>
         </div>
+        <script>
+            var productPrice = <?= $product->price ?>;
+            var shippingCost = 0;
+
+            function updateTotal() {
+                var qtyInput = document.getElementById("quantityInput");
+                var currentQty = parseInt(qtyInput.value);
+                if (isNaN(currentQty) || currentQty < 1) {
+                    currentQty = 1;
+                    qtyInput.value = 1;
+                }
+
+                var subTotal = productPrice * currentQty;
+                var total = subTotal + shippingCost;
+
+                // 更新购物车中的行总价（步骤1）
+                var lineTotalElement = document.getElementById("lineTotal");
+                if (lineTotalElement) {
+                    lineTotalElement.innerText = '$' + subTotal.toFixed(2);
+                }
+
+                // 更新所有具有 'subTotal' 类的元素
+                var subTotalElements = document.getElementsByClassName("subTotal");
+                for (var i = 0; i < subTotalElements.length; i++) {
+                    subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
+                }
+
+                // 更新所有具有 'shippingCost' 类的元素
+                var shippingCostElements = document.getElementsByClassName("shippingCost");
+                for (var i = 0; i < shippingCostElements.length; i++) {
+                    shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
+                }
+
+                // 更新所有具有 'totalCost' 类的元素
+                var totalCostElements = document.getElementsByClassName("totalCost");
+                for (var i = 0; i < totalCostElements.length; i++) {
+                    totalCostElements[i].innerText = '$' + total.toFixed(2);
+                }
+            }
+
+            function updateShipping(cost) {
+                shippingCost = cost;
+                updateTotal();
+            }
+
+            function increaseQuantity() {
+                var qtyInput = document.getElementById("quantityInput");
+                var currentQty = parseInt(qtyInput.value);
+                if (!isNaN(currentQty)) {
+                    qtyInput.value = currentQty + 1;
+                    updateTotal();
+                }
+            }
+
+            function decreaseQuantity() {
+                var qtyInput = document.getElementById("quantityInput");
+                var currentQty = parseInt(qtyInput.value);
+                if (!isNaN(currentQty) && currentQty > 1) {
+                    qtyInput.value = currentQty - 1;
+                    updateTotal();
+                }
+            }
+
+            window.onload = function() {
+                updateTotal();
+            }
+        </script>
     </div>
 </div>
 <?php
