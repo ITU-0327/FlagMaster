@@ -136,16 +136,4 @@ class UsersTable extends Table
     {
         return $query->select(['id', 'email', 'password', 'role']);
     }
-
-    /**
-     * Custom finder for fetching user with profile.
-     *
-     * @param \Cake\ORM\Query $query The query to modify
-     * @param array $options The options for the finder
-     * @return \Cake\ORM\Query The modified query
-     */
-    public function findWithProfile(Query $query, array $options): Query
-    {
-        return $query->contain([]);
-    }
 }
