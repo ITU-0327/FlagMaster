@@ -468,6 +468,12 @@ class AuthController extends AppController
     private function verifyTurnstile(string $token): bool
     {
         $secretKey = getenv('TURNSTILE_SECRET_KEY');
+        if (empty($secretKey)) {
+            $this->Flash->error('Server configuration error: TURNSTILE_SECRET_KEY is not set.');
+
+            return false;
+        }
+
         $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
         $data = [
@@ -492,6 +498,13 @@ class AuthController extends AppController
 
         $response = json_decode($result, true);
 
-        return isset($response['success']) && $response['success'];
+        if (!isset($response['success']) || !$response['success']) {
+            $errorCodes = isset($response['error-codes']) ? implode(', ', $response['error-codes']) : 'Unknown error';
+            $this->Flash->error('Turnstile verification failed: ' . $errorCodes);
+
+            return false;
+        }
+
+        return true;
     }
 }
