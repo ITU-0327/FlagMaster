@@ -22,10 +22,13 @@ class AuthController extends AppController
      * Controller initialize override
      *
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
         parent::initialize();
+
+        $this->loadComponent('Authentication.Authentication');
 
         $this->viewBuilder()->setLayout('auth');
 
@@ -83,7 +86,12 @@ class AuthController extends AppController
 
                     // Reload the user with the Profiles association
                     $user = $this->Users->get($user->id, [
-                        'contain' => ['Profiles'],
+                        'fields' => ['id', 'username', 'email', 'role'],
+                        'contain' => [
+                            'Profiles' => [
+                                'fields' => ['first_name', 'last_name', 'profile_picture'],
+                            ],
+                        ],
                     ]);
 
                     $this->Authentication->setIdentity($user);
@@ -247,7 +255,12 @@ class AuthController extends AppController
 
             // Reload the user entity including the Profiles association
             $user = $this->Users->get($user->id, [
-                'contain' => ['Profiles'],
+                'fields' => ['id', 'username', 'email', 'role'],
+                'contain' => [
+                    'Profiles' => [
+                        'fields' => ['first_name', 'last_name', 'profile_picture'],
+                    ],
+                ],
             ]);
 
             // Update the identity with the reloaded user
@@ -339,22 +352,18 @@ class AuthController extends AppController
 
             $usersTable = $this->Users;
 
+            // Attempt to find existing user by oauth_provider and oauth_id
             $user = $usersTable->find()
                 ->where([
                     'oauth_provider' => 'google',
                     'oauth_id' => $googleUser->id,
                 ])
-                ->contain(['Profiles'])
                 ->first();
 
-            if ($user) {
-                // User exists, log them in
-                $this->Authentication->setIdentity($user);
-            } else {
+            if (!$user) {
                 // Check if a user with the same email exists
                 $user = $usersTable->find()
                     ->where(['email' => $googleUser->email])
-                    ->contain(['Profiles'])
                     ->first();
 
                 if ($user) {
@@ -376,60 +385,70 @@ class AuthController extends AppController
                     ]);
                 }
 
-                if ($usersTable->save($user)) {
-                    $profilesTable = $this->getTableLocator()->get('Profiles');
-
-                    $profilePictureUrl = $googleUser->picture;
-
-                    $filename = $user->username . '.' . uniqid() . '.jpg';
-
-                    $uploadPath = WWW_ROOT . 'img' . DS . 'profile' . DS;
-
-                    if (!file_exists($uploadPath)) {
-                        mkdir($uploadPath, 0755, true);
-                    }
-
-                    $fullPath = $uploadPath . $filename;
-
-                    $imageContent = file_get_contents($profilePictureUrl);
-                    if ($imageContent !== false) {
-                        file_put_contents($fullPath, $imageContent);
-
-                        $profilePicturePath = 'profile/' . $filename;
-                    } else {
-                        $randomNumber = rand(1, 12);
-                        $profilePicturePath = "profile/user-{$randomNumber}.jpg";
-                    }
-
-                    if (isset($user->profile)) {
-                        $profile = $profilesTable->patchEntity($user->profile, [
-                            'first_name' => $googleUser->givenName,
-                            'last_name' => $googleUser->familyName,
-                            'profile_picture' => $profilePicturePath,
-                        ]);
-                    } else {
-                        $profile = $profilesTable->newEntity([
-                            'user_id' => $user->id,
-                            'first_name' => $googleUser->givenName,
-                            'last_name' => $googleUser->familyName,
-                            'profile_picture' => $profilePicturePath,
-                        ]);
-                    }
-
-                    $profilesTable->save($profile);
-
-                    // Reload the user with the Profiles association
-                    $user = $usersTable->get($user->id, [
-                        'contain' => ['Profiles'],
-                    ]);
-
-                    $this->Authentication->setIdentity($user);
-                } else {
+                if (!$usersTable->save($user)) {
                     $this->Flash->error('Unable to register user.');
 
                     return $this->redirect(['action' => 'login']);
                 }
+
+                $profilesTable = $this->getTableLocator()->get('Profiles');
+
+                $profilePictureUrl = $googleUser->picture;
+
+                $filename = preg_replace('/[^A-Za-z0-9_\-.]/', '_', $user->username) . '.' . uniqid() . '.jpg';
+
+                $uploadPath = WWW_ROOT . 'img' . DS . 'profile' . DS;
+
+                if (!file_exists($uploadPath)) {
+                    mkdir($uploadPath, 0755, true);
+                }
+
+                $fullPath = $uploadPath . $filename;
+
+                $imageContent = file_get_contents($profilePictureUrl);
+                if ($imageContent !== false) {
+                    file_put_contents($fullPath, $imageContent);
+
+                    $profilePicturePath = 'profile/' . $filename;
+                } else {
+                    $randomNumber = rand(1, 12);
+                    $profilePicturePath = "profile/user-{$randomNumber}.jpg";
+                }
+
+                $profile = $profilesTable->find()
+                    ->where(['user_id' => $user->id])
+                    ->first();
+
+                if ($profile) {
+                    $profile = $profilesTable->patchEntity($profile, [
+                        'first_name' => $googleUser->givenName,
+                        'last_name' => $googleUser->familyName,
+                        'profile_picture' => $profilePicturePath,
+                    ]);
+                } else {
+                    $profile = $profilesTable->newEntity([
+                        'user_id' => $user->id,
+                        'first_name' => $googleUser->givenName,
+                        'last_name' => $googleUser->familyName,
+                        'profile_picture' => $profilePicturePath,
+                    ]);
+                }
+
+                $profilesTable->save($profile);
             }
+
+            // Always reload the user with specified fields and profile
+            $user = $usersTable->get($user->id, [
+                'fields' => ['id', 'username', 'email', 'role'],
+                'contain' => [
+                    'Profiles' => [
+                        'fields' => ['user_id', 'first_name', 'last_name', 'profile_picture'],
+                    ],
+                ],
+            ]);
+
+            // Set the identity with the reloaded user
+            $this->Authentication->setIdentity($user);
 
             // Redirect to desired page
             return $this->redirect($this->Authentication->getLoginRedirect() ?? ['controller' => 'Users', 'action' => 'index']);
