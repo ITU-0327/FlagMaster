@@ -23,6 +23,7 @@ use Cake\View\View;
  * Your application's default view class
  *
  * @property \ContentBlocks\View\Helper\ContentBlockHelper $ContentBlock
+ * @property \App\View\Helper\UserHelper $User
  * @link https://book.cakephp.org/5/en/views.html#the-app-view
  */
 class AppView extends View
@@ -40,5 +41,6 @@ class AppView extends View
     {
         $this->loadHelper('ContentBlocks.ContentBlock');
         $this->loadHelper('Authentication.Identity');
+        $this->loadHelper('User');
     }
 }

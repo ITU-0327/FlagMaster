@@ -56,7 +56,7 @@ class User extends Entity
      * @var list<string>
      */
     protected array $_hidden = [
-        'password',
+        'password', 'oauth_provider', 'oauth_id',
     ];
 
     /**

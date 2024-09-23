@@ -3,27 +3,10 @@
  * @var \App\View\AppView $this
  */
 
-$user = $this->request->getAttribute('identity');
-
-// Initialize variables with default values
-$profilePicture = 'profile/user-1.jpg'; // Default profile picture
-$fullName = h($user->username);
-$username = h($user->username);
-
-if ($user) {
-    $profile = $user->profile;
-
-    if ($profile) {
-        if (!empty($profile->first_name) || !empty($profile->last_name)) {
-            $fullName = h($profile->first_name . ' ' . $profile->last_name);
-        }
-
-        if (!empty($profile->profile_picture)) {
-            $profilePicture = $profile->profile_picture;
-        }
-    }
-}
+$userInfo = $this->User->getUserInfo();
+extract($userInfo);
 ?>
+
 <aside class="left-sidebar with-vertical">
     <div>
         <!-- ---------------------------------- -->
