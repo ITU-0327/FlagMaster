@@ -90,14 +90,15 @@ class AuthController extends AppController
                     $profilesTable->save($profile);
 
                     // Reload the user with the Profiles association
-                    $user = $this->Users->get($user->id, [
-                        'fields' => ['id', 'username', 'email', 'role'],
-                        'contain' => [
+                    $user = $this->Users->get(
+                        $user->id,
+                        fields: ['id', 'username', 'email', 'role'],
+                        contain: [
                             'Profiles' => [
                                 'fields' => ['first_name', 'last_name', 'profile_picture'],
                             ],
-                        ],
-                    ]);
+                        ]
+                    );
 
                     $this->Authentication->setIdentity($user);
 
@@ -259,14 +260,15 @@ class AuthController extends AppController
             $user = $this->Authentication->getIdentity();
 
             // Reload the user entity including the Profiles association
-            $user = $this->Users->get($user->id, [
-                'fields' => ['id', 'username', 'email', 'role'],
-                'contain' => [
+            $user = $this->Users->get(
+                $user->id,
+                fields: ['id', 'username', 'email', 'role'],
+                contain: [
                     'Profiles' => [
                         'fields' => ['first_name', 'last_name', 'profile_picture'],
                     ],
-                ],
-            ]);
+                ]
+            );
 
             // Update the identity with the reloaded user
             $this->Authentication->setIdentity($user);
@@ -443,14 +445,15 @@ class AuthController extends AppController
             }
 
             // Always reload the user with specified fields and profile
-            $user = $usersTable->get($user->id, [
-                'fields' => ['id', 'username', 'email', 'role'],
-                'contain' => [
+            $user = $usersTable->get(
+                $user->id,
+                fields: ['id', 'username', 'email', 'role'],
+                contain: [
                     'Profiles' => [
-                        'fields' => ['user_id', 'first_name', 'last_name', 'profile_picture'],
+                        'fields' => ['first_name', 'last_name', 'profile_picture'],
                     ],
-                ],
-            ]);
+                ]
+            );
 
             // Set the identity with the reloaded user
             $this->Authentication->setIdentity($user);
@@ -474,7 +477,8 @@ class AuthController extends AppController
     {
         $secretKey = getenv('TURNSTILE_SECRET_KEY');
         if (empty($secretKey)) {
-            $this->Flash->error('Server configuration error: TURNSTILE_SECRET_KEY is not set.');
+            // Log the error for developers
+            $this->log('Turnstile secret key is not set.', 'error');
 
             return false;
         }
@@ -498,14 +502,19 @@ class AuthController extends AppController
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         if ($result === false) {
+            // Log the error for developers
+            $error = error_get_last();
+            $this->log('Failed to contact Turnstile verification server: ' . $error['message'], 'error');
+
             return false;
         }
 
         $response = json_decode($result, true);
 
         if (!isset($response['success']) || !$response['success']) {
+            // Log the error codes for developers
             $errorCodes = isset($response['error-codes']) ? implode(', ', $response['error-codes']) : 'Unknown error';
-            $this->Flash->error('Turnstile verification failed: ' . $errorCodes);
+            $this->log('Turnstile verification failed: ' . $errorCodes, 'error');
 
             return false;
         }
