@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\I18n\DateTime;
 use Cake\Mailer\Mailer;
+use Cake\ORM\Table;
 use Cake\Utility\Security;
 use Exception;
 use Google\Client as GoogleClient;
@@ -13,11 +14,15 @@ use Google\Service\Oauth2 as Google_Service_Oauth2;
 /**
  * Auth Controller
  *
- * @property \App\Model\Table\UsersTable $Users
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  */
 class AuthController extends AppController
 {
+    /**
+     * @var \Cake\ORM\Table
+     */
+    protected Table $Users;
+
     /**
      * Controller initialize override
      *
