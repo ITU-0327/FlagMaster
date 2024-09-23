@@ -29,8 +29,6 @@ class AuthController extends AppController
 
         $this->viewBuilder()->setLayout('auth');
 
-        // By default, CakePHP will (sensibly) default to preventing users from accessing any actions on a controller.
-        // These actions, however, are typically required for users who have not yet logged in.
         $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword', 'googleLogin', 'googleCallback']);
 
         // CakePHP loads the model with the same name as the controller by default.
@@ -82,6 +80,11 @@ class AuthController extends AppController
                     ]);
 
                     $profilesTable->save($profile);
+
+                    // Reload the user with the Profiles association
+                    $user = $this->Users->get($user->id, [
+                        'contain' => ['Profiles'],
+                    ]);
 
                     $this->Authentication->setIdentity($user);
 
@@ -239,6 +242,17 @@ class AuthController extends AppController
 
         // if user passes authentication, grant access to the system
         if ($result && $result->isValid()) {
+            // Get the authenticated user
+            $user = $this->Authentication->getIdentity();
+
+            // Reload the user entity including the Profiles association
+            $user = $this->Users->get($user->id, [
+                'contain' => ['Profiles'],
+            ]);
+
+            // Update the identity with the reloaded user
+            $this->Authentication->setIdentity($user);
+
             // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
             $fallbackLocation = ['controller' => 'Users', 'action' => 'index'];
 
@@ -403,6 +417,11 @@ class AuthController extends AppController
                     }
 
                     $profilesTable->save($profile);
+
+                    // Reload the user with the Profiles association
+                    $user = $usersTable->get($user->id, [
+                        'contain' => ['Profiles'],
+                    ]);
 
                     $this->Authentication->setIdentity($user);
                 } else {
