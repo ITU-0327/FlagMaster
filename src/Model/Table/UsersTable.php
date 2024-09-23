@@ -53,8 +53,8 @@ class UsersTable extends Table
         ]);
         $this->hasOne('Profiles', [
             'foreignKey' => 'user_id',
-            'joinType' => 'INNER',
             'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'user_id',
@@ -126,12 +126,26 @@ class UsersTable extends Table
     }
 
     /**
-     * @param \Cake\ORM\Query\SelectQuery $query Query object
-     * @param array<string, mixed> $options Options
-     * @return \Cake\ORM\Query
+     * Custom finder for authentication without associations.
+     *
+     * @param \Cake\ORM\Query $query The query to modify
+     * @param array $options The options for the finder
+     * @return \Cake\ORM\Query The modified query
+     */
+    public function findAuth(Query $query, array $options): Query
+    {
+        return $query->select(['id', 'email', 'password', 'role']);
+    }
+
+    /**
+     * Custom finder for fetching user with profile.
+     *
+     * @param \Cake\ORM\Query $query The query to modify
+     * @param array $options The options for the finder
+     * @return \Cake\ORM\Query The modified query
      */
     public function findWithProfile(Query $query, array $options): Query
     {
-        return $query->contain(['Profiles']);
+        return $query->contain([]);
     }
 }

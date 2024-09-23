@@ -10,14 +10,18 @@ $profilePicture = 'profile/user-1.jpg'; // Default profile picture
 $fullName = h($user->username);
 $username = h($user->username);
 
-// Check if the user has a profile with first_name and last_name
-if (!empty($user->profile) && (!empty($user->profile->first_name) || !empty($user->profile->last_name))) {
-    $fullName = h(trim($user->profile->first_name . ' ' . $user->profile->last_name));
-}
+if ($user) {
+    $profile = $user->profile;
 
-// Check if the user has a profile picture
-if (!empty($user->profile) && !empty($user->profile->profile_picture)) {
-    $profilePicture = $user->profile->profile_picture;
+    if ($profile) {
+        if (!empty($profile->first_name) || !empty($profile->last_name)) {
+            $fullName = h($profile->first_name . ' ' . $profile->last_name);
+        }
+
+        if (!empty($profile->profile_picture)) {
+            $profilePicture = $profile->profile_picture;
+        }
+    }
 }
 ?>
 <aside class="left-sidebar with-vertical">

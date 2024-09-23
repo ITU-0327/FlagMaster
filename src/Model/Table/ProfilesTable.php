@@ -41,7 +41,7 @@ class ProfilesTable extends Table
         parent::initialize($config);
 
         $this->setTable('profiles');
-        $this->setDisplayField('id');
+        $this->setDisplayField('first_name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Users', [
@@ -78,6 +78,11 @@ class ProfilesTable extends Table
             ->scalar('last_name')
             ->maxLength('last_name', 50)
             ->allowEmptyString('last_name');
+
+        $validator
+            ->scalar('profile_picture')
+            ->maxLength('profile_picture', 255)
+            ->allowEmptyFile('profile_picture');
 
         $validator
             ->scalar('phone')

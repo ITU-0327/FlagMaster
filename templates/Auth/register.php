@@ -77,6 +77,11 @@
                                 'id' => 'exampleInputPassword2',
                             ]); ?>
                         </div>
+
+                        <div class="mb-4">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkd0EvD2eY9X-kL"></div>
+                        </div>
+
                         <?= $this->Form->button('Sign Up', ['class' => 'btn btn-primary w-100 py-8 mb-4 rounded-2']) ?>
                         <div class="d-flex align-items-center">
                             <p class="fs-4 mb-0 text-dark">Already have an Account?</p>
@@ -91,7 +96,9 @@
 </div>
 
 
-<?php
-$this->start('customScript'); ?>
+<?php $this->start('customScript'); ?>
+
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js'); ?>
+<?= $this->Html->script('https://challenges.cloudflare.com/turnstile/v0/api.js', ['async' => true, 'defer' => true]); ?>
+
 <?php $this->end(); ?>
