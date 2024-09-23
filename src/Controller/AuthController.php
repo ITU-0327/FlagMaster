@@ -49,6 +49,13 @@ class AuthController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
 
+            $turnstileResponse = $this->request->getData('cf-turnstile-response');
+            if (!$this->verifyTurnstile($turnstileResponse)) {
+                $this->Flash->error('Turnstile verification failed. Please try again.');
+
+                return;
+            }
+
             if ($data['password'] !== $data['password_confirm']) {
                 $this->Flash->error('Password and confirm password do not match');
             } else {
@@ -62,9 +69,23 @@ class AuthController extends AppController
                 $user = $this->Users->patchEntity($user, $data);
 
                 if ($this->Users->save($user)) {
-                    $this->Flash->success('You have been registered. Please log in.');
+                    $profilesTable = $this->getTableLocator()->get('Profiles');
 
-                    return $this->redirect(['action' => 'login']);
+                    $randomNumber = rand(1, 12);
+                    $profilePicture = "profile/user-{$randomNumber}.jpg";
+
+                    $profile = $profilesTable->newEntity([
+                        'user_id' => $user->id,
+                        'first_name' => null,
+                        'last_name' => null,
+                        'profile_picture' => $profilePicture,
+                    ]);
+
+                    $profilesTable->save($profile);
+
+                    $this->Authentication->setIdentity($user);
+
+                    return $this->redirect($this->Authentication->getLoginRedirect() ?? ['controller' => 'Users', 'action' => 'index']);
                 }
                 $this->Flash->error('The user could not be registered. Please, try again.');
             }
@@ -207,6 +228,15 @@ class AuthController extends AppController
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
 
+        if ($this->request->is('post')) {
+            $turnstileResponse = $this->request->getData('cf-turnstile-response');
+            if (!$this->verifyTurnstile($turnstileResponse)) {
+                $this->Flash->error('Turnstile verification failed. Please try again.');
+
+                return;
+            }
+        }
+
         // if user passes authentication, grant access to the system
         if ($result && $result->isValid()) {
             // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
@@ -293,9 +323,6 @@ class AuthController extends AppController
             $oauth2 = new Google_Service_Oauth2($client);
             $googleUser = $oauth2->userinfo->get();
 
-            // Now you have the user's information in $googleUser
-            // You can use $googleUser->email, $googleUser->name, etc.
-
             $usersTable = $this->Users;
 
             $user = $usersTable->find()
@@ -356,7 +383,8 @@ class AuthController extends AppController
 
                         $profilePicturePath = 'profile/' . $filename;
                     } else {
-                        $profilePicturePath = null;
+                        $randomNumber = rand(1, 12);
+                        $profilePicturePath = "profile/user-{$randomNumber}.jpg";
                     }
 
                     if (isset($user->profile)) {
@@ -391,5 +419,41 @@ class AuthController extends AppController
 
             return $this->redirect(['action' => 'login']);
         }
+    }
+
+    /**
+     * Verify Turnstile method
+     *
+     * @param string $token Turnstile token
+     * @return bool
+     */
+    private function verifyTurnstile(string $token): bool
+    {
+        $secretKey = getenv('TURNSTILE_SECRET_KEY');
+        $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+
+        $data = [
+            'secret' => $secretKey,
+            'response' => $token,
+            'remoteip' => $this->request->clientIp(),
+        ];
+
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data),
+            ],
+        ];
+
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        if ($result === false) {
+            return false;
+        }
+
+        $response = json_decode($result, true);
+
+        return isset($response['success']) && $response['success'];
     }
 }

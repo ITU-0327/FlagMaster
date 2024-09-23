@@ -89,6 +89,11 @@
                                 ['class' => 'text-primary fw-medium']
                             ); ?>
                         </div>
+
+                        <div class="mb-4">
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkd0EvD2eY9X-kL"></div>
+                        </div>
+
                         <?= $this->Form->button(
                             'Sign In',
                             ['class' => 'btn btn-primary w-100 py-8 mb-4 rounded-2']
@@ -114,5 +119,6 @@
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js'); ?>
+<?= $this->Html->script('https://challenges.cloudflare.com/turnstile/v0/api.js', ['async' => true, 'defer' => true]); ?>
 
 <?php $this->end(); ?>
