@@ -196,7 +196,7 @@ extract($userInfo);
                                             <div class="col-8">
                                                 <?= $this->Html->link(
                                                     '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
-                                                    ['controller' => 'Pages', 'action' => 'faqs', 'plugin' => false],
+                                                    ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
                                                     ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
                                                 ); ?>
                                             </div>
@@ -255,7 +255,11 @@ extract($userInfo);
                 <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="faqs">FAQs</a>
+                  <?= $this->Html->link(
+                      'FAQs',
+                      ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
@@ -717,28 +721,34 @@ extract($userInfo);
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="faqs" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-calendar"></i>
-                      </span>
-                      <span class="hide-menu">FAQs</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                            <i class="ti ti-calendar"></i>
+                          </span>
+                          <span class="hide-menu">FAQs</span>',
+                          ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="about-us" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-mail"></i>
-                      </span>
-                      <span class="hide-menu">About Us</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                            <i class="ti ti-mail"></i>
+                          </span>
+                          <span class="hide-menu">About Us</span>',
+                          ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="contact-us" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-calendar"></i>
-                      </span>
-                            <span class="hide-menu">Contact Us</span>
-                        </a>
+                        <?= $this->Html->link(
+                            '<span>
+                                <i class="ti ti-calendar"></i>
+                            </span>
+                            <span class="hide-menu">Contact Us</span>',
+                            ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                            ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                        ); ?>
                     </li>
                 </ul>
               </div>
@@ -978,13 +988,25 @@ extract($userInfo);
                 <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="faqs">FAQs</a>
+                  <?= $this->Html->link(
+                      'FAQs',
+                      ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="about-us">About Us</a>
+                  <?= $this->Html->link(
+                      'About Us',
+                      ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
                 <li class="nav-item dropdown-hover d-none d-lg-block">
-                    <a class="nav-link" href="contact-us">Contact Us</a>
+                    <?= $this->Html->link(
+                        'Contact Us',
+                        ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                        ['class' => 'nav-link']
+                    ); ?>
                 </li>
             </ul>
             <div class="d-block d-xl-none">

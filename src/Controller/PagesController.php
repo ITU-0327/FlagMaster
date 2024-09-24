@@ -17,11 +17,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
-use Cake\Event\EventInterface;
 
 /**
  * Static content controller
@@ -85,6 +85,16 @@ class PagesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      */
     public function aboutUs()
+    {
+        $this->viewBuilder()->setLayout('user');
+    }
+
+    /**
+     * faq method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function faq()
     {
         $this->viewBuilder()->setLayout('user');
     }

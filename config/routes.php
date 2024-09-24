@@ -56,8 +56,11 @@ return function (RouteBuilder $routes): void {
          * to use (in this case, templates/Pages/home.php)...
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+
         $builder->connect('/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
+        $builder->connect('/faq', ['controller' => 'Pages', 'action' => 'faq']);
         $builder->connect('/pages/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
+        $builder->connect('/pages/faq', ['controller' => 'Pages', 'action' => 'faq']);
 
         $builder->connect('/auth/google', ['controller' => 'Auth', 'action' => 'googleLogin']);
         $builder->connect('/auth/google-callback', ['controller' => 'Auth', 'action' => 'googleCallback']);
