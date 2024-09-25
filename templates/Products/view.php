@@ -138,11 +138,11 @@
                         <div class="d-flex align-items-center gap-8 py-7">
                             <h6 class="mb-0 fs-4">QTY:</h6>
                             <div class="input-group input-group-sm rounded">
-                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" id="add1">
+                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
                                     <i class="ti ti-minus"></i>
                                 </button>
-                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add1" value="1">
-                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button" id="addo2">
+                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty" placeholder="" id="quantityInput" value="1">
+                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button" onclick="increaseQuantity()">
                                     <i class="ti ti-plus"></i>
                                 </button>
                             </div>
@@ -354,15 +354,33 @@
 <?= $this->Html->script('apps/productDetail') ?>
 
 <script>
+    function increaseQuantity() {
+        let qtyInput = document.getElementById("quantityInput");
+        let currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty)) {
+            qtyInput.value = currentQty + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        let qtyInput = document.getElementById("quantityInput");
+        let currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty) && currentQty > 1) {
+            qtyInput.value = currentQty - 1;
+        }
+    }
+
+    // Handle "Buy Now" button click
     document.getElementById('buyNowBtn').addEventListener('click', function() {
-        // Navigate to the checkout page with the product ID
-        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id], ['fullBase' => true]); ?>';
+        const quantity = document.getElementById('quantityInput').value;
+        // Navigate to the checkout page with the product ID and quantity
+        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id]) ?>' + '?quantity=' + quantity;
     });
 
     // Handle "Add to Cart" button click
     document.getElementById('addToCartBtn').addEventListener('click', function() {
-        alert('Added to cart!');
-        // Optionally, you can implement AJAX to add the product to the cart without page reload
+        const quantity = document.getElementById('quantityInput').value;
+        alert('Added ' + quantity + ' item(s) to cart!');
     });
 </script>
 
