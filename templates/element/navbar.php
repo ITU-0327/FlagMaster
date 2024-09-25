@@ -257,37 +257,39 @@ extract($userInfo);
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'FAQs',
-                      ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                      ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'About Us',
-                      ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                      ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'Contact Us',
-                      ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                      ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
             </ul>
 
-            <div class="d-block d-lg-none py-4">
-              <a href="/" class="text-nowrap logo-img">
-                  <?= $this->Html->image('logos/dark-logo.svg', [
-                      'alt' => 'Logo-Dark',
-                      'class' => 'dark-logo',
-                  ]) ?>
-                  <?= $this->Html->image('logos/light-logo.svg', [
-                      'alt' => 'Logo-light',
-                      'class' => 'light-logo',
-                  ]) ?>
-              </a>
+            <div class="d-block d-lg-none py-4"
+                <?= $this->Html->link(
+                    $this->ContentBlock->image('logo-dark', [
+                        'alt' => 'Logo-Dark',
+                        'class' => 'dark-logo',
+                    ]) .
+                    $this->ContentBlock->image('logo-light', [
+                        'alt' => 'Logo-light',
+                        'class' => 'light-logo',
+                    ]),
+                    ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
+                    ['class' => 'text-nowrap logo-img', 'escape' => false]
+                ) ?>
             </div>
             <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <i class="ti ti-dots fs-7"></i>
@@ -726,7 +728,7 @@ extract($userInfo);
                             <i class="ti ti-calendar"></i>
                           </span>
                           <span class="hide-menu">FAQs</span>',
-                          ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                          ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                           ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
                       ); ?>
                   </li>
@@ -736,7 +738,7 @@ extract($userInfo);
                             <i class="ti ti-mail"></i>
                           </span>
                           <span class="hide-menu">About Us</span>',
-                          ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                          ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                           ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
                       ); ?>
                   </li>
@@ -746,7 +748,7 @@ extract($userInfo);
                                 <i class="ti ti-calendar"></i>
                             </span>
                             <span class="hide-menu">Contact Us</span>',
-                            ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                             ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
                         ); ?>
                     </li>
@@ -990,21 +992,21 @@ extract($userInfo);
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'FAQs',
-                      ['controller' => 'Pages', 'action' => 'faq', 'plugin' => false],
+                      ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'About Us',
-                      ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                      ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
                 <li class="nav-item dropdown-hover d-none d-lg-block">
                     <?= $this->Html->link(
                         'Contact Us',
-                        ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                        ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                         ['class' => 'nav-link']
                     ); ?>
                 </li>

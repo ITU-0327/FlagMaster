@@ -24,7 +24,7 @@ extract($userInfo);
                     'class' => 'light-logo',
                     'width' => '180',
                 ]),
-                '/',
+                ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
                 ['class' => 'text-nowrap logo-img', 'escape' => false]
             ) ?>
             <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
