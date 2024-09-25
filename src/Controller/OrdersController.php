@@ -112,13 +112,25 @@ class OrdersController extends AppController
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
+        // Get product information
         $product = $this->Orders->Products->get($productId);
+
+        // Get the quantity parameters passed, the default value is 1
+        $quantity = $this->request->getQuery('quantity', 1);
+
+        // Make sure that the quantity is positive.
+        $quantity = max(1, (int)$quantity);
 
         $order = $this->Orders->newEmptyEntity();
 
         if ($this->request->is('post')) {
             $orderData = $this->request->getData();
-            $orderData['product_id'] = $productId;  // 关联产品ID
+            $orderData['product_id'] = $productId;  // Associated product id
+
+            // Get the quantity modified by the user on the settlement page
+            $quantity = isset($orderData['quantity']) ? (int)$orderData['quantity'] : $quantity;
+            $orderData['quantity'] = $quantity;
+
             $order = $this->Orders->patchEntity($order, $orderData);
 
             if ($this->Orders->save($order)) {
@@ -128,6 +140,7 @@ class OrdersController extends AppController
             $this->Flash->error(__('Unable to place the order.'));
         }
 
-        $this->set(compact('product', 'order'));
+        // Pass the product, order and quantity to the view
+        $this->set(compact('product', 'order', 'quantity'));
     }
 }

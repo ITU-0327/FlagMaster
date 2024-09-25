@@ -53,23 +53,25 @@
                                             <div>
                                                 <h6 class="fw-semibold fs-4 mb-0"><?= h($product->name) ?></h6>
                                                 <p class="mb-0"><?= h($product->category) ?></p>
-                                                <!--delete product-->
-                                                <!--<a href="javascript:void(0)" class="text-danger fs-4">
-                                                    <i class="ti ti-trash"></i>
-                                                </a>-->
                                             </div>
                                         </div>
                                     </td>
                                     <!-- quantity button-->
                                     <td class="border-bottom-0">
                                         <div class="input-group input-group-sm flex-nowrap rounded">
-                                            <button class="btn minus min-width-40 py-0 border-end border-muted border-end-0 text-muted" type="button" onclick="decreaseQuantity() ">
+                                            <button class="btn minus min-width-40 py-0 border-end border-muted text-muted" type="button" onclick="decreaseQuantity()">
                                                 <i class="ti ti-minus"></i>
                                             </button>
 
-                                            <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-3 fw-semibold form-control text-center qty" id="quantityInput" value="1">
+                                            <?= $this->Form->control('quantity', [
+                                                'type' => 'text',
+                                                'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-3 fw-semibold form-control text-center qty',
+                                                'id' => 'quantityInput',
+                                                'value' => $quantity,
+                                                'label' => false,
+                                            ]) ?>
 
-                                            <button class="btn min-width-40 py-0 border border-muted border-start-0 text-muted" type="button" onclick="increaseQuantity()">
+                                            <button class="btn min-width-40 py-0 border-start border-muted text-muted" type="button" onclick="increaseQuantity()">
                                                 <i class="ti ti-plus"></i>
                                             </button>
                                         </div>
@@ -87,27 +89,17 @@
                         <div class="order-summary border rounded p-4 my-4">
                             <div class="p-3">
                                 <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
-                                <!-- 添加数量部分 -->
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 fs-4">Quantity</p>
-                                    <!-- 添加类名 quantity，以便于JavaScript更新 -->
-                                    <h6 class="quantity mb-0 fs-4 fw-semibold">1</h6>
+                                    <h6 class="quantity mb-0 fs-4 fw-semibold"><?= h($quantity) ?></h6>
                                 </div>
-                                <!-- 将 "Sub Total" 改为 "Unit Price" -->
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 fs-4">Unit Price</p>
-                                    <!-- 添加类名 unitPrice，以便于JavaScript更新 -->
                                     <h6 class="unitPrice mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                 </div>
-                                <!-- 删除运费部分 -->
-                                <!-- <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 fs-4">Shipping</p>
-                                    <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
-                                </div> -->
                                 <div class="d-flex justify-content-between">
                                     <h6 class="mb-0 fs-4 fw-semibold">Total Price</h6>
-                                    <!-- 添加类名 totalCost -->
-                                    <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                    <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
                                 </div>
                             </div>
                         </div>
