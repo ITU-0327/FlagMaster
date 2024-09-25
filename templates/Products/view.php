@@ -55,6 +55,23 @@
                             <del class="fs-5 text-muted">$<?= $this->Number->format($product->price * 1.1) ?></del>
                             $<?= $this->Number->format($product->price) ?>
                         </h4>
+
+                        <!-- 添加数量选择器 -->
+                        <div class="mb-3">
+                            <div class="input-group input-group-sm flex-nowrap rounded">
+                                <button class="btn minus min-width-40 py-0 border-end border-muted border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
+                                    <i class="ti ti-minus"></i>
+                                </button>
+
+                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-3 fw-semibold form-control text-center qty" id="quantityInput" value="1">
+
+                                <button class="btn min-width-40 py-0 border border-muted border-start-0 text-muted" type="button" onclick="increaseQuantity()">
+                                    <i class="ti ti-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 按钮区域 -->
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                             <a href="javascript:void(0)" id="buyNowBtn" class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0">Buy Now</a>
                             <a href="javascript:void(0)" id="addToCartBtn" class="btn d-block btn-danger px-7 py-8">Add to Cart</a>
@@ -68,18 +85,38 @@
 
 <!-- Consolidated Script -->
 <script>
+    // 增加数量
+    function increaseQuantity() {
+        var qtyInput = document.getElementById("quantityInput");
+        var currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty)) {
+            qtyInput.value = currentQty + 1;
+        }
+    }
+
+    // 减少数量
+    function decreaseQuantity() {
+        var qtyInput = document.getElementById("quantityInput");
+        var currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty) && currentQty > 1) {
+            qtyInput.value = currentQty - 1;
+        }
+    }
+
     // Handle "Buy Now" button click
     document.getElementById('buyNowBtn').addEventListener('click', function() {
-        // Navigate to the checkout page with the product ID
-        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id], ['fullBase' => true]); ?>';
+        var quantity = document.getElementById('quantityInput').value;
+        // Navigate to the checkout page with the product ID and quantity
+        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id]) ?>' + '?quantity=' + quantity;
     });
 
-    // Handle "Add to Cart" button click
+    // Handle "add to cart" button click
     document.getElementById('addToCartBtn').addEventListener('click', function() {
-        alert('Added to cart!');
-        // Optionally, you can implement AJAX to add the product to the cart without page reload
+        var quantity = document.getElementById('quantityInput').value;
+        alert('Added ' + quantity + ' item(s) to cart!');
     });
 </script>
+
 
 <div class="card shadow-none border">
     <div class="card-body p-4">
