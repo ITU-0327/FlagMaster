@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  */
 
+// Make sure the FAQ content blocks exist and match the expected count
+$faqCount = 11;
 ?>
 
 <?php $this->start('css'); ?>
@@ -36,73 +38,50 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="text-center mb-7">
             <h3 class="fw-semibold">Frequently asked questions</h3>
             <p class="fw-normal mb-0 fs-4">Get to know more about FlagMaster’s products and services.</p>
         </div>
         <div class="accordion accordion-flush mb-5 card position-relative overflow-hidden" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed fs-4 fw-semibold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        What is an Admin Dashboard?
-                    </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body fw-normal">
-                        Admin Dashboard is the backend interface of a website or an application that helps to manage the
-                        website's overall content and settings. It is widely used by the site owners to keep track of
-                        their website,
-                        make changes to their content, and more.
+            <?php for ($i = 1; $i <= $faqCount; $i++) : ?>
+                <?php
+                // Generate unique IDs for each accordion item
+                $headingId = 'flush-heading' . $i;
+                $collapseId = 'flush-collapse' . $i;
+
+                // Fetch the answer content block
+                try {
+                    $question = $this->ContentBlock->text('faq-' . $i . '-question');
+                } catch (Exception $e) {
+                    $question = '';
+                }
+
+                // Fetch the answer content block
+                try {
+                    $answer = $this->ContentBlock->html('faq-' . $i . '-answer');
+                } catch (Exception $e) {
+                    $answer = '';
+                }
+
+                // Skip rendering if question or answer is empty
+                if (empty($question) || empty($answer)) {
+                    continue;
+                }
+                ?>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="<?= h($headingId) ?>">
+                        <button class="accordion-button collapsed fs-5 fw-semibold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#<?= h($collapseId) ?>" aria-expanded="false" aria-controls="<?= h($collapseId) ?>">
+                            <?= $question ?>
+                        </button>
+                    </h2>
+                    <div id="<?= h($collapseId) ?>" class="accordion-collapse collapse" aria-labelledby="<?= h($headingId) ?>" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body fw-normal fs-4">
+                            <?= $answer ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed fs-4 fw-semibold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        What should an admin dashboard template include?
-                    </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body fw-normal">
-                        Admin dashboard template should include user & SEO friendly design with a variety of components
-                        and
-                        application designs to help create your own web application with ease. This could include
-                        customization
-                        options, technical support and about 6 months of future updates.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed fs-4 fw-semibold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        Why should I buy admin templates from Wrappixel?
-                    </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body fw-normal">
-                        Wrappixel offers high-quality templates that are easy to use and fully customizable. With over
-                        101,801
-                        happy customers & trusted by 10,000+ Companies. Wrappixel is recognized as the leading online
-                        source
-                        for buying admin templates.
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingfour">
-                    <button class="accordion-button collapsed fs-4 fw-semibold shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsefour" aria-expanded="false" aria-controls="flush-collapsefour">
-                        Do Wrappixel offers a money back guarantee?
-                    </button>
-                </h2>
-                <div id="flush-collapsefour" class="accordion-collapse collapse" aria-labelledby="flush-headingfour" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body fw-normal">
-                        There is no money back guarantee in most companies, but if you are unhappy with our product,
-                        Wrappixel
-                        gives you a 100% money back guarantee.
-                    </div>
-                </div>
-            </div>
+            <?php endfor; ?>
         </div>
     </div>
 </div>
