@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  */
 
-$sectionNumbers = [1, 2, 3];
+$aboutUsCount = 3;
 ?>
 
 <?php $this->start('css'); ?>
@@ -41,31 +41,31 @@ $sectionNumbers = [1, 2, 3];
 <div class="card position-relative overflow-hidden">
     <div class="card-body">
         <div class="container">
-            <?php foreach ($sectionNumbers as $number) : ?>
+            <?php for ($i = 1; $i <= $aboutUsCount; $i++) : ?>
                 <?php
-                $reverse = ($number % 2 == 0);
+                $reverse = ($i % 2 == 0);
                 ?>
                 <div class="section <?= $reverse ? 'reverse' : '' ?>">
                     <div class="image">
                         <?= $this->ContentBlock->image(
-                            "section-$number-image",
+                            "section-$i-image",
                             [
-                                'alt' => $this->ContentBlock->text("section-$number-heading-main"),
+                                'alt' => $this->ContentBlock->text("section-$i-heading-main"),
                                 'class' => 'img-fluid',
                             ]
                         ); ?>
                     </div>
                     <div class="text">
                         <h6 class="small-heading">
-                            <?= $this->ContentBlock->text("section-$number-heading-small"); ?>
+                            <?= $this->ContentBlock->text("section-$i-heading-small"); ?>
                         </h6>
                         <h2 class="main-heading">
-                            <?= $this->ContentBlock->text("section-$number-heading-main"); ?>
+                            <?= $this->ContentBlock->text("section-$i-heading-main"); ?>
                         </h2>
-                        <?= $this->ContentBlock->html("section-$number-description"); ?>
+                        <?= $this->ContentBlock->html("section-$i-description"); ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endfor; ?>
         </div>
     </div>
 </div>

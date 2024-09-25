@@ -39,7 +39,7 @@ $this->disableAutoLayout();
                             'class' => 'dark-logo',
                             'width' => '180',
                         ]),
-                        ['controller' => 'Pages', 'action' => 'home'],
+                        ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
                         ['class' => 'navbar-brand me-0 py-0', 'escape' => false]
                     ) ?>
                     <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -235,21 +235,21 @@ $this->disableAutoLayout();
                             <li class="nav-item">
                                 <?= $this->Html->link(
                                     'FAQs',
-                                    ['controller' => 'Pages', 'action' => 'faqs'],
+                                    ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                                     ['class' => 'nav-link active', 'aria-current' => 'page']
                                 ); ?>
                             </li>
                             <li class="nav-item">
                                 <?= $this->Html->link(
                                     'About Us',
-                                    ['controller' => 'Pages', 'action' => 'about-us'],
+                                    ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                                     ['class' => 'nav-link active', 'aria-current' => 'page']
                                 ); ?>
                             </li>
                             <li class="nav-item">
                                 <?= $this->Html->link(
                                     'Contact Us',
-                                    ['controller' => 'Enquiries', 'action' => 'add'],
+                                    ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                                     ['class' => 'nav-link active', 'aria-current' => 'page']
                                 ); ?>
                             </li>
@@ -1825,12 +1825,13 @@ $this->disableAutoLayout();
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="text-center">
-                            <a href="index">
-                                <?= $this->ContentBlock->image('favicon', [
+                            <?= $this->Html->link(
+                                $this->ContentBlock->image('favicon', [
                                     'alt' => 'flagmaster-img',
                                     'class' => 'img-fluid pb-3',
-                                ]) ?>
-                            </a>
+                                ]),
+                                '/',
+                            ) ?>
                             <p class="mb-0 text-dark">
                                 <?= $this->ContentBlock->text('footer-text') ?>
                                 <a class="text-dark text-hover-primary border-bottom border-primary" href="<?= $this->ContentBlock->text('footer-website-link')?>">
@@ -2032,21 +2033,21 @@ $this->disableAutoLayout();
                     <li class="nav-item mt-3">
                         <?= $this->Html->link(
                             'FAQs',
-                            ['controller' => 'Pages', 'action' => 'faqs'],
+                            ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                             ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
                         ); ?>
                     </li>
                     <li class="nav-item mt-3">
                         <?= $this->Html->link(
                             'About Us',
-                            ['controller' => 'Pages', 'action' => 'about-us'],
+                            ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                             ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
                         ); ?>
                     </li>
                     <li class="nav-item mt-3">
                         <?= $this->Html->link(
                             'Contact Us',
-                            ['controller' => 'Enquiries', 'action' => 'add'],
+                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                             ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
                         ); ?>
                     </li>

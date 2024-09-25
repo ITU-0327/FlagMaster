@@ -37,7 +37,7 @@ extract($userInfo);
                                 <span class="mt-1">
                                     <i class="ti ti-chevron-down fs-3"></i>
                                 </span>',
-                            ['controller' => 'Products', 'action' => 'index', 'plugin' => false],
+                            ['controller' => 'Products', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                             ['class' => 'nav-link', 'escape' => false]
                         ); ?>
                         <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
@@ -48,7 +48,7 @@ extract($userInfo);
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-chat.svg', [
@@ -65,7 +65,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Explore national flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
@@ -80,7 +80,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Create custom designs</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
@@ -97,7 +97,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Wearable cape flags</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
@@ -119,7 +119,7 @@ extract($userInfo);
 
                                                 <div class="col-6">
                                                     <div class="position-relative">
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-cart.svg', [
@@ -136,7 +136,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Decorate your garden</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-date.svg', [
@@ -153,7 +153,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Perfect for parades</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
@@ -170,7 +170,7 @@ extract($userInfo);
                                                                 <span class="fs-2 d-block text-body-secondary">Flags for decoration</span>
                                                             </div>
                                                         </a>
-                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'plugin' => false]); ?>"
+                                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'prefix' => null, 'plugin' => null]); ?>"
                                                            class="d-flex align-items-center pb-9 position-relative">
                                                             <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                                                 <?= $this->Html->image('svgs/icon-dd-application.svg', [
@@ -196,7 +196,7 @@ extract($userInfo);
                                             <div class="col-8">
                                                 <?= $this->Html->link(
                                                     '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
-                                                    ['controller' => 'Pages', 'action' => 'faqs', 'plugin' => false],
+                                                    ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
                                                     ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
                                                 ); ?>
                                             </div>
@@ -216,28 +216,28 @@ extract($userInfo);
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Australian Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 65, 'plugin' => false],
+                                                    ['controller' => 'Products', 'action' => 'view', 65, 'prefix' => null, 'plugin' => null],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Pirate Skull Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 66, 'plugin' => false],
+                                                    ['controller' => 'Products', 'action' => 'view', 66, 'prefix' => null, 'plugin' => null],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Sunflower Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 67, 'plugin' => false],
+                                                    ['controller' => 'Products', 'action' => 'view', 67, 'prefix' => null, 'plugin' => null],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
                                             <li class="mb-3">
                                                 <?= $this->Html->link(
                                                     'Switzerland Hand Flag',
-                                                    ['controller' => 'Products', 'action' => 'view', 68, 'plugin' => false],
+                                                    ['controller' => 'Products', 'action' => 'view', 68, 'prefix' => null, 'plugin' => null],
                                                     ['class' => 'fw-semibold bg-hover-primary']
                                                 ); ?>
                                             </li>
@@ -255,35 +255,41 @@ extract($userInfo);
                 <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="faqs">FAQs</a>
+                  <?= $this->Html->link(
+                      'FAQs',
+                      ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'About Us',
-                      ['controller' => 'Pages', 'action' => 'about-us', 'plugin' => false],
+                      ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'Contact Us',
-                      ['controller' => 'Enquiries', 'action' => 'add', 'plugin' => false],
+                      ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
             </ul>
 
-            <div class="d-block d-lg-none py-4">
-              <a href="/" class="text-nowrap logo-img">
-                  <?= $this->Html->image('logos/dark-logo.svg', [
-                      'alt' => 'Logo-Dark',
-                      'class' => 'dark-logo',
-                  ]) ?>
-                  <?= $this->Html->image('logos/light-logo.svg', [
-                      'alt' => 'Logo-light',
-                      'class' => 'light-logo',
-                  ]) ?>
-              </a>
+            <div class="d-block d-lg-none py-4"
+                <?= $this->Html->link(
+                    $this->ContentBlock->image('logo-dark', [
+                        'alt' => 'Logo-Dark',
+                        'class' => 'dark-logo',
+                    ]) .
+                    $this->ContentBlock->image('logo-light', [
+                        'alt' => 'Logo-light',
+                        'class' => 'light-logo',
+                    ]),
+                    ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
+                    ['class' => 'text-nowrap logo-img', 'escape' => false]
+                ) ?>
             </div>
             <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <i class="ti ti-dots fs-7"></i>
@@ -473,7 +479,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -488,7 +494,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
                                 '</div>',
-                                ['controller' => 'Enquiries', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Enquiries', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -503,14 +509,14 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
                                 '</div>',
-                                ['controller' => 'Orders', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Orders', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
                             <?= $this->Form->postLink(
                                 'Log Out',
-                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['controller' => 'Auth', 'action' => 'logout', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'btn btn-outline-primary']
                             ); ?>
                         </div>
@@ -717,28 +723,34 @@ extract($userInfo);
                     </a>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="faqs" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-calendar"></i>
-                      </span>
-                      <span class="hide-menu">FAQs</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                            <i class="ti ti-calendar"></i>
+                          </span>
+                          <span class="hide-menu">FAQs</span>',
+                          ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="about-us" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-mail"></i>
-                      </span>
-                      <span class="hide-menu">About Us</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                            <i class="ti ti-mail"></i>
+                          </span>
+                          <span class="hide-menu">About Us</span>',
+                          ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="contact-us" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-calendar"></i>
-                      </span>
-                            <span class="hide-menu">Contact Us</span>
-                        </a>
+                        <?= $this->Html->link(
+                            '<span>
+                                <i class="ti ti-calendar"></i>
+                            </span>
+                            <span class="hide-menu">Contact Us</span>',
+                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                            ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                        ); ?>
                     </li>
                 </ul>
               </div>
@@ -978,13 +990,25 @@ extract($userInfo);
                 <a class="nav-link" href="custom-products">Custom Products</a>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="faqs">FAQs</a>
+                  <?= $this->Html->link(
+                      'FAQs',
+                      ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="about-us">About Us</a>
+                  <?= $this->Html->link(
+                      'About Us',
+                      ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
                 <li class="nav-item dropdown-hover d-none d-lg-block">
-                    <a class="nav-link" href="contact-us">Contact Us</a>
+                    <?= $this->Html->link(
+                        'Contact Us',
+                        ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                        ['class' => 'nav-link']
+                    ); ?>
                 </li>
             </ul>
             <div class="d-block d-xl-none">
@@ -1186,7 +1210,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 mt-8 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -1201,7 +1225,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
                                 '</div>',
-                                ['controller' => 'Enquiries', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Enquiries', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -1216,14 +1240,14 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
                                 '</div>',
-                                ['controller' => 'Orders', 'action' => 'index', 'plugin' => false],
+                                ['controller' => 'Orders', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                         </div>
                         <div class="d-grid py-4 px-7 pt-8">
                             <?= $this->Form->postLink(
                                 'Log Out',
-                                ['controller' => 'Auth', 'action' => 'logout'],
+                                ['controller' => 'Auth', 'action' => 'logout', 'prefix' => null, 'plugin' => null],
                                 ['class' => 'btn btn-outline-primary']
                             ); ?>
                         </div>

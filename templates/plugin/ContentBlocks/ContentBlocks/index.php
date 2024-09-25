@@ -8,7 +8,7 @@ $icons = [
     'global' => 'ti ti-world',
     'landing-page' => 'ti ti-home',
     'about-us' => 'ti ti-file-info',
-    'faq-page' => 'ti ti-zoom-question',
+    'faq' => 'ti ti-zoom-question',
 ];
 
 $slugify = function ($text) {
@@ -90,7 +90,7 @@ $formatParent = function ($parent): string {
         <?php
         $availableColors = [
             'var(--bs-info)', 'var(--bs-danger)', 'var(--bs-success)',
-            'var(--bs-secondary)', 'var(--bs-warning)','var(--bs-primary)',
+            'var(--bs-warning)', 'var(--bs-secondary)', 'var(--bs-primary)',
         ];
         $colorIndex = 0;
 

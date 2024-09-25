@@ -24,7 +24,7 @@ extract($userInfo);
                     'class' => 'light-logo',
                     'width' => '180',
                 ]),
-                '/',
+                ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
                 ['class' => 'text-nowrap logo-img', 'escape' => false]
             ) ?>
             <a href="javascript:void(0)" class="sidebartoggler ms-auto text-decoration-none fs-5 d-block d-xl-none">
@@ -46,7 +46,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-aperture"></i></span><span class="hide-menu">Dashboard</span>',
-                        ['controller' => 'Dashboards', 'action' => 'index', 'plugin' => false],
+                        ['controller' => 'Dashboards', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -63,7 +63,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-box"></i></span><span class="hide-menu">Products</span>',
-                        ['controller' => 'Products', 'action' => 'list', 'plugin' => false],
+                        ['controller' => 'Products', 'action' => 'list', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -72,7 +72,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-shopping-cart"></i></span><span class="hide-menu">Orders</span>',
-                        ['controller' => 'Orders', 'action' => 'index', 'plugin' => false],
+                        ['controller' => 'Orders', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -81,7 +81,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-user"></i></span><span class="hide-menu">Customers</span>',
-                        ['controller' => 'Users', 'action' => 'index', 'plugin' => false], // TODO: Change to Customers
+                        ['controller' => 'Users', 'action' => 'index', 'prefix' => null, 'plugin' => null], // TODO: Change to Customers
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -90,7 +90,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-message-circle"></i></span><span class="hide-menu">Enquiries</span>',
-                        ['controller' => 'Enquiries', 'action' => 'index', 'plugin' => false],
+                        ['controller' => 'Enquiries', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -107,7 +107,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
-                        ['controller' => 'Products', 'action' => 'list', 'plugin' => false], // TODO: Change to Stock Management
+                        ['controller' => 'Products', 'action' => 'list', 'prefix' => null, 'plugin' => null], // TODO: Change to Stock Management
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
