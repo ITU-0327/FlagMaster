@@ -146,6 +146,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         ];
         // Load the authenticators. Session should be first.
         $service->loadAuthenticator('Authentication.Session');
+        // If the user is on the login page, check for a cookie as well.
+        $service->loadAuthenticator('Authentication.Cookie', [
+            'fields' => $fields,
+        ]);
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
             'loginUrl' => Router::url([
