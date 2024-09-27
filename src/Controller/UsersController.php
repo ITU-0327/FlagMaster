@@ -7,6 +7,7 @@ namespace App\Controller;
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class UsersController extends AppController
 {
@@ -17,6 +18,8 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->Authorization->authorize($this->Users);
+
         $users = $this->Users->find('all')
             ->contain(['Profiles']);
 
@@ -33,6 +36,7 @@ class UsersController extends AppController
     public function view(?string $id = null)
     {
         $user = $this->Users->get($id, contain: ['Enquiries', 'Orders', 'Profiles', 'Reviews']);
+        $this->Authorization->authorize($user);
         $this->set(compact('user'));
     }
 
@@ -44,6 +48,8 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEmptyEntity();
+        $this->Authorization->authorize($user);
+
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -66,6 +72,8 @@ class UsersController extends AppController
     public function edit(?string $id = null)
     {
         $user = $this->Users->get($id, contain: []);
+        $this->Authorization->authorize($user);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -89,6 +97,8 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
+        $this->Authorization->authorize($user);
+
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {

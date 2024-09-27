@@ -15,6 +15,7 @@ use Google\Service\Oauth2 as Google_Service_Oauth2;
  * Auth Controller
  *
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class AuthController extends AppController
 {
@@ -38,6 +39,7 @@ class AuthController extends AppController
         $this->viewBuilder()->setLayout('auth');
 
         $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword', 'googleLogin', 'googleCallback']);
+        $this->Authorization->skipAuthorization();
 
         // CakePHP loads the model with the same name as the controller by default.
         // Since we don't have an Auth model, we'll need to load "Users" model when starting the controller manually.

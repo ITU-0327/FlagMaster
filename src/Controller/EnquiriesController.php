@@ -3,10 +3,13 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * Enquiries Controller
  *
  * @property \App\Model\Table\EnquiriesTable $Enquiries
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class EnquiriesController extends AppController
 {
@@ -18,11 +21,14 @@ class EnquiriesController extends AppController
     public function index()
     {
         $this->viewBuilder()->setLayout('admin');
+
         $query = $this->Enquiries->find()
             ->contain(['Users', 'Users.Profiles'])
-            ->order(['Enquiries.created_at' => 'DESC']);
+            ->orderBy(['Enquiries.updated_at' => 'DESC']);
 
-        $enquiries = $this->paginate($query);
+        $query = $this->Authorization->applyScope($query);
+
+        $enquiries = $query->all();
 
         $this->set(compact('enquiries'));
     }
@@ -34,9 +40,10 @@ class EnquiriesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $enquiry = $this->Enquiries->get($id, contain: ['Users']);
+        $this->Authorization->authorize($enquiry);
         $this->set(compact('enquiry'));
     }
 
@@ -48,6 +55,8 @@ class EnquiriesController extends AppController
     public function add()
     {
         $enquiry = $this->Enquiries->newEmptyEntity();
+        $this->Authorization->authorize($enquiry);
+
         if ($this->request->is('post')) {
             $enquiry = $this->Enquiries->patchEntity($enquiry, $this->request->getData());
             if ($this->Enquiries->save($enquiry)) {
@@ -68,9 +77,11 @@ class EnquiriesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $enquiry = $this->Enquiries->get($id, contain: []);
+        $this->Authorization->authorize($enquiry);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $enquiry = $this->Enquiries->patchEntity($enquiry, $this->request->getData());
             if ($this->Enquiries->save($enquiry)) {
@@ -91,10 +102,12 @@ class EnquiriesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
         $enquiry = $this->Enquiries->get($id);
+        $this->Authorization->authorize($enquiry);
+
         if ($this->Enquiries->delete($enquiry)) {
             $this->Flash->success(__('The enquiry has been deleted.'));
         } else {
