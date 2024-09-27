@@ -479,7 +479,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                ['controller' => 'Users', 'action' => 'edit', $user_id, 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -1210,7 +1210,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                ['controller' => 'Users', 'action' => 'edit', $user_id, 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 mt-8 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(

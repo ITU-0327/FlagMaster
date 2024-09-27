@@ -12,19 +12,6 @@ use Authorization\IdentityInterface;
 class UserPolicy
 {
     /**
-     * Check if $user can add User
-     *
-     * @param \Authorization\IdentityInterface $user The user.
-     * @param \App\Model\Entity\User $resource
-     * @return bool
-     */
-    public function canAdd(IdentityInterface $user, User $resource): bool
-    {
-        // Only admins can add users
-        return $user->role === 'admin';
-    }
-
-    /**
      * Check if $user can edit User
      *
      * @param \Authorization\IdentityInterface $user The user.

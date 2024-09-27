@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -135,5 +136,51 @@ class UsersTable extends Table
     public function findAuth(Query $query, array $options): Query
     {
         return $query->select(['id', 'email', 'password', 'role']);
+    }
+
+    /**
+     * Custom finder for authentication with associations.
+     *
+     * @param \Cake\Validation\Validator $validator
+     * @return \Cake\Validation\Validator The modified query
+     */
+    public function validationPassword(Validator $validator): Validator
+    {
+        $validator
+            ->add('current_password', 'custom', [
+                'rule' => function ($value, $context) {
+                    $userId = $context['data']['id'];
+                    $user = $this->get($userId);
+                    if ((new DefaultPasswordHasher())->check($value, $user->password)) {
+                        return true;
+                    }
+
+                    return false;
+                },
+                'message' => 'Current password is incorrect',
+            ])
+            ->requirePresence('current_password', function ($context) {
+                return !empty($context['data']['new_password']);
+            })
+            ->notEmptyString('current_password');
+
+        $validator
+            ->requirePresence('new_password', function ($context) {
+                return !empty($context['data']['current_password']);
+            })
+            ->notEmptyString('new_password')
+            ->minLength('new_password', 6, 'Password must be at least 6 characters long');
+
+        $validator
+            ->add('confirm_password', 'compareWith', [
+                'rule' => ['compareWith', 'new_password'],
+                'message' => 'Passwords do not match',
+            ])
+            ->requirePresence('confirm_password', function ($context) {
+                return !empty($context['data']['new_password']);
+            })
+            ->notEmptyString('confirm_password');
+
+        return $validator;
     }
 }

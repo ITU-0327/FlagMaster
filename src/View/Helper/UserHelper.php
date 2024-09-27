@@ -17,6 +17,7 @@ class UserHelper extends Helper
         $user = $this->getView()->getRequest()->getAttribute('identity');
 
         // Initialize variables with default values
+        $user_id = $user->id;
         $profilePicture = 'profile/user-1.jpg';
         $fullName = h($user->username);
         $username = h($user->username);
@@ -31,6 +32,6 @@ class UserHelper extends Helper
             }
         }
 
-        return compact('profilePicture', 'fullName', 'username', 'email');
+        return compact('user_id', 'profilePicture', 'fullName', 'username', 'email');
     }
 }
