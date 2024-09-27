@@ -14,6 +14,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 namespace App\Controller;
 
@@ -37,6 +38,7 @@ class AppController extends Controller
      * e.g. `$this->loadComponent('FormProtection');`
      *
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -51,5 +53,6 @@ class AppController extends Controller
         //$this->loadComponent('FormProtection');
 
         $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('Authorization.Authorization');
     }
 }
