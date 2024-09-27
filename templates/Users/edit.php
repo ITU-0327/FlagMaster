@@ -38,12 +38,6 @@
                 <span class="d-none d-md-block">Account</span>
             </button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-3" id="pills-bills-tab" data-bs-toggle="pill" data-bs-target="#pills-bills" type="button" role="tab" aria-controls="pills-bills" aria-selected="false">
-                <i class="ti ti-article me-2 fs-6"></i>
-                <span class="d-none d-md-block">Bills</span>
-            </button>
-        </li>
     </ul>
     <div class="card-body">
         <div class="tab-content" id="pills-tabContent">
@@ -56,16 +50,14 @@
                                 <h4 class="card-title">Change Profile</h4>
                                 <p class="card-subtitle mb-4">Change your profile picture from here</p>
                                 <div class="text-center">
-                                    <?php
-                                    $profilePicture = $user->profile->profile_picture ?? 'default.jpg';
+                                    <?php $profilePicture = $user->profile->profile_picture ?? 'profile/user-1.jpg';
                                     echo $this->Html->image($profilePicture, [
                                         'alt' => 'Profile Picture',
                                         'class' => 'img-fluid rounded-circle',
                                         'width' => '120',
                                         'height' => '120',
                                         'id' => 'profileImage',
-                                    ]);
-                                    ?>
+                                    ]); ?>
                                     <div class="d-flex align-items-center justify-content-center my-4 gap-6">
                                         <?= $this->Form->file('profile.profile_picture', [
                                             'label' => false,
@@ -223,112 +215,6 @@
                     </div>
                 </div>
                 <?= $this->Form->end() ?>
-            </div>
-            <div class="tab-pane fade" id="pills-bills" role="tabpanel" aria-labelledby="pills-bills-tab" tabindex="0">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9">
-                        <div class="card border shadow-none">
-                            <div class="card-body p-4">
-                                <h4 class="card-title mb-3">Billing Information</h4>
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputtext6" class="form-label">Business
-                                                    Name*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext6" placeholder="Visitor Analytics">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exampleInputtext7" class="form-label">Business
-                                                    Address*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext7" placeholder="">
-                                            </div>
-                                            <div>
-                                                <label for="exampleInputtext8" class="form-label">First Name*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext8" placeholder="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="mb-3">
-                                                <label for="exampleInputtext9" class="form-label">Business
-                                                    Sector*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext9" placeholder="Arts, Media & Entertainment">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="exampleInputtext10" class="form-label">Country*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext10" placeholder="Romania">
-                                            </div>
-                                            <div>
-                                                <label for="exampleInputtext11" class="form-label">Last Name*</label>
-                                                <input type="text" class="form-control" id="exampleInputtext11" placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="card border shadow-none">
-                            <div class="card-body p-4">
-                                <h4 class="card-title">Current Plan : <span class="text-success">Executive</span>
-                                </h4>
-                                <p class="card-subtitle">Thanks for being a premium member and supporting our development.</p>
-                                <div class="d-flex align-items-center justify-content-between mt-7 mb-3">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-package text-dark d-block fs-7" width="22" height="22"></i>
-                                        </div>
-                                        <div>
-                                            <p class="mb-0">Current Plan</p>
-                                            <h5 class="fs-4 fw-semibold">750.000 Monthly Visits</h5>
-                                        </div>
-                                    </div>
-                                    <a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add">
-                                        <i class="ti ti-circle-plus"></i>
-                                    </a>
-                                </div>
-                                <div class="d-flex align-items-center gap-3">
-                                    <button class="btn btn-primary">Change Plan</button>
-                                    <button class="btn bg-danger-subtle text-danger">Reset Plan</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="card border shadow-none">
-                            <div class="card-body p-4">
-                                <h4 class="card-title">Payment Method</h4>
-                                <p class="card-subtitle">On 26 December, 2024</p>
-                                <div class="d-flex align-items-center justify-content-between mt-7">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div class="text-bg-light rounded-1 p-6 d-flex align-items-center justify-content-center">
-                                            <i class="ti ti-credit-card text-dark d-block fs-7" width="22" height="22"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="fs-4 fw-semibold">Visa</h5>
-                                            <p class="mb-0 text-dark">*****2102</p>
-                                        </div>
-                                    </div>
-                                    <a class="text-dark fs-6 d-flex align-items-center justify-content-center bg-transparent p-2 fs-4 rounded-circle" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit">
-                                        <i class="ti ti-pencil-minus"></i>
-                                    </a>
-                                </div>
-                                <p class="my-2">If you updated your payment method, it will only be dislpayed here after your
-                                    next billing cycle.</p>
-                                <div class="d-flex align-items-center gap-3">
-                                    <button class="btn bg-danger-subtle text-danger">Cancel Subscription</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="d-flex align-items-center justify-content-end gap-6">
-                            <button class="btn btn-primary">Save</button>
-                            <button class="btn bg-danger-subtle text-danger">Cancel</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

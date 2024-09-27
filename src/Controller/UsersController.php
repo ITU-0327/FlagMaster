@@ -42,7 +42,10 @@ class UsersController extends AppController
      */
     public function view(?string $id = null)
     {
-        $user = $this->Users->get($id, contain: ['Enquiries', 'Orders', 'Profiles', 'Reviews']);
+        $user = $this->Users->get(
+            $id,
+            contain: ['Profiles' => ['Addresses']]
+        );
         $this->Authorization->authorize($user);
         $this->set(compact('user'));
     }
@@ -156,9 +159,6 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
-
-        // Load list of countries or other necessary data
-//        $countries = $this->getCountriesList();
 
         $this->set(compact('user'));
     }
