@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Response;
 use Exception;
 use Laminas\Diactoros\UploadedFile;
@@ -180,6 +181,44 @@ class UsersController extends AppController
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Promote a customer to admin.
+     *
+     * @param int $id User ID to promote.
+     * @return \Cake\Http\Response|null Redirects to index on success, renders view otherwise.
+     * @throws \Cake\Http\Exception\NotFoundException When user not found.
+     */
+    public function promote(?int $id = null): ?Response
+    {
+        try {
+            // Fetch the user by ID, including the profile
+            $user = $this->Users->get($id);
+            $this->Authorization->authorize($user);
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->error(__('User not found.'));
+
+            return $this->redirect(['action' => 'index']);
+        }
+
+        // Check if the user is already an admin
+        if ($user->role === 'admin') {
+            $this->Flash->info(__('User {0} is already an admin.', h($user->username)));
+
+            return $this->redirect(['action' => 'index']);
+        }
+
+        // Update the user's role to 'admin'
+        $user->role = 'admin';
+
+        if ($this->Users->save($user)) {
+            $this->Flash->success(__('User {0} has been promoted to Admin.', h($user->username)));
+        } else {
+            $this->Flash->error(__('Unable to promote user. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

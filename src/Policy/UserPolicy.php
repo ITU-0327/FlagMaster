@@ -59,4 +59,16 @@ class UserPolicy
         // Admins can view any user
         return $user->role === 'admin';
     }
+
+    /**
+     * Check if $user can view User
+     *
+     * @param \Authorization\IdentityInterface $user The user.
+     * @param \App\Model\Entity\User $resource
+     * @return bool
+     */
+    public function canPromote(IdentityInterface $user, User $resource): bool
+    {
+        return $user->role === 'admin';
+    }
 }
