@@ -195,6 +195,8 @@ class UsersController extends AppController
      */
     public function promote(?int $id = null): ?Response
     {
+        $this->request->allowMethod(['post']);
+
         try {
             // Fetch the user by ID, including the profile
             $user = $this->Users->get($id);
