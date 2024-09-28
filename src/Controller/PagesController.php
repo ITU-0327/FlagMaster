@@ -94,7 +94,7 @@ class PagesController extends AppController
      */
     public function aboutUs()
     {
-        $this->viewBuilder()->setLayout('user');
+        $this->viewBuilder()->setLayout('default');
     }
 
     /**
@@ -104,6 +104,6 @@ class PagesController extends AppController
      */
     public function faq()
     {
-        $this->viewBuilder()->setLayout('user');
+        $this->viewBuilder()->setLayout('default');
     }
 }

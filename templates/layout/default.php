@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var array $themeSettings
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,8 +36,6 @@
                 <?= $this->fetch('content') ?>
             </div>
         </div>
-
-        <?= $this->element('right-sidebar') ?>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
@@ -115,6 +119,10 @@
     </div>
 
     <div class="dark-transparent sidebartoggler"></div>
+
+    <script>
+        let userSettings = <?= json_encode($themeSettings) ?>;
+    </script>
 
     <?= $this->element('vendor-script') ?>
     <?= $this->fetch('customScript') ?>

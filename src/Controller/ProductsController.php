@@ -137,7 +137,6 @@ class ProductsController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('admin');
         $product = $this->Products->newEmptyEntity();
         $this->Authorization->authorize($product);
 

@@ -20,8 +20,6 @@ class EnquiriesController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('admin');
-
         $query = $this->Enquiries->find()
             ->contain(['Users', 'Users.Profiles'])
             ->orderBy(['Enquiries.updated_at' => 'DESC']);

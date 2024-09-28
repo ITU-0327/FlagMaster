@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -54,5 +55,79 @@ class AppController extends Controller
 
         $this->loadComponent('Authentication.Authentication');
         $this->loadComponent('Authorization.Authorization');
+    }
+
+    /**
+     * Before render callback.
+     *
+     * @param \Cake\Event\EventInterface $event The beforeRender event.
+     * @return \Cake\Http\ResponseInterface|null|void
+     */
+    public function beforeRender(EventInterface $event)
+    {
+        parent::beforeRender($event);
+
+        // Retrieve the currently logged-in user
+        $identity = $this->request->getAttribute('identity');
+
+        if ($identity) {
+            $role = $identity->get('role');
+
+            // Determine theme settings based on role
+            $themeSettings = $this->getThemeSettings($role);
+        } else {
+            // Default theme settings for guests or unauthenticated users
+            $themeSettings = [
+                'Layout' => 'vertical',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ];
+        }
+
+        // Pass theme settings to the view
+        $this->set('themeSettings', $themeSettings);
+    }
+
+    /**
+     * Define theme settings based on user role.
+     *
+     * @param string $role User role (e.g., 'admin', 'customer').
+     * @return array Theme settings.
+     */
+    protected function getThemeSettings(string $role): array
+    {
+        return match ($role) {
+            'admin' => [
+                'Layout' => 'vertical',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+            'customer' => [
+                'Layout' => 'horizontal',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+            default => [
+                'Layout' => 'vertical',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+        };
     }
 }

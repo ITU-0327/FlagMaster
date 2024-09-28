@@ -2065,6 +2065,19 @@ $this->disableAutoLayout();
 
 
     <div class="dark-transparent sidebartoggler"></div>
+
+    <script>
+        let userSettings = {
+            Layout: "vertical",
+            SidebarType: "full",
+            BoxedLayout: true,
+            Direction: "ltr",
+            Theme: "light",
+            ColorTheme: "Blue_Theme",
+            cardBorder: false,
+        };
+    </script>
+
     <?= $this->Html->script('vendor.min') ?>
     <?= $this->element('vendor-script') ?>
     <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>

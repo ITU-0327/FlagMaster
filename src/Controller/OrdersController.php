@@ -20,8 +20,6 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        $this->viewBuilder()->setLayout('user');
-
         // Apply scope to limit orders based on user role
         $query = $this->Orders->find()
             ->contain(['Users.Profiles', 'Users.Profiles.Addresses', 'Products']);
