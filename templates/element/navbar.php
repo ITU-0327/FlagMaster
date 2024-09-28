@@ -19,11 +19,6 @@ extract($userInfo);
                   <i class="ti ti-menu-2"></i>
                 </a>
               </li>
-              <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-lg-flex">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="ti ti-search"></i>
-                </a>
-              </li>
             </ul>
 
             <ul class="navbar-nav quick-links d-none d-lg-flex align-items-center">
@@ -252,7 +247,11 @@ extract($userInfo);
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="custom-products">Custom Products</a>
+                  <?= $this->Html->link(
+                      'Custom Products',
+                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
@@ -729,12 +728,14 @@ extract($userInfo);
                     </ul>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="custom-products" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-message-dots"></i>
-                      </span>
-                      <span class="hide-menu">Custom Products</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                                    <i class="ti ti-message-dots"></i>
+                                </span>
+                                <span class="hide-menu">Custom Products</span>',
+                          ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                   <li class="sidebar-item">
                       <?= $this->Html->link(
@@ -791,11 +792,6 @@ extract($userInfo);
                         'class' => 'light-logo',
                         'width' => '120',
                     ]) ?>
-                </a>
-              </li>
-              <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-xl-flex">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="ti ti-search"></i>
                 </a>
               </li>
             </ul>
@@ -1019,7 +1015,11 @@ extract($userInfo);
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="custom-products">Custom Products</a>
+                  <?= $this->Html->link(
+                      'Custom Products',
+                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(

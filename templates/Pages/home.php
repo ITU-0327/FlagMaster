@@ -1831,6 +1831,7 @@ $this->disableAutoLayout();
                                     'class' => 'img-fluid pb-3',
                                 ]),
                                 '/',
+                                ['escape' => false]
                             ) ?>
                             <p class="mb-0 text-dark">
                                 <?= $this->ContentBlock->text('footer-text') ?>
@@ -1862,7 +1863,8 @@ $this->disableAutoLayout();
                             <div class="row">
                                 <div class="col-12">
                                     <div class="position-relative">
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1873,12 +1875,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Chat Application
+                                                    National Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">New messages arrived</span>
+                                                <span class="fs-2 d-block text-muted">Explore national flags</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1889,12 +1892,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Invoice App
+                                                    Custom Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">Get latest invoice</span>
+                                                <span class="fs-2 d-block text-muted">Create custom designs</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1905,12 +1909,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Contact Application
+                                                    Cape Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">2 Unsaved Contacts</span>
+                                                <span class="fs-2 d-block text-muted">Wearable cape flags</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1921,16 +1926,17 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Email App
+                                                    Car Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">Get new emails</span>
+                                                <span class="fs-2 d-block text-muted">Flags for your car</span>
                                             </div>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="position-relative">
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-cart.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1941,12 +1947,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    User Profile
+                                                    Garden Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">learn more information</span>
+                                                <span class="fs-2 d-block text-muted">Decorate your garden</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-date.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1957,12 +1964,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Calendar App
+                                                    Hand Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">Get dates</span>
+                                                <span class="fs-2 d-block text-muted">Perfect for parades</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1973,12 +1981,13 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Contact List Table
+                                                    Hanging Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">Add new contact</span>
+                                                <span class="fs-2 d-block text-muted">Flags for decoration</span>
                                             </div>
                                         </a>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center pb-9 position-relative lh-base">
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'prefix' => null, 'plugin' => null]); ?>"
+                                           class="d-flex align-items-center pb-9 position-relative lh-base">
                                             <div class="text-bg-light rounded me-3 p-6 d-flex align-items-center justify-content-center">
                                                 <?= $this->Html->image('svgs/icon-dd-application.svg', [
                                                     'alt' => 'flagmaster-img',
@@ -1989,9 +1998,9 @@ $this->disableAutoLayout();
                                             </div>
                                             <div>
                                                 <h6 class="mb-1 fw-semibold text-hover-primary">
-                                                    Notes Application
+                                                    String Flags
                                                 </h6>
-                                                <span class="fs-2 d-block text-muted">To-do and Daily tasks</span>
+                                                <span class="fs-2 d-block text-muted">Perfect for events</span>
                                             </div>
                                         </a>
                                     </div>
@@ -2001,26 +2010,32 @@ $this->disableAutoLayout();
                                     <h5 class="fs-5 mb-7 fw-semibold">Quick Links</h5>
                                     <ul class="list-unstyled px-1">
                                         <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Pricing Page</a>
+                                            <?= $this->Html->link(
+                                                'Australian Flag',
+                                                ['controller' => 'Products', 'action' => 'view', 65, 'prefix' => null, 'plugin' => null],
+                                                ['class' => 'fw-semibold text-dark text-hover-primary']
+                                            ); ?>
                                         </li>
                                         <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Authentication
-                                                Design</a>
+                                            <?= $this->Html->link(
+                                                'Pirate Skull Flag',
+                                                ['controller' => 'Products', 'action' => 'view', 66, 'prefix' => null, 'plugin' => null],
+                                                ['class' => 'fw-semibold text-dark text-hover-primary']
+                                            ); ?>
                                         </li>
                                         <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Register Now</a>
+                                            <?= $this->Html->link(
+                                                'Sunflower Flag',
+                                                ['controller' => 'Products', 'action' => 'view', 67, 'prefix' => null, 'plugin' => null],
+                                                ['class' => 'fw-semibold text-dark text-hover-primary']
+                                            ); ?>
                                         </li>
                                         <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">404 Error Page</a>
-                                        </li>
-                                        <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Notes App</a>
-                                        </li>
-                                        <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">User Application</a>
-                                        </li>
-                                        <li class="mb-3">
-                                            <a class="fw-semibold text-dark text-hover-primary" href="javascript:void(0)">Account Settings</a>
+                                            <?= $this->Html->link(
+                                                'Switzerland Hand Flag',
+                                                ['controller' => 'Products', 'action' => 'view', 68, 'prefix' => null, 'plugin' => null],
+                                                ['class' => 'fw-semibold text-dark text-hover-primary']
+                                            ); ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -2028,7 +2043,11 @@ $this->disableAutoLayout();
                         </div>
                     </li>
                     <li class="nav-item mt-3">
-                        <a class="nav-link fs-3 text-dark active" aria-current="page" href="#">Custom Flag</a>
+                        <?= $this->Html->link(
+                            'Custom Products',
+                            ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                            ['class' => 'nav-link fs-3 text-dark active', 'aria-current' => 'page']
+                        ); ?>
                     </li>
                     <li class="nav-item mt-3">
                         <?= $this->Html->link(
