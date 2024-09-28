@@ -1,6 +1,7 @@
 <?php
 /**
  * @var array $themeSettings
+ * @var string|null $userRole
  */
 ?>
 
@@ -24,7 +25,9 @@
 </div>
 
 <div id="main-wrapper">
-    <?= $this->element('left-sidebar') ?>
+    <?php if ($userRole == 'admin') : ?>
+        <?= $this->element('left-sidebar') ?>
+    <?php endif; ?>
 
     <!-- Sidebar End -->
     <div class="page-wrapper">

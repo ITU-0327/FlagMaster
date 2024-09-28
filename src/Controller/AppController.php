@@ -75,6 +75,9 @@ class AppController extends Controller
 
             // Determine theme settings based on role
             $themeSettings = $this->getThemeSettings($role);
+
+            // Pass the user role to the view
+            $this->set('userRole', $role);
         } else {
             // Default theme settings for guests or unauthenticated users
             $themeSettings = [
@@ -86,6 +89,9 @@ class AppController extends Controller
                 'ColorTheme' => 'Blue_Theme',
                 'cardBorder' => false,
             ];
+
+            // Pass a default role or null for guests
+            $this->set('userRole', null);
         }
 
         // Pass theme settings to the view
