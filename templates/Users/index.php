@@ -108,11 +108,25 @@
                                 <i class="ti ti-dots fs-5"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?= $user->id ?>">
+                                <?php if ($user->role == 'customer') : ?>
+                                    <li>
+                                        <?= $this->Form->postLink(
+                                            '<i class="fs-4 ti ti-user-plus"></i> Promote to Admin',
+                                            ['action' => 'promote', $user->id],
+                                            [
+                                                'confirm' => __('Are you sure you want to promote {0} to Admin?', $user->username),
+                                                'class' => 'dropdown-item d-flex align-items-center gap-3 text-danger',
+                                                'escape' => false,
+                                                'title' => __('Promote {0} to Admin', $user->username),
+                                            ]
+                                        ); ?>
+                                    </li>
+                                <?php endif; ?>
                                 <li>
                                     <?= $this->Html->link(
                                         '<i class="fs-4 ti ti-eye"></i> View',
                                         ['action' => 'view', $user->id],
-                                        ['class' => 'dropdown-item d-flex align-items-center gap-3', 'escape' => false],
+                                        ['class' => 'dropdown-item d-flex align-items-center gap-3 text-primary', 'escape' => false],
                                     ); ?>
                                 </li>
                                 <li>

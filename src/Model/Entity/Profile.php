@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string|null $first_name
  * @property string|null $last_name
  * @property string|null $phone
+ * @property string|null $profile_picture
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
  *

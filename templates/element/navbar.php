@@ -19,11 +19,6 @@ extract($userInfo);
                   <i class="ti ti-menu-2"></i>
                 </a>
               </li>
-              <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-lg-flex">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="ti ti-search"></i>
-                </a>
-              </li>
             </ul>
 
             <ul class="navbar-nav quick-links d-none d-lg-flex align-items-center">
@@ -252,7 +247,11 @@ extract($userInfo);
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="custom-products">Custom Products</a>
+                  <?= $this->Html->link(
+                      'Custom Products',
+                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
@@ -479,7 +478,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                ['controller' => 'Users', 'action' => 'edit', $user_id, 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(
@@ -558,7 +557,8 @@ extract($userInfo);
                     </a>
                     <ul aria-expanded="false" class="collapse first-level my-3">
                       <li class="sidebar-item py-2">
-                        <a href="chat" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                   'alt' => 'flagmaster-img',
@@ -568,13 +568,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Chat Application</h6>
-                            <span class="fs-2 d-block text-muted">New messages arrived</span>
+                            <h6 class="mb-1 bg-hover-primary">National Flags</h6>
+                            <span class="fs-2 d-block text-muted">Explore national flags</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="invoice" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                   'alt' => 'flagmaster-img',
@@ -584,13 +585,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Invoice App</h6>
-                            <span class="fs-2 d-block text-muted">Get latest invoice</span>
+                            <h6 class="mb-1 bg-hover-primary">Custom Flags</h6>
+                            <span class="fs-2 d-block text-muted">Create custom designs</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="cotact" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                   'alt' => 'flagmaster-img',
@@ -600,13 +602,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Contact Application</h6>
-                            <span class="fs-2 d-block text-muted">2 Unsaved Contacts</span>
+                            <h6 class="mb-1 bg-hover-primary">Cape Flags</h6>
+                            <span class="fs-2 d-block text-muted">Wearable cape flags</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="email" class="d-flex align-items-center">
+                      <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'prefix' => null, 'plugin' => null]); ?>"
+                         class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
                                   'alt' => 'flagmaster-img',
@@ -616,13 +619,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Email App</h6>
-                            <span class="fs-2 d-block text-muted">Get new emails</span>
+                            <h6 class="mb-1 bg-hover-primary">Car Flags</h6>
+                            <span class="fs-2 d-block text-muted">Flags for your car</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="user-profile" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-cart.svg', [
                                   'alt' => 'flagmaster-img',
@@ -632,13 +636,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">User Profile</h6>
-                            <span class="fs-2 d-block text-muted">learn more information</span>
+                            <h6 class="mb-1 bg-hover-primary">Garden Flags</h6>
+                            <span class="fs-2 d-block text-muted">Decorate your garden</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="calendar" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-date.svg', [
                                   'alt' => 'flagmaster-img',
@@ -648,13 +653,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Calendar App</h6>
-                            <span class="fs-2 d-block text-muted">Get dates</span>
+                            <h6 class="mb-1 bg-hover-primary">Hand Flags</h6>
+                            <span class="fs-2 d-block text-muted">Perfect for parades</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="contact-list" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
                                   'alt' => 'flagmaster-img',
@@ -664,13 +670,14 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Contact List Table</h6>
-                            <span class="fs-2 d-block text-muted">Add new contact</span>
+                            <h6 class="mb-1 bg-hover-primary">Hanging Flags</h6>
+                            <span class="fs-2 d-block text-muted">Flags for decoration</span>
                           </div>
                         </a>
                       </li>
                       <li class="sidebar-item py-2">
-                        <a href="notes" class="d-flex align-items-center">
+                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'prefix' => null, 'plugin' => null]); ?>"
+                           class="d-flex align-items-center">
                           <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                               <?= $this->Html->image('svgs/icon-dd-application.svg', [
                                   'alt' => 'flagmaster-img',
@@ -680,8 +687,8 @@ extract($userInfo);
                               ]) ?>
                           </div>
                           <div>
-                            <h6 class="mb-1 bg-hover-primary">Notes Application</h6>
-                            <span class="fs-2 d-block text-muted">To-do and Daily tasks</span>
+                            <h6 class="mb-1 bg-hover-primary">String Flags</h6>
+                            <span class="fs-2 d-block text-muted">Perfect for events</span>
                           </div>
                         </a>
                       </li>
@@ -690,37 +697,45 @@ extract($userInfo);
                           <h5 class="fs-5 fw-semibold">Quick Links</h5>
                         </li>
                         <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="page-pricing">Pricing Page</a>
+                            <?= $this->Html->link(
+                                'Australian Flag',
+                                ['controller' => 'Products', 'action' => 'view', 65, 'prefix' => null, 'plugin' => null],
+                                ['class' => 'fw-semibold text-dark']
+                            ); ?>
                         </li>
                         <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="authentication-login">Authentication
-                            Design</a>
+                            <?= $this->Html->link(
+                                'Pirate Skull Flag',
+                                ['controller' => 'Products', 'action' => 'view', 66, 'prefix' => null, 'plugin' => null],
+                                ['class' => 'fw-semibold text-dark']
+                            ); ?>
                         </li>
                         <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="authentication-register">Register Now</a>
+                            <?= $this->Html->link(
+                                'Sunflower Flag',
+                                ['controller' => 'Products', 'action' => 'view', 67, 'prefix' => null, 'plugin' => null],
+                                ['class' => 'fw-semibold text-dark']
+                            ); ?>
                         </li>
                         <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="authentication-error">404 Error Page</a>
-                        </li>
-                        <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="notes">Notes App</a>
-                        </li>
-                        <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="user-profile">User Application</a>
-                        </li>
-                        <li class="sidebar-item py-2">
-                          <a class="fw-semibold text-dark" href="page-account-settings">Account Settings</a>
+                            <?= $this->Html->link(
+                                'Switzerland Hand Flag',
+                                ['controller' => 'Products', 'action' => 'view', 68, 'prefix' => null, 'plugin' => null],
+                                ['class' => 'fw-semibold text-dark']
+                            ); ?>
                         </li>
                       </ul>
                     </ul>
                   </li>
                   <li class="sidebar-item">
-                    <a class="sidebar-link" href="custom-products" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-message-dots"></i>
-                      </span>
-                      <span class="hide-menu">Custom Products</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                                    <i class="ti ti-message-dots"></i>
+                                </span>
+                                <span class="hide-menu">Custom Products</span>',
+                          ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                   </li>
                   <li class="sidebar-item">
                       <?= $this->Html->link(
@@ -779,11 +794,6 @@ extract($userInfo);
                     ]) ?>
                 </a>
               </li>
-              <li class="nav-item nav-icon-hover-bg rounded-circle d-none d-xl-flex">
-                <a class="nav-link" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  <i class="ti ti-search"></i>
-                </a>
-              </li>
             </ul>
             <ul class="navbar-nav quick-links d-none d-xl-flex align-items-center">
               <!-- ------------------------------- -->
@@ -804,7 +814,8 @@ extract($userInfo);
                             <div class="row">
                               <div class="col-6">
                                 <div class="position-relative">
-                                  <a href="chat" class="d-flex align-items-center pb-9 position-relative">
+                                  <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'prefix' => null, 'plugin' => null]); ?>"
+                                     class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-chat.svg', [
                                             'alt' => 'flagmaster-img',
@@ -815,12 +826,13 @@ extract($userInfo);
                                     </div>
                                     <div>
                                       <h6 class="mb-1 fw-semibold fs-3">
-                                        Chat Application
+                                          National Flags
                                       </h6>
-                                      <span class="fs-2 d-block text-body-secondary">New messages arrived</span>
+                                      <span class="fs-2 d-block text-body-secondary">Explore national flags</span>
                                     </div>
                                   </a>
-                                  <a href="invoice" class="d-flex align-items-center pb-9 position-relative">
+                                  <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'prefix' => null, 'plugin' => null]); ?>"
+                                     class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-invoice.svg', [
                                             'alt' => 'flagmaster-img',
@@ -830,11 +842,12 @@ extract($userInfo);
                                         ]) ?>
                                     </div>
                                     <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">Invoice App</h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get latest invoice</span>
+                                      <h6 class="mb-1 fw-semibold fs-3">Custom Flags</h6>
+                                      <span class="fs-2 d-block text-body-secondary">Create custom designs</span>
                                     </div>
                                   </a>
-                                  <a href="contact-list" class="d-flex align-items-center pb-9 position-relative">
+                                  <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15], 'prefix' => null, 'plugin' => null]); ?>"
+                                     class="d-flex align-items-center pb-9 position-relative">
                                     <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <?= $this->Html->image('svgs/icon-dd-mobile.svg', [
                                             'alt' => 'flagmaster-img',
@@ -845,102 +858,111 @@ extract($userInfo);
                                     </div>
                                     <div>
                                       <h6 class="mb-1 fw-semibold fs-3">
-                                        Contact Application
+                                          Cape Flags
                                       </h6>
-                                      <span class="fs-2 d-block text-body-secondary">2 Unsaved Contacts</span>
+                                      <span class="fs-2 d-block text-body-secondary">Wearable cape flags</span>
                                     </div>
                                   </a>
-                                  <a href="email" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24',
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">Email App</h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get new emails</span>
-                                    </div>
-                                  </a>
+                                    <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17], 'prefix' => null, 'plugin' => null]); ?>"
+                                       class="d-flex align-items-center pb-9 position-relative">
+                                        <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                            <?= $this->Html->image('svgs/icon-dd-message-box.svg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold fs-3">
+                                                Car Flags
+                                            </h6>
+                                            <span class="fs-2 d-block text-body-secondary">Flags for your car</span>
+                                        </div>
+                                    </a>
                                 </div>
                               </div>
                               <div class="col-6">
                                 <div class="position-relative">
-                                  <a href="user-profile" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-cart.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24',
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        User Profile
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">learn more information</span>
-                                    </div>
-                                  </a>
-                                  <a href="calendar" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-date.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24',
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Calendar App
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">Get dates</span>
-                                    </div>
-                                  </a>
-                                  <a href="contact-table" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24',
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Contact List Table
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">Add new contact</span>
-                                    </div>
-                                  </a>
-                                  <a href="notes" class="d-flex align-items-center pb-9 position-relative">
-                                    <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                                        <?= $this->Html->image('svgs/icon-dd-application.svg', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                            'width' => '24',
-                                            'height' => '24',
-                                        ]) ?>
-                                    </div>
-                                    <div>
-                                      <h6 class="mb-1 fw-semibold fs-3">
-                                        Notes Application
-                                      </h6>
-                                      <span class="fs-2 d-block text-body-secondary">To-do and Daily tasks</span>
-                                    </div>
-                                  </a>
+                                    <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18], 'prefix' => null, 'plugin' => null]); ?>"
+                                       class="d-flex align-items-center pb-9 position-relative">
+                                        <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                            <?= $this->Html->image('svgs/icon-dd-cart.svg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold fs-3">
+                                                Garden Flags
+                                            </h6>
+                                            <span class="fs-2 d-block text-body-secondary">Decorate your garden</span>
+                                        </div>
+                                    </a>
+                                    <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19], 'prefix' => null, 'plugin' => null]); ?>"
+                                       class="d-flex align-items-center pb-9 position-relative">
+                                        <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                            <?= $this->Html->image('svgs/icon-dd-date.svg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold fs-3">
+                                                Hand Flags
+                                            </h6>
+                                            <span class="fs-2 d-block text-body-secondary">Perfect for parades</span>
+                                        </div>
+                                    </a>
+                                    <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20], 'prefix' => null, 'plugin' => null]); ?>"
+                                       class="d-flex align-items-center pb-9 position-relative">
+                                        <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                            <?= $this->Html->image('svgs/icon-dd-lifebuoy.svg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold fs-3">
+                                                Hanging Flags
+                                            </h6>
+                                            <span class="fs-2 d-block text-body-secondary">Flags for decoration</span>
+                                        </div>
+                                    </a>
+                                    <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21], 'prefix' => null, 'plugin' => null]); ?>"
+                                       class="d-flex align-items-center pb-9 position-relative">
+                                        <div class="text-bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                                            <?= $this->Html->image('svgs/icon-dd-application.svg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid',
+                                                'width' => '24',
+                                                'height' => '24',
+                                            ]) ?>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold fs-3">
+                                                String Flags
+                                            </h6>
+                                            <span class="fs-2 d-block text-body-secondary">Perfect for events</span>
+                                        </div>
+                                    </a>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div class="row align-items-center py-3">
                             <div class="col-8">
-                              <a class="fw-semibold d-flex align-items-center lh-1" href="javascript:void(0)">
-                                <i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions
-                              </a>
+                                <?= $this->Html->link(
+                                    '<i class="ti ti-help fs-6 me-2"></i>Frequently Asked Questions',
+                                    ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null],
+                                    ['class' => 'fw-semibold d-flex align-items-center lh-1', 'escape' => false]
+                                ); ?>
                             </div>
                             <div class="col-4">
                               <div class="d-flex justify-content-end pe-4">
@@ -953,30 +975,36 @@ extract($userInfo);
                       <div class="col-4 ms-n4">
                         <div class="position-relative p-7 border-start h-100">
                           <h5 class="fs-5 mb-9 fw-semibold">Quick Links</h5>
-                          <ul class="">
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="page-pricing">Pricing Page</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-login">Authentication
-                                Design</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-register">Register Now</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="authentication-error">404 Error Page</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="notes">Notes App</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="user-profile">User Application</a>
-                            </li>
-                            <li class="mb-3">
-                              <a class="fw-semibold bg-hover-primary" href="page-account-settings">Account Settings</a>
-                            </li>
-                          </ul>
+                            <ul class="">
+                                <li class="mb-3">
+                                    <?= $this->Html->link(
+                                        'Australian Flag',
+                                        ['controller' => 'Products', 'action' => 'view', 65, 'prefix' => null, 'plugin' => null],
+                                        ['class' => 'fw-semibold bg-hover-primary']
+                                    ); ?>
+                                </li>
+                                <li class="mb-3">
+                                    <?= $this->Html->link(
+                                        'Pirate Skull Flag',
+                                        ['controller' => 'Products', 'action' => 'view', 66, 'prefix' => null, 'plugin' => null],
+                                        ['class' => 'fw-semibold bg-hover-primary']
+                                    ); ?>
+                                </li>
+                                <li class="mb-3">
+                                    <?= $this->Html->link(
+                                        'Sunflower Flag',
+                                        ['controller' => 'Products', 'action' => 'view', 67, 'prefix' => null, 'plugin' => null],
+                                        ['class' => 'fw-semibold bg-hover-primary']
+                                    ); ?>
+                                </li>
+                                <li class="mb-3">
+                                    <?= $this->Html->link(
+                                        'Switzerland Hand Flag',
+                                        ['controller' => 'Products', 'action' => 'view', 68, 'prefix' => null, 'plugin' => null],
+                                        ['class' => 'fw-semibold bg-hover-primary']
+                                    ); ?>
+                                </li>
+                            </ul>
                         </div>
                       </div>
                     </div>
@@ -987,7 +1015,11 @@ extract($userInfo);
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
               <li class="nav-item dropdown-hover d-none d-lg-block">
-                <a class="nav-link" href="custom-products">Custom Products</a>
+                  <?= $this->Html->link(
+                      'Custom Products',
+                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'nav-link']
+                  ); ?>
               </li>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
@@ -1210,7 +1242,7 @@ extract($userInfo);
                                 '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
                                 '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
                                 '</div>',
-                                ['controller' => 'Profiles', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                ['controller' => 'Users', 'action' => 'edit', $user_id, 'prefix' => null, 'plugin' => null],
                                 ['class' => 'py-8 px-7 mt-8 d-flex align-items-center', 'escape' => false]
                             ); ?>
                             <?= $this->Html->link(

@@ -21,7 +21,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Enquiry[] $enquiries
  * @property \App\Model\Entity\Order[] $orders
- * @property \App\Model\Entity\Profile[] $profiles
+ * @property \App\Model\Entity\Profile $profile
  * @property \App\Model\Entity\Review[] $reviews
  */
 class User extends Entity

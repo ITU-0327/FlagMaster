@@ -29,14 +29,22 @@ use Cake\View\Exception\MissingTemplateException;
  * This controller will render views from templates/Pages/
  *
  * @link https://book.cakephp.org/5/en/controllers/pages-controller.html
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class PagesController extends AppController
 {
+    /**
+     * Displays a view
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
     public function beforeFilter(EventInterface $event)
     {
         parent::beforeFilter($event);
         // Allow the 'display' action to be accessed without login for the homepage
         $this->Authentication->allowUnauthenticated(['display']);
+        $this->Authorization->skipAuthorization();
     }
 
     /**
@@ -67,6 +75,19 @@ class PagesController extends AppController
         if (!empty($path[1])) {
             $subpage = $path[1];
         }
+
+        // Only apply the redirection logic for the 'home' page
+        if ($page === 'home') {
+            $identity = $this->Authentication->getIdentity();
+            if ($identity) {
+                // User is authenticated; determine redirect based on role
+                $role = $identity->get('role');
+                $redirect = $this->determineRedirectByRole($role);
+
+                return $this->redirect($redirect);
+            }
+        }
+
         $this->set(compact('page', 'subpage'));
 
         try {
@@ -86,7 +107,7 @@ class PagesController extends AppController
      */
     public function aboutUs()
     {
-        $this->viewBuilder()->setLayout('user');
+        $this->viewBuilder()->setLayout('default');
     }
 
     /**
@@ -96,6 +117,20 @@ class PagesController extends AppController
      */
     public function faq()
     {
-        $this->viewBuilder()->setLayout('user');
+        $this->viewBuilder()->setLayout('default');
+    }
+
+    /**
+     * Determine redirect location based on user role.
+     *
+     * @param string|null $role User role.
+     * @return array Redirect URL array.
+     */
+    protected function determineRedirectByRole(?string $role): array
+    {
+        return match ($role) {
+            'admin' => ['controller' => 'Users', 'action' => 'index'],
+            default => ['controller' => 'Products', 'action' => 'index'],
+        };
     }
 }

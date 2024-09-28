@@ -65,12 +65,12 @@ class EnquiriesTable extends Table
             ->scalar('subject')
             ->maxLength('subject', 255)
             ->requirePresence('subject', 'create')
-            ->notEmptyString('subject');
+            ->notEmptyString('subject', 'Subject is required.');
 
         $validator
             ->scalar('message')
             ->requirePresence('message', 'create')
-            ->notEmptyString('message');
+            ->notEmptyString('message', 'Message is required.');
 
         $validator
             ->scalar('status')

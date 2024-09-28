@@ -136,7 +136,13 @@
                                                 <div class="chat-list chat <?= $first ? 'active-chat' : ''; ?>" data-user-id="<?= h($enquiry->id); ?>">
                                                     <div class="hstack align-items-start mb-7 pb-1 align-items-center justify-content-between flex-wrap gap-6">
                                                         <div class="d-flex align-items-center gap-2">
-                                                            <?= $this->Html->image('profile/user-' . h($enquiry->user->id) % 12 . '.jpg', [
+                                                            <?php
+                                                            $profilePicture = 'profile/user-1.jpg';
+                                                            if (!empty($enquiry->user->profile) && !empty($enquiry->user->profile->profile_picture)) {
+                                                                $profilePicture = $enquiry->user->profile->profile_picture;
+                                                            }
+                                                            ?>
+                                                            <?= $this->Html->image($profilePicture, [
                                                                 'alt' => h($enquiry->user->username),
                                                                 'class' => 'rounded-circle',
                                                                 'width' => '48',

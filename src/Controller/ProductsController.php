@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Datasource\ConnectionManager;
+use Cake\Http\Response;
+
 /**
  * Products Controller
  *
  * @property \App\Model\Table\ProductsTable $Products
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class ProductsController extends AppController
 {
@@ -17,6 +21,7 @@ class ProductsController extends AppController
      */
     public function index()
     {
+        $this->Authorization->authorize($this->Products);
         $categoryId = $this->request->getQuery('category');
         $sort = $this->request->getQuery('sort');
         $priceFilter = $this->request->getQuery('price_filter', 'all');
@@ -34,17 +39,17 @@ class ProductsController extends AppController
         // Apply sorting (adjusted for final price with discount)
         switch ($sort) {
             case 'price_low_high':
-                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
+                $query->orderBy(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'ASC']);
                 break;
             case 'price_high_low':
-                $query->order(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
+                $query->orderBy(['IF(Products.discount_type != "none", Products.discount_value, Products.price)' => 'DESC']);
                 break;
             case 'discounted':
                 $query->where(['Products.discount_type !=' => 'none']);
                 break;
             case 'newest':
             default:
-                $query->order(['Products.created_at' => 'DESC']);
+                $query->orderBy(['Products.created_at' => 'DESC']);
                 break;
         }
 
@@ -79,8 +84,8 @@ class ProductsController extends AppController
             $query->where([
                 'OR' => [
                     'Products.name LIKE' => '%' . $searchQuery . '%',
-                    'Products.description LIKE' => '%' . $searchQuery . '%'
-                ]
+                    'Products.description LIKE' => '%' . $searchQuery . '%',
+                ],
             ]);
         }
 
@@ -99,6 +104,8 @@ class ProductsController extends AppController
      */
     public function list()
     {
+        $this->Authorization->authorize($this->Products);
+
         $query = $this->Products->find();
         $products = $this->paginate($query);
         $this->set(compact('products'));
@@ -111,11 +118,15 @@ class ProductsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
-        $product = $this->Products->get($id, [
-            'contain' => ['Categories', 'ProductImages', 'ProductVariations', 'Reviews']
-        ]);
+        $product = $this->Products->get(
+            $id,
+            contain: ['Categories', 'ProductImages', 'ProductVariations', 'Reviews']
+        );
+
+        $this->Authorization->authorize($product);
+
         $this->set(compact('product'));
     }
 
@@ -126,8 +137,8 @@ class ProductsController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('admin');
         $product = $this->Products->newEmptyEntity();
+        $this->Authorization->authorize($product);
 
         if ($this->request->is('post')) {
             $data = $this->request->getData();
@@ -149,7 +160,6 @@ class ProductsController extends AppController
         $this->set(compact('product', 'categories', 'enumValues', 'variationTypes'));
     }
 
-
     /**
      * Edit method
      *
@@ -157,9 +167,14 @@ class ProductsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
-        $product = $this->Products->get($id, ['contain' => ['Categories', 'Orders']]);
+        $product = $this->Products->get(
+            $id,
+            contain: ['Categories', 'Orders']
+        );
+        $this->Authorization->authorize($product);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
             $this->handleDiscount($data);
@@ -188,10 +203,12 @@ class ProductsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
         $product = $this->Products->get($id);
+        $this->Authorization->authorize($product);
+
         if ($this->Products->delete($product)) {
             $this->Flash->success(__('The product has been deleted.'));
         } else {
@@ -203,31 +220,36 @@ class ProductsController extends AppController
 
     /**
      * Handle discount logic based on discount type.
+     *
+     * @param array $data Product data
      */
-    private function handleDiscount(&$data): void
+    private function handleDiscount(array &$data): void
     {
         if ($data['discount_type'] === 'none') {
             $data['discount_value'] = null;
         } elseif ($data['discount_type'] === 'percentage') {
             $basePrice = (float)$data['price'];
             $percentage = (float)$data['discount_value_percentage'];
-            $data['discount_value'] = $basePrice - ($basePrice * ($percentage / 100));
+            $data['discount_value'] = $basePrice - ($basePrice * $percentage / 100);
         }
     }
 
     /**
      * Get enum values from a table column.
+     *
+     * @param string $table Table name
+     * @param string $column Column name
      */
-    private function getEnumValues($table, $column): array
+    private function getEnumValues(string $table, string $column): array
     {
-        $connection = \Cake\Datasource\ConnectionManager::get('default');
+        $connection = ConnectionManager::get('default');
         $enumValues = [];
         $results = $connection->execute("SHOW COLUMNS FROM {$table} WHERE Field = '{$column}'")->fetch('assoc');
 
         if (isset($results['Type'])) {
-            preg_match("/^enum\(\'(.*)\'\)$/", $results['Type'], $matches);
+            preg_match("/^enum\('(.*)'\)$/", $results['Type'], $matches);
             $enumValues = explode("','", $matches[1]);
-            $enumValues = array_map('ucfirst', $enumValues);  // Capitalize for display
+            $enumValues = array_map('ucfirst', $enumValues); // Capitalize for display
         }
 
         return $enumValues;

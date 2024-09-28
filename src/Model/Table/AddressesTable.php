@@ -64,31 +64,31 @@ class AddressesTable extends Table
             ->scalar('street')
             ->maxLength('street', 255)
             ->requirePresence('street', 'create')
-            ->notEmptyString('street');
+            ->allowEmptyString('street');
 
         $validator
             ->scalar('city')
             ->maxLength('city', 100)
             ->requirePresence('city', 'create')
-            ->notEmptyString('city');
+            ->allowEmptyString('city');
 
         $validator
             ->scalar('state')
             ->maxLength('state', 100)
             ->requirePresence('state', 'create')
-            ->notEmptyString('state');
+            ->allowEmptyString('state');
 
         $validator
             ->scalar('postal_code')
             ->maxLength('postal_code', 20)
             ->requirePresence('postal_code', 'create')
-            ->notEmptyString('postal_code');
+            ->allowEmptyString('postal_code');
 
         $validator
             ->scalar('country')
             ->maxLength('country', 100)
             ->requirePresence('country', 'create')
-            ->notEmptyString('country');
+            ->allowEmptyString('country');
 
         $validator
             ->dateTime('created_at')

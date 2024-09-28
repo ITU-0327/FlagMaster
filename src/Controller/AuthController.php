@@ -15,6 +15,7 @@ use Google\Service\Oauth2 as Google_Service_Oauth2;
  * Auth Controller
  *
  * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class AuthController extends AppController
 {
@@ -38,6 +39,7 @@ class AuthController extends AppController
         $this->viewBuilder()->setLayout('auth');
 
         $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword', 'googleLogin', 'googleCallback']);
+        $this->Authorization->skipAuthorization();
 
         // CakePHP loads the model with the same name as the controller by default.
         // Since we don't have an Auth model, we'll need to load "Users" model when starting the controller manually.
@@ -89,20 +91,9 @@ class AuthController extends AppController
 
                     $profilesTable->save($profile);
 
-                    // Reload the user with the Profiles association
-                    $user = $this->Users->get(
-                        $user->id,
-                        fields: ['id', 'username', 'email', 'role'],
-                        contain: [
-                            'Profiles' => [
-                                'fields' => ['first_name', 'last_name', 'profile_picture'],
-                            ],
-                        ]
-                    );
+                    $this->Flash->success('You have been registered. Please log in.');
 
-                    $this->Authentication->setIdentity($user);
-
-                    return $this->redirect($this->Authentication->getLoginRedirect() ?? ['controller' => 'Users', 'action' => 'index']);
+                    return $this->redirect(['action' => 'login']);
                 }
                 $this->Flash->error('The user could not be registered. Please, try again.');
             }
@@ -273,11 +264,11 @@ class AuthController extends AppController
             // Update the identity with the reloaded user
             $this->Authentication->setIdentity($user);
 
-            // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
-            $fallbackLocation = ['controller' => 'Users', 'action' => 'index'];
+            // Define role-based redirect URLs
+            $redirectUrl = $this->getRedirectUrlByRole($user->role);
 
             // and redirect user to the location they're trying to access
-            return $this->redirect($this->Authentication->getLoginRedirect() ?? $fallbackLocation);
+            return $this->redirect($this->Authentication->getLoginRedirect() ?? $redirectUrl);
         }
 
         // display error if user submitted their credentials but authentication failed
@@ -458,8 +449,11 @@ class AuthController extends AppController
             // Set the identity with the reloaded user
             $this->Authentication->setIdentity($user);
 
+            // Define role-based redirect URLs
+            $redirectUrl = $this->getRedirectUrlByRole($user->role);
+
             // Redirect to desired page
-            return $this->redirect($this->Authentication->getLoginRedirect() ?? ['controller' => 'Users', 'action' => 'index']);
+            return $this->redirect($this->Authentication->getLoginRedirect() ?? $redirectUrl);
         } catch (Exception $e) {
             $this->Flash->error('Login failed: ' . $e->getMessage());
 
@@ -520,5 +514,22 @@ class AuthController extends AppController
         }
 
         return true;
+    }
+
+    /**
+     * Determine redirect URL based on user role.
+     *
+     * @param string $role User role.
+     * @return array Redirect URL.
+     */
+    protected function getRedirectUrlByRole(string $role): array
+    {
+        $roleRedirectMap = [
+            'admin' => ['controller' => 'Users', 'action' => 'index'],
+            'customer' => ['controller' => 'Products', 'action' => 'index'],
+        ];
+
+        // Return the mapped redirect URL if role exists, else default
+        return $roleRedirectMap[$role] ?? ['controller' => 'Products', 'action' => 'index'];
     }
 }
