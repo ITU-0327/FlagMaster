@@ -58,16 +58,18 @@ class EnquiriesController extends AppController
         $this->Authorization->authorize($enquiry);
 
         if ($this->request->is('post')) {
+            $identity = $this->request->getAttribute('identity');
+            $enquiry->user_id = $identity->get('id');
+
             $enquiry = $this->Enquiries->patchEntity($enquiry, $this->request->getData());
             if ($this->Enquiries->save($enquiry)) {
-                $this->Flash->success(__('The enquiry has been saved.'));
+                $this->Flash->success(__('Your enquiry has been submitted successfully.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The enquiry could not be saved. Please, try again.'));
+            $this->Flash->error(__('There was an issue submitting your enquiry. Please try again.'));
         }
-        $users = $this->Enquiries->Users->find('list', limit: 200)->all();
-        $this->set(compact('enquiry', 'users'));
+        $this->set(compact('enquiry'));
     }
 
     /**

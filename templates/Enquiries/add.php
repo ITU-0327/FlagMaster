@@ -35,34 +35,10 @@
     <div class="card-body">
         <div class="d-flex align-items-center">
             <h4 class="card-title mb-0">Enquiry Form</h4>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
-                    </div>
-                </div>
-            </div>
         </div>
         <p class="card-subtitle mb-3">Please fill out the form below to submit an enquiry.</p>
 
         <div class="row">
-            <div class="col-12">
-                <div class="mb-3">
-                    <label for="user_id" class="form-label">User</label>
-                    <?= $this->Form->control('user_id', [
-                        'options' => $users,
-                        'label' => false,
-                        'class' => 'form-control',
-                        'id' => 'user_id',
-                        'placeholder' => 'Select a User',
-                    ]) ?>
-                </div>
-            </div>
-
             <div class="col-12">
                 <div class="mb-3">
                     <label for="subject" class="form-label">Subject</label>
