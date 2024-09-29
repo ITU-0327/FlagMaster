@@ -79,13 +79,31 @@ class UsersTable extends Table
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'This email is already in use.']);
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
-            ->allowEmptyString('password');
+            ->notEmptyString('password', 'A password is required.')
+            ->add('password', 'strength', [
+                'rule' => function ($value, $context) {
+                    // Check for minimum length
+                    if (strlen($value) < 8) {
+                        return false;
+                    }
+                    // Check for at least one number
+                    if (!preg_match('/\d/', $value)) {
+                        return false;
+                    }
+                    // Check for at least one symbol
+                    if (!preg_match('/[\W]/', $value)) {
+                        return false;
+                    }
 
+                    return true;
+                },
+                'message' => 'Password must be at least 8 characters long and contain at least one number and one symbol.',
+            ]);
         $validator
             ->scalar('role')
             ->allowEmptyString('role');
