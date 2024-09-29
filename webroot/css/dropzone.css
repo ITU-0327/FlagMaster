@@ -25,6 +25,12 @@
     padding: 20px;
     min-height: 150px;
     text-align: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dropzone.dragover {
+    background-color: #f0f8ff;
+    border-color: #0056b3;
 }
 
 .dropzone img {
@@ -35,6 +41,7 @@
 .dropzone .dz-message {
     font-size: 1em;
     color: #555;
+    display: block;
 }
 
 .image-container {
@@ -64,7 +71,7 @@
 }
 
 .image-container:hover .delete-image-btn {
-    display: block;
+    display: flex;
 }
 
 .delete-image-btn iconify-icon {

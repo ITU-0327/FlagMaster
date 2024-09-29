@@ -63,7 +63,8 @@ class ProductImagesTable extends Table
         $validator
             ->scalar('image_url')
             ->maxLength('image_url', 255)
-            ->allowEmptyString('image_url');
+            ->requirePresence('image_url', 'create')
+            ->notEmptyFile('image_url', 'Image URL is required.');
 
         $validator
             ->dateTime('created_at')

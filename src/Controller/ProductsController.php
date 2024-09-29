@@ -5,6 +5,10 @@ namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\Response;
+use Exception;
+use Laminas\Diactoros\UploadedFile;
+use Psr\Http\Message\UploadedFileInterface;
+use SplFileInfo;
 
 /**
  * Products Controller
@@ -134,6 +138,7 @@ class ProductsController extends AppController
      * Add method
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     * @throws \Random\RandomException
      */
     public function add()
     {
@@ -144,7 +149,50 @@ class ProductsController extends AppController
             $data = $this->request->getData();
             $this->handleDiscount($data);
 
-            $product = $this->Products->patchEntity($product, $data, ['associated' => ['Categories', 'ProductVariations']]);
+            // Handle Thumbnail Upload
+            $thumbnailFile = $this->request->getData('thumbnail_url');
+            if ($thumbnailFile instanceof UploadedFile && $thumbnailFile->getError() === UPLOAD_ERR_OK) {
+                $thumbnailPath = $this->uploadFile($thumbnailFile, 'thumbnail');
+
+                if ($thumbnailPath) {
+                    $data['thumbnail_url'] = $thumbnailPath;
+                } else {
+                    $this->Flash->error('Thumbnail could not be uploaded. Please try again.');
+
+                    return;
+                }
+            } else {
+                unset($data['thumbnail_url']); // Remove if not uploaded
+            }
+
+            // Handle Product Images Upload
+            if (!empty($data['product_images'])) {
+                $images = $data['product_images'];
+                $uploadedImages = [];
+
+                foreach ($images as $image) {
+                    if ($image->getError() === UPLOAD_ERR_OK) {
+                        $imagePath = $this->uploadFile($image, 'product_image');
+
+                        if ($imagePath) {
+                            $uploadedImages[] = ['image_url' => $imagePath];
+                        } else {
+                            $this->Flash->error('One or more product images could not be uploaded.');
+
+                            return;
+                        }
+                    }
+                }
+
+                // Associate uploaded images
+                if (!empty($uploadedImages)) {
+                    $data['product_images'] = $uploadedImages;
+                } else {
+                    unset($data['product_images']);
+                }
+            }
+
+            $product = $this->Products->patchEntity($product, $data, ['associated' => ['Categories', 'ProductVariations', 'ProductImages']]);
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
 
@@ -253,5 +301,62 @@ class ProductsController extends AppController
         }
 
         return $enumValues;
+    }
+
+    /**
+     * Upload a file and return the relative path.
+     *
+     * @param \Psr\Http\Message\UploadedFileInterface $file Uploaded file
+     * @param string|null $filenamePrefix Filename prefix
+     * @return string|bool Relative path to the uploaded file or false on failure
+     * @throws \Random\RandomException
+     */
+    private function uploadFile(UploadedFileInterface $file, ?string $filenamePrefix = null): bool|string
+    {
+        if ($file->getError() !== UPLOAD_ERR_OK) {
+            if ($file->getError() === UPLOAD_ERR_INI_SIZE || $file->getError() === UPLOAD_ERR_FORM_SIZE) {
+                $this->Flash->error(__('The file you uploaded is too large.'));
+            } else {
+                $this->Flash->error(__('There was an error uploading your file.'));
+            }
+
+            return false;
+        }
+
+        $prefix = $filenamePrefix ? $filenamePrefix . '.' : '';
+
+        // Secure the file extension
+        $extension = preg_replace(
+            '/[^a-z0-9]/',
+            '',
+            strtolower((new SplFileInfo($file->getClientFilename()))->getExtension())
+        );
+        $allowedExtensions = ['png', 'jpg', 'jpeg'];
+
+        if (!in_array($extension, $allowedExtensions)) {
+            $this->Flash->error(__('Invalid file type. Only PNG, JPG, and JPEG are allowed.'));
+
+            return false;
+        }
+
+        // Generate a secure and unique filename
+        $newFilename = $prefix . md5(random_bytes(10)) . '.' . $extension;
+
+        $uploadDir = new SplFileInfo(WWW_ROOT . 'img' . DIRECTORY_SEPARATOR . 'products');
+        if (!$uploadDir->isDir()) {
+            mkdir($uploadDir->getPathname(), 0777, true);
+        }
+
+        // Move the uploaded file
+        try {
+            $file->moveTo($uploadDir->getPathname() . DIRECTORY_SEPARATOR . $newFilename);
+        } catch (Exception $e) {
+            $this->Flash->error(__('Could not move the uploaded file.'));
+
+            return false;
+        }
+
+        // Return the relative path to the uploaded file
+        return 'products/' . $newFilename;
     }
 }
