@@ -23,7 +23,7 @@
                             ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
                         ) ?>
                         <div class="row">
-                            <div class="col-6 mb-2 mb-sm-0">
+                            <div class="col-12 mb-2 mb-sm-0">
                                 <?= $this->Html->link(
                                     $this->Html->image('svgs/google-icon.svg', [
                                         'alt' => 'Google',
@@ -37,15 +37,6 @@
                                         'class' => 'btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8',
                                     ]
                                 ); ?>
-                            </div>
-                            <div class="col-6">
-                                <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
-                                    <?= $this->Html->image(
-                                        'svgs/facebook-icon.svg',
-                                        ['alt' => 'flagmaster-img', 'class' => 'img-fluid me-2', 'width' => 18, 'height' => 18]
-                                    ); ?>
-                                    <span class="flex-shrink-0">with FB</span>
-                                </a>
                             </div>
                         </div>
                         <div class="position-relative text-center my-4">

@@ -24,7 +24,7 @@
                             ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
                         ) ?>
                         <div class="row">
-                            <div class="col-6 mb-2 mb-sm-0">
+                            <div class="col-12 mb-2 mb-sm-0">
                                 <?= $this->Html->link(
                                     $this->Html->image('svgs/google-icon.svg', [
                                         'alt' => 'Google',
@@ -39,15 +39,6 @@
                                     ]
                                 ); ?>
                             </div>
-                            <div class="col-6">
-                                <a class="btn text-dark border fw-normal d-flex align-items-center justify-content-center rounded-2 py-8" href="javascript:void(0)" role="button">
-                                    <?= $this->Html->image(
-                                        'svgs/facebook-icon.svg',
-                                        ['alt' => 'flagmaster-img', 'class' => 'img-fluid me-2', 'width' => 18, 'height' => 18]
-                                    ); ?>
-                                    <span class="flex-shrink-0">with FB</span>
-                                </a>
-                            </div>
                         </div>
                         <div class="position-relative text-center my-4">
                             <p class="mb-0 fs-4 px-3 d-inline-block bg-white z-index-5 position-relative">or sign Up with</p>
@@ -56,33 +47,46 @@
                         <?= $this->Form->create($user) ?>
                         <div class="mb-3">
                             <?= $this->Form->control('email', [
-                                'label' => ['text' => 'Email address', 'class' => 'form-label'],
+                                'label' => ['text' => 'Email Address', 'class' => 'form-label'],
                                 'class' => 'form-control',
-                                'id' => 'exampleInputEmail1',
-                                'aria-describedby' => 'emailHelp',
+                                'placeholder' => 'Enter your email',
+                                'required' => true,
                             ]); ?>
                         </div>
                         <div class="mb-3">
                             <?= $this->Form->control('password', [
                                 'label' => ['text' => 'Password', 'class' => 'form-label'],
                                 'class' => 'form-control',
-                                'id' => 'exampleInputPassword1',
+                                'id' => 'password',
+                                'placeholder' => 'Enter your password',
+                                'required' => true,
+                                'type' => 'password',
+                                'title' => 'Password must be at least 8 characters long and include at least one number and one special character.',
+                                'data-bs-toggle' => 'tooltip',
+                                'data-bs-placement' => 'right',
                             ]); ?>
+
+                            <div id="password-strength" class="mt-1 fs-3"></div>
                         </div>
                         <div class="mb-4">
                             <?= $this->Form->control('password_confirm', [
                                 'type' => 'password',
                                 'label' => ['text' => 'Confirm Password', 'class' => 'form-label'],
                                 'class' => 'form-control',
-                                'id' => 'exampleInputPassword2',
+                                'id' => 'password-confirm',
+                                'placeholder' => 'Confirm your password',
+                                'required' => true,
                             ]); ?>
+
+                            <!-- Password Match Indicator -->
+                            <div id="password-match" class="mt-1 fs-3"></div>
                         </div>
 
                         <div class="mb-4">
                             <div class="cf-turnstile" data-sitekey="0x4AAAAAAAkd0EvD2eY9X-kL"></div>
                         </div>
 
-                        <?= $this->Form->button('Sign Up', ['class' => 'btn btn-primary w-100 py-8 mb-4 rounded-2']) ?>
+                        <?= $this->Form->button('Sign Up', ['class' => 'btn btn-primary w-100 py-3 mb-4 rounded-2']) ?>
                         <div class="d-flex align-items-center">
                             <p class="fs-4 mb-0 text-dark">Already have an Account?</p>
                             <?= $this->Html->link('Sign In', ['controller' => 'Auth', 'action' => 'login'], ['class' => 'text-primary fw-medium ms-2']); ?>
@@ -98,6 +102,8 @@
 
 <?php $this->start('customScript'); ?>
 
+<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js'); ?>
+<?= $this->Html->script('apps/register'); ?>
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js'); ?>
 <?= $this->Html->script('https://challenges.cloudflare.com/turnstile/v0/api.js', ['async' => true, 'defer' => true]); ?>
 
