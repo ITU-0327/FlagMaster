@@ -72,19 +72,49 @@ class UsersTable extends Table
     {
         $validator
             ->scalar('username')
-            ->maxLength('username', 50)
+            ->maxLength('username', 50, 'Username cannot exceed 50 characters.')
             ->allowEmptyString('username');
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmptyString('email')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', [
+                'rule' => 'validateUnique',
+                'provider' => 'table',
+                'message' => 'This email is already in use',
+            ]);
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 255)
-            ->allowEmptyString('password');
+            ->maxLength('password', 255, 'Password cannot exceed 255 characters.')
+            ->requirePresence('password', 'create', 'Password is required.')
+            ->notEmptyString('password', 'Password is required.')
+            ->add('password', 'minLength', [
+                'rule' => ['minLength', 8],
+                'message' => 'Password must be at least 8 characters long.',
+            ])
+            // At Least One Number
+            ->add('password', 'numeric', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/\d/', $value);
+                },
+                'message' => 'Password must contain at least one number.',
+            ])
+            // At Least One Special Character
+            ->add('password', 'specialChar', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/[!@#$%^&*(),.?":{}|<>]/', $value);
+                },
+                'message' => 'Password must contain at least one special character.',
+            ])
+            // At Least One Uppercase Letter
+            ->add('password', 'uppercase', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/[A-Z]/', $value);
+                },
+                'message' => 'Password must contain at least one uppercase letter.',
+            ]);
 
         $validator
             ->scalar('role')
@@ -151,25 +181,46 @@ class UsersTable extends Table
                 'rule' => function ($value, $context) {
                     $userId = $context['data']['id'];
                     $user = $this->get($userId);
-                    if ((new DefaultPasswordHasher())->check($value, $user->password)) {
-                        return true;
-                    }
 
-                    return false;
+                    return (new DefaultPasswordHasher())->check($value, $user->password);
                 },
                 'message' => 'Current password is incorrect',
             ])
             ->requirePresence('current_password', function ($context) {
                 return !empty($context['data']['new_password']);
             })
-            ->notEmptyString('current_password');
+            ->notEmptyString('current_password', 'Please enter your current password.');
 
         $validator
             ->requirePresence('new_password', function ($context) {
                 return !empty($context['data']['current_password']);
             })
-            ->notEmptyString('new_password')
-            ->minLength('new_password', 6, 'Password must be at least 6 characters long');
+            ->notEmptyString('new_password', 'Please enter a new password')
+            ->add('new_password', 'minLength', [
+                'rule' => ['minLength', 8],
+                'message' => 'New password must be at least 8 characters long.',
+            ])
+            // At Least One Number
+            ->add('new_password', 'numeric', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/\d/', $value);
+                },
+                'message' => 'New password must contain at least one number.',
+            ])
+            // At Least One Special Character
+            ->add('new_password', 'specialChar', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/[!@#$%^&*(),.?":{}|<>]/', $value);
+                },
+                'message' => 'New password must contain at least one special character.',
+            ])
+            // At Least One Uppercase Letter
+            ->add('new_password', 'uppercase', [
+                'rule' => function ($value, $context) {
+                    return (bool)preg_match('/[A-Z]/', $value);
+                },
+                'message' => 'New password must contain at least one uppercase letter.',
+            ]);
 
         $validator
             ->add('confirm_password', 'compareWith', [
@@ -179,7 +230,7 @@ class UsersTable extends Table
             ->requirePresence('confirm_password', function ($context) {
                 return !empty($context['data']['new_password']);
             })
-            ->notEmptyString('confirm_password');
+            ->notEmptyString('confirm_password', 'Please confirm your new password');
 
         return $validator;
     }

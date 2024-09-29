@@ -59,7 +59,7 @@ class AuthController extends AppController
 
             $turnstileResponse = $this->request->getData('cf-turnstile-response');
             if (!$this->verifyTurnstile($turnstileResponse)) {
-                $this->Flash->error('Turnstile verification failed. Please try again.');
+                $this->Flash->error('Captcha verification failed. Please try again.');
 
                 return;
             }
@@ -217,11 +217,11 @@ class AuthController extends AppController
             // Used a different validation set in Model/Table file to ensure both fields are filled
             $user = $this->Users->patchEntity($user, $this->request->getData(), ['validate' => 'resetPassword']);
             if ($this->Users->save($user)) {
-                $this->Flash->success('The user has been saved.');
+                $this->Flash->success('Your password has been successfully updated.');
 
-                return $this->redirect(['controller' => 'Users', 'action' => 'index']);
+                return $this->redirect(['controller' => 'Products', 'action' => 'index']);
             }
-            $this->Flash->error('The user could not be saved. Please, try again.');
+            $this->Flash->error('The password could not be updated. Please, try again.');
         }
         $this->set(compact('user'));
     }
