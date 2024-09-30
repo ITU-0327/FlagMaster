@@ -149,7 +149,8 @@
                         </div>
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                             <?php if ($product->stock_quantity > 0) : ?>
-                                <?= $this->Html->link('Buy Now', ['action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0', 'id' => 'buyNowBtn']) ?>
+                                <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn">Buy Now</a>
+<!--                                --><?php //= $this->Html->link('Buy Now', ['controller' => 'Orders', 'action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0', 'id' => 'buyNowBtn']) ?>
                                 <?= $this->Form->postLink('Add to Cart', ['action' => 'addToCart', $product->id], ['class' => 'btn d-block btn-danger px-7 py-8', 'id' => 'addToCartBtn']) ?>
                             <?php else : ?>
                                 <span class="text-danger fs-5">This product is currently out of stock.</span>
@@ -354,21 +355,21 @@
 <?= $this->Html->script('apps/productDetail') ?>
 
 <script>
-    function increaseQuantity() {
-        let qtyInput = document.getElementById("quantityInput");
-        let currentQty = parseInt(qtyInput.value);
-        if (!isNaN(currentQty)) {
-            qtyInput.value = currentQty + 1;
-        }
-    }
-
-    function decreaseQuantity() {
-        let qtyInput = document.getElementById("quantityInput");
-        let currentQty = parseInt(qtyInput.value);
-        if (!isNaN(currentQty) && currentQty > 1) {
-            qtyInput.value = currentQty - 1;
-        }
-    }
+    // function increaseQuantity() {
+    //     let qtyInput = document.getElementById("quantityInput");
+    //     let currentQty = parseInt(qtyInput.value);
+    //     if (!isNaN(currentQty)) {
+    //         qtyInput.value = currentQty + 1;
+    //     }
+    // }
+    //
+    // function decreaseQuantity() {
+    //     let qtyInput = document.getElementById("quantityInput");
+    //     let currentQty = parseInt(qtyInput.value);
+    //     if (!isNaN(currentQty) && currentQty > 1) {
+    //         qtyInput.value = currentQty - 1;
+    //     }
+    // }
 
     // Handle "Buy Now" button click
     document.getElementById('buyNowBtn').addEventListener('click', function() {

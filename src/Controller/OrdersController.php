@@ -118,10 +118,17 @@ class OrdersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function checkout($productId = null)
+    /**
+     * Checkout method
+     *
+     * @param string|null $productId Product id.
+     * @return \Cake\Http\Response|null|void Redirects on successful checkout, renders view otherwise.
+     */
+    public function checkout(?string $productId = null)
     {
         if ($productId === null) {
             $this->Flash->error(__('Product not found.'));
+
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
@@ -138,7 +145,7 @@ class OrdersController extends AppController
 
         if ($this->request->is('post')) {
             $orderData = $this->request->getData();
-            $orderData['product_id'] = $productId;  // Associated product id
+            $orderData['product_id'] = $productId; // Associated product id
 
             // Get the quantity modified by the user on the settlement page
             $quantity = isset($orderData['quantity']) ? (int)$orderData['quantity'] : $quantity;
@@ -148,6 +155,7 @@ class OrdersController extends AppController
 
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('Order has been placed successfully.'));
+
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('Unable to place the order.'));

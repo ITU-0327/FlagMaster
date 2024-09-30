@@ -1,12 +1,20 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Product $product
+ * @var int $quantity
+ */
+?>
+
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">checkout</h4>
+                <h4 class="fw-semibold mb-8">Checkout</h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">checkout</li>
                     </ol>
@@ -23,6 +31,7 @@
         </div>
     </div>
 </div>
+
 <div class="checkout">
     <div class="card">
         <div class="card-body p-4">
@@ -44,7 +53,7 @@
                                 <tr>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-3 overflow-hidden">
-                                            <?= $this->Html->image('products/Brazil-Flag.png', [
+                                            <?= $this->Html->image(h($product->thumbnail_url), [
                                                 'alt' => h($product->name),
                                                 'class' => 'img-fluid rounded',
                                                 'width' => '80',
@@ -52,7 +61,7 @@
 
                                             <div>
                                                 <h6 class="fw-semibold fs-4 mb-0"><?= h($product->name) ?></h6>
-                                                <p class="mb-0"><?= h($product->category) ?></p>
+<!--                                                <p class="mb-0">--><?php //= h($product->category) ?><!--</p>-->
                                             </div>
                                         </div>
                                     </td>
@@ -269,7 +278,7 @@
                         <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
                         <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
                         <?= $this->Html->image('products/payment-complete.svg', [
-                            'alt' => 'matdash-img',
+                            'alt' => 'flagmaster-img',
                             'class' => 'img-fluid mb-4',
                             'width' => '350',
                         ]) ?>
@@ -277,7 +286,11 @@
                             <br>within 2 days when it ships.
                         </p>
                         <div class="d-sm-flex align-items-center justify-content-between my-4">
-                            <a href="ecommerce_shop" class="btn btn-success d-block mb-2 mb-sm-0">Continue Shopping</a>
+                            <?= $this->Html->link(
+                                'Continue Shopping',
+                                ['controller' => 'Products', 'action' => 'index'],
+                                ['class' => 'btn btn-success d-block mb-2 mb-sm-0']
+                            ); ?>
                             <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
                         </div>
                     </section>
@@ -285,54 +298,54 @@
             </div>
         </div>
         <script>
-            var unitPrice = <?= $product->price ?>;
-            var shippingCost = 0; // The initial freight is 0
-            var currentQty = 1;   // The initial quantity is 1
+            const unitPrice = <?= $product->price ?>;
+            let shippingCost = 0; // The initial freight is 0
+            let currentQty = 1;   // The initial quantity is 1
 
             function updateTotal() {
-                var qtyInput = document.getElementById("quantityInput");
+                const qtyInput = document.getElementById("quantityInput");
                 currentQty = parseInt(qtyInput.value);
                 if (isNaN(currentQty) || currentQty < 1) {
                     currentQty = 1;
                     qtyInput.value = 1;
                 }
 
-                var subTotal = unitPrice * currentQty;
-                var totalPrice = subTotal + shippingCost;
+                const subTotal = unitPrice * currentQty;
+                const totalPrice = subTotal + shippingCost;
 
                 // The updated product price is displayed as the unit price.
-                var productPriceElement = document.getElementById("productPrice");
+                const productPriceElement = document.getElementById("productPrice");
                 if (productPriceElement) {
                     productPriceElement.innerText = '$' + unitPrice.toFixed(2);
                 }
 
                 // Update the quantity in the order summary
-                var quantityElements = document.getElementsByClassName("quantity");
-                for (var i = 0; i < quantityElements.length; i++) {
+                const quantityElements = document.getElementsByClassName("quantity");
+                for (let i = 0; i < quantityElements.length; i++) {
                     quantityElements[i].innerText = currentQty;
                 }
 
                 // Update the unit price in the order summary (Unit Price)
-                var unitPriceElements = document.getElementsByClassName("unitPrice");
-                for (var i = 0; i < unitPriceElements.length; i++) {
+                const unitPriceElements = document.getElementsByClassName("unitPrice");
+                for (let i = 0; i < unitPriceElements.length; i++) {
                     unitPriceElements[i].innerText = '$' + unitPrice.toFixed(2);
                 }
 
                 // Subtotal in the update order summary (Sub Total)
-                var subTotalElements = document.getElementsByClassName("subTotal");
-                for (var i = 0; i < subTotalElements.length; i++) {
+                const subTotalElements = document.getElementsByClassName("subTotal");
+                for (let i = 0; i < subTotalElements.length; i++) {
                     subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
                 }
 
                 // Update the freight in the order summary (Shipping)
-                var shippingCostElements = document.getElementsByClassName("shippingCost");
-                for (var i = 0; i < shippingCostElements.length; i++) {
+                const shippingCostElements = document.getElementsByClassName("shippingCost");
+                for (let i = 0; i < shippingCostElements.length; i++) {
                     shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
                 }
 
                 // Update the total price in the order summary (TotaL)
-                var totalCostElements = document.getElementsByClassName("totalCost");
-                for (var i = 0; i < totalCostElements.length; i++) {
+                const totalCostElements = document.getElementsByClassName("totalCost");
+                for (let i = 0; i < totalCostElements.length; i++) {
                     totalCostElements[i].innerText = '$' + totalPrice.toFixed(2);
                 }
             }
@@ -343,7 +356,7 @@
             }
 
             function increaseQuantity() {
-                var qtyInput = document.getElementById("quantityInput");
+                const qtyInput = document.getElementById("quantityInput");
                 currentQty = parseInt(qtyInput.value);
                 if (!isNaN(currentQty)) {
                     qtyInput.value = currentQty + 1;
@@ -352,7 +365,7 @@
             }
 
             function decreaseQuantity() {
-                var qtyInput = document.getElementById("quantityInput");
+                const qtyInput = document.getElementById("quantityInput");
                 currentQty = parseInt(qtyInput.value);
                 if (!isNaN(currentQty) && currentQty > 1) {
                     qtyInput.value = currentQty - 1;
@@ -366,11 +379,13 @@
         </script>
     </div>
 </div>
-<?php
-$this->start('customScript'); ?>
+
+<?php $this->start('customScript'); ?>
+
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?= $this->Html->script('/libs/jquery-steps/build/jquery.steps.min') ?>
 <?= $this->Html->script('/libs/jquery-validation/dist/jquery.validate.min') ?>
 <?= $this->Html->script('forms/form-wizard') ?>
 <?= $this->Html->script('apps/ecommerce') ?>
+
 <?php $this->end(); ?>
