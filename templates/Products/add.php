@@ -62,9 +62,15 @@
                     <p class="fs-2">A product name is required and recommended to be unique.</p>
                 </div>
                 <div>
-                    <?= $this->Form->label('description', 'Description', ['class' => 'form-label']) ?>
-                    <div id="editor"></div>
-                    <?= $this->Form->hidden('description', ['id' => 'descriptionHidden']) ?>
+                    <?= $this->Form->label('description', 'Description <span class="text-danger">*</span>', [
+                        'escape' => false,
+                        'class' => 'form-label',
+                    ]) ?>
+                    <div id="quill-editor"></div>
+                    <?= $this->Form->textarea('description', [
+                        'id' => 'descriptionTextarea',
+                        'style' => 'display:none;',
+                    ]) ?>
                     <p class="fs-2 mb-0">Set a description to the product for better visibility.</p>
                 </div>
             </div>
@@ -72,7 +78,6 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Product Images</h4>
-<!--            TODO: May need to adjust this section if the dropzone requires specific form handling -->
                 <div class="custom-dropzone" id="product-images-dropzone">
                     <?= $this->Form->file('product_images[]', [
                         'accept' => 'image/*',
@@ -140,15 +145,15 @@
                     <?= $this->Form->label('discount_type', 'Discount Type', ['class' => 'form-label']) ?>
                     <nav>
                         <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab" role="tablist">
-                            <label for="radio1" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-none-tab" data-bs-toggle="tab" data-bs-target="#nav-none" aria-controls="nav-none">
+                            <label for="radio1" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-none-tab" data-bs-toggle="tab" data-bs-target="#nav-none" aria-controls="nav-none">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio1" value="none" checked>
                                 <span class="fs-4 text-dark">No Discount</span>
                             </label>
-                            <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-percentage-tab"  data-bs-toggle="tab" data-bs-target="#nav-percentage" aria-controls="nav-percentage">
+                            <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-percentage-tab"  data-bs-toggle="tab" data-bs-target="#nav-percentage" aria-controls="nav-percentage">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio2" value="percentage">
                                 <span class="fs-4 text-dark">Percentage %</span>
                             </label>
-                            <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-fixed-tab"  data-bs-toggle="tab" data-bs-target="#nav-fixed" aria-controls="nav-fixed">
+                            <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-fixed-tab"  data-bs-toggle="tab" data-bs-target="#nav-fixed" aria-controls="nav-fixed">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio3" value="fixed">
                                 <span class="fs-4 text-dark">Fixed Price</span>
                             </label>
@@ -194,7 +199,6 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-7">Thumbnail</h4>
-<!--                TODO: May need to adjust this section if the dropzone requires specific form handling -->
                     <div class="custom-dropzone mb-2" id="thumbnail-dropzone">
                         <?= $this->Form->file('thumbnail_url', [
                             'accept' => 'image/*',
@@ -267,7 +271,6 @@
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
 <?= $this->Html->script(['/libs/quill/dist/quill.min']) ?>
-<?= $this->Html->script(['forms/quill-init']) ?>
 <?= $this->Html->script(['/libs/select2/dist/js/select2.full.min']) ?>
 <?= $this->Html->script(['/libs/select2/dist/js/select2.min']) ?>
 <?= $this->Html->script(['forms/select2.init']) ?>

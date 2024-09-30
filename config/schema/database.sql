@@ -61,7 +61,7 @@ CREATE TABLE `products` (
     `discount_value` DECIMAL(10, 2) DEFAULT NULL,
     `stock_quantity` INT NOT NULL,
     `thumbnail_url` VARCHAR(255),
-    `status` ENUM('published', 'draft', 'scheduled', 'inactive') DEFAULT 'draft',
+    `status` ENUM('published', 'draft', 'inactive') DEFAULT 'draft',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

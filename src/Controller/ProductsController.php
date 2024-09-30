@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Collection\CollectionInterface;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\Response;
 use Exception;
 use Laminas\Diactoros\UploadedFile;
 use Psr\Http\Message\UploadedFileInterface;
 use SplFileInfo;
+use UnexpectedValueException;
 
 /**
  * Products Controller
@@ -131,7 +133,30 @@ class ProductsController extends AppController
 
         $this->Authorization->authorize($product);
 
-        $this->set(compact('product'));
+        // Extract category IDs safely
+        if (is_array($product->categories)) {
+            // If categories is an array, use array_map to extract IDs
+            $categoryIds = array_map(function ($category) {
+                return $category->id;
+            }, $product->categories);
+        } else {
+            throw new UnexpectedValueException('Unexpected type for $product->categories');
+        }
+
+        $relatedProducts = $this->Products->find()
+            ->matching('Categories', function ($q) use ($categoryIds) {
+                return $q->where(['Categories.id IN' => $categoryIds]);
+            })
+            ->where([
+                'Products.id !=' => $id,
+                'Products.status' => 'published',
+            ])
+            ->limit(4)
+            ->distinct(['Products.id'])
+            ->contain(['Reviews'])
+            ->all();
+
+        $this->set(compact('product', 'relatedProducts'));
     }
 
     /**

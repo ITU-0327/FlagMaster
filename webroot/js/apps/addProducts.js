@@ -48,16 +48,16 @@
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const quill = window.quill;
+    const quill = new Quill('#quill-editor', {
+        theme: 'snow',
+        placeholder: 'Enter the product description here...',
+    });
 
-    const descriptionHidden = document.getElementById('descriptionHidden');
-    const form = document.querySelector('form');
+    quill.on('text-change', function () {
+        document.getElementById('descriptionTextarea').value = quill.root.innerHTML;
+    });
 
-    // On form submit, copy the editor content to the hidden field
-    form.onsubmit = function () {
-        // Get the HTML content from Quill
-        descriptionHidden.value = quill.root.innerHTML; // Assign the content to the hidden field
-    };
+    document.getElementById('descriptionTextarea').value = quill.root.innerHTML;
 });
 
 document.addEventListener('DOMContentLoaded', function () {

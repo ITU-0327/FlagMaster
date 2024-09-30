@@ -175,7 +175,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
         </div>
         <div class="card-body p-4 pb-0">
             <div class="d-flex justify-content-between align-items-center gap-6 mb-4">
-                <a class="btn btn-primary d-lg-none d-flex" data-bs-toggle="offcanvas" href="#filtercategory" role="button" aria-controls="filtercategory">
+                <a class="btn btn-primary d-lg-none d-flex" data-bs-toggle="offcanvas" role="button" aria-controls="filtercategory">
                     <i class="ti ti-menu-2 fs-6"></i>
                 </a>
                 <h5 class="fs-5 mb-0 d-none d-lg-block">Products</h5>
@@ -195,11 +195,19 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                         <div class="col-sm-6 col-xxl-4">
                             <div class="card hover-img overflow-hidden">
                                 <div class="position-relative">
-                                    <?= $this->Html->link(
-                                        $this->Html->image('products/Brazil-Flag.png', ['alt' => h($product->name), 'class' => 'card-img-top']),
-                                        ['controller' => 'Products', 'action' => 'view', $product->id],
-                                        ['escape' => false]
-                                    ) ?>
+                                    <?php if ($product->thumbnail_url) : ?>
+                                        <?= $this->Html->link(
+                                            $this->Html->image($product->thumbnail_url, ['alt' => h($product->name), 'class' => 'card-img-top']),
+                                            ['controller' => 'Products', 'action' => 'view', $product->id],
+                                            ['escape' => false]
+                                        ) ?>
+                                    <?php else : ?>
+                                        <?= $this->Html->link(
+                                            $this->Html->image('products/Brazil-Flag.png', ['alt' => h($product->name), 'class' => 'card-img-top']),
+                                            ['controller' => 'Products', 'action' => 'view', $product->id],
+                                            ['escape' => false]
+                                        ) ?>
+                                    <?php endif; ?>
                                     <a href="javascript:void(0)" class="text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
                                         <i class="ti ti-basket fs-4"></i>
                                     </a>
