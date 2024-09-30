@@ -333,6 +333,7 @@ class AuthController extends AppController
         $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
         $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
         $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URI'));
+        $client->addScope(['email', 'profile']);
 
         try {
             $accessToken = $client->fetchAccessTokenWithAuthCode($code);
@@ -372,6 +373,14 @@ class AuthController extends AppController
                     ]);
                 } else {
                     $username = substr($googleUser->email, 0, strpos($googleUser->email, '@'));
+                    $originalUsername = $username;
+                    $counter = 1;
+
+                    // Ensure unique username
+                    while ($usersTable->exists(['username' => $username])) {
+                        $username = $originalUsername . $counter;
+                        $counter++;
+                    }
 
                     // Create a new user
                     $user = $usersTable->newEntity([
@@ -384,6 +393,7 @@ class AuthController extends AppController
                 }
 
                 if (!$usersTable->save($user)) {
+                    $this->log('User save failed: ' . json_encode($user->getErrors()), 'error');
                     $this->Flash->error('Unable to register user.');
 
                     return $this->redirect(['action' => 'login']);

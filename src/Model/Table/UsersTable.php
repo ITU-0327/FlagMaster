@@ -88,8 +88,12 @@ class UsersTable extends Table
         $validator
             ->scalar('password')
             ->maxLength('password', 255, 'Password cannot exceed 255 characters.')
-            ->requirePresence('password', 'create', 'Password is required.')
-            ->notEmptyString('password', 'Password is required.')
+            ->requirePresence('password', function ($context) {
+                return empty($context['data']['oauth_provider']);
+            }, 'Password is required.')
+            ->notEmptyString('password', 'Password is required.', function ($context) {
+                return empty($context['data']['oauth_provider']);
+            })
             ->add('password', 'minLength', [
                 'rule' => ['minLength', 8],
                 'message' => 'Password must be at least 8 characters long.',
