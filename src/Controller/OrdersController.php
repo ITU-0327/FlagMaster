@@ -132,10 +132,9 @@ class OrdersController extends AppController
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
-        // 获取当前登录用户的ID
+        // get user id
         $userId = $this->Authentication->getIdentity()->getIdentifier();
 
-        // 包含Profile和Address数据
         $user = $this->Orders->Users->get(
             $userId,
             contain: ['Profiles' => ['Addresses']]

@@ -227,7 +227,7 @@
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Unit price</p>
-                                        <h6 class="subTotal mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                        <h6 class="unitPrice mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Quantity</p>
@@ -238,8 +238,13 @@
                                         <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
+                                        <h6 class="mb-0 fs-6 fw-semibold">Total</h6>
+                                        <h6 class="totalCost mb-0 fs-6 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
+                                    </div>
+                                    <!-- Added Including GST line -->
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <p class="mb-0 fs-4 text-muted">Including GST</p>
+                                        <h6 class="gstAmount mb-0 fs-4 text-muted">$0.00</h6>
                                     </div>
                                 </div>
                             </div>
@@ -272,18 +277,18 @@
         </div>
         <script>
             const unitPrice = <?= $product->price ?>;
-            let shippingCost = 0; // 初始运费
-            let currentQty = <?= $quantity ?>; // 初始数量
+            let shippingCost = 0; // Initial freight
+            let currentQty = <?= $quantity ?>; // Initial quantity
 
             window.onload = function() {
-                // 获取默认选中的配送选项
+                // Get the default selected distribution option
                 const defaultDeliveryOption = document.querySelector('input[name="deliveryOpt"]:checked');
                 if (defaultDeliveryOption) {
                     shippingCost = parseFloat(defaultDeliveryOption.value);
                 }
                 updateTotal();
 
-                // 为配送选项添加事件监听器
+                // Add an event listener to the distribution option
                 const deliveryOptions = document.getElementsByName('deliveryOpt');
                 for (let i = 0; i < deliveryOptions.length; i++) {
                     deliveryOptions[i].addEventListener('change', function() {
@@ -292,7 +297,7 @@
                     });
                 }
 
-                // 添加数量输入框的事件监听器，如果有的话
+                // Event listener with additional quantity input boxes, if any
                 const qtyInput = document.getElementById("quantityInput");
                 if (qtyInput) {
                     qtyInput.addEventListener('change', updateTotal);
@@ -312,34 +317,41 @@
                 const subTotal = unitPrice * currentQty;
                 const totalPrice = subTotal + shippingCost;
 
-                // 更新单价
+                // Update the unit price
                 const unitPriceElements = document.getElementsByClassName("unitPrice");
                 for (let i = 0; i < unitPriceElements.length; i++) {
                     unitPriceElements[i].innerText = '$' + unitPrice.toFixed(2);
                 }
 
-                // 更新数量
+                // The number of updates
                 const quantityElements = document.getElementsByClassName("quantity");
                 for (let i = 0; i < quantityElements.length; i++) {
                     quantityElements[i].innerText = currentQty;
                 }
 
-                // 更新小计
+                // Update the suptotal
                 const subTotalElements = document.getElementsByClassName("subTotal");
                 for (let i = 0; i < subTotalElements.length; i++) {
                     subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
                 }
 
-                // 更新运费
+                // update shipping
                 const shippingCostElements = document.getElementsByClassName("shippingCost");
                 for (let i = 0; i < shippingCostElements.length; i++) {
                     shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
                 }
 
-                // 更新总计
+                // Updated total
                 const totalCostElements = document.getElementsByClassName("totalCost");
                 for (let i = 0; i < totalCostElements.length; i++) {
                     totalCostElements[i].innerText = '$' + totalPrice.toFixed(2);
+                }
+
+                // **Calculation and update GST**
+                const gstAmount = totalPrice / 11; // 计算 GST 金额
+                const gstElements = document.getElementsByClassName("gstAmount");
+                for (let i = 0; i < gstElements.length; i++) {
+                    gstElements[i].innerText = '$' + gstAmount.toFixed(2);
                 }
             }
 
