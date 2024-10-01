@@ -126,42 +126,54 @@ class OrdersController extends AppController
      */
     public function checkout(?string $productId = null)
     {
+        // Ensure a product ID is provided
         if ($productId === null) {
             $this->Flash->error(__('Product not found.'));
-
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
-        // Get product information
+        // Get the currently logged in user's ID
+        $userId = $this->Authentication->getIdentity()->getIdentifier();
+
+        // Fetch the user including profile and address data (use the same contain format as in UsersController view)
+        $user = $this->Orders->Users->get(
+            $userId,
+            contain: ['Profiles' => ['Addresses']]
+        );
+
+        // Fetch product information
         $product = $this->Orders->Products->get($productId);
 
-        // Get the quantity parameters passed, the default value is 1
+        // Get quantity from query parameters, default to 1
         $quantity = $this->request->getQuery('quantity', 1);
-
-        // Make sure that the quantity is positive.
-        $quantity = max(1, (int)$quantity);
+        $quantity = max(1, (int)$quantity); // Ensure quantity is at least 1
 
         $order = $this->Orders->newEmptyEntity();
 
         if ($this->request->is('post')) {
+            // Get the order data from the form submission
             $orderData = $this->request->getData();
-            $orderData['product_id'] = $productId; // Associated product id
+            $orderData['product_id'] = $productId; // Set the product ID
+            $orderData['user_id'] = $userId;       // Set the user ID
 
-            // Get the quantity modified by the user on the settlement page
+            // Get the quantity from the form submission or default value
             $quantity = isset($orderData['quantity']) ? (int)$orderData['quantity'] : $quantity;
             $orderData['quantity'] = $quantity;
 
+            // Patch the order data into the order entity
             $order = $this->Orders->patchEntity($order, $orderData);
 
+            // Save the order
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('Order has been placed successfully.'));
-
                 return $this->redirect(['action' => 'index']);
             }
+
+            // Display error if the order could not be placed
             $this->Flash->error(__('Unable to place the order.'));
         }
 
-        // Pass the product, order and quantity to the view
-        $this->set(compact('product', 'order', 'quantity'));
+        // Pass product, order, quantity, and user data to the view
+        $this->set(compact('product', 'order', 'quantity', 'user'));
     }
 }

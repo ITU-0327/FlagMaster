@@ -114,64 +114,47 @@
                         </div>
                     </section>
 
-                    <!-- Step 2 -->
+                    <!-- Step 2: Billing & Address -->
                     <h6>Billing & Address</h6>
                     <section>
                         <div class="billing-address-content">
-                            <!-- address card -->
+                            <!-- Address Card Row -->
                             <div class="row">
-                                <!-- address 1 -->
-                                <div class="col-lg-4">
-                                    <div class="card shadow-none border">
-                                        <div class="card-body p-4">
-                                            <h6 class="mb-3 fs-4 fw-semibold">Johnathan Doe</h6>
-                                            <p class="mb-1 fs-2">E601 Vrundavan Heights, Godrej Garden City - 382481</p>
-                                            <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                                <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                            </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
+                                <!-- Check if user has addresses -->
+                                <?php if (!empty($user->profile->addresses)) : ?>
+                                    <!-- Loop through each address -->
+                                    <?php foreach ($user->profile->addresses as $address): ?>
+                                        <div class="col-lg-4">
+                                            <div class="card shadow-none border">
+                                                <div class="card-body p-4">
+                                                    <h6 class="mb-3 fs-4 fw-semibold"><?= h($user->username) ?></h6>
+                                                    <p class="mb-1 fs-2">
+                                                        <?= h($address->street) ?>, <?= h($address->city) ?>, <?= h($address->postal_code) ?>, <?= h($address->country) ?>
+                                                    </p>
+                                                    <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
+                                                        <i class="ti ti-device-mobile fs-7"></i><?= h($user->profile->phone) ?>
+                                                    </h6>
+                                                    <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- address 2 -->
-                                <div class="col-lg-4">
-                                    <div class="card shadow-none border">
-                                        <div class="card-body p-4">
-                                            <h6 class="mb-3 fs-4 fw-semibold">ParleG Doe</h6>
-                                            <p class="mb-1 fs-2">D201 Galaxy Heights, Godrej Garden City - 382481</p>
-                                            <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                                <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                            </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- address 3 -->
-                                <div class="col-lg-4">
-                                    <div class="card shadow-none border">
-                                        <div class="card-body p-4">
-                                            <h6 class="mb-3 fs-4 fw-semibold">Guddu Bhaiya</h6>
-                                            <p class="mb-1 fs-2">Mumbai Khao Gali, Behind Shukan, Godrej Garden City - 382481</p>
-                                            <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                                <i class="ti ti-device-mobile fs-7"></i>9999501050
-                                            </h6>
-                                            <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                    <p>No addresses found. Please add a new address.</p>
+                                <?php endif; ?>
                             </div>
                         </div>
 
-                        <!-- delivery and pay -->
+                        <!-- Delivery and Payment Section -->
                         <div class="payment-method-list payment-method">
-                            <!-- delivery option -->
+                            <!-- Delivery Option -->
                             <div class="delivery-option btn-group-active card shadow-none border">
                                 <div class="card-body p-4">
                                     <h6 class="mb-3 fw-semibold fs-4">Delivery Option</h6>
                                     <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Delivery Options">
-                                        <!-- free -->
+                                        <!-- Free Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" onclick="updateShipping(0)" checked>
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" checked>
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFree">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Free Delivery</h6>
@@ -179,9 +162,9 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <!-- delivery -->
+                                        <!-- Fast Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast" onclick="updateShipping(2)">
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast">
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFast">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($2.00)</h6>
@@ -193,7 +176,7 @@
                                 </div>
                             </div>
 
-                            <!-- pay option -->
+                            <!-- Payment Option -->
                             <div class="payment-option btn-group-active card shadow-none border">
                                 <div class="card-body p-4">
                                     <h6 class="mb-3 fw-semibold fs-4">Payment Option</h6>
@@ -213,7 +196,7 @@
                                                         </div>
                                                     </label>
                                                 </div>
-                                                <!-- credit card -->
+                                                <!-- Credit/Debit Card -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
                                                     <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">
                                                     <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">
@@ -226,7 +209,7 @@
                                                         </div>
                                                     </label>
                                                 </div>
-                                                <!-- pay later -->
+                                                <!-- Cash on Delivery -->
                                                 <div class="position-relative form-check btn-custom-fill ps-0">
                                                     <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCOD">
                                                     <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCOD">
@@ -247,7 +230,7 @@
                                 </div>
                             </div>
 
-                            <!-- summary -->
+                            <!-- Order Summary -->
                             <div class="order-summary border rounded p-4 my-4">
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
@@ -257,16 +240,15 @@
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Quantity</p>
-                                        <h6 class="quantity mb-0 fs-4 fw-semibold">1</h6>
+                                        <h6 class="quantity mb-0 fs-4 fw-semibold"><?= h($quantity) ?></h6>
                                     </div>
-
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
                                         <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                        <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
                                     </div>
                                 </div>
                             </div>
