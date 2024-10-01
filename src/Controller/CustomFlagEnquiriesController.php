@@ -18,7 +18,7 @@ class CustomFlagEnquiriesController extends AppController
     public function index()
     {
         $query = $this->CustomFlagEnquiries->find()
-            ->contain(['Enquiries']);
+            ->contain(['Enquiries']);  // Including related Enquiries data
         $customFlagEnquiries = $this->paginate($query);
 
         $this->set(compact('customFlagEnquiries'));
@@ -31,9 +31,12 @@ class CustomFlagEnquiriesController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
-        $customFlagEnquiry = $this->CustomFlagEnquiries->get($id, contain: ['Enquiries']);
+        $customFlagEnquiry = $this->CustomFlagEnquiries->get($id, [
+            'contain' => ['Enquiries'], // Include related Enquiries data
+        ]);
+
         $this->set(compact('customFlagEnquiry'));
     }
 
@@ -54,7 +57,11 @@ class CustomFlagEnquiriesController extends AppController
             }
             $this->Flash->error(__('The custom flag enquiry could not be saved. Please, try again.'));
         }
-        $enquiries = $this->CustomFlagEnquiries->Enquiries->find('list', limit: 200)->all();
+
+        // Fetch list of enquiries for selection in the form
+        $enquiries = $this->CustomFlagEnquiries->Enquiries->find('list', ['limit' => 200])->all();
+
+        // Also fetch all details of the related enquiries (subject and message)
         $this->set(compact('customFlagEnquiry', 'enquiries'));
     }
 
@@ -65,9 +72,11 @@ class CustomFlagEnquiriesController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
-        $customFlagEnquiry = $this->CustomFlagEnquiries->get($id, contain: []);
+        $customFlagEnquiry = $this->CustomFlagEnquiries->get($id, [
+            'contain' => ['Enquiries'], // Include related Enquiries data
+        ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $customFlagEnquiry = $this->CustomFlagEnquiries->patchEntity($customFlagEnquiry, $this->request->getData());
             if ($this->CustomFlagEnquiries->save($customFlagEnquiry)) {
@@ -77,7 +86,11 @@ class CustomFlagEnquiriesController extends AppController
             }
             $this->Flash->error(__('The custom flag enquiry could not be saved. Please, try again.'));
         }
-        $enquiries = $this->CustomFlagEnquiries->Enquiries->find('list', limit: 200)->all();
+
+        // Fetch list of enquiries for selection in the form
+        $enquiries = $this->CustomFlagEnquiries->Enquiries->find('list', ['limit' => 200])->all();
+
+        // Also fetch all details of the related enquiries (subject and message)
         $this->set(compact('customFlagEnquiry', 'enquiries'));
     }
 
@@ -88,7 +101,7 @@ class CustomFlagEnquiriesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $customFlagEnquiry = $this->CustomFlagEnquiries->get($id);
