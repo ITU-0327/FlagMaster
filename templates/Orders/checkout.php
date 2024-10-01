@@ -145,7 +145,7 @@
                                     <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Delivery Options">
                                         <!-- Free Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" checked>
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" value="0" checked>
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFree">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Free Delivery</h6>
@@ -155,10 +155,10 @@
                                         </div>
                                         <!-- Fast Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
-                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast">
+                                            <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast" value="10">
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFast">
                                                 <div class="text-start ps-2">
-                                                    <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($2.00)</h6>
+                                                    <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($10.00)</h6>
                                                     <p class="mb-0 text-muted">Delivered on Wednesday, May 8</p>
                                                 </div>
                                             </label>
@@ -272,51 +272,71 @@
         </div>
         <script>
             const unitPrice = <?= $product->price ?>;
-            let shippingCost = 0; // The initial freight is 0
-            let currentQty = 1;   // The initial quantity is 1
+            let shippingCost = 0; // 初始运费
+            let currentQty = <?= $quantity ?>; // 初始数量
+
+            window.onload = function() {
+                // 获取默认选中的配送选项
+                const defaultDeliveryOption = document.querySelector('input[name="deliveryOpt"]:checked');
+                if (defaultDeliveryOption) {
+                    shippingCost = parseFloat(defaultDeliveryOption.value);
+                }
+                updateTotal();
+
+                // 为配送选项添加事件监听器
+                const deliveryOptions = document.getElementsByName('deliveryOpt');
+                for (let i = 0; i < deliveryOptions.length; i++) {
+                    deliveryOptions[i].addEventListener('change', function() {
+                        shippingCost = parseFloat(this.value);
+                        updateTotal();
+                    });
+                }
+
+                // 添加数量输入框的事件监听器，如果有的话
+                const qtyInput = document.getElementById("quantityInput");
+                if (qtyInput) {
+                    qtyInput.addEventListener('change', updateTotal);
+                }
+            }
 
             function updateTotal() {
                 const qtyInput = document.getElementById("quantityInput");
-                currentQty = parseInt(qtyInput.value);
-                if (isNaN(currentQty) || currentQty < 1) {
-                    currentQty = 1;
-                    qtyInput.value = 1;
+                if (qtyInput) {
+                    currentQty = parseInt(qtyInput.value);
+                    if (isNaN(currentQty) || currentQty < 1) {
+                        currentQty = 1;
+                        qtyInput.value = 1;
+                    }
                 }
 
                 const subTotal = unitPrice * currentQty;
                 const totalPrice = subTotal + shippingCost;
 
-                // The updated product price is displayed as the unit price.
-                const productPriceElement = document.getElementById("productPrice");
-                if (productPriceElement) {
-                    productPriceElement.innerText = '$' + unitPrice.toFixed(2);
-                }
-
-                // Update the quantity in the order summary
-                const quantityElements = document.getElementsByClassName("quantity");
-                for (let i = 0; i < quantityElements.length; i++) {
-                    quantityElements[i].innerText = currentQty;
-                }
-
-                // Update the unit price in the order summary (Unit Price)
+                // 更新单价
                 const unitPriceElements = document.getElementsByClassName("unitPrice");
                 for (let i = 0; i < unitPriceElements.length; i++) {
                     unitPriceElements[i].innerText = '$' + unitPrice.toFixed(2);
                 }
 
-                // Subtotal in the update order summary (Sub Total)
+                // 更新数量
+                const quantityElements = document.getElementsByClassName("quantity");
+                for (let i = 0; i < quantityElements.length; i++) {
+                    quantityElements[i].innerText = currentQty;
+                }
+
+                // 更新小计
                 const subTotalElements = document.getElementsByClassName("subTotal");
                 for (let i = 0; i < subTotalElements.length; i++) {
                     subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
                 }
 
-                // Update the freight in the order summary (Shipping)
+                // 更新运费
                 const shippingCostElements = document.getElementsByClassName("shippingCost");
                 for (let i = 0; i < shippingCostElements.length; i++) {
                     shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
                 }
 
-                // Update the total price in the order summary (TotaL)
+                // 更新总计
                 const totalCostElements = document.getElementsByClassName("totalCost");
                 for (let i = 0; i < totalCostElements.length; i++) {
                     totalCostElements[i].innerText = '$' + totalPrice.toFixed(2);
@@ -344,10 +364,6 @@
                     qtyInput.value = currentQty - 1;
                     updateTotal();
                 }
-            }
-
-            window.onload = function() {
-                updateTotal();
             }
         </script>
     </div>
