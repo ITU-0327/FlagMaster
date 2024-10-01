@@ -118,31 +118,22 @@
                     <h6>Billing & Address</h6>
                     <section>
                         <div class="billing-address-content">
-                            <!-- Address Card Row -->
-                            <div class="row">
-                                <!-- Check if user has addresses -->
-                                <?php if (!empty($user->profile->addresses)) : ?>
-                                    <!-- Loop through each address -->
-                                    <?php foreach ($user->profile->addresses as $address): ?>
-                                        <div class="col-lg-4">
-                                            <div class="card shadow-none border">
-                                                <div class="card-body p-4">
-                                                    <h6 class="mb-3 fs-4 fw-semibold"><?= h($user->username) ?></h6>
-                                                    <p class="mb-1 fs-2">
-                                                        <?= h($address->street) ?>, <?= h($address->city) ?>, <?= h($address->postal_code) ?>, <?= h($address->country) ?>
-                                                    </p>
-                                                    <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
-                                                        <i class="ti ti-device-mobile fs-7"></i><?= h($user->profile->phone) ?>
-                                                    </h6>
-                                                    <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                <?php else: ?>
-                                    <p>No addresses found. Please add a new address.</p>
-                                <?php endif; ?>
-                            </div>
+                            <?php if (!empty($user->profile->address)) : ?>
+                                <div class="card shadow-none border">
+                                    <div class="card-body p-4">
+                                        <h6 class="mb-3 fs-4 fw-semibold"><?= h($user->username) ?></h6>
+                                        <p class="mb-1 fs-2">
+                                            <?= h($user->profile->address->street) ?>, <?= h($user->profile->address->city) ?>, <?= h($user->profile->address->postal_code) ?>, <?= h($user->profile->address->country) ?>
+                                        </p>
+                                        <h6 class="d-flex align-items-center gap-2 my-4 fw-semibold fs-4">
+                                            <i class="ti ti-device-mobile fs-7"></i><?= h($user->profile->phone) ?>
+                                        </h6>
+                                        <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <p>No address found. Please add a new address.</p>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Delivery and Payment Section -->
