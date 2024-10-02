@@ -230,7 +230,11 @@ $this->disableAutoLayout();
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Custom Flag</a>
+                                <?= $this->Html->link(
+                                    'Custom Flags',
+                                    ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                                    ['class' => 'nav-link active', 'aria-current' => 'page']
+                                ); ?>
                             </li>
                             <li class="nav-item">
                                 <?= $this->Html->link(

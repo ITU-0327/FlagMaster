@@ -8,6 +8,9 @@ namespace App\Controller;
  *
  * @property \App\Model\Table\CustomFlagEnquiriesTable $CustomFlagEnquiries
  */
+use Psr\Http\Message\UploadedFileInterface;
+use Exception;
+use SplFileInfo;
 class CustomFlagEnquiriesController extends AppController
 {
     /**
@@ -48,22 +51,48 @@ class CustomFlagEnquiriesController extends AppController
     public function add()
     {
         $customFlagEnquiry = $this->CustomFlagEnquiries->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $customFlagEnquiry = $this->CustomFlagEnquiries->patchEntity($customFlagEnquiry, $this->request->getData());
-            if ($this->CustomFlagEnquiries->save($customFlagEnquiry)) {
-                $this->Flash->success(__('The custom flag enquiry has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+        if ($this->request->is('post')) {
+            $identity = $this->request->getAttribute('identity');
+
+            // Get the request data
+            $data = $this->request->getData();
+
+            // Set the user_id in the associated Enquiry data
+            $data['enquiry']['user_id'] = $identity->get('id');
+
+            // Handle attachment upload
+            $file = $this->request->getData('attachment_file');
+            if ($file instanceof UploadedFileInterface && $file->getError() === UPLOAD_ERR_OK) {
+                $filename = $this->uploadAttachment($file, $identity->get('username'));
+                if ($filename) {
+                    $data['attachment_url'] = $filename;
+                } else {
+                    $this->Flash->error(__('Unable to upload attachment.'));
+                    unset($data['attachment_file']); // Prevent overwriting with null
+                }
+            } else {
+                // If no new file uploaded, remove it from the data to prevent errors
+                unset($data['attachment_file']);
             }
-            $this->Flash->error(__('The custom flag enquiry could not be saved. Please, try again.'));
+
+            // Patch the entity including the associated Enquiry entity
+            $customFlagEnquiry = $this->CustomFlagEnquiries->patchEntity($customFlagEnquiry, $data, [
+                'associated' => ['Enquiries'],
+            ]);
+
+            if ($this->CustomFlagEnquiries->save($customFlagEnquiry)) {
+                $this->Flash->success(__('Your custom flag enquiry has been submitted successfully.'));
+
+                return $this->redirect(['controller' => 'enquiries', 'action' => 'index']);
+            }
+            $this->Flash->error(__('There was an issue submitting your custom flag enquiry. Please try again.'));
         }
 
-        // Fetch list of enquiries for selection in the form
-        $enquiries = $this->CustomFlagEnquiries->Enquiries->find('list', ['limit' => 200])->all();
-
-        // Also fetch all details of the related enquiries (subject and message)
-        $this->set(compact('customFlagEnquiry', 'enquiries'));
+        $this->set(compact('customFlagEnquiry'));
     }
+
+
 
     /**
      * Edit method
@@ -112,5 +141,43 @@ class CustomFlagEnquiriesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    private function uploadAttachment(UploadedFileInterface $file, string $identifier): bool|string
+    {
+        $uploadPath = WWW_ROOT . 'attachments' . DS;
+
+        // Ensure the upload directory exists
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0755, true);
+        }
+
+        // Validate file type
+        $extension = preg_replace(
+            '/[^a-z0-9]/',
+            '',
+            strtolower((new SplFileInfo($file->getClientFilename()))->getExtension())
+        );
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'pdf'];
+
+        if (!in_array($extension, $allowedExtensions)) {
+            $this->Flash->error(__('Invalid file type. Allowed types are jpg, jpeg, png, gif, pdf.'));
+
+            return false;
+        }
+
+        // Create a unique filename
+        $filename = preg_replace('/[^A-Za-z0-9_\-.]/', '_', $identifier) . '.' . uniqid() . '.' . $extension;
+        $fullPath = $uploadPath . $filename;
+
+        // Move the uploaded file to the destination
+        try {
+            $file->moveTo($fullPath);
+            // Return the relative path to be saved in the database
+            return 'attachments/' . $filename;
+        } catch (Exception $e) {
+            $this->Flash->error(__('Failed to move uploaded file.'));
+
+            return false;
+        }
     }
 }
