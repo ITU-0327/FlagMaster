@@ -190,7 +190,6 @@
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFree">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Free Delivery</h6>
-                                                    <p class="mb-0 text-muted">Delivered on Friday, May 10</p>
                                                     <p class="mb-0 text-muted">Delivered on <?= h($freeDeliveryDateFormatted) ?> (5 Business days)</p>
                                                 </div>
                                             </label>
@@ -202,7 +201,6 @@
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFast">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($10.00)</h6>
-                                                    <p class="mb-0 text-muted">Delivered on Wednesday, May 8</p>
                                                     <p class="mb-0 text-muted">Delivered on <?= h($fastDeliveryDateFormatted) ?> (2 Business days)</p>
                                                 </div>
                                             </label>
