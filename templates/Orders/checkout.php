@@ -143,23 +143,57 @@
                                 <div class="card-body p-4">
                                     <h6 class="mb-3 fw-semibold fs-4">Delivery Option</h6>
                                     <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Delivery Options">
+                                        <?php
+                                        // Function: Skip the weekend and calculate the working day
+                                        function addBusinessDays(DateTime $date, int $days): DateTime {
+                                            $addedDays = 0;
+
+                                            while ($addedDays < $days) {
+                                                $date->modify('+1 day'); // Add one day at a time
+
+                                                // Check whether it is a working day (Monday to Friday from 1 to 5)
+                                                if ($date->format('N') < 6) {
+                                                    $addedDays++;
+                                                }
+                                            }
+
+                                            return $date;
+                                        }
+
+                                        // Get the current date
+                                        $now = new DateTime('now');
+
+                                        // Clone $now objects to avoid modifying the original object
+                                        $freeDeliveryDate = clone $now;
+                                        $fastDeliveryDate = clone $now;
+
+                                        // Calculate weekdays
+                                        $freeDeliveryDate = addBusinessDays($freeDeliveryDate, 5); // Free delivery in 5个工作日
+                                        $fastDeliveryDate = addBusinessDays($fastDeliveryDate, 2); // Fast delivery in 2个工作日
+
+                                        // Formatting date
+                                        $freeDeliveryDateFormatted = $freeDeliveryDate->format('l, F j');
+                                        $fastDeliveryDateFormatted = $fastDeliveryDate->format('l, F j');
+                                        ?>
+
                                         <!-- Free Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
                                             <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFree" value="0" checked>
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFree">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Free Delivery</h6>
-                                                    <p class="mb-0 text-muted">Delivered on Friday, May 10</p>
+                                                    <p class="mb-0 text-muted">Delivered on <?= h($freeDeliveryDateFormatted) ?> (5 Business days)</p>
                                                 </div>
                                             </label>
                                         </div>
+
                                         <!-- Fast Delivery -->
                                         <div class="position-relative form-check btn-custom-fill flex-fill ps-0">
                                             <input type="radio" class="form-check-input ms-4 round-16" name="deliveryOpt" id="deliveryFast" value="10">
                                             <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="deliveryFast">
                                                 <div class="text-start ps-2">
                                                     <h6 class="fs-4 fw-semibold mb-0">Fast Delivery ($10.00)</h6>
-                                                    <p class="mb-0 text-muted">Delivered on Wednesday, May 8</p>
+                                                    <p class="mb-0 text-muted">Delivered on <?= h($fastDeliveryDateFormatted) ?> (2 Business days)</p>
                                                 </div>
                                             </label>
                                         </div>
