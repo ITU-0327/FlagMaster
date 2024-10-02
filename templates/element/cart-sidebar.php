@@ -36,7 +36,7 @@
                             <h6 class="fs-2 fw-semibold mb-0 text-muted"><?= $this->Number->currency($unitPrice, 'AUD', ['places' => 0]) ?></h6>
                             <div class="input-group input-group-sm w-50">
                                 <button class="btn border-0 round-20 minus p-0 bg-success-subtle text-success" type="button" data-product-id="<?= $product->id ?>">-</button>
-                                <input type="text" class="form-control bg-transparent text-muted fs-2 border-0 text-center qty" value="<?= $quantity ?>" />
+                                <input type="text" class="form-control bg-transparent text-muted fs-2 border-0 text-center qty" value="<?= $quantity ?>" data-product-id="<?= $product->id ?>" data-unit-price="<?= $unitPrice ?>" />
                                 <button class="btn text-success bg-success-subtle p-0 round-20 border-0 add" type="button" data-product-id="<?= $product->id ?>">+</button>
                             </div>
                         </div>
@@ -52,6 +52,10 @@
                 <span class="text-dark fw-semibold fs-3" id="cartSubtotal"><?= $this->Number->currency($subTotal, 'AUD', ['places' => 0]) ?></span>
             </div>
         </div>
-        <a href="<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout']); ?>" class="btn btn-outline-primary w-100">Go to shopping cart</a>
+        <?php if (count($cartItems) <= 0) : ?>
+            <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']); ?>" class="btn btn-primary w-100">Continue Shopping</a>
+        <?php else : ?>
+            <a href="<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout']); ?>" class="btn btn-outline-primary w-100">Go to shopping cart</a>
+        <?php endif; ?>
     </div>
 </div>

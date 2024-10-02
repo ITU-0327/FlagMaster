@@ -1,8 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Product $product
- * @var int $quantity
+ * @var \App\Model\Entity\Order $order
+ * @var \App\Model\Entity\User $user
  */
 ?>
 
@@ -36,61 +36,78 @@
     <div class="card">
         <div class="card-body p-4">
             <div class="wizard-content">
-                <form action="#" class="tab-wizard wizard-circle">
+                <?= $this->Form->create($order, ['class' => 'tab-wizard wizard-circle']) ?>
                     <!-- Step 1: Cart -->
                     <h6>Cart</h6>
                     <section>
                         <div class="table-responsive">
-                            <table class="table align-middle text-nowrap mb-0">
-                                <thead class="fs-2">
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th class="text-end">Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="border-bottom-0">
-                                        <div class="d-flex align-items-center gap-3 overflow-hidden">
-                                            <?= $this->Html->image(h($product->thumbnail_url), [
-                                                'alt' => h($product->name),
-                                                'class' => 'img-fluid rounded',
-                                                'width' => '80',
-                                            ]) ?>
+                            <?php if (empty($order->orders_products)) : ?>
+                                <p>Your cart is empty.</p>
+                                <?= $this->Html->link('Continue Shopping', ['controller' => 'Products', 'action' => 'index'], ['class' => 'btn btn-primary']) ?>
+                            <?php else : ?>
+                                <table class="table align-middle text-nowrap mb-0">
+                                    <thead class="fs-2">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th class="text-end">Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($order->orders_products as $item) : ?>
+                                        <?php $product = $item->product; ?>
+                                        <tr>
+                                            <td class="border-bottom-0">
+                                                <div class="d-flex align-items-center gap-3 overflow-hidden">
+                                                    <?= $this->Html->image($product->thumbnail_url ?? 'products/Brazil-Flag.png', [
+                                                        'alt' => h($product->name),
+                                                        'class' => 'img-fluid rounded',
+                                                        'width' => '80',
+                                                    ]) ?>
 
-                                            <div>
-                                                <h6 class="fw-semibold fs-4 mb-0"><?= h($product->name) ?></h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <!-- quantity button-->
-                                    <td class="border-bottom-0">
-                                        <div class="input-group input-group-sm flex-nowrap rounded">
-                                            <button class="btn minus min-width-40 py-0 border-end border-muted text-muted" type="button" onclick="decreaseQuantity()">
-                                                <i class="ti ti-minus"></i>
-                                            </button>
+                                                    <div>
+                                                        <h6 class="fw-semibold fs-4 mb-0"><?= h($product->name) ?></h6>
+                                                        <?php foreach ($product->categories as $category) : ?>
+                                                            <p class="mb-0"><?= h($category->name) ?></p>
+                                                        <?php endforeach; ?>
+                                                        <a href="javascript:void(0)" class="text-danger fs-4 remove-cart-item" data-product-id="<?= $product->id ?>">
+                                                            <i class="ti ti-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <!-- Quantity -->
+                                            <td class="border-bottom-0">
+                                                <div class="input-group input-group-sm flex-nowrap rounded">
+                                                    <button class="btn minus min-width-40 py-0 border-end border-muted text-muted" type="button" data-product-id="<?= $product->id ?>">
+                                                        <i class="ti ti-minus"></i>
+                                                    </button>
 
-                                            <?= $this->Form->control('quantity', [
-                                                'type' => 'text',
-                                                'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-3 fw-semibold form-control text-center qty',
-                                                'id' => 'quantityInput',
-                                                'value' => $quantity,
-                                                'label' => false,
-                                            ]) ?>
+                                                    <?= $this->Form->text('quantity[' . $product->id . ']', [
+                                                        'type' => 'text',
+                                                        'class' => 'qty min-width-40 flex-grow-0 border border-muted text-muted fs-3 fw-semibold form-control text-center',
+                                                        'value' => $item->quantity,
+                                                        'label' => false,
+                                                        'data-product-id' => $product->id,
+                                                        'data-unit-price' => $item->unit_price,
+                                                    ]) ?>
 
-                                            <button class="btn min-width-40 py-0 border-start border-muted text-muted" type="button" onclick="increaseQuantity()">
-                                                <i class="ti ti-plus"></i>
-                                            </button>
-                                        </div>
-                                    </td>
+                                                    <button class="btn min-width-40 py-0 border-start border-muted text-muted add" type="button" data-product-id="<?= $product->id ?>">
+                                                        <i class="ti ti-plus"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
 
-                                    <td class="text-end border-bottom-0">
-                                        <h6 id="productPrice" class="fs-4 fw-semibold mb-0">$<?= $this->Number->format($product->price) ?></h6>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                            <td class="text-end border-bottom-0">
+                                                <h6 id="productPrice_<?= $product->id ?>" class="fs-4 fw-semibold mb-0"><?= $this->Number->currency($item->unit_price * $item->quantity, 'AUD', ['places' => 0]) ?></h6>
+                                                <!-- Hidden field to store unit price -->
+                                                <input type="hidden" id="unitPrice_<?= $product->id ?>" value="<?= $item->unit_price ?>">
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
 
                         <!-- order summary -->
@@ -98,16 +115,16 @@
                             <div class="p-3">
                                 <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                 <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 fs-4">Quantity</p>
-                                    <h6 class="quantity mb-0 fs-4 fw-semibold"><?= h($quantity) ?></h6>
+                                    <p class="mb-0 fs-4">Subtotal</p>
+                                    <h6 class="subTotal mb-0 fs-4 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                 </div>
                                 <div class="d-flex justify-content-between mb-4">
-                                    <p class="mb-0 fs-4">Unit Price</p>
-                                    <h6 class="unitPrice mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
+                                    <p class="mb-0 fs-4">Shipping</p>
+                                    <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="mb-0 fs-4 fw-semibold">Total Price</h6>
-                                    <h6 class="totalCost mb-0 fs-5 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
+                                    <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
+                                    <h6 class="totalCost mb-0 fs-5 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +137,7 @@
                             <?php if (!empty($user->profile->address)) : ?>
                                 <div class="card shadow-none border">
                                     <div class="card-body p-4">
-                                        <h6 class="mb-3 fs-4 fw-semibold"><?= h($user->username) ?></h6>
+                                        <h6 class="mb-3 fs-4 fw-semibold"><?= h($user->profile->first_name) ?> <?= h($user->profile->last_name) ?></h6>
                                         <p class="mb-1 fs-2">
                                             <?= h($user->profile->address->street) ?>, <?= h($user->profile->address->city) ?>, <?= h($user->profile->address->postal_code) ?>, <?= h($user->profile->address->country) ?>
                                         </p>
@@ -133,6 +150,28 @@
                             <?php else : ?>
                                 <p>No address found. Please add a new address.</p>
                             <?php endif; ?>
+
+                            <div class="order-summary border rounded p-4 my-4">
+                                <div class="p-3">
+                                    <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <p class="mb-0 fs-4">Sub Total</p>
+                                        <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <p class="mb-0 fs-4">Discount 5%</p>
+                                        <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <p class="mb-0 fs-4">Shipping</p>
+                                        <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
+                                        <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Delivery and Payment Section -->
@@ -175,8 +214,8 @@
                                         $fastDeliveryDate = clone $now;
 
                                         // Calculate weekdays
-                                        $freeDeliveryDate = addBusinessDays($freeDeliveryDate, 5); // Free delivery in 5个工作日
-                                        $fastDeliveryDate = addBusinessDays($fastDeliveryDate, 2); // Fast delivery in 2个工作日
+                                        $freeDeliveryDate = addBusinessDays($freeDeliveryDate, 5); // Free delivery in 5 days
+                                        $fastDeliveryDate = addBusinessDays($fastDeliveryDate, 2); // Fast delivery in 2 days
 
                                         // Formatting date
                                         $freeDeliveryDateFormatted = $freeDeliveryDate->format('l, F j');
@@ -313,112 +352,9 @@
                             <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
                         </div>
                     </section>
-                </form>
+                <?= $this->Form->end() ?>
             </div>
         </div>
-        <script>
-            const unitPrice = <?= $product->price ?>;
-            let shippingCost = 0; // Initial freight
-            let currentQty = <?= $quantity ?>; // Initial quantity
-
-            window.onload = function() {
-                // Get the default selected distribution option
-                const defaultDeliveryOption = document.querySelector('input[name="deliveryOpt"]:checked');
-                if (defaultDeliveryOption) {
-                    shippingCost = parseFloat(defaultDeliveryOption.value);
-                }
-                updateTotal();
-
-                // Add an event listener to the distribution option
-                const deliveryOptions = document.getElementsByName('deliveryOpt');
-                for (let i = 0; i < deliveryOptions.length; i++) {
-                    deliveryOptions[i].addEventListener('change', function() {
-                        shippingCost = parseFloat(this.value);
-                        updateTotal();
-                    });
-                }
-
-                // Event listener with additional quantity input boxes, if any
-                const qtyInput = document.getElementById("quantityInput");
-                if (qtyInput) {
-                    qtyInput.addEventListener('change', updateTotal);
-                }
-            }
-
-            function updateTotal() {
-                const qtyInput = document.getElementById("quantityInput");
-                if (qtyInput) {
-                    currentQty = parseInt(qtyInput.value);
-                    if (isNaN(currentQty) || currentQty < 1) {
-                        currentQty = 1;
-                        qtyInput.value = 1;
-                    }
-                }
-
-                const subTotal = unitPrice * currentQty;
-                const totalPrice = subTotal + shippingCost;
-
-                // Update the unit price
-                const unitPriceElements = document.getElementsByClassName("unitPrice");
-                for (let i = 0; i < unitPriceElements.length; i++) {
-                    unitPriceElements[i].innerText = '$' + unitPrice.toFixed(2);
-                }
-
-                // The number of updates
-                const quantityElements = document.getElementsByClassName("quantity");
-                for (let i = 0; i < quantityElements.length; i++) {
-                    quantityElements[i].innerText = currentQty;
-                }
-
-                // Update the suptotal
-                const subTotalElements = document.getElementsByClassName("subTotal");
-                for (let i = 0; i < subTotalElements.length; i++) {
-                    subTotalElements[i].innerText = '$' + subTotal.toFixed(2);
-                }
-
-                // update shipping
-                const shippingCostElements = document.getElementsByClassName("shippingCost");
-                for (let i = 0; i < shippingCostElements.length; i++) {
-                    shippingCostElements[i].innerText = shippingCost > 0 ? '$' + shippingCost.toFixed(2) : 'Free';
-                }
-
-                // Updated total
-                const totalCostElements = document.getElementsByClassName("totalCost");
-                for (let i = 0; i < totalCostElements.length; i++) {
-                    totalCostElements[i].innerText = '$' + totalPrice.toFixed(2);
-                }
-
-                // **Calculation and update GST**
-                const gstAmount = totalPrice / 11; // 计算 GST 金额
-                const gstElements = document.getElementsByClassName("gstAmount");
-                for (let i = 0; i < gstElements.length; i++) {
-                    gstElements[i].innerText = '$' + gstAmount.toFixed(2);
-                }
-            }
-
-            function updateShipping(cost) {
-                shippingCost = cost;
-                updateTotal();
-            }
-
-            function increaseQuantity() {
-                const qtyInput = document.getElementById("quantityInput");
-                currentQty = parseInt(qtyInput.value);
-                if (!isNaN(currentQty)) {
-                    qtyInput.value = currentQty + 1;
-                    updateTotal();
-                }
-            }
-
-            function decreaseQuantity() {
-                const qtyInput = document.getElementById("quantityInput");
-                currentQty = parseInt(qtyInput.value);
-                if (!isNaN(currentQty) && currentQty > 1) {
-                    qtyInput.value = currentQty - 1;
-                    updateTotal();
-                }
-            }
-        </script>
     </div>
 </div>
 

@@ -181,61 +181,118 @@ class OrdersController extends AppController
     /**
      * Checkout method
      *
-     * @param string|null $productId Product id.
      * @return \Cake\Http\Response|null|void Redirects on successful checkout, renders view otherwise.
      */
-    public function checkout(?string $productId = null)
+    public function checkout()
     {
-        // Ensure a product ID is provided
-        if ($productId === null) {
-            $this->Flash->error(__('Product not found.'));
+        // get user id
+        $user = $this->request->getAttribute('identity');
+        $userId = $user->id;
+
+        $order = $this->Orders->find()
+            ->where(['Orders.user_id' => $userId, 'Orders.status' => 'incart'])
+            ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
+            ->first();
+
+        if (!$order || empty($order->orders_products)) {
+            $this->Flash->error(__('Your cart is empty.'));
 
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
-        // get user id
-        $userId = $this->Authentication->getIdentity()->getIdentifier();
-
-        $user = $this->Orders->Users->get(
-            $userId,
-            contain: ['Profiles' => ['Addresses']]
-        );
-
-        // Fetch product information
-        $product = $this->Orders->Products->get($productId);
-
-        // Get quantity from query parameters, default to 1
-        $quantity = $this->request->getQuery('quantity', 1);
-        $quantity = max(1, (int)$quantity); // Ensure quantity is at least 1
-
-        $order = $this->Orders->newEmptyEntity();
-
-        if ($this->request->is('post')) {
-            // Get the order data from the form submission
+        if ($this->request->is(['post', 'put'])) {
+            // Get form data
             $orderData = $this->request->getData();
-            $orderData['product_id'] = $productId; // Set the product ID
-            $orderData['user_id'] = $userId; // Set the user ID
+            $quantities = $orderData['quantity']; // Array of quantities keyed by product ID
 
-            // Get the quantity from the form submission or default value
-            $quantity = isset($orderData['quantity']) ? (int)$orderData['quantity'] : $quantity;
-            $orderData['quantity'] = $quantity;
-
-            // Patch the order data into the order entity
-            $order = $this->Orders->patchEntity($order, $orderData);
-
-            // Save the order
-            if ($this->Orders->save($order)) {
-                $this->Flash->success(__('Order has been placed successfully.'));
-
-                return $this->redirect(['action' => 'index']);
+            // Update quantities in the order
+            foreach ($order->orders_products as $orderProduct) {
+                $productId = $orderProduct->product_id;
+                if (isset($quantities[$productId])) {
+                    $orderProduct->quantity = max(1, (int)$quantities[$productId]); // Ensure quantity is at least 1
+                }
             }
 
-            // Display error if the order could not be placed
+            // Update order status to 'pending' and set the order date
+            $order->status = 'pending';
+            $order->order_date = date('Y-m-d H:i:s');
+
+            // Save the order along with associated order products
+            if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
+                $this->Flash->success(__('Order has been placed successfully.'));
+                // Optionally, you can create an order confirmation action/view
+                return $this->redirect(['action' => 'confirmation', $order->id]);
+            }
+
             $this->Flash->error(__('Unable to place the order.'));
         }
 
-        // Pass product, order, quantity, and user data to the view
-        $this->set(compact('product', 'order', 'quantity', 'user'));
+        // Pass order and user data to the view
+        $this->set(compact('order', 'user'));
+    }
+
+    /**
+     * Remove a cart item
+     *
+     * @return \Cake\Http\Response
+     */
+    public function removeCartItem(): Response
+    {
+        $this->request->allowMethod(['post']);
+
+        $user = $this->request->getAttribute('identity');
+        $productId = $this->request->getData('product_id');
+
+        $order = $this->Orders->find()
+            ->where(['user_id' => $user->id, 'status' => 'incart'])
+            ->contain(['OrdersProducts'])
+            ->first();
+
+        if (!$order) {
+            $response = [
+                'success' => false,
+                'message' => __('Your cart is empty.'),
+            ];
+
+            return $this->jsonResponse($response);
+        }
+
+        $orderProduct = $this->Orders->OrdersProducts->find()
+            ->where(['order_id' => $order->id, 'product_id' => $productId])
+            ->first();
+
+        if ($orderProduct) {
+            if ($this->Orders->OrdersProducts->delete($orderProduct)) {
+                // Reload the order to get updated orders_products
+                $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+
+                // Recalculate cart item count
+                $cartItemCount = 0;
+                if (!empty($order->orders_products)) {
+                    foreach ($order->orders_products as $item) {
+                        $cartItemCount += $item->quantity;
+                    }
+                }
+
+                $response = [
+                    'success' => true,
+                    'message' => __('Item removed from cart.'),
+                    'cartItemCount' => $cartItemCount,
+                ];
+            } else {
+                $response = [
+                    'success' => false,
+                    'message' => __('Unable to remove item from cart.'),
+                ];
+            }
+        } else {
+            $response = [
+                'success' => false,
+                'message' => __('Product not found in your cart.'),
+            ];
+        }
+
+        return $this->jsonResponse($response);
     }
 
     /**
@@ -263,6 +320,21 @@ class OrdersController extends AppController
 
         $this->set(compact('cartItems'));
         $this->viewBuilder()->setLayout('ajax');
-        $this->render('/element/cart_sidebar');
+        $this->render('/element/cart-sidebar');
+    }
+
+    /**
+     * Helper method to return JSON response
+     *
+     * @param array $response Response data
+     * @return \Cake\Http\Response
+     */
+    private function jsonResponse(array $response): Response
+    {
+        $this->viewBuilder()->setClassName('Json');
+        $this->set(compact('response'));
+        $this->viewBuilder()->setOption('serialize', 'response');
+
+        return $this->response->withType('application/json')->withStringBody(json_encode($response));
     }
 }
