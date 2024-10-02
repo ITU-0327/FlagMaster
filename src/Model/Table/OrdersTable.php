@@ -15,6 +15,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\DeliveriesTable&\Cake\ORM\Association\HasMany $Deliveries
  * @property \App\Model\Table\PaymentsTable&\Cake\ORM\Association\HasMany $Payments
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsToMany $Products
+ * @property \App\Model\Table\OrdersProductsTable&\Cake\ORM\Association\HasMany $OrdersProducts
  *
  * @method \App\Model\Entity\Order newEmptyEntity()
  * @method \App\Model\Entity\Order newEntity(array $data, array $options = [])
@@ -60,6 +61,9 @@ class OrdersTable extends Table
             'foreignKey' => 'order_id',
             'targetForeignKey' => 'product_id',
             'joinTable' => 'orders_products',
+        ]);
+        $this->hasMany('OrdersProducts', [
+            'foreignKey' => 'order_id',
         ]);
     }
 

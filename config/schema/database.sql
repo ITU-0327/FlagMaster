@@ -104,7 +104,7 @@ CREATE TABLE `orders` (
     `user_id` INT,
     `order_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `total_amount` DECIMAL(10, 2) NOT NULL,
-    `status` ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    `status` ENUM('pending', 'shipped', 'delivered', 'cancelled', 'incart') DEFAULT 'pending',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE

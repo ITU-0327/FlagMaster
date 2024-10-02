@@ -54,4 +54,24 @@ class Product extends Entity
         'categories' => true,
         'orders' => true,
     ];
+
+    /**
+     * Get the final price of a product with discount applied.
+     *
+     * @return string|float|int|null
+     */
+    public function getPrice(): float|int|string|null
+    {
+        $unitPrice = $this->price;
+
+        if ($this->discount_type !== 'none' && $this->discount_value) {
+            $unitPrice = $this->discount_value;
+        }
+
+        if ($unitPrice < 0) {
+            $unitPrice = 0;
+        }
+
+        return $unitPrice;
+    }
 }

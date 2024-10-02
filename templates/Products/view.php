@@ -135,14 +135,21 @@
                             </ul>
                             <a href="#pills-reviews">(<?= $totalReviews ?> reviews)</a>
                         </div>
+
+                        <?= $this->Form->create(null, ['url' => ['controller' => 'Products', 'action' => 'addToCart', $product->id]]) ?>
                         <div class="d-flex align-items-center gap-8 py-7">
                             <h6 class="mb-0 fs-4">QTY:</h6>
                             <div class="input-group input-group-sm rounded">
-                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
+                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button">
                                     <i class="ti ti-minus"></i>
                                 </button>
-                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty" placeholder="" id="quantityInput" value="1">
-                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button" onclick="increaseQuantity()">
+                                <?= $this->Form->text('quantity', [
+                                    'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty',
+                                    'id' => 'quantityInput',
+                                    'value' => 1,
+                                    'min' => 1,
+                                ]) ?>
+                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button">
                                     <i class="ti ti-plus"></i>
                                 </button>
                             </div>
@@ -151,11 +158,13 @@
                             <?php if ($product->stock_quantity > 0) : ?>
                                 <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn">Buy Now</a>
 <!--                                --><?php //= $this->Html->link('Buy Now', ['controller' => 'Orders', 'action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0', 'id' => 'buyNowBtn']) ?>
-                                <?= $this->Form->postLink('Add to Cart', ['action' => 'addToCart', $product->id], ['class' => 'btn d-block btn-danger px-7 py-8', 'id' => 'addToCartBtn']) ?>
+                                <?= $this->Form->button('Add to Cart', ['class' => 'btn d-block btn-danger px-7 py-8', 'id' => 'addToCartBtn']) ?>
                             <?php else : ?>
                                 <span class="text-danger fs-5">This product is currently out of stock.</span>
                             <?php endif; ?>
                         </div>
+                        <?= $this->Form->end() ?>
+
                         <p class="mb-0">Dispatched in 2-3 weeks</p>
                         <a href="javascript:void(0)">Why the longer time for delivery?</a>
                     </div>
@@ -355,22 +364,6 @@
 <?= $this->Html->script('apps/productDetail') ?>
 
 <script>
-    // function increaseQuantity() {
-    //     let qtyInput = document.getElementById("quantityInput");
-    //     let currentQty = parseInt(qtyInput.value);
-    //     if (!isNaN(currentQty)) {
-    //         qtyInput.value = currentQty + 1;
-    //     }
-    // }
-    //
-    // function decreaseQuantity() {
-    //     let qtyInput = document.getElementById("quantityInput");
-    //     let currentQty = parseInt(qtyInput.value);
-    //     if (!isNaN(currentQty) && currentQty > 1) {
-    //         qtyInput.value = currentQty - 1;
-    //     }
-    // }
-
     // Handle "Buy Now" button click
     document.getElementById('buyNowBtn').addEventListener('click', function() {
         const quantity = document.getElementById('quantityInput').value;

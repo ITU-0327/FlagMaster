@@ -61,7 +61,6 @@
 
                                             <div>
                                                 <h6 class="fw-semibold fs-4 mb-0"><?= h($product->name) ?></h6>
-<!--                                                <p class="mb-0">--><?php //= h($product->category) ?><!--</p>-->
                                             </div>
                                         </div>
                                     </td>
