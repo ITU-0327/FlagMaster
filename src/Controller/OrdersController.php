@@ -9,6 +9,7 @@ use Cake\Http\Response;
  * Orders Controller
  *
  * @property \App\Model\Table\OrdersTable $Orders
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class OrdersController extends AppController
@@ -129,6 +130,7 @@ class OrdersController extends AppController
         // Ensure a product ID is provided
         if ($productId === null) {
             $this->Flash->error(__('Product not found.'));
+
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
@@ -139,7 +141,6 @@ class OrdersController extends AppController
             $userId,
             contain: ['Profiles' => ['Addresses']]
         );
-
 
         // Fetch product information
         $product = $this->Orders->Products->get($productId);
@@ -154,7 +155,7 @@ class OrdersController extends AppController
             // Get the order data from the form submission
             $orderData = $this->request->getData();
             $orderData['product_id'] = $productId; // Set the product ID
-            $orderData['user_id'] = $userId;       // Set the user ID
+            $orderData['user_id'] = $userId; // Set the user ID
 
             // Get the quantity from the form submission or default value
             $quantity = isset($orderData['quantity']) ? (int)$orderData['quantity'] : $quantity;
@@ -166,6 +167,7 @@ class OrdersController extends AppController
             // Save the order
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('Order has been placed successfully.'));
+
                 return $this->redirect(['action' => 'index']);
             }
 
