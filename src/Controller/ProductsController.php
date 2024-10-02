@@ -294,14 +294,15 @@ class ProductsController extends AppController
     /**
      * Add a product to the cart.
      *
-     * @param int $productId Product ID
-     * @return \Cake\Http\Response|null Redirects to the previous page
+     * @return void Redirects to the previous page
      */
-    public function addToCart(int $productId): ?Response
+    public function addToCart(): void
     {
         $this->request->allowMethod(['post']);
 
+        $productId = $this->request->getData('product_id');
         $quantity = $this->request->getData('quantity') ?: 1;
+
         $product = $this->Products->get($productId);
         $this->Authorization->authorize($product);
 
@@ -343,11 +344,14 @@ class ProductsController extends AppController
         }
 
         if ($this->Orders->OrdersProducts->save($orderProduct)) {
-            $this->Flash->success(__('Product added to cart.'));
+            // Reload the order with updated orders_products
+            $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
 
             $cartItemCount = 0;
-            foreach ($order->orders_products as $item) {
-                $cartItemCount += $item->quantity;
+            if (!empty($order->orders_products)) {
+                foreach ($order->orders_products as $item) {
+                    $cartItemCount += $item->quantity;
+                }
             }
 
             $response = [
@@ -356,23 +360,15 @@ class ProductsController extends AppController
                 'cartItemCount' => $cartItemCount,
             ];
         } else {
-            $this->Flash->error(__('Unable to add product to cart.'));
-
             $response = [
                 'success' => false,
                 'message' => __('Unable to add product to cart.'),
             ];
         }
 
-        if ($this->request->is('ajax')) {
-            $this->viewBuilder()->setClassName('Json');
-            $this->set(compact('response'));
-            $this->viewBuilder()->setOption('serialize', 'response');
-
-            return $this->response;
-        }
-
-        return $this->redirect($this->referer());
+        $this->viewBuilder()->setClassName('Json');
+        $this->set(compact('response'));
+        $this->viewBuilder()->setOption('serialize', 'response');
     }
 
     /**

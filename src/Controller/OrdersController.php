@@ -237,4 +237,32 @@ class OrdersController extends AppController
         // Pass product, order, quantity, and user data to the view
         $this->set(compact('product', 'order', 'quantity', 'user'));
     }
+
+    /**
+     * Get cart sidebar method
+     *
+     * @return void
+     */
+    public function getCartSidebar(): void
+    {
+        $this->request->allowMethod(['get']);
+
+        $identity = $this->request->getAttribute('identity');
+        $userId = $identity->id;
+
+        $this->Orders = $this->fetchTable('Orders');
+        $order = $this->Orders->find()
+            ->where(['user_id' => $userId, 'status' => 'incart'])
+            ->contain(['OrdersProducts.Products.Categories'])
+            ->first();
+
+        $cartItems = [];
+        if ($order) {
+            $cartItems = $order->orders_products;
+        }
+
+        $this->set(compact('cartItems'));
+        $this->viewBuilder()->setLayout('ajax');
+        $this->render('/element/cart_sidebar');
+    }
 }
