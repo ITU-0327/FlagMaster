@@ -344,8 +344,32 @@ class ProductsController extends AppController
 
         if ($this->Orders->OrdersProducts->save($orderProduct)) {
             $this->Flash->success(__('Product added to cart.'));
+
+            $cartItemCount = 0;
+            foreach ($order->orders_products as $item) {
+                $cartItemCount += $item->quantity;
+            }
+
+            $response = [
+                'success' => true,
+                'message' => __('Product added to cart.'),
+                'cartItemCount' => $cartItemCount,
+            ];
         } else {
             $this->Flash->error(__('Unable to add product to cart.'));
+
+            $response = [
+                'success' => false,
+                'message' => __('Unable to add product to cart.'),
+            ];
+        }
+
+        if ($this->request->is('ajax')) {
+            $this->viewBuilder()->setClassName('Json');
+            $this->set(compact('response'));
+            $this->viewBuilder()->setOption('serialize', 'response');
+
+            return $this->response;
         }
 
         return $this->redirect($this->referer());

@@ -2,6 +2,7 @@
 /**
  * @var array $themeSettings
  * @var string|null $userRole
+ * @var array $cartItems
  */
 ?>
 
@@ -44,48 +45,53 @@
     <div class="offcanvas offcanvas-end shopping-cart" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header justify-content-between py-4">
             <h5 class="offcanvas-title fs-5 fw-semibold" id="offcanvasRightLabel">Shopping Cart</h5>
-            <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
+            <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm"><?= count($cartItems) ?> items</span>
         </div>
         <div class="offcanvas-body h-100 px-4 pt-0" data-simplebar>
             <ul class="mb-0">
-                <li class="pb-7">
-                    <div class="d-flex align-items-center">
-                        <?= $this->Html->image('products/product-1.jpg', [
-                            'alt' => 'flagmaster-img',
-                            'class' => 'rounded-1 me-9 flex-shrink-0',
-                            'width' => '95',
-                            'height' => '75',
-                        ]) ?>
-                        <div>
-                            <h6 class="mb-1">Supreme toys cooker</h6>
-                            <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-success-subtle text-success" type="button" id="add1">-</button>
-                                    <input type="text" class="form-control round-20 bg-transparent text-muted fs-2 border-0 text-center qty" value="1" />
-                                    <button class="btn text-success bg-success-subtle p-0 round-20 border-0 add" type="button" id="addo2">+</button>
+                <?php
+                $subTotal = 0;
+                foreach ($cartItems as $item) :
+                    $product = $item->product;
+                    $quantity = (int)$item->quantity;
+                    $unitPrice = $product->getPrice();
+                    $totalPrice = $unitPrice * $quantity;
+                    $subTotal += $totalPrice;
+                    ?>
+                    <li class="pb-7">
+                        <div class="d-flex align-items-center">
+                            <?= $this->Html->image($product->thumbnail_url ?? 'products/Brazil-Flag.png', [
+                                'alt' => h($product->name),
+                                'class' => 'rounded-1 me-9 flex-shrink-0',
+                                'width' => '95',
+                                'height' => '75',
+                            ]) ?>
+                            <div>
+                                <h6 class="mb-1"><?= h($product->name) ?></h6>
+                                <?php foreach ($product->categories as $category) : ?>
+                                    <p class="mb-0 text-muted fs-2"><?= h($category->name) ?></p>
+                                <?php endforeach; ?>
+                                <div class="d-flex align-items-center justify-content-between mt-2">
+                                    <h6 class="fs-2 fw-semibold mb-0 text-muted"><?= $this->Number->currency($unitPrice, 'AUD', ['places' => 0]) ?></h6>
+                                    <div class="input-group input-group-sm w-50">
+                                        <button class="btn border-0 round-20 minus p-0 bg-success-subtle text-success" type="button" data-product-id="<?= $product->id ?>">-</button>
+                                        <input type="text" class="form-control bg-transparent text-muted fs-2 border-0 text-center qty" value="<?= $quantity ?>" />
+                                        <button class="btn text-success bg-success-subtle p-0 round-20 border-0 add" type="button" data-product-id="<?= $product->id ?>">+</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <!-- Add more products as needed -->
+                    </li>
+                <?php endforeach; ?>
             </ul>
             <div class="align-bottom">
                 <div class="d-flex align-items-center pb-7">
                     <span class="text-dark fs-3">Sub Total</span>
                     <div class="ms-auto">
-                        <span class="text-dark fw-semibold fs-3">$2530</span>
+                        <span class="text-dark fw-semibold fs-3" id="cartSubtotal"><?= $this->Number->currency($subTotal, 'AUD', ['places' => 0]) ?></span>
                     </div>
                 </div>
-                <div class="d-flex align-items-center pb-7">
-                    <span class="text-dark fs-3">Total</span>
-                    <div class="ms-auto">
-                        <span class="text-dark fw-semibold fs-3">$6830</span>
-                    </div>
-                </div>
-                <a href="<?= $this->Url->build(['controller' => 'Orders', 'action' => 'cart']); ?>" class="btn btn-outline-primary w-100">Go to shopping cart</a>
+                <a href="<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout']); ?>" class="btn btn-outline-primary w-100">Go to shopping cart</a>
             </div>
         </div>
     </div>
@@ -101,6 +107,68 @@
     <script>
         function handleColorTheme(e) {
             document.documentElement.setAttribute("data-color-theme", e);
+        }
+    </script>
+
+    <script>
+        const quantityButtons = document.querySelectorAll(".minus, .add");
+        if (quantityButtons) {
+            quantityButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const qtyInput = this.closest("div").querySelector(".qty");
+                    let currentVal = parseInt(qtyInput.value);
+                    const isAdd = this.classList.contains("add");
+                    const productId = this.getAttribute('data-product-id');
+
+                    if (!isNaN(currentVal)) {
+                        qtyInput.value = isAdd
+                            ? ++currentVal
+                            : currentVal > 0
+                            ? --currentVal
+                            : currentVal;
+
+                        // Send AJAX request to update quantity on the server
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'updateCartItem']); ?>', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+                        xhr.onerror = function() {
+                            alert('An error occurred while updating the cart. Please try again.');
+                        };
+
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                                // Update the price and subtotal in the sidebar
+                                const response = JSON.parse(xhr.responseText);
+                                if (response.success) {
+                                    // Update subtotal and total
+                                    document.getElementById('cartSubtotal').textContent = response.subTotalFormatted;
+
+                                    const cartItemCountElement = document.querySelector('.popup-badge');
+                                    if (response.cartItemCount <= 0 && cartItemCountElement) {
+                                        cartItemCountElement.parentNode.removeChild(cartItemCountElement);
+                                        return;
+                                    }
+
+                                    if (cartItemCountElement) {
+                                        cartItemCountElement.textContent = response.cartItemCount;
+                                    } else {
+                                        // If the badge doesn't exist yet, create it
+                                        const navLink = document.querySelector('.nav-link[data-bs-target="#offcanvasRight"]');
+                                        const badge = document.createElement('span');
+                                        badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
+                                        badge.textContent = response.cartItemCount;
+                                        navLink.appendChild(badge);
+                                    }
+                                }
+                            }
+                        };
+
+                        xhr.send('product_id=' + productId + '&quantity=' + currentVal);
+                    }
+                });
+            });
         }
     </script>
 </body>

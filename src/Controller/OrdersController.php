@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Http\Response;
+use Cake\I18n\Number;
 
 /**
  * Orders Controller
@@ -117,6 +118,64 @@ class OrdersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Update cart item method
+     *
+     * @return void
+     */
+    public function updateCartItem(): void
+    {
+        $this->request->allowMethod(['post']);
+        $productId = $this->request->getData('product_id');
+        $quantity = $this->request->getData('quantity');
+
+        $identity = $this->request->getAttribute('identity');
+        $userId = $identity->id;
+
+        $order = $this->Orders->find()
+            ->where(['user_id' => $userId, 'status' => 'incart'])
+            ->contain(['OrdersProducts.Products'])
+            ->first();
+
+        if ($order) {
+            $orderProduct = $this->Orders->OrdersProducts->find()
+                ->where(['order_id' => $order->id, 'product_id' => $productId])
+                ->first();
+
+            if ($orderProduct) {
+                $orderProduct->quantity = $quantity;
+                if ($this->Orders->OrdersProducts->save($orderProduct)) {
+                    // Recalculate subtotal
+                    $subTotal = 0;
+                    $cartItemCount = 0;
+                    foreach ($order->orders_products as $item) {
+                        $itemQuantity = $item->product_id == $productId ? $quantity : $item->quantity;
+                        $itemTotalPrice = $item->unit_price * $itemQuantity;
+                        $cartItemCount += $item->product_id == $productId ? $quantity : $item->quantity;
+                        $subTotal += $itemTotalPrice;
+                    }
+
+                    $response = [
+                        'success' => true,
+                        'subTotalFormatted' => Number::currency($subTotal, 'AUD', ['places' => 0]),
+                        'cartItemCount' => $cartItemCount,
+                    ];
+                } else {
+                    $response = ['success' => false];
+                }
+            } else {
+                $response = ['success' => false];
+            }
+        } else {
+            $response = ['success' => false];
+        }
+
+        // Set the response type to JSON
+        $this->viewBuilder()->setClassName('Json');
+        $this->set(compact('response'));
+        $this->viewBuilder()->setOption('serialize', 'response');
     }
 
     /**
