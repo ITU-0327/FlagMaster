@@ -157,8 +157,7 @@
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                             <?php if ($product->stock_quantity > 0) : ?>
                                 <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn">Buy Now</a>
-<!--                                --><?php //= $this->Html->link('Buy Now', ['controller' => 'Orders', 'action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0', 'id' => 'buyNowBtn']) ?>
-                                <?= $this->Form->button('Add to Cart', ['class' => 'btn d-block btn-danger px-7 py-8', 'id' => 'addToCartBtn']) ?>
+                                <button type="button" class="btn d-block btn-danger px-7 py-8" id="addToCartBtn" data-product-id="<?= $product->id ?>">Add to Cart</button>
                             <?php else : ?>
                                 <span class="text-danger fs-5">This product is currently out of stock.</span>
                             <?php endif; ?>
@@ -364,17 +363,75 @@
 <?= $this->Html->script('apps/productDetail') ?>
 
 <script>
-    // Handle "Buy Now" button click
-    document.getElementById('buyNowBtn').addEventListener('click', function() {
-        const quantity = document.getElementById('quantityInput').value;
-        // Navigate to the checkout page with the product ID and quantity
-        window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id]) ?>' + '?quantity=' + quantity;
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle "Buy Now" button click (existing code)
+        document.getElementById('buyNowBtn').addEventListener('click', function() {
+            const quantity = document.getElementById('quantityInput').value;
+            // Navigate to the checkout page with the product ID and quantity
+            window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout', $product->id]) ?>' + '?quantity=' + quantity;
+        });
 
-    // Handle "Add to Cart" button click
-    document.getElementById('addToCartBtn').addEventListener('click', function() {
-        const quantity = document.getElementById('quantityInput').value;
-        alert('Added ' + quantity + ' item(s) to cart!');
+        // Handle "Add to Cart" button click
+        document.getElementById('addToCartBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            const productId = this.getAttribute('data-product-id');
+            const quantity = document.getElementById('quantityInput').value;
+
+            // Send AJAX request to add product to cart
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?= $this->Url->build(['controller' => 'Products', 'action' => 'addToCart']); ?>', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // Update cart item count in navbar
+                            const cartItemCountElement = document.querySelector('.popup-badge');
+                            if (cartItemCountElement) {
+                                cartItemCountElement.textContent = response.cartItemCount;
+                            } else {
+                                // Create badge if it doesn't exist
+                                const navLink = document.querySelector('.nav-link[data-bs-target="#offcanvasRight"]');
+                                const badge = document.createElement('span');
+                                badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
+                                badge.textContent = response.cartItemCount;
+                                navLink.appendChild(badge);
+                            }
+
+                            // Fetch updated cart sidebar content
+                            const xhr2 = new XMLHttpRequest();
+                            xhr2.open('GET', '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'getCartSidebar']); ?>', true);
+                            xhr2.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+                            xhr2.onreadystatechange = function() {
+                                if (xhr2.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr2.status === 200) {
+                                        // Update the cart sidebar content
+                                        const cartSidebar = document.querySelector('#offcanvasRight');
+                                        if (cartSidebar) {
+                                            cartSidebar.innerHTML = xhr2.responseText;
+                                        }
+                                    } else {
+                                        console.error('Failed to fetch cart sidebar content');
+                                    }
+                                }
+                            };
+
+                            xhr2.send();
+                        } else {
+                            alert(response.message || 'Failed to add product to cart.');
+                        }
+                    } else {
+                        alert('An error occurred while adding the product to the cart.');
+                    }
+                }
+            };
+
+            xhr.send('product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity));
+        });
     });
 </script>
 
