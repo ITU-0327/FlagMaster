@@ -5,33 +5,105 @@
  * @var string[]|\Cake\Collection\CollectionInterface $products
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
+
+<div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
+    <div class="card-body px-4 py-3">
+        <div class="row align-items-center">
+            <div class="col-9">
+                <h4 class="fw-semibold mb-8"><?= __('Edit Category') ?></h4>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <?= $this->Html->link(__('Home'), '/', ['class' => 'text-muted text-decoration-none']) ?>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <?= $this->Html->link(__('Categories'), ['action' => 'index'], ['class' => 'text-muted text-decoration-none']) ?>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page"><?= __('Edit') ?></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-3">
+                <div class="text-center mb-n5">
+                    <?= $this->Html->image('breadcrumb/ChatBc.png', [
+                        'alt' => 'category-img',
+                        'class' => 'img-fluid mb-n4',
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <?= $this->Form->create($category, ['class' => 'form-horizontal']) ?>
+        <fieldset>
+            <legend><?= __('Edit Category Details') ?></legend>
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <?= $this->Form->control('name', [
+                            'class' => 'form-control',
+                            'label' => __('Category Name'),
+                            'placeholder' => __('Enter category name'),
+                        ]) ?>
+                    </div>
+                    <div class="mb-3">
+                        <?= $this->Form->control('created_at', [
+                            'type' => 'datetime',
+                            'class' => 'form-control',
+                            'label' => __('Created At'),
+                        ]) ?>
+                    </div>
+                    <div class="mb-3">
+                        <?= $this->Form->control('updated_at', [
+                            'type' => 'datetime',
+                            'class' => 'form-control',
+                            'label' => __('Updated At'),
+                        ]) ?>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <?= $this->Form->control('description', [
+                            'type' => 'textarea',
+                            'class' => 'form-control',
+                            'label' => __('Description'),
+                            'placeholder' => __('Enter category description'),
+                        ]) ?>
+                    </div>
+                    <div class="mb-3">
+                        <?= $this->Form->control('products._ids', [
+                            'options' => $products,
+                            'class' => 'form-select',
+                            'label' => __('Associated Products'),
+                            'multiple' => true,
+                        ]) ?>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="d-flex align-items-center justify-content-between mt-4 gap-6">
+            <!-- Delete Button -->
             <?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $category->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $category->id), 'class' => 'side-nav-item']
+                [
+                    'confirm' => __('Are you sure you want to delete {0}?', $category->name),
+                    'class' => 'btn bg-danger-subtle text-danger',
+                ]
             ) ?>
-            <?= $this->Html->link(__('List Categories'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <!-- Save and Cancel Buttons -->
+            <div class="d-flex align-items-center gap-2">
+                <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>
+                <?= $this->Html->link(__('Cancel'), ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
+            </div>
         </div>
-    </aside>
-    <div class="column column-80">
-        <div class="categories form content">
-            <?= $this->Form->create($category) ?>
-            <fieldset>
-                <legend><?= __('Edit Category') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('description');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('updated_at');
-                    echo $this->Form->control('products._ids', ['options' => $products]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
+
+        <?= $this->Form->end() ?>
     </div>
 </div>

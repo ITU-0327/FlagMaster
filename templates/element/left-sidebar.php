@@ -68,6 +68,15 @@ extract($userInfo);
                     ); ?>
                 </li>
 
+                <!-- Categories -->
+                <li class="sidebar-item">
+                    <?= $this->Html->link(
+                        '<span><i class="ti ti-category"></i></span><span class="hide-menu">Category</span>',
+                        ['controller' => 'Categories', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                        ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
+                    ); ?>
+                </li>
+
                 <!-- Orders -->
                 <li class="sidebar-item">
                     <?= $this->Html->link(
