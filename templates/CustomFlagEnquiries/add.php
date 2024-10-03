@@ -16,7 +16,7 @@
                             <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item">
-                            <?= $this->Html->link('Custom Flag Enquiries', ['action' => 'index'], ['class' => 'text-muted text-decoration-none']) ?>
+                            <?= $this->Html->link('Custom Flag Enquiry', ['controller' => 'enquiries', 'action' => 'index'], ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                     </ol>
                 </nav>
@@ -39,15 +39,14 @@
         <div class="d-flex align-items-center">
             <h4 class="card-title mb-0">Custom Flag Enquiry Form</h4>
         </div>
-        <p class="card-subtitle mb-3">Please fill out the form below to add a custom flag enquiry.</p>
+        <p class="card-subtitle mb-3 mt-1">Please fill out the form below to submit a custom flag enquiry.</p>
 
         <div class="row">
-            <!-- Enquiry Subject (from associated Enquiry) -->
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="enquiry_subject" class="form-label">Enquiry Subject</label>
+                    <label for="enquiry_subject" class="form-label">Subject</label>
                     <?= $this->Form->control('enquiry.subject', [
-                        'value' => $customFlagEnquiry->enquiry->subject ?? '', // Pull from associated enquiry
+                        'value' => $customFlagEnquiry->enquiry->subject ?? '',
                         'label' => false,
                         'class' => 'form-control',
                         'disabled' => false,
@@ -55,12 +54,11 @@
                 </div>
             </div>
 
-            <!-- Enquiry Message (from associated Enquiry) -->
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="enquiry_message" class="form-label">Enquiry Message</label>
+                    <label for="enquiry_message" class="form-label">Message</label>
                     <?= $this->Form->textarea('enquiry.message', [
-                        'value' => $customFlagEnquiry->enquiry->message ?? '', // Pull from associated enquiry
+                        'value' => $customFlagEnquiry->enquiry->message ?? '',
                         'label' => false,
                         'class' => 'form-control',
                         'disabled' => false,
@@ -72,7 +70,7 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Flag Size</label>
-                    <div class="d-flex gap-3 mt-2"> <!-- Reduced spacing using gap-3 for smaller spaces -->
+                    <div class="d-flex gap-3 mt-2">
                         <?= $this->Form->radio('flag_size', [
                             ['value' => 'Small', 'text' => 'Small', 'label' => ['class' => 'form-check-label']],
                             ['value' => 'Medium', 'text' => 'Medium', 'label' => ['class' => 'form-check-label']],
@@ -82,7 +80,7 @@
                             'class' => 'form-check-input',
                             'legend' => false,
                             'templates' => [
-                                'radioWrapper' => '<div class="form-check">{{input}}{{label}}</div>', // Updated structure
+                                'radioWrapper' => '<div class="form-check">{{input}}{{label}}</div>',
                             ],
                         ]) ?>
                     </div>

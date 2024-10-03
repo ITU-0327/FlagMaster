@@ -3,46 +3,18 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+use Exception;
+use Psr\Http\Message\UploadedFileInterface;
+use SplFileInfo;
+
 /**
  * CustomFlagEnquiries Controller
  *
  * @property \App\Model\Table\CustomFlagEnquiriesTable $CustomFlagEnquiries
  */
-use Psr\Http\Message\UploadedFileInterface;
-use Exception;
-use SplFileInfo;
 class CustomFlagEnquiriesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-        $query = $this->CustomFlagEnquiries->find()
-            ->contain(['Enquiries']);  // Including related Enquiries data
-        $customFlagEnquiries = $this->paginate($query);
-
-        $this->set(compact('customFlagEnquiries'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Custom Flag Enquiry id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view(?string $id = null)
-    {
-        $customFlagEnquiry = $this->CustomFlagEnquiries->get($id, [
-            'contain' => ['Enquiries'], // Include related Enquiries data
-        ]);
-
-        $this->set(compact('customFlagEnquiry'));
-    }
-
     /**
      * Add method
      *
@@ -92,8 +64,6 @@ class CustomFlagEnquiriesController extends AppController
         $this->set(compact('customFlagEnquiry'));
     }
 
-
-
     /**
      * Edit method
      *
@@ -130,7 +100,7 @@ class CustomFlagEnquiriesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete(?string $id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
         $customFlagEnquiry = $this->CustomFlagEnquiries->get($id);
@@ -142,6 +112,14 @@ class CustomFlagEnquiriesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /**
+     * Upload an attachment file
+     *
+     * @param \Psr\Http\Message\UploadedFileInterface $file The uploaded file
+     * @param string $identifier A unique identifier for the file
+     * @return string|bool False on failure, relative path to the file on success
+     */
     private function uploadAttachment(UploadedFileInterface $file, string $identifier): bool|string
     {
         $uploadPath = WWW_ROOT . 'attachments' . DS;
