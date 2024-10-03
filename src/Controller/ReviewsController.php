@@ -17,10 +17,22 @@ class ReviewsController extends AppController
      */
     public function index()
     {
+        // Check whether the user_id parameter has been passed
+        $userId = $this->request->getQuery('user_id');
+
+        // Query comments and include relevant user and product information
         $query = $this->Reviews->find()
             ->contain(['Users', 'Products']);
+
+        // If the user_id parameter is passed, only the user's comment record will be displayed.
+        if ($userId) {
+            $query->where(['Reviews.user_id' => $userId]);
+        }
+
+        // Page display of comment records
         $reviews = $this->paginate($query);
 
+        // Pass the query results to the view
         $this->set(compact('reviews'));
     }
 
