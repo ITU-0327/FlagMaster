@@ -27,7 +27,8 @@ class OrdersController extends AppController
 
         // Query the order and include relevant user information
         $query = $this->Orders->find()
-            ->contain(['Users.Profiles', 'Users.Profiles.Addresses', 'Products']);
+            ->contain(['Users.Profiles', 'Users.Profiles.Addresses', 'Products'])
+            ->where(['Orders.status != ' => 'incart']);
 
         // If the user_id parameter is passed, only the order of the corresponding user will be displayed.
         if ($userId) {
