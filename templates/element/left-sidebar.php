@@ -35,23 +35,6 @@ extract($userInfo);
         <nav class="sidebar-nav scroll-sidebar" data-simplebar>
             <ul id="sidebarnav">
                 <!-- ---------------------------------- -->
-                <!-- Home -->
-                <!-- ---------------------------------- -->
-                <li class="nav-small-cap">
-                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Home</span>
-                </li>
-
-                <!-- Dashboard -->
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<span><i class="ti ti-aperture"></i></span><span class="hide-menu">Dashboard</span>',
-                        ['controller' => 'Dashboards', 'action' => 'index', 'prefix' => null, 'plugin' => null],
-                        ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
-                    ); ?>
-                </li>
-
-                <!-- ---------------------------------- -->
                 <!-- Management Section (Admin Pages) -->
                 <!-- ---------------------------------- -->
                 <li class="nav-small-cap">
