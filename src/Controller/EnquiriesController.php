@@ -26,7 +26,7 @@ class EnquiriesController extends AppController
         // Query the inquiry record and include relevant user information
         $query = $this->Enquiries->find()
             ->contain(['Users', 'Users.Profiles'])
-            ->order(['Enquiries.updated_at' => 'DESC']);
+            ->orderBy(['Enquiries.updated_at' => 'DESC']);
 
         // If the user_id parameter is passed, only the query record of the corresponding user will be displayed.
         if ($userId) {

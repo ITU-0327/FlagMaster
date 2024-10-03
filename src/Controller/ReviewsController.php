@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Http\Response;
+
 /**
  * Reviews Controller
  *
@@ -43,7 +45,7 @@ class ReviewsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view(?string $id = null)
     {
         $review = $this->Reviews->get($id, contain: ['Users', 'Products']);
         $this->set(compact('review'));
@@ -52,9 +54,10 @@ class ReviewsController extends AppController
     /**
      * Add method
      *
+     * @param string $productId Product id.
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add($productId = null)
+    public function add(string $productId)
     {
         // Get the currently logged-in user ID
         $userId = $this->request->getAttribute('identity')->getIdentifier();
@@ -62,6 +65,7 @@ class ReviewsController extends AppController
         // Make sure that the product ID is not empty.
         if (!$productId) {
             $this->Flash->error(__('Product ID is required to write a review.'));
+
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
 
@@ -84,6 +88,7 @@ class ReviewsController extends AppController
 
             if ($this->Reviews->save($review)) {
                 $this->Flash->success(__('Your review has been saved.'));
+
                 return $this->redirect(['controller' => 'Products', 'action' => 'view', $productId]);
             }
             $this->Flash->error(__('Unable to add your review.'));
@@ -100,7 +105,7 @@ class ReviewsController extends AppController
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit(?string $id = null)
     {
         $review = $this->Reviews->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -124,7 +129,7 @@ class ReviewsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete(?string $id = null): ?Response
     {
         $this->request->allowMethod(['post', 'delete']);
         $review = $this->Reviews->get($id);

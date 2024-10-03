@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\Collection\CollectionInterface;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\Response;
 use Exception;
@@ -129,9 +128,7 @@ class ProductsController extends AppController
         // Include comments and user information in comments when obtaining products.
         $product = $this->Products->get(
             $id,
-            [
-                'contain' => ['Categories', 'ProductImages', 'ProductVariations', 'Reviews.Users'] // 确保加载评论和用户信息
-            ]
+            contain: ['Categories', 'ProductImages', 'ProductVariations', 'Reviews.Users']
         );
 
         $this->Authorization->authorize($product);
@@ -160,6 +157,7 @@ class ProductsController extends AppController
 
         $this->set(compact('product', 'relatedProducts'));
     }
+
     /**
      * Add method
      *
