@@ -99,41 +99,6 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-7">Variation</h4>
-
-                <label class="form-label">Add Product Variations</label>
-                <div id="variation_fields" class="mb-3">
-                    <!-- Existing variation fields will be placed here -->
-                    <div class="row mb-3 variation-row">
-                        <div class="col-md-4">
-                            <?= $this->Form->select(
-                                'product_variations[0][variation_type]',
-                                array_combine(array_map('strtolower', $variationTypes), $variationTypes),
-                                ['class' => 'select2 form-control', 'data-placeholder' => 'Select Variation Type']
-                            ) ?>
-                        </div>
-                        <div class="col-md-4 mt-3 mt-md-0">
-                            <?= $this->Form->text('product_variations[0][variation_value]', [
-                                'class' => 'form-control',
-                                'placeholder' => 'Variation Value',
-                            ]) ?>
-                        </div>
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <button class="btn bg-danger-subtle text-danger remove-variation" type="button">
-                                <i class="ti ti-x fs-5 d-flex"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" id="add_variation" class="btn bg-primary-subtle text-primary " >
-                    <span class="fs-4 me-1">+</span>
-                    Add another variation
-                </button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
                 <h4 class="card-title mb-7">Pricing</h4>
 
                 <div class="mb-7">
