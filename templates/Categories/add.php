@@ -71,40 +71,6 @@
                             ]) ?>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <label for="created-at"><?= __('Created At') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('created_at', [
-                                'type' => 'datetime',
-                                'class' => 'form-control',
-                                'label' => false,
-                                'placeholder' => __('Created At'),
-                            ]) ?>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="updated-at"><?= __('Updated At') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('updated_at', [
-                                'type' => 'datetime',
-                                'class' => 'form-control',
-                                'label' => false,
-                                'placeholder' => __('Updated At'),
-                            ]) ?>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <label for="products"><?= __('Products') ?></label>
-                        <div class="form-floating mb-3">
-                            <?= $this->Form->control('products._ids', [
-                                'options' => $products,
-                                'multiple' => true,
-                                'class' => 'form-control',
-                                'label' => false,
-                                'placeholder' => __('Products'),
-                            ]) ?>
-                        </div>
-                    </div>
                     <div class="col-12">
                         <div class="d-md-flex align-items-center">
                             <div class="ms-auto mt-3 mt-md-0">

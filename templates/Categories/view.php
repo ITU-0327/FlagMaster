@@ -60,14 +60,6 @@
                 <th><?= __('Description') ?></th>
                 <td><?= h($category->description) ?></td>
             </tr>
-            <tr>
-                <th><?= __('Created At') ?></th>
-                <td><?= h($category->created_at) ?></td>
-            </tr>
-            <tr>
-                <th><?= __('Updated At') ?></th>
-                <td><?= h($category->updated_at) ?></td>
-            </tr>
         </table>
     </div>
 </div>

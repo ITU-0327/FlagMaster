@@ -50,23 +50,9 @@
                             'placeholder' => __('Enter category name'),
                         ]) ?>
                     </div>
-                    <div class="mb-3">
-                        <?= $this->Form->control('created_at', [
-                            'type' => 'datetime',
-                            'class' => 'form-control',
-                            'label' => __('Created At'),
-                        ]) ?>
-                    </div>
-                    <div class="mb-3">
-                        <?= $this->Form->control('updated_at', [
-                            'type' => 'datetime',
-                            'class' => 'form-control',
-                            'label' => __('Updated At'),
-                        ]) ?>
-                    </div>
                 </div>
                 <!-- Right Column -->
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="mb-3">
                         <?= $this->Form->control('description', [
                             'type' => 'textarea',
@@ -75,28 +61,11 @@
                             'placeholder' => __('Enter category description'),
                         ]) ?>
                     </div>
-                    <div class="mb-3">
-                        <?= $this->Form->control('products._ids', [
-                            'options' => $products,
-                            'class' => 'form-select',
-                            'label' => __('Associated Products'),
-                            'multiple' => true,
-                        ]) ?>
-                    </div>
                 </div>
             </div>
         </fieldset>
 
         <div class="d-flex align-items-center justify-content-between mt-4 gap-6">
-            <!-- Delete Button -->
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $category->id],
-                [
-                    'confirm' => __('Are you sure you want to delete {0}?', $category->name),
-                    'class' => 'btn bg-danger-subtle text-danger',
-                ]
-            ) ?>
             <!-- Save and Cancel Buttons -->
             <div class="d-flex align-items-center gap-2">
                 <?= $this->Form->button(__('Save'), ['class' => 'btn btn-primary']) ?>

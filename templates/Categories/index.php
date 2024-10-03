@@ -52,8 +52,7 @@ $this->start('css'); ?>
                     <tr>
                         <th><?= __('Id') ?></th>
                         <th><?= __('Name') ?></th>
-                        <th><?= __('Created At') ?></th>
-                        <th><?= __('Updated At') ?></th>
+                        <th><?= __('Description') ?></th>
                         <th class="actions"><?= __('Actions') ?></th>
                     </tr>
                     </thead>
@@ -62,8 +61,7 @@ $this->start('css'); ?>
                         <tr>
                             <td><?= $this->Number->format($category->id) ?></td>
                             <td><?= h($category->name) ?></td>
-                            <td><?= h($category->created_at) ?></td>
-                            <td><?= h($category->updated_at) ?></td>
+                            <td><?= h($category->description) ?></td>
                             <td>
                                 <div class="dropdown dropstart">
                                     <a href="javascript:void(0)" class="text-muted" id="dropdownMenuButton<?= $category->id ?>" data-bs-toggle="dropdown" aria-expanded="false">
