@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between mb-4">
                                     <p class="mb-0 fs-4">Shipping</p>
-                                    <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
+                                    <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
@@ -155,20 +155,16 @@
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Sub Total</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">$285</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Discount 5%</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold text-danger">-$14</h6>
+                                        <p class="mb-0 fs-4">Subtotal</p>
+                                        <h6 class="subTotal mb-0 fs-4 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
-                                        <h6 class="mb-0 fs-4 fw-semibold">Free</h6>
+                                        <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
-                                        <h6 class="mb-0 fs-5 fw-semibold">$271</h6>
+                                        <h6 class="totalCost mb-0 fs-5 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                     </div>
                                 </div>
                             </div>
@@ -255,26 +251,39 @@
                                         <div class="col-lg-8">
                                             <div class="btn-group flex-column" role="group" aria-label="Payment Options">
                                                 <!-- PayPal -->
-                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentPaypal" checked>
-                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentPaypal">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="text-start ps-2">
-                                                                <h6 class="fs-4 fw-semibold mb-0">Pay with PayPal</h6>
-                                                                <p class="mb-0 text-muted">You will be redirected to PayPal to complete your purchase.</p>
-                                                            </div>
-                                                            <?= $this->Html->image('svgs/paypal.svg', ['alt' => 'paypal-img', 'class' => 'img-fluid ms-auto']) ?>
-                                                        </div>
-                                                    </label>
-                                                </div>
+<!--                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">-->
+<!--                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentPaypal" checked>-->
+<!--                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentPaypal">-->
+<!--                                                        <div class="d-flex align-items-center">-->
+<!--                                                            <div class="text-start ps-2">-->
+<!--                                                                <h6 class="fs-4 fw-semibold mb-0">Pay with PayPal</h6>-->
+<!--                                                                <p class="mb-0 text-muted">You will be redirected to PayPal to complete your purchase.</p>-->
+<!--                                                            </div>-->
+<!--                                                            --><?php //= $this->Html->image('svgs/paypal.svg', ['alt' => 'paypal-img', 'class' => 'img-fluid ms-auto']) ?>
+<!--                                                        </div>-->
+<!--                                                    </label>-->
+<!--                                                </div>-->
                                                 <!-- Credit/Debit Card -->
+<!--                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">-->
+<!--                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">-->
+<!--                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">-->
+<!--                                                        <div class="d-flex align-items-center">-->
+<!--                                                            <div class="text-start ps-2">-->
+<!--                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>-->
+<!--                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>-->
+<!--                                                            </div>-->
+<!--                                                            --><?php //= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
+<!--                                                        </div>-->
+<!--                                                    </label>-->
+<!--                                                </div>-->
+                                                <!-- Pay by Bank -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">
-                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentTWB">
+                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentTWB">
                                                         <div class="d-flex align-items-center">
                                                             <div class="text-start ps-2">
-                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>
-                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>
+                                                                <h6 class="fs-4 fw-semibold mb-0">Transfer with bank account</h6>
+                                                                <p class="mb-0 text-muted">Transfer the total amount to our bank account</p>
                                                             </div>
                                                             <?= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
                                                         </div>
@@ -306,50 +315,59 @@
                                 <div class="p-3">
                                     <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
                                     <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Unit price</p>
-                                        <h6 class="unitPrice mb-0 fs-4 fw-semibold">$<?= $this->Number->format($product->price) ?></h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <p class="mb-0 fs-4">Quantity</p>
-                                        <h6 class="quantity mb-0 fs-4 fw-semibold"><?= h($quantity) ?></h6>
+                                        <p class="mb-0 fs-4">Subtotal</p>
+                                        <h6 class="subTotal mb-0 fs-4 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                     </div>
                                     <div class="d-flex justify-content-between mb-4">
                                         <p class="mb-0 fs-4">Shipping</p>
                                         <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0 fs-6 fw-semibold">Total</h6>
-                                        <h6 class="totalCost mb-0 fs-6 fw-semibold">$<?= $this->Number->format($product->price * $quantity) ?></h6>
-                                    </div>
-                                    <!-- Added Including GST line -->
-                                    <div class="d-flex justify-content-between mt-2">
-                                        <p class="mb-0 fs-4 text-muted">Including GST</p>
-                                        <h6 class="gstAmount mb-0 fs-4 text-muted">$0.00</h6>
+                                        <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
+                                        <h6 class="totalCost mb-0 fs-5 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <!-- Step 3 -->
-                    <h6>Payment</h6>
+                    <h6>Confirm Order</h6>
                     <section class="payment-method text-center">
-                        <h5 class="fw-semibold fs-5">Thank you for your purchase!</h5>
-                        <h6 class="fw-semibold text-primary mb-7">Your order id: 3fa7-69e1-79b4-dbe0d35f5f5d</h6>
-                        <?= $this->Html->image('products/payment-complete.svg', [
-                            'alt' => 'flagmaster-img',
-                            'class' => 'img-fluid mb-4',
-                            'width' => '350',
-                        ]) ?>
-                        <p class="mb-0 fs-2">We will send you a notification
-                            <br>within 2 days when it ships.
-                        </p>
-                        <div class="d-sm-flex align-items-center justify-content-between my-4">
-                            <?= $this->Html->link(
-                                'Continue Shopping',
-                                ['controller' => 'Products', 'action' => 'index'],
-                                ['class' => 'btn btn-success d-block mb-2 mb-sm-0']
-                            ); ?>
-                            <a href="javascript:void(0)" class="btn btn-primary d-block">Download Receipt</a>
+                        <h5 class="fw-semibold fs-5">Review and Confirm Your Order</h5>
+                        <p>Please review your order details below before placing your order.</p>
+
+                        <!-- Order Summary -->
+                        <div class="order-summary border rounded p-4 my-4">
+                            <div class="p-3">
+                                <h5 class="fs-5 fw-semibold mb-4">Order Summary</h5>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <p class="mb-0 fs-4">Subtotal</p>
+                                    <h6 class="subTotal mb-0 fs-4 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
+                                </div>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <p class="mb-0 fs-4">Shipping</p>
+                                    <h6 class="shippingCost mb-0 fs-4 fw-semibold">Free</h6>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="mb-0 fs-4 fw-semibold">Total</h6>
+                                    <h6 class="totalCost mb-0 fs-5 fw-semibold"><?= $this->Number->currency($order->total_amount, 'AUD', ['places' => 0]) ?></h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details Reminder -->
+                        <div class="payment-option card shadow-none border">
+                            <div class="card-body p-4">
+                                <h6 class="mb-3 fw-semibold fs-4">Payment Details</h6>
+                                <p class="fs-3">Please ensure you have transferred the total amount to the following bank account:</p>
+                                <div class="fs-4 mb-0">
+                                    <p class="mb-2"><strong>Account Name:</strong> <span class="text-dark">FlagMaster</span></p>
+                                    <p class="mb-2"><strong>BSB:</strong> <span class="text-dark">306-089</span></p>
+                                    <p><strong>Account Number:</strong> <span class="text-dark">78901234</span></p>
+                                </div>
+                                <br>
+                                <p class="fs-4">Click <strong>"Place Order"</strong> to complete your purchase.</p>
+                            </div>
                         </div>
                     </section>
                 <?= $this->Form->end() ?>
@@ -360,11 +378,31 @@
 
 <?php $this->start('customScript'); ?>
 
+<?= $this->Html->script('https://unpkg.com/sweetalert/dist/sweetalert.min.js') ?>
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?= $this->Html->script('/libs/jquery-steps/build/jquery.steps.min') ?>
 <?= $this->Html->script('/libs/jquery-validation/dist/jquery.validate.min') ?>
 <?= $this->Html->script('forms/form-wizard') ?>
 <?= $this->Html->script('apps/ecommerce') ?>
 
-<?php $this->end(); ?>
+<script>
+    // Initialize shippingCost variable
+    let shippingCost = 0;
 
+    // Add event listeners to delivery options
+    const deliveryOptions = document.getElementsByName('deliveryOpt');
+    for (let i = 0; i < deliveryOptions.length; i++) {
+        deliveryOptions[i].addEventListener('change', function() {
+            shippingCost = parseFloat(this.value);
+            updateTotal();
+        });
+    }
+
+    // Get default selected delivery option (if any)
+    const defaultDeliveryOption = document.querySelector('input[name="deliveryOpt"]:checked');
+    if (defaultDeliveryOption) {
+        shippingCost = parseFloat(defaultDeliveryOption.value);
+    }
+</script>
+
+<?php $this->end(); ?>

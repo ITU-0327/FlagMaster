@@ -191,17 +191,29 @@ $decimalPlaces = 0;
                 subTotal += item.unitPrice * item.quantity;
             }
 
-            let formattedSubTotal = formatCurrency(subTotal);
+            // Calculate total cost including shipping
+            const totalCost = subTotal + shippingCost;
 
-            // Update subtotal and total cost
+            let formattedSubTotal = formatCurrency(subTotal);
+            let formattedTotalCost = formatCurrency(totalCost);
+            let formattedShippingCost = shippingCost > 0 ? formatCurrency(shippingCost) : 'Free';
+
+            // Update subtotal
             const subTotalElements = document.getElementsByClassName('subTotal');
             for (let i = 0; i < subTotalElements.length; i++) {
                 subTotalElements[i].innerText = formattedSubTotal;
             }
 
+            // Update shipping cost
+            const shippingCostElements = document.getElementsByClassName('shippingCost');
+            for (let i = 0; i < shippingCostElements.length; i++) {
+                shippingCostElements[i].innerText = formattedShippingCost;
+            }
+
+            // Update total cost
             const totalCostElements = document.getElementsByClassName('totalCost');
             for (let i = 0; i < totalCostElements.length; i++) {
-                totalCostElements[i].innerText = formattedSubTotal;
+                totalCostElements[i].innerText = formattedTotalCost;
             }
 
             // Update cart subtotal in the sidebar

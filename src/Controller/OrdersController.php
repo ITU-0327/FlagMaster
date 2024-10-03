@@ -194,6 +194,11 @@ class OrdersController extends AppController
             ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
             ->first();
 
+        $user = $this->Orders->Users->get(
+            $userId,
+            contain: ['Profiles', 'Profiles.Addresses']
+        );
+
         if (!$order || empty($order->orders_products)) {
             $this->Flash->error(__('Your cart is empty.'));
 
@@ -220,8 +225,8 @@ class OrdersController extends AppController
             // Save the order along with associated order products
             if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
                 $this->Flash->success(__('Order has been placed successfully.'));
-                // Optionally, you can create an order confirmation action/view
-                return $this->redirect(['action' => 'confirmation', $order->id]);
+
+                return $this->redirect(['action' => 'index']);
             }
 
             $this->Flash->error(__('Unable to place the order.'));

@@ -118,6 +118,8 @@ class UsersController extends AppController
                     );
 
                     if ($this->Users->Profiles->Addresses->save($user->profile->address)) {
+                        $user->profile->address_id = $user->profile->address->id;
+
                         $this->Flash->success(__('Your address has been updated.'));
                     } else {
                         $this->Flash->error(__('The address could not be saved. Please, try again.'));
