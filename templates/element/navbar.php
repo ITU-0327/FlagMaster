@@ -249,7 +249,7 @@ extract($userInfo);
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'Custom Products',
-                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
@@ -627,7 +627,7 @@ extract($userInfo);
                                     <i class="ti ti-message-dots"></i>
                                 </span>
                                 <span class="hide-menu">Custom Products</span>',
-                          ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                          ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                           ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
                       ); ?>
                   </li>
@@ -911,7 +911,7 @@ extract($userInfo);
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'Custom Products',
-                      ['controller' => 'Pages', 'action' => 'customProducts', 'prefix' => null, 'plugin' => null],
+                      ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
                       ['class' => 'nav-link']
                   ); ?>
               </li>
