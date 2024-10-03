@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\Collection\CollectionInterface;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\Response;
 use Exception;
@@ -16,6 +15,7 @@ use UnexpectedValueException;
  * Products Controller
  *
  * @property \App\Model\Table\ProductsTable $Products
+ * @property \App\Model\Table\OrdersTable $Orders
  * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class ProductsController extends AppController
@@ -289,6 +289,87 @@ class ProductsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Add a product to the cart.
+     *
+     * @return void Redirects to the previous page
+     */
+    public function addToCart(): void
+    {
+        $this->request->allowMethod(['post']);
+
+        $productId = $this->request->getData('product_id');
+        $quantity = $this->request->getData('quantity') ?: 1;
+
+        $product = $this->Products->get($productId);
+        $this->Authorization->authorize($product);
+
+        $user = $this->request->getAttribute('identity');
+        $this->Orders = $this->fetchTable('Orders');
+
+        // Find or create an 'incart' order for the user
+        $order = $this->Orders->find()
+            ->where(['user_id' => $user->id, 'status' => 'incart'])
+            ->contain(['OrdersProducts'])
+            ->first();
+
+        if (!$order) {
+            $order = $this->Orders->newEntity([
+                'user_id' => $user->id,
+                'status' => 'incart',
+                'order_date' => date('Y-m-d H:i:s'),
+                'total_amount' => 0,
+                'shipping_cost' => 0,
+            ]);
+            $this->Orders->save($order);
+        }
+
+        // Check if the product is already in the cart
+        $orderProduct = $this->Orders->OrdersProducts->find()
+            ->where(['order_id' => $order->id, 'product_id' => $productId])
+            ->first();
+
+        if ($orderProduct) {
+            // Update quantity
+            $orderProduct->quantity += $quantity;
+        } else {
+            // Add new item to cart
+            $orderProduct = $this->Orders->OrdersProducts->newEntity([
+                'order_id' => $order->id,
+                'product_id' => $productId,
+                'quantity' => $quantity,
+                'unit_price' => $product->getPrice(),
+            ]);
+        }
+
+        if ($this->Orders->OrdersProducts->save($orderProduct)) {
+            // Reload the order with updated orders_products
+            $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+
+            $cartItemCount = 0;
+            if (!empty($order->orders_products)) {
+                foreach ($order->orders_products as $item) {
+                    $cartItemCount += $item->quantity;
+                }
+            }
+
+            $response = [
+                'success' => true,
+                'message' => __('Product added to cart.'),
+                'cartItemCount' => $cartItemCount,
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => __('Unable to add product to cart.'),
+            ];
+        }
+
+        $this->viewBuilder()->setClassName('Json');
+        $this->set(compact('response'));
+        $this->viewBuilder()->setOption('serialize', 'response');
     }
 
     /**

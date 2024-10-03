@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Order $order
- * @var \Cake\Collection\CollectionInterface|string[] $users
- * @var \Cake\Collection\CollectionInterface|string[] $products
+ * @var \Cake\Collection\CollectionInterface|array<string> $users
+ * @var \Cake\Collection\CollectionInterface|array<string> $products
  */
 ?>
 

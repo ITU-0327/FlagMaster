@@ -135,26 +135,35 @@
                             </ul>
                             <a href="#pills-reviews">(<?= $totalReviews ?> reviews)</a>
                         </div>
+
+                        <?= $this->Form->create(null, ['url' => ['controller' => 'Products', 'action' => 'addToCart', $product->id]]) ?>
                         <div class="d-flex align-items-center gap-8 py-7">
                             <h6 class="mb-0 fs-4">QTY:</h6>
                             <div class="input-group input-group-sm rounded">
-                                <button class="btn minus min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" id="add1">
+                                <button class="btn min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
                                     <i class="ti ti-minus"></i>
                                 </button>
-                                <input type="text" class="min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center qty" placeholder="" aria-label="Example text with button addon" aria-describedby="add1" value="1">
-                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted add" type="button" id="addo2">
+                                <?= $this->Form->text('quantity', [
+                                    'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center',
+                                    'id' => 'quantityInput',
+                                    'value' => 1,
+                                    'min' => 1,
+                                ]) ?>
+                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted" type="button" onclick="increaseQuantity()">
                                     <i class="ti ti-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
                             <?php if ($product->stock_quantity > 0) : ?>
-                                <?= $this->Html->link('Buy Now', ['action' => 'checkout', $product->id], ['class' => 'btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0']) ?>
-                                <?= $this->Form->postLink('Add to Cart', ['action' => 'addToCart', $product->id], ['class' => 'btn d-block btn-danger px-7 py-8']) ?>
+                                <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn" data-product-id="<?= $product->id ?>">Buy Now</a>
+                                <button type="button" class="btn d-block btn-danger px-7 py-8" id="addToCartBtn" data-product-id="<?= $product->id ?>">Add to Cart</button>
                             <?php else : ?>
                                 <span class="text-danger fs-5">This product is currently out of stock.</span>
                             <?php endif; ?>
                         </div>
+                        <?= $this->Form->end() ?>
+
                         <p class="mb-0">Dispatched in 2-3 weeks</p>
                         <a href="javascript:void(0)">Why the longer time for delivery?</a>
                     </div>
@@ -352,5 +361,116 @@
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?= $this->Html->script('/libs/owl.carousel/dist/owl.carousel.min') ?>
 <?= $this->Html->script('apps/productDetail') ?>
+
+<script>
+    function increaseQuantity() {
+        let qtyInput = document.getElementById("quantityInput");
+        let currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty)) {
+            qtyInput.value = currentQty + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        let qtyInput = document.getElementById("quantityInput");
+        let currentQty = parseInt(qtyInput.value);
+        if (!isNaN(currentQty) && currentQty > 1) {
+            qtyInput.value = currentQty - 1;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('buyNowBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            const productId = this.getAttribute('data-product-id');
+            const quantity = document.getElementById('quantityInput').value;
+
+            // Send AJAX request to add product to cart
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?= $this->Url->build(['controller' => 'Products', 'action' => 'addToCart']); ?>', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            window.location.href = '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'checkout']); ?>';
+                        } else {
+                            alert(response.message || 'Failed to add product to cart.');
+                        }
+                    } else {
+                        alert('An error occurred while adding the product to the cart.');
+                    }
+                }
+            };
+
+            xhr.send('product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity));
+        });
+
+        // Handle "Add to Cart" button click
+        document.getElementById('addToCartBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            const productId = this.getAttribute('data-product-id');
+            const quantity = document.getElementById('quantityInput').value;
+
+            // Send AJAX request to add product to cart
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '<?= $this->Url->build(['controller' => 'Products', 'action' => 'addToCart']); ?>', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // Update cart item count in navbar
+                            const cartItemCountElement = document.querySelector('.popup-badge');
+                            if (cartItemCountElement) {
+                                cartItemCountElement.textContent = response.cartItemCount;
+                            } else {
+                                // Create badge if it doesn't exist
+                                const navLink = document.querySelector('.nav-link[data-bs-target="#offcanvasRight"]');
+                                const badge = document.createElement('span');
+                                badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
+                                badge.textContent = response.cartItemCount;
+                                navLink.appendChild(badge);
+                            }
+
+                            // Fetch updated cart sidebar content
+                            const xhr2 = new XMLHttpRequest();
+                            xhr2.open('GET', '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'getCartSidebar']); ?>', true);
+                            xhr2.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+                            xhr2.onreadystatechange = function() {
+                                if (xhr2.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr2.status === 200) {
+                                        // Update the cart sidebar content
+                                        const cartSidebar = document.querySelector('#offcanvasRight');
+                                        if (cartSidebar) {
+                                            cartSidebar.innerHTML = xhr2.responseText;
+                                        }
+                                    } else {
+                                        console.error('Failed to fetch cart sidebar content');
+                                    }
+                                }
+                            };
+
+                            xhr2.send();
+                        } else {
+                            alert(response.message || 'Failed to add product to cart.');
+                        }
+                    } else {
+                        alert('An error occurred while adding the product to the cart.');
+                    }
+                }
+            };
+
+            xhr.send('product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity));
+        });
+    });
+</script>
 
 <?php $this->end(); ?>

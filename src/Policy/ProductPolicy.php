@@ -72,6 +72,18 @@ class ProductPolicy
     }
 
     /**
+     * Check if $user can add Product to cart
+     *
+     * @param \Authorization\IdentityInterface $user The user.
+     * @param \App\Model\Entity\Product $product
+     * @return \Authorization\Policy\Result
+     */
+    public function canAddToCart(IdentityInterface $user, Product $product): Result
+    {
+        return new Result(true);
+    }
+
+    /**
      * Helper method to check if the user is an admin.
      *
      * @param \Authorization\IdentityInterface $user The user.

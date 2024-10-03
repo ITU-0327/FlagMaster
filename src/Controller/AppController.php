@@ -72,12 +72,28 @@ class AppController extends Controller
 
         if ($identity) {
             $role = $identity->get('role');
+            $userId = $identity->get('id');
+            $ordersTable = $this->fetchTable('Orders');
+            $order = $ordersTable->find()
+                ->where(['user_id' => $userId, 'status' => 'incart'])
+                ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
+                ->first();
+
+            $cartItems = $order ? $order->orders_products : [];
+
+            $cartItemCount = 0;
+            if ($order) {
+                foreach ($order->orders_products as $item) {
+                    $cartItemCount += $item->quantity;
+                }
+            }
 
             // Determine theme settings based on role
             $themeSettings = $this->getThemeSettings($role);
 
             // Pass the user role to the view
             $this->set('userRole', $role);
+            $this->set('cartItemCount', $cartItemCount);
         } else {
             // Default theme settings for guests or unauthenticated users
             $themeSettings = [
@@ -90,9 +106,14 @@ class AppController extends Controller
                 'cardBorder' => false,
             ];
 
+            $cartItems = [];
+
             // Pass a default role or null for guests
             $this->set('userRole', null);
+            $this->set('cartItemCount', 0);
         }
+
+        $this->set(compact('cartItems'));
 
         // Pass theme settings to the view
         $this->set('themeSettings', $themeSettings);

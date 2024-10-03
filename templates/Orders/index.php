@@ -96,11 +96,11 @@
                                         <div>
                                             <address>
                                                 <h6>&nbsp;From,</h6>
-                                                <h6 class="fw-bold">&nbsp;Steve Jobs</h6>
+                                                <h6 class="fw-bold">&nbsp; Flag Master</h6>
                                                 <p class="ms-1">
-                                                    1108, Clair Street,
-                                                    <br />Massachusetts,
-                                                    <br />Woods Hole - 02543
+                                                    Wellington Rd,
+                                                    <br />Clayton,
+                                                    <br />VIC - 3800
                                                 </p>
                                             </address>
                                         </div>
@@ -165,19 +165,20 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="pull-right mt-4 text-end">
-                                            <p>Sub - Total amount: $<?= h($this->Number->format($order->total_amount, ['thousands' => ','])) ?></p>
-                                            <p>VAT (10%) : $<?= h($order->total_amount * 0.1) ?></p>
+                                            <p>Sub - Total amount: $<?= h($this->Number->format($order->total_amount - $order->shipping_cost, ['thousands' => ','])) ?></p>
+                                            <p>Shipping Cost : <?= $order->shipping_cost > 0 ? '$' . h($this->Number->format($order->shipping_cost, ['thousands' => ','])) : 'Free' ?></p>
                                             <hr />
                                             <h3>
-                                                <b>Total :</b> $<?= h($this->Number->format($order->total_amount * 1.1, ['thousands' => ','])) ?>
+                                                <b>Total :</b> $<?= h($this->Number->format($order->total_amount, ['thousands' => ','])) ?>
                                             </h3>
                                         </div>
                                         <div class="clearfix"></div>
                                         <hr />
                                         <div class="text-end">
-                                            <button class="btn bg-danger-subtle text-danger" type="submit">
-                                                Proceed to payment
-                                            </button>
+<!--                                            TODO: Add payment-->
+<!--                                            <button class="btn bg-danger-subtle text-danger" type="submit">-->
+<!--                                                Proceed to payment-->
+<!--                                            </button>-->
                                             <button class="btn btn-primary btn-default print-page ms-6" type="button">
                                                 <span>
                                                     <i class="ti ti-printer fs-5"></i>

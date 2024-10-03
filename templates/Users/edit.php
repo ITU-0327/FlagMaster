@@ -184,24 +184,6 @@
                                                 'id' => 'country',
                                             ]) ?>
                                         </div>
-<!--                                        <div class="mb-3">-->
-<!--                                            <label for="country" class="form-label">Country</label>-->
-<!--                                            --><?php //= $this->Form->select('profile.address.country', $countries, [
-//                                                'class' => 'form-select',
-//                                                'id' => 'country',
-//                                                'empty' => '-- Select Country --',
-//                                            ]) ?>
-<!--                                        </div>-->
-<!--                                        <div class="mb-3">-->
-<!--                                            <label class="form-label">Location</label>-->
-<!--                                            <select class="form-select" aria-label="Default select example">-->
-<!--                                                <option selected>United Kingdom</option>-->
-<!--                                                <option value="1">United States</option>-->
-<!--                                                <option value="2">United Kingdom</option>-->
-<!--                                                <option value="3">India</option>-->
-<!--                                                <option value="3">Russia</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
                                     </div>
                                     <div class="col-12">
                                         <div class="d-flex align-items-center justify-content-end mt-4 gap-6">

@@ -208,7 +208,7 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                                             ['escape' => false]
                                         ) ?>
                                     <?php endif; ?>
-                                    <a href="javascript:void(0)" class="text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart">
+                                    <a href="javascript:void(0)" class="add-to-cart-button text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart" data-product-id="<?= $product->id ?>">
                                         <i class="ti ti-basket fs-4"></i>
                                     </a>
                                 </div>
@@ -241,3 +241,73 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
         </div>
     </div>
 </div>
+
+<?php $this->start('customScript'); ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.add-to-cart-button').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const productId = this.getAttribute('data-product-id');
+
+                // Send AJAX request to add product to cart
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '<?= $this->Url->build(['controller' => 'Products', 'action' => 'addToCart']); ?>', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                // Update cart item count in navbar
+                                const cartItemCountElement = document.querySelector('.popup-badge');
+                                if (cartItemCountElement) {
+                                    cartItemCountElement.textContent = response.cartItemCount;
+                                } else {
+                                    // Create badge if it doesn't exist
+                                    const navLink = document.querySelector('.nav-link[data-bs-target="#offcanvasRight"]');
+                                    const badge = document.createElement('span');
+                                    badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
+                                    badge.textContent = response.cartItemCount;
+                                    navLink.appendChild(badge);
+                                }
+
+                                // Fetch updated cart sidebar content
+                                const xhr2 = new XMLHttpRequest();
+                                xhr2.open('GET', '<?= $this->Url->build(['controller' => 'Orders', 'action' => 'getCartSidebar']); ?>', true);
+                                xhr2.setRequestHeader('X-CSRF-Token', '<?= $this->request->getAttribute('csrfToken') ?>');
+
+                                xhr2.onreadystatechange = function() {
+                                    if (xhr2.readyState === XMLHttpRequest.DONE) {
+                                        if (xhr2.status === 200) {
+                                            // Update the cart sidebar content
+                                            const cartSidebar = document.getElementById('offcanvasRight');
+                                            if (cartSidebar) {
+                                                cartSidebar.innerHTML = xhr2.responseText;
+                                            }
+                                        } else {
+                                            console.error('Failed to fetch cart sidebar content');
+                                        }
+                                    }
+                                };
+
+                                xhr2.send();
+                            } else {
+                                alert(response.message || 'Failed to add product to cart.');
+                            }
+                        } else {
+                            alert('An error occurred while adding the product to the cart.');
+                        }
+                    }
+                };
+
+                xhr.send('product_id=' + encodeURIComponent(productId) + '&quantity=1');
+            });
+        });
+    });
+</script>
+
+<?php $this->end(); ?>

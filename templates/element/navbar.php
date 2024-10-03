@@ -314,7 +314,9 @@ extract($userInfo);
                   <li class="nav-item nav-icon-hover-bg rounded-circle">
                     <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                       <i class="ti ti-basket"></i>
-                      <span class="popup-badge rounded-pill bg-danger text-white fs-2">2</span>
+                        <?php if ($cartItemCount > 0) : ?>
+                            <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
+                        <?php endif; ?>
                     </a>
                   </li>
                   <!-- ------------------------------- -->
@@ -1078,7 +1080,9 @@ extract($userInfo);
                   <li class="nav-item nav-icon-hover-bg rounded-circle">
                     <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                       <i class="ti ti-basket"></i>
-                      <span class="popup-badge rounded-pill bg-danger text-white fs-2">2</span>
+                        <?php if ($cartItemCount > 0) : ?>
+                            <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
+                        <?php endif; ?>
                     </a>
                   </li>
                   <!-- ------------------------------- -->
