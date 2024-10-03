@@ -321,6 +321,7 @@ class ProductsController extends AppController
                 'status' => 'incart',
                 'order_date' => date('Y-m-d H:i:s'),
                 'total_amount' => 0,
+                'shipping_cost' => 0,
             ]);
             $this->Orders->save($order);
         }

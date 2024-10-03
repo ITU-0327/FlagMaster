@@ -208,7 +208,9 @@ class OrdersController extends AppController
         if ($this->request->is(['post', 'put'])) {
             // Get form data
             $orderData = $this->request->getData();
-            $quantities = $orderData['quantity']; // Array of quantities keyed by product ID
+            $quantities = $orderData['quantity'] ?? []; // Array of quantities keyed by product ID
+
+            $shippingCost = isset($orderData['deliveryOpt']) ? floatval($orderData['deliveryOpt']) : 0;
 
             // Update quantities in the order
             foreach ($order->orders_products as $orderProduct) {
@@ -217,6 +219,14 @@ class OrdersController extends AppController
                     $orderProduct->quantity = max(1, (int)$quantities[$productId]); // Ensure quantity is at least 1
                 }
             }
+
+            $subTotal = 0;
+            foreach ($order->orders_products as $orderProduct) {
+                $subTotal += $orderProduct->quantity * $orderProduct->unit_price;
+            }
+
+            $order->shipping_cost = $shippingCost;
+            $order->total_amount = $subTotal + $shippingCost;
 
             // Update order status to 'pending' and set the order date
             $order->status = 'pending';

@@ -104,6 +104,7 @@ CREATE TABLE `orders` (
     `user_id` INT,
     `order_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `total_amount` DECIMAL(10, 2) NOT NULL,
+    `shipping_cost` DECIMAL(10, 2) NOT NULL DEFAULT 0,
     `status` ENUM('pending', 'shipped', 'delivered', 'cancelled', 'incart') DEFAULT 'pending',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

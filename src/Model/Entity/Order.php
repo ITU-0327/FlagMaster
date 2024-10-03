@@ -12,6 +12,7 @@ use Cake\ORM\Entity;
  * @property int|null $user_id
  * @property \Cake\I18n\DateTime|null $order_date
  * @property string $total_amount
+ * @property string shipping_cost
  * @property string|null $status
  * @property \Cake\I18n\DateTime|null $created_at
  * @property \Cake\I18n\DateTime|null $updated_at
@@ -37,6 +38,7 @@ class Order extends Entity
         'user_id' => true,
         'order_date' => true,
         'total_amount' => true,
+        'shipping_cost' => true,
         'status' => true,
         'created_at' => true,
         'updated_at' => true,
