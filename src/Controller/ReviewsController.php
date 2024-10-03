@@ -54,21 +54,43 @@ class ReviewsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($productId = null)
     {
+        // Get the currently logged-in user ID
+        $userId = $this->request->getAttribute('identity')->getIdentifier();
+
+        // Make sure that the product ID is not empty.
+        if (!$productId) {
+            $this->Flash->error(__('Product ID is required to write a review.'));
+            return $this->redirect(['controller' => 'Products', 'action' => 'index']);
+        }
+
+        // Obtain current user and product information to ensure the existence of data
+        $user = $this->Reviews->Users->get($userId, ['contain' => []]);
+        $product = $this->Reviews->Products->get($productId, ['contain' => []]);
+
         $review = $this->Reviews->newEmptyEntity();
+
         if ($this->request->is('post')) {
             $review = $this->Reviews->patchEntity($review, $this->request->getData());
-            if ($this->Reviews->save($review)) {
-                $this->Flash->success(__('The review has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+            $review->user_id = $userId;
+            $review->product_id = $productId;
+
+            // Check the comment field. If it is empty, it will not be verified.
+            if (empty($review->comment)) {
+                unset($review->comment);
             }
-            $this->Flash->error(__('The review could not be saved. Please, try again.'));
+
+            if ($this->Reviews->save($review)) {
+                $this->Flash->success(__('Your review has been saved.'));
+                return $this->redirect(['controller' => 'Products', 'action' => 'view', $productId]);
+            }
+            $this->Flash->error(__('Unable to add your review.'));
         }
-        $users = $this->Reviews->Users->find('list', limit: 200)->all();
-        $products = $this->Reviews->Products->find('list', limit: 200)->all();
-        $this->set(compact('review', 'users', 'products'));
+
+        // Pass user and product information to the view
+        $this->set(compact('review', 'product', 'user'));
     }
 
     /**

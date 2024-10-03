@@ -232,9 +232,14 @@
                         <div class="col-lg-4 d-flex align-items-stretch">
                             <div class="card shadow-none border w-100 mb-7 mb-lg-0">
                                 <div class="card-body p-4 d-flex flex-column justify-content-center">
-                                    <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2 mx-auto">
-                                        <i class="ti ti-pencil fs-7"></i>Write an Review
-                                    </button>
+                                    <?= $this->Html->link(
+                                        '<i class="ti ti-pencil fs-7"></i> Write a Review',
+                                        ['controller' => 'Reviews', 'action' => 'add', $product->id],
+                                        [
+                                            'class' => 'btn btn-outline-primary d-flex align-items-center gap-2 mx-auto',
+                                            'escape' => false
+                                        ]
+                                    ); ?>
                                 </div>
                             </div>
                         </div>
