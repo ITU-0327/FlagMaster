@@ -60,29 +60,16 @@ $formatParent = function ($parent): string {
 </div>
 
 <ul class="nav nav-pills p-3 mb-3 rounded align-items-center card flex-row">
-    <li class="nav-item">
-        <a href="javascript:void(0)" class="
-                      nav-link
-                     gap-6
-                      note-link
-                      d-flex
-                      align-items-center
-                      justify-content-center
-                      active
-                      px-3 px-md-3
-                    " id="all-category">
-            <i class="ti ti-list fill-white"></i>
-            <span class="d-none d-md-block fw-medium">All Blocks</span>
-        </a>
-    </li>
+    <?php $first = true; ?>
     <?php foreach (array_keys($contentBlocksGrouped) as $parent) {
         $iconClass = $icons[$parent] ?? 'ti ti-list'; ?>
         <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link gap-6 note-link d-flex align-items-center justify-content-center px-3 px-md-3" id="<?= $slugify($parent) ?>">
+            <a href="javascript:void(0)" class="nav-link gap-6 note-link d-flex align-items-center justify-content-center px-3 px-md-3 <?= $first ? 'active' : '' ?>" id="<?= $slugify($parent) ?>">
                 <i class="<?= $iconClass ?> fill-white"></i>
                 <span class="d-none d-md-block fw-medium"><?= $formatParent($parent) ?></span>
             </a>
         </li>
+        <?php $first = false; ?>
     <?php } ?>
 </ul>
 <div class="tab-content">
@@ -162,6 +149,8 @@ $formatParent = function ($parent): string {
         $btns.removeClass("active");
         $(this).addClass("active");
     });
+
+    $btns.filter('.active').trigger('click');
 </script>
 
 <?php $this->end(); ?>
