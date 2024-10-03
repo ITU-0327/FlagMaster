@@ -252,11 +252,17 @@
                                 <?php foreach ($product->reviews as $review) : ?>
                                     <div class="d-flex align-items-start mb-6">
                                         <div class="me-4">
-                                            <?= $this->Html->image('users/default.png', [
-                                                'alt' => h($review->user->name),
+                                            <?php
+                                            $profilePicture = 'profile/user-1.jpg';
+                                            if (!empty($user->profile) && !empty($user->profile->profile_picture)) {
+                                                $profilePicture = $user->profile->profile_picture;
+                                            }
+                                            ?>
+                                            <?= $this->Html->image($profilePicture, [
                                                 'class' => 'rounded-circle',
-                                                'width' => '50px',
-                                                'height' => '50px',
+                                                'width' => 40,
+                                                'height' => 40,
+                                                'alt' => 'Profile Picture',
                                             ]) ?>
                                         </div>
                                         <div class="flex-grow-1">
