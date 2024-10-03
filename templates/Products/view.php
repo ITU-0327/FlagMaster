@@ -241,9 +241,14 @@
                         <div class="col-lg-4 d-flex align-items-stretch">
                             <div class="card shadow-none border w-100 mb-7 mb-lg-0">
                                 <div class="card-body p-4 d-flex flex-column justify-content-center">
-                                    <button type="button" class="btn btn-outline-primary d-flex align-items-center gap-2 mx-auto">
-                                        <i class="ti ti-pencil fs-7"></i>Write an Review
-                                    </button>
+                                    <?= $this->Html->link(
+                                        '<i class="ti ti-pencil fs-7"></i> Write a Review',
+                                        ['controller' => 'Reviews', 'action' => 'add', $product->id],
+                                        [
+                                            'class' => 'btn btn-outline-primary d-flex align-items-center gap-2 mx-auto',
+                                            'escape' => false
+                                        ]
+                                    ); ?>
                                 </div>
                             </div>
                         </div>
@@ -256,11 +261,17 @@
                                 <?php foreach ($product->reviews as $review) : ?>
                                     <div class="d-flex align-items-start mb-6">
                                         <div class="me-4">
-                                            <?= $this->Html->image('users/default.png', [
-                                                'alt' => h($review->user->name),
+                                            <?php
+                                            $profilePicture = 'profile/user-1.jpg';
+                                            if (!empty($user->profile) && !empty($user->profile->profile_picture)) {
+                                                $profilePicture = $user->profile->profile_picture;
+                                            }
+                                            ?>
+                                            <?= $this->Html->image($profilePicture, [
                                                 'class' => 'rounded-circle',
-                                                'width' => '50px',
-                                                'height' => '50px',
+                                                'width' => 40,
+                                                'height' => 40,
+                                                'alt' => 'Profile Picture',
                                             ]) ?>
                                         </div>
                                         <div class="flex-grow-1">

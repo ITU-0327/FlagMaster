@@ -126,16 +126,15 @@ class ProductsController extends AppController
      */
     public function view(?string $id = null)
     {
+        // Include comments and user information in comments when obtaining products.
         $product = $this->Products->get(
             $id,
-            contain: ['Categories', 'ProductImages', 'ProductVariations', 'Reviews']
+            contain: ['Categories', 'ProductImages', 'ProductVariations', 'Reviews.Users']
         );
 
         $this->Authorization->authorize($product);
 
-        // Extract category IDs safely
         if (is_array($product->categories)) {
-            // If categories is an array, use array_map to extract IDs
             $categoryIds = array_map(function ($category) {
                 return $category->id;
             }, $product->categories);
@@ -143,6 +142,7 @@ class ProductsController extends AppController
             throw new UnexpectedValueException('Unexpected type for $product->categories');
         }
 
+        // Find related products
         $relatedProducts = $this->Products->find()
             ->matching('Categories', function ($q) use ($categoryIds) {
                 return $q->where(['Categories.id IN' => $categoryIds]);
@@ -153,7 +153,7 @@ class ProductsController extends AppController
             ])
             ->limit(4)
             ->distinct(['Products.id'])
-            ->contain(['Reviews'])
+            ->contain(['Reviews.Users']) // Make sure to load the comments and comments of relevant products
             ->all();
 
         $this->set(compact('product', 'relatedProducts'));

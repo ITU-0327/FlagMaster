@@ -22,14 +22,25 @@ class OrdersController extends AppController
      */
     public function index()
     {
-        // Apply scope to limit orders based on user role
+        // Check whether the user_id parameter has been passed
+        $userId = $this->request->getQuery('user_id');
+
+        // Query the order and include relevant user information
         $query = $this->Orders->find()
             ->contain(['Users.Profiles', 'Users.Profiles.Addresses', 'Products']);
 
+        // If the user_id parameter is passed, only the order of the corresponding user will be displayed.
+        if ($userId) {
+            $query->where(['Orders.user_id' => $userId]);
+        }
+
+        // Apply the scope of authorization to limit the display of orders
         $query = $this->Authorization->applyScope($query);
 
+        // Get all orders
         $orders = $query->all();
 
+        // Pass the order to the view
         $this->set(compact('orders'));
     }
 

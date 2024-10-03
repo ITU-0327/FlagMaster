@@ -20,14 +20,26 @@ class EnquiriesController extends AppController
      */
     public function index()
     {
+        // Check whether the user_id parameter has been passed
+        $userId = $this->request->getQuery('user_id');
+
+        // Query the inquiry record and include relevant user information
         $query = $this->Enquiries->find()
             ->contain(['Users', 'Users.Profiles'])
             ->orderBy(['Enquiries.updated_at' => 'DESC']);
 
+        // If the user_id parameter is passed, only the query record of the corresponding user will be displayed.
+        if ($userId) {
+            $query->where(['Enquiries.user_id' => $userId]);
+        }
+
+        // Apply the scope of authorization to limit the display of inquiry records
         $query = $this->Authorization->applyScope($query);
 
+        // Get all inquiry records
         $enquiries = $query->all();
 
+        // Pass the query results to the view
         $this->set(compact('enquiries'));
     }
 
