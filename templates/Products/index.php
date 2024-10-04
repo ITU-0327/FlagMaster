@@ -59,95 +59,39 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                 </select>
             </div>
 
-            <ul class="list-group pt-2 border-bottom rounded-0">
+            <div class="mb-3">
                 <h6 class="my-3 mx-4">Sort By</h6>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <?= $this->Html->link(
-                        '<i class="ti ti-ad-2 fs-5"></i> Newest',
-                        ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'newest'])],
-                        [
-                            'escape' => false,
-                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'newest' ? 'active ' : ''),
-                        ]
-                    ) ?>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <?= $this->Html->link(
-                        '<i class="ti ti-sort-descending-2 fs-5"></i> Price: Low-High',
-                        ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_low_high'])],
-                        [
-                            'escape' => false,
-                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'price_low_high' ? 'active ' : ''),
-                        ]
-                    ) ?>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <?= $this->Html->link(
-                        '<i class="ti ti-sort-ascending-2 fs-5"></i> Price: High-Low',
-                        ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_high_low'])],
-                        [
-                            'escape' => false,
-                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'price_high_low' ? 'active ' : ''),
-                        ]
-                    ) ?>
-                </li>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <?= $this->Html->link(
-                        '<i class="ti ti-ad-2 fs-5"></i> Discounted',
-                        ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'discounted'])],
-                        [
-                            'escape' => false,
-                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($sort === 'discounted' ? 'active ' : ''),
-                        ]
-                    ) ?>
-                </li>
-            </ul>
+                <select class="form-select list-group-item-action text-dark mx-4 mb-2" style="width: 200px;" onchange="location.href=this.value;">
+                    <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'newest'])]) ?>" <?= $sort === 'newest' ? 'selected' : '' ?>>
+                        <?= __('Newest') ?>
+                    </option>
+                    <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_low_high'])]) ?>" <?= $sort === 'price_low_high' ? 'selected' : '' ?>>
+                        <?= __('Price: Low-High') ?>
+                    </option>
+                    <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'price_high_low'])]) ?>" <?= $sort === 'price_high_low' ? 'selected' : '' ?>>
+                        <?= __('Price: High-Low') ?>
+                    </option>
+                    <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['sort' => 'discounted'])]) ?>" <?= $sort === 'discounted' ? 'selected' : '' ?>>
+                        <?= __('Discounted') ?>
+                    </option>
+                </select>
+            </div>
 
             <div class="by-pricing border-bottom rounded-0">
                 <h6 class="mt-4 mb-3 mx-4 fw-semibold">By Pricing</h6>
                 <form id="pricingFilterForm" method="get" action="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']) ?>">
-                    <!-- Retain other query parameters except price_filter -->
                     <?php foreach ($this->request->getQueryParams() as $param => $value) : ?>
                         <?php if ($param !== 'price_filter') : ?>
                             <input type="hidden" name="<?= h($param) ?>" value="<?= h($value) ?>">
                         <?php endif; ?>
                     <?php endforeach; ?>
-                    <div class="pb-4 px-4">
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_all" value="all" <?= $priceFilter === 'all' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_all">
-                                All
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_0_50" value="0-50" <?= $priceFilter === '0-50' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_0_50">
-                                0-50
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_50_100" value="50-100" <?= $priceFilter === '50-100' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_50_100">
-                                50-100
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_100_200" value="100-200" <?= $priceFilter === '100-200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_100_200">
-                                100-200
-                            </label>
-                        </div>
-                        <div class="form-check py-2 mb-0">
-                            <input class="form-check-input p-2" type="radio" name="price_filter" id="price_over_200" value="over_200" <?= $priceFilter === 'over_200' ? 'checked' : '' ?> onchange="document.getElementById('pricingFilterForm').submit();">
-                            <label class="form-check-label d-flex align-items-center ps-2" for="price_over_200">
-                                Over 200
-                            </label>
-                        </div>
-                    </div>
+                    <select class="form-select mx-4 mb-2" style="width: 200px;" name="price_filter" onchange="document.getElementById('pricingFilterForm').submit();">
+                        <option value="all" <?= $priceFilter === 'all' ? 'selected' : '' ?>>All</option>
+                        <option value="0-50" <?= $priceFilter === '0-50' ? 'selected' : '' ?>>0-50</option>
+                        <option value="50-100" <?= $priceFilter === '50-100' ? 'selected' : '' ?>>50-100</option>
+                        <option value="100-200" <?= $priceFilter === '100-200' ? 'selected' : '' ?>>100-200</option>
+                        <option value="over_200" <?= $priceFilter === 'over_200' ? 'selected' : '' ?>>Over 200</option>
+                    </select>
                 </form>
             </div>
 
