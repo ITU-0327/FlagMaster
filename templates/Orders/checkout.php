@@ -387,7 +387,7 @@
 
 <script>
     // Initialize shippingCost variable
-    let shippingCost = 0;
+    shippingCost = 0;
 
     // Add event listeners to delivery options
     const deliveryOptions = document.getElementsByName('deliveryOpt');

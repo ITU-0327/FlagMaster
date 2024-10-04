@@ -35,7 +35,7 @@
                         <div class="d-flex align-items-center justify-content-between mt-2">
                             <h6 class="fs-2 fw-semibold mb-0 text-muted"><?= $this->Number->currency($unitPrice, 'AUD', ['places' => 0]) ?></h6>
                             <div class="input-group input-group-sm w-50">
-                                <button class="btn border-0 round-20 minus p-0 bg-success-subtle text-success" type="button" data-product-id="<?= $product->id ?>">-</button>
+                                <button class="btn text-success bg-success-subtle p-0 round-20 border-0 minus" type="button" data-product-id="<?= $product->id ?>">-</button>
                                 <input type="text" class="form-control bg-transparent text-muted fs-2 border-0 text-center qty" value="<?= $quantity ?>" data-product-id="<?= $product->id ?>" data-unit-price="<?= $unitPrice ?>" />
                                 <button class="btn text-success bg-success-subtle p-0 round-20 border-0 add" type="button" data-product-id="<?= $product->id ?>">+</button>
                             </div>
@@ -49,7 +49,7 @@
         <div class="d-flex align-items-center pb-7">
             <span class="text-dark fs-3">Sub Total</span>
             <div class="ms-auto">
-                <span class="text-dark fw-semibold fs-3" id="cartSubtotal"><?= $this->Number->currency($subTotal, 'AUD', ['places' => 0]) ?></span>
+                <span class="text-dark fw-semibold fs-3 cartSubtotal"><?= $this->Number->currency($subTotal, 'AUD', ['places' => 0]) ?></span>
             </div>
         </div>
         <?php if (count($cartItems) <= 0) : ?>

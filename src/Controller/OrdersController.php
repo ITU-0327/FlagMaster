@@ -133,71 +133,12 @@ class OrdersController extends AppController
     }
 
     /**
-     * Update cart item method
-     *
-     * @return void
-     */
-    public function updateCartItem(): void
-    {
-        $this->request->allowMethod(['post']);
-        $productId = $this->request->getData('product_id');
-        $quantity = $this->request->getData('quantity');
-
-        $identity = $this->request->getAttribute('identity');
-        $userId = $identity->id;
-
-        $order = $this->Orders->find()
-            ->where(['user_id' => $userId, 'status' => 'incart'])
-            ->contain(['OrdersProducts.Products'])
-            ->first();
-
-        if ($order) {
-            $orderProduct = $this->Orders->OrdersProducts->find()
-                ->where(['order_id' => $order->id, 'product_id' => $productId])
-                ->first();
-
-            if ($orderProduct) {
-                $orderProduct->quantity = $quantity;
-                if ($this->Orders->OrdersProducts->save($orderProduct)) {
-                    // Recalculate subtotal
-                    $subTotal = 0;
-                    $cartItemCount = 0;
-                    foreach ($order->orders_products as $item) {
-                        $itemQuantity = $item->product_id == $productId ? $quantity : $item->quantity;
-                        $itemTotalPrice = $item->unit_price * $itemQuantity;
-                        $cartItemCount += $item->product_id == $productId ? $quantity : $item->quantity;
-                        $subTotal += $itemTotalPrice;
-                    }
-
-                    $response = [
-                        'success' => true,
-                        'subTotalFormatted' => Number::currency($subTotal, 'AUD', ['places' => 0]),
-                        'cartItemCount' => $cartItemCount,
-                    ];
-                } else {
-                    $response = ['success' => false];
-                }
-            } else {
-                $response = ['success' => false];
-            }
-        } else {
-            $response = ['success' => false];
-        }
-
-        // Set the response type to JSON
-        $this->viewBuilder()->setClassName('Json');
-        $this->set(compact('response'));
-        $this->viewBuilder()->setOption('serialize', 'response');
-    }
-
-    /**
      * Checkout method
      *
      * @return \Cake\Http\Response|null|void Redirects on successful checkout, renders view otherwise.
      */
     public function checkout()
     {
-        // get user id
         $user = $this->request->getAttribute('identity');
         $userId = $user->id;
 
@@ -254,8 +195,64 @@ class OrdersController extends AppController
             $this->Flash->error(__('Unable to place the order.'));
         }
 
-        // Pass order and user data to the view
         $this->set(compact('order', 'user'));
+    }
+
+    /**
+     * Update cart item method
+     *
+     * @return \Cake\Http\Response
+     */
+    public function updateCartItem(): Response
+    {
+        $this->request->allowMethod(['post']);
+
+        $productId = $this->request->getData('product_id');
+        $quantity = $this->request->getData('quantity') ?: 1;
+
+        $identity = $this->request->getAttribute('identity');
+        $userId = $identity->id;
+
+        $order = $this->Orders->find()
+            ->where(['user_id' => $userId, 'status' => 'incart'])
+            ->contain(['OrdersProducts.Products'])
+            ->first();
+        if (!$order) {
+            return $this->jsonResponse(['success' => false]);
+        }
+
+        $orderProduct = $this->Orders->OrdersProducts->find()
+            ->where(['order_id' => $order->id, 'product_id' => $productId])
+            ->first();
+        if (!$orderProduct) {
+            return $this->jsonResponse(['success' => false]);
+        }
+
+        $orderProduct->quantity = $quantity;
+        if (!$this->Orders->OrdersProducts->save($orderProduct)) {
+            return $this->jsonResponse(['success' => false]);
+        }
+
+        // Reload the order with updated orders_products
+        $order = $this->Orders->get($order->id, contain: ['OrdersProducts']);
+
+        // Recalculate subtotal
+        $subTotal = 0;
+        $cartItemCount = 0;
+        foreach ($order->orders_products as $item) {
+            $itemQuantity = $item->product_id == $productId ? $quantity : $item->quantity;
+            $itemTotalPrice = $item->unit_price * $itemQuantity;
+            $cartItemCount += $itemQuantity;
+            $subTotal += $itemTotalPrice;
+        }
+
+        $response = [
+            'success' => true,
+            'subTotalFormatted' => Number::currency($subTotal, 'AUD', ['places' => 0]),
+            'cartItemCount' => $cartItemCount,
+        ];
+
+        return $this->jsonResponse($response);
     }
 
     /**
@@ -276,46 +273,44 @@ class OrdersController extends AppController
             ->first();
 
         if (!$order) {
-            $response = [
+            return $this->jsonResponse([
                 'success' => false,
                 'message' => __('Your cart is empty.'),
-            ];
-
-            return $this->jsonResponse($response);
+            ]);
         }
 
         $orderProduct = $this->Orders->OrdersProducts->find()
             ->where(['order_id' => $order->id, 'product_id' => $productId])
             ->first();
 
-        if ($orderProduct) {
-            if ($this->Orders->OrdersProducts->delete($orderProduct)) {
-                // Reload the order to get updated orders_products
-                $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+        if (!$orderProduct) {
+            return $this->jsonResponse([
+                'success' => false,
+                'message' => __('Product not found in your cart.'),
+            ]);
+        }
 
-                // Recalculate cart item count
-                $cartItemCount = 0;
-                if (!empty($order->orders_products)) {
-                    foreach ($order->orders_products as $item) {
-                        $cartItemCount += $item->quantity;
-                    }
+        if ($this->Orders->OrdersProducts->delete($orderProduct)) {
+            // Reload the order to get updated orders_products
+            $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+
+            // Recalculate cart item count
+            $cartItemCount = 0;
+            if (!empty($order->orders_products)) {
+                foreach ($order->orders_products as $item) {
+                    $cartItemCount += $item->quantity;
                 }
-
-                $response = [
-                    'success' => true,
-                    'message' => __('Item removed from cart.'),
-                    'cartItemCount' => $cartItemCount,
-                ];
-            } else {
-                $response = [
-                    'success' => false,
-                    'message' => __('Unable to remove item from cart.'),
-                ];
             }
+
+            $response = [
+                'success' => true,
+                'message' => __('Item removed from cart.'),
+                'cartItemCount' => $cartItemCount,
+            ];
         } else {
             $response = [
                 'success' => false,
-                'message' => __('Product not found in your cart.'),
+                'message' => __('Unable to remove item from cart.'),
             ];
         }
 
@@ -334,7 +329,6 @@ class OrdersController extends AppController
         $identity = $this->request->getAttribute('identity');
         $userId = $identity->id;
 
-        $this->Orders = $this->fetchTable('Orders');
         $order = $this->Orders->find()
             ->where(['user_id' => $userId, 'status' => 'incart'])
             ->contain(['OrdersProducts.Products.Categories'])

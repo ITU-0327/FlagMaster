@@ -54,6 +54,10 @@ $decimalPlaces = 0;
 
     <script>
         let userSettings = <?= json_encode($themeSettings) ?>;
+        const currencySymbol = '<?= $currencySymbol ?>';
+        const currencyPosition = '<?= $currencyPosition ?>';
+        const decimalPlaces = <?= $decimalPlaces ?>;
+        let shippingCost = 0;
     </script>
 
     <?= $this->element('vendor-script') ?>
@@ -65,24 +69,20 @@ $decimalPlaces = 0;
     </script>
 
     <script>
-        const currencySymbol = '<?= $currencySymbol ?>';
-        const currencyPosition = '<?= $currencyPosition ?>';
-        const decimalPlaces = <?= $decimalPlaces ?>;
-
         document.addEventListener('DOMContentLoaded', function() {
             // Instead of adding event listeners to each button, use event delegation
             document.body.addEventListener('click', function(event) {
                 // Handle minus button click
-                if (event.target.matches('.minus')) {
-                    handleQuantityChange(event.target, false);
+                if (event.target.closest('.minus')) {
+                    handleQuantityChange(event.target.closest('.minus'), false);
                 }
                 // Handle add button click
-                else if (event.target.matches('.add')) {
-                    handleQuantityChange(event.target, true);
+                else if (event.target.closest('.add')) {
+                    handleQuantityChange(event.target.closest('.add'), true);
                 }
                 // Handle remove button click (trash icons)
-                else if (event.target.matches('.remove-cart-item')) {
-                    handleRemoveItem(event.target);
+                else if (event.target.closest('.remove-cart-item')) {
+                    handleRemoveItem(event.target.closest('.remove-cart-item'));
                 }
             });
 
@@ -95,13 +95,12 @@ $decimalPlaces = 0;
             let currentVal = parseInt(qtyInputs[0].value);
 
             if (!isNaN(currentVal)) {
-                let newVal = isAdd ? currentVal + 1 : currentVal - 1;
+                let newVal = isAdd ? ++currentVal : --currentVal;
 
                 if (newVal < 1) {
                     // Ask for confirmation to remove the item
                     const confirmDelete = confirm('Are you sure you want to remove this item from your cart?');
                     if (confirmDelete) {
-                        // Remove the item from the cart
                         removeCartItem(productId);
                         // Remove the item from the DOM
                         qtyInputs.forEach(function(qtyInput) {
@@ -198,51 +197,18 @@ $decimalPlaces = 0;
             let formattedTotalCost = formatCurrency(totalCost);
             let formattedShippingCost = shippingCost > 0 ? formatCurrency(shippingCost) : 'Free';
 
-            // Update subtotal
-            const subTotalElements = document.getElementsByClassName('subTotal');
-            for (let i = 0; i < subTotalElements.length; i++) {
-                subTotalElements[i].innerText = formattedSubTotal;
-            }
+            updateElementsByClassName('subTotal', formattedSubTotal);
+            updateElementsByClassName('shippingCost', formattedShippingCost);
+            updateElementsByClassName('totalCost', formattedTotalCost);
+            updateElementsByClassName('cartSubtotal', formattedSubTotal);
 
-            // Update shipping cost
-            const shippingCostElements = document.getElementsByClassName('shippingCost');
-            for (let i = 0; i < shippingCostElements.length; i++) {
-                shippingCostElements[i].innerText = formattedShippingCost;
-            }
-
-            // Update total cost
-            const totalCostElements = document.getElementsByClassName('totalCost');
-            for (let i = 0; i < totalCostElements.length; i++) {
-                totalCostElements[i].innerText = formattedTotalCost;
-            }
-
-            // Update cart subtotal in the sidebar
-            const cartSubtotalElement = document.getElementById('cartSubtotal');
-            if (cartSubtotalElement) {
-                cartSubtotalElement.innerText = formattedSubTotal;
-            }
-
-            // If no items exist, display a message or redirect
+            // If no items exist, display a message to redirect
             if (!itemsExist) {
                 // Handle empty cart in checkout page
                 const tableResponsive = document.querySelector('.checkout.table-responsive');
                 if (tableResponsive) {
                     tableResponsive.innerHTML = '<p>Your cart is empty.</p><a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']); ?>" class="btn btn-primary">Continue Shopping</a>';
                 }
-            }
-        }
-
-        function formatCurrency(amount) {
-            amount = parseFloat(amount);
-
-            // Format the number with the specified decimal places
-            let formattedAmount = amount.toFixed(decimalPlaces);
-
-            // Add currency symbol before or after based on currencyPosition
-            if (currencyPosition === 'before') {
-                return currencySymbol + formattedAmount;
-            } else {
-                return formattedAmount + currencySymbol;
             }
         }
 
@@ -312,6 +278,28 @@ $decimalPlaces = 0;
             };
 
             xhr.send('product_id=' + encodeURIComponent(productId) + '&quantity=' + encodeURIComponent(quantity));
+        }
+
+        // Helper functions
+        function formatCurrency(amount) {
+            amount = parseFloat(amount);
+
+            // Format the number with the specified decimal places
+            let formattedAmount = amount.toFixed(decimalPlaces);
+
+            // Add currency symbol before or after based on currencyPosition
+            if (currencyPosition === 'before') {
+                return currencySymbol + formattedAmount;
+            } else {
+                return formattedAmount + currencySymbol;
+            }
+        }
+
+        function updateElementsByClassName(className, value) {
+            const elements = document.getElementsByClassName(className);
+            for (let i = 0; i < elements.length; i++) {
+                elements[i].innerText = value;
+            }
         }
     </script>
 </body>

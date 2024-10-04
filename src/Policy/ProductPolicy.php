@@ -80,7 +80,11 @@ class ProductPolicy
      */
     public function canAddToCart(IdentityInterface $user, Product $product): Result
     {
-        return new Result(true);
+        if ($product->status === 'published') {
+            return new Result(true);
+        }
+
+        return new Result(false, 'Product is not published');
     }
 
     /**

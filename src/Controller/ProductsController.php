@@ -16,6 +16,7 @@ use UnexpectedValueException;
  *
  * @property \App\Model\Table\ProductsTable $Products
  * @property \App\Model\Table\OrdersTable $Orders
+ * @property \App\Model\Table\OrdersProductsTable $OrdersProducts
  * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class ProductsController extends AppController
@@ -346,7 +347,7 @@ class ProductsController extends AppController
 
         if ($this->Orders->OrdersProducts->save($orderProduct)) {
             // Reload the order with updated orders_products
-            $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+            $order = $this->Orders->get($order->id, contain: ['OrdersProducts']);
 
             $cartItemCount = 0;
             if (!empty($order->orders_products)) {
