@@ -45,33 +45,19 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
 <div class="card position-relative overflow-hidden">
     <div class="shop-part d-flex w-100">
         <div class="shop-filters flex-shrink-0 border-end d-none d-lg-block">
-            <ul class="list-group pt-2 border-bottom rounded-0">
+            <div class="mb-3">
                 <h6 class="my-3 mx-4">Filter by Category</h6>
-                <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                    <?= $this->Html->link(
-                        '<i class="ti ti-circles fs-5"></i> All',
-                        ['controller' => 'Products', 'action' => 'index', '?' => array_diff_key($this->request->getQueryParams(), ['category' => ''])],
-                        [
-                            'escape' => false,
-                            'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                ($categoryId === 'all' ? 'active ' : ''),
-                        ]
-                    ) ?>
-                </li>
-                <?php foreach ($categories as $category) : ?>
-                    <li class="list-group-item border-0 p-0 mx-4 mb-2">
-                        <?= $this->Html->link(
-                            '<i class="ti ti-category fs-5"></i> ' . h($category->name),
-                            ['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['category' => $category->id])],
-                            [
-                                'escape' => false,
-                                'class' => 'd-flex align-items-center gap-6 list-group-item-action text-dark px-3 py-6 rounded-1 ' .
-                                    ($categoryId == $category->id ? 'active ' : ''),
-                            ]
-                        ) ?>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+                <select class="form-select list-group-item-action text-dark mx-4 mb-2" style="width: 200px;" onchange="location.href=this.value;">
+                    <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_diff_key($this->request->getQueryParams(), ['category' => ''])]) ?>">
+                        <?= __('All') ?>
+                    </option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => array_merge($this->request->getQueryParams(), ['category' => $category->id])]) ?>" <?= $categoryId == $category->id ? 'selected' : '' ?>>
+                            <?= h($category->name) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
             <ul class="list-group pt-2 border-bottom rounded-0">
                 <h6 class="my-3 mx-4">Sort By</h6>
