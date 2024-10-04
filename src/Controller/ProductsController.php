@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Http\Response;
 use Exception;
 use Laminas\Diactoros\UploadedFile;
@@ -295,40 +296,57 @@ class ProductsController extends AppController
     /**
      * Add a product to the cart.
      *
-     * @return void Redirects to the previous page
+     * @return \Cake\Http\Response
      */
-    public function addToCart(): void
+    public function addToCart(): Response
     {
         $this->request->allowMethod(['post']);
 
         $productId = $this->request->getData('product_id');
         $quantity = $this->request->getData('quantity') ?: 1;
 
-        $product = $this->Products->get($productId);
+        try {
+            $product = $this->Products->get($productId);
+        } catch (RecordNotFoundException $e) {
+            return $this->jsonResponse([
+                'success' => false,
+                'message' => __('Product not found.'),
+            ]);
+        }
         $this->Authorization->authorize($product);
 
         $user = $this->request->getAttribute('identity');
-        $this->Orders = $this->fetchTable('Orders');
+        $ordersTable = $this->fetchTable('Orders');
 
         // Find or create an 'incart' order for the user
-        $order = $this->Orders->find()
+        $order = $ordersTable->find()
             ->where(['user_id' => $user->id, 'status' => 'incart'])
             ->contain(['OrdersProducts'])
             ->first();
 
         if (!$order) {
-            $order = $this->Orders->newEntity([
+            $order = $ordersTable->newEmptyEntity();
+            $order = $ordersTable->patchEntity($order, [
                 'user_id' => $user->id,
                 'status' => 'incart',
                 'order_date' => date('Y-m-d H:i:s'),
                 'total_amount' => 0,
                 'shipping_cost' => 0,
             ]);
-            $this->Orders->save($order);
+
+            if (!$ordersTable->save($order)) {
+                return $this->jsonResponse([
+                    'success' => false,
+                    'message' => __('Unable to create cart order. Please try again.'),
+                ]);
+            }
         }
 
+        // Fetch the OrdersProducts table
+        $ordersProductsTable = $this->fetchTable('OrdersProducts');
+
         // Check if the product is already in the cart
-        $orderProduct = $this->Orders->OrdersProducts->find()
+        $orderProduct = $ordersProductsTable->find()
             ->where(['order_id' => $order->id, 'product_id' => $productId])
             ->first();
 
@@ -337,7 +355,8 @@ class ProductsController extends AppController
             $orderProduct->quantity += $quantity;
         } else {
             // Add new item to cart
-            $orderProduct = $this->Orders->OrdersProducts->newEntity([
+            $orderProduct = $ordersProductsTable->newEmptyEntity();
+            $orderProduct = $ordersProductsTable->patchEntity($orderProduct, [
                 'order_id' => $order->id,
                 'product_id' => $productId,
                 'quantity' => $quantity,
@@ -345,21 +364,17 @@ class ProductsController extends AppController
             ]);
         }
 
-        if ($this->Orders->OrdersProducts->save($orderProduct)) {
-            // Reload the order with updated orders_products
-            $order = $this->Orders->get($order->id, contain: ['OrdersProducts']);
-
-            $cartItemCount = 0;
-            if (!empty($order->orders_products)) {
-                foreach ($order->orders_products as $item) {
-                    $cartItemCount += $item->quantity;
-                }
-            }
+        if ($ordersProductsTable->save($orderProduct)) {
+            $cartItemCount = $ordersProductsTable->find()
+                ->where(['order_id' => $order->id])
+                ->select(['total' => 'SUM(quantity)'])
+                ->first()
+                ->get('total');
 
             $response = [
                 'success' => true,
                 'message' => __('Product added to cart.'),
-                'cartItemCount' => $cartItemCount,
+                'cartItemCount' => (int)$cartItemCount,
             ];
         } else {
             $response = [
@@ -368,9 +383,7 @@ class ProductsController extends AppController
             ];
         }
 
-        $this->viewBuilder()->setClassName('Json');
-        $this->set(compact('response'));
-        $this->viewBuilder()->setOption('serialize', 'response');
+        return $this->jsonResponse($response);
     }
 
     /**
@@ -465,5 +478,20 @@ class ProductsController extends AppController
 
         // Return the relative path to the uploaded file
         return 'products/' . $newFilename;
+    }
+
+    /**
+     * Helper method to return JSON response
+     *
+     * @param array $response Response data
+     * @return \Cake\Http\Response
+     */
+    private function jsonResponse(array $response): Response
+    {
+        $this->viewBuilder()->setClassName('Json');
+        $this->set(compact('response'));
+        $this->viewBuilder()->setOption('serialize', 'response');
+
+        return $this->response->withType('application/json')->withStringBody(json_encode($response));
     }
 }

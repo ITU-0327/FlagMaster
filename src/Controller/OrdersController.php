@@ -292,7 +292,7 @@ class OrdersController extends AppController
 
         if ($this->Orders->OrdersProducts->delete($orderProduct)) {
             // Reload the order to get updated orders_products
-            $order = $this->Orders->get($order->id, ['contain' => ['OrdersProducts']]);
+            $order = $this->Orders->get($order->id, contain: ['OrdersProducts']);
 
             // Recalculate cart item count
             $cartItemCount = 0;

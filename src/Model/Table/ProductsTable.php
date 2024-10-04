@@ -65,10 +65,13 @@ class ProductsTable extends Table
             'targetForeignKey' => 'category_id',
             'joinTable' => 'categories_products',
         ]);
-        $this->belongsToMany('Orders', [
+        $this->hasMany('OrdersProducts', [
             'foreignKey' => 'product_id',
-            'targetForeignKey' => 'order_id',
-            'joinTable' => 'orders_products',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+        $this->belongsToMany('Orders', [
+            'through' => 'OrdersProducts',
         ]);
     }
 
