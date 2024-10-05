@@ -78,9 +78,9 @@
                         <div class="card w-100 border position-relative overflow-hidden">
                             <div class="card-body p-4">
                                 <h4 class="card-title">Change Password</h4>
-                                <p class="card-subtitle mb-4">To change your password please confirm here</p>
 
                                 <?php if ($hasPassword) : ?>
+                                    <p class="card-subtitle mb-4">To change your password please confirm here</p>
                                     <div class="mb-3">
                                         <label for="current-password" class="form-label">Current Password</label>
                                         <?= $this->Form->password('current_password', [
@@ -93,9 +93,7 @@
                                         <?= $this->Form->error('current_password'); ?>
                                     </div>
                                 <?php else : ?>
-                                    <div class="mb-3">
-                                        <p class="text-muted">You do not have a password set. Please set a new password below.</p>
-                                    </div>
+                                    <p class="card-subtitle mb-4">You do not have a password set. Please set a new password below.</p>
                                 <?php endif; ?>
 
                                 <div class="mb-3">

@@ -66,7 +66,7 @@
                         <?php if ($this->Identity->get('id') === $user->id) : ?>
                             <?= $this->Html->link(__('Edit Profile'), ['action' => 'edit', $user->id], ['class' => 'btn btn-primary me-2']) ?>
                         <?php endif; ?>
-                        <?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class' => 'btn btn-danger']) ?>
+                        <?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete @{0}?', $user->username), 'class' => 'btn btn-danger']) ?>
                     </div>
                 </div>
             </div>

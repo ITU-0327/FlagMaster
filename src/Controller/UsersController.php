@@ -87,16 +87,20 @@ class UsersController extends AppController
             }
 
             // Handle password change
-            if (empty($data['current_password']) && empty($data['new_password']) && empty($data['confirm_password'])) {
-                unset($data['password'], $data['confirm_password']);
+            if (
+                empty($data['current_password']) &&
+                empty($data['new_password']) &&
+                empty($data['confirm_password'])
+            ) {
+                unset($data['current_password'], $data['new_password'], $data['confirm_password']);
             } else {
-                $user = $this->Users->patchEntity($user, $data, [
-                    'fields' => ['current_password', 'new_password', 'confirm_password'],
-                    'validate' => 'password',
-                ]);
-
-                if (!empty($data['new_password'])) {
-                    $user->password = $data['new_password'];
+                if ($hasPassword) {
+                    // Ensure current_password is provided for users with existing passwords
+                    if (empty($data['current_password'])) {
+                        $this->Flash->error(__('Please enter your current password to set a new password.'));
+                        // Prevent saving incomplete password data
+                        unset($data['new_password'], $data['confirm_password']);
+                    }
                 }
             }
 
@@ -127,7 +131,12 @@ class UsersController extends AppController
             // Patch user and associated data
             $user = $this->Users->patchEntity($user, $data, [
                 'associated' => ['Profiles.Addresses'],
+                'validate' => 'password',
             ]);
+
+            if (!empty($data['new_password'])) {
+                $user->password = $data['new_password'];
+            }
 
             if ($this->Users->save($user, ['associated' => ['Profiles.Addresses']])) {
                 $this->Flash->success(__('Your profile has been updated.'));
@@ -170,13 +179,23 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         $this->Authorization->authorize($user);
 
+        $role = $user->role;
+
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        if ($role === 'admin') {
+            $this->Flash->success('The user has been deleted.');
+
+            return $this->redirect(['action' => 'index']);
+        } else {
+            $this->Authentication->logout();
+
+            return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null]);
+        }
     }
 
     /**
