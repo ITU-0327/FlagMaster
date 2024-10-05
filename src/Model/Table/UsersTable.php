@@ -89,10 +89,12 @@ class UsersTable extends Table
             ->scalar('password')
             ->maxLength('password', 255, 'Password cannot exceed 255 characters.')
             ->requirePresence('password', function ($context) {
-                return empty($context['data']['oauth_provider']);
+                // Require password if it's a new record and oauth_provider is empty
+                return $context['newRecord'] && empty($context['data']['oauth_provider']);
             }, 'Password is required.')
             ->notEmptyString('password', 'Password is required.', function ($context) {
-                return empty($context['data']['oauth_provider']);
+                // Require password to be non-empty if it's a new record and oauth_provider is empty
+                return $context['newRecord'] && empty($context['data']['oauth_provider']);
             })
             ->add('password', 'minLength', [
                 'rule' => ['minLength', 8],

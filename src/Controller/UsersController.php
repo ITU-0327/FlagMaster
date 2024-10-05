@@ -85,7 +85,9 @@ class UsersController extends AppController
             }
 
             // Handle password change
-            if (!empty($data['current_password']) || !empty($data['new_password']) || !empty($data['confirm_password'])) {
+            if (empty($data['new_password']) && empty($data['confirm_password'])) {
+                unset($data['password'], $data['confirm_password']);
+            } else {
                 $user = $this->Users->patchEntity($user, $data, [
                     'fields' => ['current_password', 'new_password', 'confirm_password'],
                     'validate' => 'password',
@@ -99,46 +101,33 @@ class UsersController extends AppController
             // Handle address association if there is meaningful address data
             $addressData = $data['profile']['address'] ?? [];
             $hasAddressData = array_filter($addressData, function ($value) {
-                return !empty($value); // Check if any field has data
+                // Treat empty strings, null values, and other "falsy" values as empty
+                return !empty(trim($value)); // Trim to avoid spaces being considered non-empty
             });
 
-            if (!empty($hasAddressData)) {
+            if (empty($hasAddressData)) {
+                unset($data['profile']['address']);
+            } else {
                 // Only proceed if all required fields are filled
-                if (!empty($addressData['street']) && !empty($addressData['city']) && !empty($addressData['state']) && !empty($addressData['postal_code']) && !empty($addressData['country'])) {
-                    if ($user->profile->address_id) {
-                        // Update existing address
-                        $address = $this->Users->Profiles->Addresses->get($user->profile->address_id);
-                    } else {
-                        $address = $this->Users->Profiles->Addresses->newEmptyEntity();
-                    }
-
-                    $user->profile->address = $this->Users->Profiles->Addresses->patchEntity(
-                        $address,
-                        $addressData
-                    );
-
-                    if ($this->Users->Profiles->Addresses->save($user->profile->address)) {
-                        $user->profile->address_id = $user->profile->address->id;
-
-                        $this->Flash->success(__('Your address has been updated.'));
-                    } else {
-                        $this->Flash->error(__('The address could not be saved. Please, try again.'));
-                    }
-                } else {
+                if (
+                    empty(trim($addressData['street'])) ||
+                    empty(trim($addressData['city'])) ||
+                    empty(trim($addressData['state'])) ||
+                    empty(trim($addressData['postal_code'])) ||
+                    empty(trim($addressData['country']))
+                ) {
                     // Provide feedback that address fields must all be filled to save the address
+                    unset($data['profile']['address']);
                     $this->Flash->error(__('Please fill in all address fields to save your address.'));
                 }
-            } else {
-                // If no meaningful address data is provided, do not attempt to update or create an address
-                $user->profile->address = null;
             }
 
             // Patch user and associated data
             $user = $this->Users->patchEntity($user, $data, [
-                'associated' => ['Profiles' => ['Addresses']],
+                'associated' => ['Profiles.Addresses'],
             ]);
 
-            if ($this->Users->save($user)) {
+            if ($this->Users->save($user, ['associated' => ['Profiles.Addresses']])) {
                 $this->Flash->success(__('Your profile has been updated.'));
 
                 // Get the authenticated user
