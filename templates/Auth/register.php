@@ -57,13 +57,13 @@
                             <?= $this->Form->control('password', [
                                 'label' => ['text' => 'Password', 'class' => 'form-label'],
                                 'class' => 'form-control',
-                                'id' => 'password',
+                                'id' => 'new-password',
                                 'placeholder' => 'Enter your password',
                                 'required' => true,
                                 'type' => 'password',
                                 'title' => 'Password must be at least 8 characters long and include at least one number and one special character.',
                                 'data-bs-toggle' => 'tooltip',
-                                'data-bs-placement' => 'right',
+                                'data-bs-placement' => 'left',
                             ]); ?>
 
                             <div id="password-strength" class="mt-1 fs-3"></div>
@@ -73,7 +73,7 @@
                                 'type' => 'password',
                                 'label' => ['text' => 'Confirm Password', 'class' => 'form-label'],
                                 'class' => 'form-control',
-                                'id' => 'password-confirm',
+                                'id' => 'confirm-password',
                                 'placeholder' => 'Confirm your password',
                                 'required' => true,
                             ]); ?>
@@ -103,7 +103,7 @@
 <?php $this->start('customScript'); ?>
 
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js'); ?>
-<?= $this->Html->script('apps/register'); ?>
+<?= $this->Html->script('apps/passwordStrength'); ?>
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js'); ?>
 <?= $this->Html->script('https://challenges.cloudflare.com/turnstile/v0/api.js', ['async' => true, 'defer' => true]); ?>
 

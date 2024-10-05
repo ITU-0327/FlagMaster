@@ -66,6 +66,8 @@ class UsersController extends AppController
         );
         $this->Authorization->authorize($user);
 
+        $hasPassword = !empty($user->password);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $data = $this->request->getData();
 
@@ -152,7 +154,7 @@ class UsersController extends AppController
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }
 
-        $this->set(compact('user'));
+        $this->set(compact('user', 'hasPassword'));
     }
 
     /**

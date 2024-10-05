@@ -80,13 +80,12 @@
                                 <h4 class="card-title">Change Password</h4>
                                 <p class="card-subtitle mb-4">To change your password please confirm here</p>
 
-                                <?php $hasPassword = !empty($user->password); ?>
                                 <?php if ($hasPassword) : ?>
                                     <div class="mb-3">
-                                        <label for="currentPassword" class="form-label">Current Password</label>
+                                        <label for="current-password" class="form-label">Current Password</label>
                                         <?= $this->Form->password('current_password', [
                                             'class' => 'form-control',
-                                            'id' => 'currentPassword',
+                                            'id' => 'current-password',
                                             'autocomplete' => 'off',
                                             'label' => false,
                                             'placeholder' => 'Enter your current password',
@@ -100,25 +99,30 @@
                                 <?php endif; ?>
 
                                 <div class="mb-3">
-                                    <label for="newPassword" class="form-label">New Password</label>
+                                    <label for="new-password" class="form-label">New Password</label>
                                     <?= $this->Form->password('new_password', [
                                         'class' => 'form-control',
-                                        'id' => 'newPassword',
+                                        'id' => 'new-password',
                                         'autocomplete' => 'off',
                                         'label' => false,
                                         'placeholder' => 'Enter your new password',
+                                        'title' => 'Password must be at least 8 characters long and include at least one number and one special character.',
+                                        'data-bs-toggle' => 'tooltip',
+                                        'data-bs-placement' => 'left',
                                     ]); ?>
+                                    <div id="password-strength" class="mt-1 fs-3"></div>
                                     <?= $this->Form->error('new_password'); ?>
                                 </div>
                                 <div>
-                                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                    <label for="confirm-password" class="form-label">Confirm Password</label>
                                     <?= $this->Form->password('confirm_password', [
                                         'class' => 'form-control',
-                                        'id' => 'confirmPassword',
+                                        'id' => 'confirm-password',
                                         'autocomplete' => 'off',
                                         'label' => false,
                                         'placeholder' => 'Confirm your new password',
                                     ]); ?>
+                                    <div id="password-match" class="mt-1 fs-3"></div>
                                     <?= $this->Form->error('confirm_password'); ?>
                                 </div>
                             </div>
@@ -233,8 +237,10 @@
 
 <?php $this->start('customScript'); ?>
 
+<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js'); ?>
 <?= $this->Html->script('https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js') ?>
 <?= $this->Html->script('apps/profileEdit') ?>
+<?= $this->Html->script('apps/passwordStrength'); ?>
 
 <?php $this->end(); ?>
 

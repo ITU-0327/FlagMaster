@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#password').on('input', function () {
+    $('#new-password').on('input', function () {
         const password = $(this).val();
         const result = zxcvbn(password);
 
@@ -29,12 +29,16 @@
                 break;
         }
 
-        $('#password-strength').html('Strength: <strong class="' + strengthClass + '">' + strengthText + '</strong>');
+        if (password.length === 0) {
+            $('#password-strength').html('');
+        } else {
+            $('#password-strength').html('Strength: <strong class="' + strengthClass + '">' + strengthText + '</strong>');
+        }
     });
 
 // Password Confirmation Match Indicator
-    $('#password-confirm').on('input', function () {
-        const password = $('#password').val();
+    $('#confirm-password').on('input', function () {
+        const password = $('#new-password').val();
         const confirmPassword = $(this).val();
 
         if (confirmPassword.length === 0) {
