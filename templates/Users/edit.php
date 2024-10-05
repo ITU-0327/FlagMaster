@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
+ * @var bool $hasPassword
  */
 ?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -78,21 +79,36 @@
                             <div class="card-body p-4">
                                 <h4 class="card-title">Change Password</h4>
                                 <p class="card-subtitle mb-4">To change your password please confirm here</p>
-                                <div class="mb-3">
-                                    <label for="currentPassword" class="form-label">Current Password</label>
-                                    <?= $this->Form->password('current_password', [
-                                        'class' => 'form-control',
-                                        'id' => 'currentPassword',
-                                        'autocomplete' => 'off',
-                                    ]) ?>
-                                </div>
+
+                                <?php $hasPassword = !empty($user->password); ?>
+                                <?php if ($hasPassword) : ?>
+                                    <div class="mb-3">
+                                        <label for="currentPassword" class="form-label">Current Password</label>
+                                        <?= $this->Form->password('current_password', [
+                                            'class' => 'form-control',
+                                            'id' => 'currentPassword',
+                                            'autocomplete' => 'off',
+                                            'label' => false,
+                                            'placeholder' => 'Enter your current password',
+                                        ]); ?>
+                                        <?= $this->Form->error('current_password'); ?>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="mb-3">
+                                        <p class="text-muted">You do not have a password set. Please set a new password below.</p>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div class="mb-3">
                                     <label for="newPassword" class="form-label">New Password</label>
                                     <?= $this->Form->password('new_password', [
                                         'class' => 'form-control',
                                         'id' => 'newPassword',
                                         'autocomplete' => 'off',
-                                    ]) ?>
+                                        'label' => false,
+                                        'placeholder' => 'Enter your new password',
+                                    ]); ?>
+                                    <?= $this->Form->error('new_password'); ?>
                                 </div>
                                 <div>
                                     <label for="confirmPassword" class="form-label">Confirm Password</label>
@@ -100,7 +116,10 @@
                                         'class' => 'form-control',
                                         'id' => 'confirmPassword',
                                         'autocomplete' => 'off',
-                                    ]) ?>
+                                        'label' => false,
+                                        'placeholder' => 'Confirm your new password',
+                                    ]); ?>
+                                    <?= $this->Form->error('confirm_password'); ?>
                                 </div>
                             </div>
                         </div>
@@ -117,35 +136,40 @@
                                             <?= $this->Form->text('username', [
                                                 'class' => 'form-control',
                                                 'id' => 'username',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('username'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="firstName" class="form-label">First Name</label>
                                             <?= $this->Form->text('profile.first_name', [
                                                 'class' => 'form-control',
                                                 'id' => 'firstName',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('profile.first_name'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="lastName" class="form-label">Last Name</label>
                                             <?= $this->Form->text('profile.last_name', [
                                                 'class' => 'form-control',
                                                 'id' => 'lastName',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('profile.last_name'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <?= $this->Form->email('email', [
                                                 'class' => 'form-control',
                                                 'id' => 'email',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('email'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="phone" class="form-label">Phone</label>
                                             <?= $this->Form->text('profile.phone', [
                                                 'class' => 'form-control',
                                                 'id' => 'phone',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('profile.phone'); ?>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -154,14 +178,16 @@
                                             <?= $this->Form->text('profile.address.street', [
                                                 'class' => 'form-control',
                                                 'id' => 'street',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('profile.address.street'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="city" class="form-label">City</label>
                                             <?= $this->Form->text('profile.address.city', [
                                                 'class' => 'form-control',
                                                 'id' => 'city',
-                                            ]) ?>
+                                            ]); ?>
+                                            <?= $this->Form->error('profile.address.city'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="state" class="form-label">State</label>
@@ -169,6 +195,7 @@
                                                 'class' => 'form-control',
                                                 'id' => 'state',
                                             ]) ?>
+                                            <?= $this->Form->error('profile.address.state'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="postalCode" class="form-label">Postal Code</label>
@@ -176,6 +203,7 @@
                                                 'class' => 'form-control',
                                                 'id' => 'postalCode',
                                             ]) ?>
+                                            <?= $this->Form->error('profile.address.postal_code'); ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="country" class="form-label">Country</label>
@@ -183,6 +211,7 @@
                                                 'class' => 'form-control',
                                                 'id' => 'country',
                                             ]) ?>
+                                            <?= $this->Form->error('profile.address.country'); ?>
                                         </div>
                                     </div>
                                     <div class="col-12">

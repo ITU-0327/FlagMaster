@@ -85,7 +85,7 @@ class UsersController extends AppController
             }
 
             // Handle password change
-            if (empty($data['new_password']) && empty($data['confirm_password'])) {
+            if (empty($data['current_password']) && empty($data['new_password']) && empty($data['confirm_password'])) {
                 unset($data['password'], $data['confirm_password']);
             } else {
                 $user = $this->Users->patchEntity($user, $data, [

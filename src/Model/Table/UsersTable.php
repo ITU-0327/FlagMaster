@@ -186,6 +186,9 @@ class UsersTable extends Table
             ->add('current_password', 'custom', [
                 'rule' => function ($value, $context) {
                     $userId = $context['data']['id'];
+                    if (!$userId) {
+                        return false;
+                    }
                     $user = $this->get($userId);
 
                     return (new DefaultPasswordHasher())->check($value, $user->password);
@@ -193,9 +196,25 @@ class UsersTable extends Table
                 'message' => 'Current password is incorrect',
             ])
             ->requirePresence('current_password', function ($context) {
-                return !empty($context['data']['new_password']);
+                // Require current_password only if the user has a password set and is changing it
+                $userId = $context['data']['id'];
+                if (!$userId) {
+                    return false;
+                }
+                $user = $this->get($userId);
+
+                return !empty($user->password) && !empty($context['data']['new_password']);
             })
-            ->notEmptyString('current_password', 'Please enter your current password.');
+            ->notEmptyString('current_password', 'Please enter your current password.', function ($context) {
+                // Only enforce non-empty current_password if the user has an existing password
+                $userId = $context['data']['id'];
+                if (!$userId) {
+                    return false;
+                }
+                $user = $this->get($userId);
+
+                return !empty($user->password);
+            });
 
         $validator
             ->requirePresence('new_password', function ($context) {
