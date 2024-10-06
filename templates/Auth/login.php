@@ -22,6 +22,11 @@
                             '/',
                             ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
                         ) ?>
+
+                        <div class="mb-4">
+                            <?= $this->Flash->render() ?>
+                        </div>
+
                         <div class="row">
                             <div class="col-12 mb-2 mb-sm-0">
                                 <?= $this->Html->link(
