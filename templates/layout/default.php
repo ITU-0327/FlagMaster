@@ -164,6 +164,13 @@ $decimalPlaces = 0;
             }
         }
 
+        function updateItemCount(count) {
+            const itemCountElements = document.getElementsByClassName('badge');
+            for (let i = 0; i < itemCountElements.length; i++) {
+                itemCountElements[i].innerText = count + ' items';
+            }
+        }
+
         function updateTotal() {
             let subTotal = 0;
             let itemsExist = false;
@@ -237,6 +244,7 @@ $decimalPlaces = 0;
                                 }
                             });
                             updateTotal();
+                            updateItemCount(response.cartItemCount);
                         } else {
                             alert(response.message || 'Failed to remove item from cart.');
                         }
@@ -271,6 +279,7 @@ $decimalPlaces = 0;
                             badge.textContent = response.cartItemCount;
                         });
                         updateTotal();
+                        updateItemCount(response.cartItemCount);
                     } else {
                         alert(response.message || 'Failed to update cart.');
                     }

@@ -1,12 +1,13 @@
 ﻿<?php
 /**
  * @var array $cartItems
+ * @var int $cartItemCount
  */
 ?>
 
 <div class="offcanvas-header justify-content-between py-4">
     <h5 class="offcanvas-title fs-5 fw-semibold" id="offcanvasRightLabel">Shopping Cart</h5>
-    <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm"><?= count($cartItems) ?> items</span>
+    <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm"><?= h($cartItemCount) ?> items</span>
 </div>
 <div class="offcanvas-body h-100 px-4 pt-0" data-simplebar>
     <ul class="mb-0">
