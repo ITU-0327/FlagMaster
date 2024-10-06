@@ -675,18 +675,20 @@ extract($userInfo);
                 </a>
               </li>
               <li class="nav-item d-none d-xl-block">
-                <a href="/" class="text-nowrap nav-link">
-                    <?= $this->Html->image('logos/dark-logo.svg', [
-                        'alt' => 'flagmaster-img',
-                        'class' => 'dark-logo',
-                        'width' => '120',
-                    ]) ?>
-                    <?= $this->Html->image('logos/light-logo.svg', [
-                        'alt' => 'flagmaster-img',
-                        'class' => 'light-logo',
-                        'width' => '120',
-                    ]) ?>
-                </a>
+                  <?= $this->Html->link(
+                      $this->ContentBlock->image('logo-dark', [
+                          'alt' => 'Logo-Dark',
+                          'class' => 'dark-logo',
+                          'width' => '120',
+                      ]) .
+                      $this->ContentBlock->image('logo-light', [
+                          'alt' => 'Logo-light',
+                          'class' => 'light-logo',
+                          'width' => '120',
+                      ]),
+                      ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
+                      ['class' => 'text-nowrap nav-link', 'escape' => false]
+                  ) ?>
               </li>
             </ul>
             <ul class="navbar-nav quick-links d-none d-xl-flex align-items-center">
@@ -938,13 +940,20 @@ extract($userInfo);
                 </li>
             </ul>
             <div class="d-block d-xl-none">
-              <a href="/" class="text-nowrap nav-link">
-                  <?= $this->Html->image('logos/dark-logo.svg', [
-                      'alt' => 'flagmaster-img',
-                      'class' => 'img-fluid',
-                      'width' => '180',
-                  ]) ?>
-              </a>
+                <?= $this->Html->link(
+                    $this->ContentBlock->image('logo-dark', [
+                        'alt' => 'Logo-Dark',
+                        'class' => 'dark-logo',
+                        'width' => '180',
+                    ]) .
+                    $this->ContentBlock->image('logo-light', [
+                        'alt' => 'Logo-light',
+                        'class' => 'light-logo',
+                        'width' => '180',
+                    ]),
+                    ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null],
+                    ['class' => 'text-nowrap nav-link', 'escape' => false]
+                ) ?>
             </div>
             <a class="navbar-toggler nav-icon-hover-bg rounded-circle p-0 mx-0 border-0" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="p-2">

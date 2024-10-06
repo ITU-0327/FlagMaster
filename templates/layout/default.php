@@ -97,7 +97,17 @@ $decimalPlaces = 0;
             if (!isNaN(currentVal)) {
                 let newVal = isAdd ? ++currentVal : --currentVal;
 
-                if (newVal < 1) {
+                if (newVal > 0) {
+                    // Update the quantity
+                    qtyInputs.forEach(function(qtyInput) {
+                        qtyInput.value = newVal;
+                    });
+                    updateProductPrice(productId);
+                    updateTotal();
+
+                    // Send AJAX request to update quantity on the server
+                    updateCartItem(productId, newVal);
+                } else {
                     // Ask for confirmation to remove the item
                     const confirmDelete = confirm('Are you sure you want to remove this item from your cart?');
                     if (confirmDelete) {
@@ -120,16 +130,6 @@ $decimalPlaces = 0;
                         updateProductPrice(productId);
                         updateTotal();
                     }
-                } else {
-                    // Update the quantity
-                    qtyInputs.forEach(function(qtyInput) {
-                        qtyInput.value = newVal;
-                    });
-                    updateProductPrice(productId);
-                    updateTotal();
-
-                    // Send AJAX request to update quantity on the server
-                    updateCartItem(productId, newVal);
                 }
             }
         }
@@ -229,13 +229,13 @@ $decimalPlaces = 0;
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
                             // Update the cart item count in the navbar
-                            const cartItemCountElement = document.querySelector('.popup-badge');
-                            if (cartItemCountElement) {
-                                cartItemCountElement.textContent = response.cartItemCount;
+                            const cartItemCountElements = document.querySelectorAll('.popup-badge');
+                            cartItemCountElements.forEach(function(badge) {
+                                badge.textContent = response.cartItemCount;
                                 if (response.cartItemCount <= 0) {
-                                    cartItemCountElement.parentNode.removeChild(cartItemCountElement);
+                                    badge.parentNode.removeChild(badge);
                                 }
-                            }
+                            });
                             updateTotal();
                         } else {
                             alert(response.message || 'Failed to remove item from cart.');
@@ -266,10 +266,10 @@ $decimalPlaces = 0;
                     const response = JSON.parse(xhr.responseText);
                     if (response.success) {
                         // Update cart item count in navbar
-                        const cartItemCountElement = document.querySelector('.popup-badge');
-                        if (cartItemCountElement) {
-                            cartItemCountElement.textContent = response.cartItemCount;
-                        }
+                        const cartItemCountElements = document.querySelectorAll('.popup-badge');
+                        cartItemCountElements.forEach(function(badge) {
+                            badge.textContent = response.cartItemCount;
+                        });
                         updateTotal();
                     } else {
                         alert(response.message || 'Failed to update cart.');
