@@ -77,16 +77,16 @@ class PagesController extends AppController
         }
 
         // Only apply the redirection logic for the 'home' page
-//        if ($page === 'home') {
-//            $identity = $this->Authentication->getIdentity();
-//            if ($identity) {
-//                // User is authenticated; determine redirect based on role
-//                $role = $identity->get('role');
-//                $redirect = $this->determineRedirectByRole($role);
-//
-//                return $this->redirect($redirect);
-//            }
-//        }
+        if ($page === 'home') {
+            $identity = $this->Authentication->getIdentity();
+            if ($identity) {
+                // User is authenticated; determine redirect based on role
+                $role = $identity->get('role');
+                $redirect = $this->determineRedirectByRole($role);
+
+                return $this->redirect($redirect);
+            }
+        }
 
         $this->set(compact('page', 'subpage'));
 
