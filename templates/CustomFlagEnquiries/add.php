@@ -118,7 +118,7 @@
     <div class="p-3 border-top">
         <div class="text-center">
             <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
-            <?= $this->Html->link(__('Cancel '), ['action' => 'index'], ['class' => 'btn bg-danger-subtle text-danger ms-6 px-4']) ?>
+            <?= $this->Html->link(__('Cancel '), ['controller' => 'enquiries', 'action' => 'index'], ['class' => 'btn bg-danger-subtle text-danger ms-6 px-4']) ?>
         </div>
     </div>
     <?= $this->Form->end() ?>
