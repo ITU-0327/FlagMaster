@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\CustomFlagEnquiry $customFlagEnquiry
- * @var \Cake\Collection\CollectionInterface|string[] $enquiries
+ * @var \Cake\Collection\CollectionInterface|array<string> $enquiries
  */
 ?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -118,7 +118,11 @@
     <div class="p-3 border-top">
         <div class="text-center">
             <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
-            <?= $this->Html->link(__('Cancel '), ['action' => 'index'], ['class' => 'btn bg-danger-subtle text-danger ms-6 px-4']) ?>
+            <?= $this->Html->link(
+                __('Cancel '),
+                ['controller' => 'Enquiries', 'action' => 'index'],
+                ['class' => 'btn bg-danger-subtle text-danger ms-6 px-4']
+            ); ?>
         </div>
     </div>
     <?= $this->Form->end() ?>
