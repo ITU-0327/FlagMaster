@@ -264,18 +264,161 @@
 <!--                                                    </label>-->
 <!--                                                </div>-->
                                                 <!-- Credit/Debit Card -->
-<!--                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">-->
-<!--                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">-->
-<!--                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">-->
-<!--                                                        <div class="d-flex align-items-center">-->
-<!--                                                            <div class="text-start ps-2">-->
-<!--                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>-->
-<!--                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>-->
-<!--                                                            </div>-->
-<!--                                                            --><?php //= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
-<!--                                                        </div>-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
+                                                <!-- Credit/Debit Card Option -->
+                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard" value="card">
+                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="text-start ps-2">
+                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>
+                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>
+                                                            </div>
+                                                            <?= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                                <!-- Stripe card details input area -->
+                                                <div id="card-element-container" class="card p-4" style="display: none; margin-top: 10px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                                                    <h5 class="fw-bold mb-3">Enter your card details</h5>
+                                                    <div id="card-element">
+                                                        <!-- Stripe will insert the card element here -->
+                                                    </div>
+                                                    <div id="card-errors" role="alert" style="color: red; margin-top: 10px;"></div>
+                                                </div>
+
+                                                <!-- Include Stripe JS library -->
+                                                <script src="https://js.stripe.com/v3/"></script>
+
+                                                <!-- Custom CSS for layout adjustments -->
+                                                <style>
+                                                    /* Adjust the margin-top to reduce the distance between "Enter your card details" and the "Credit/Debit Card" option */
+                                                    #card-element-container {
+                                                        margin-top: 10px; /* Reduced top margin */
+                                                    }
+
+                                                    /* Spacing between card fields */
+                                                    .StripeElement--base {
+                                                        margin-bottom: 15px;
+                                                    }
+
+                                                    .card-input-group {
+                                                        display: flex;
+                                                        flex-direction: column;
+                                                        margin-top: 15px;
+                                                    }
+
+                                                    .StripeElement input {
+                                                        padding: 10px;
+                                                        font-size: 16px;
+                                                    }
+
+                                                    .StripeElement input::placeholder {
+                                                        color: #a0aec0;
+                                                    }
+                                                </style>
+
+                                                <script>
+                                                    // Initialize Stripe with your public key
+                                                    var stripe = Stripe('your-public-key');  // Replace with your actual Stripe public key
+                                                    var elements = stripe.elements();
+
+                                                    // Create card element with custom styles
+                                                    var card = elements.create('card', {
+                                                        style: {
+                                                            base: {
+                                                                fontSize: '16px',
+                                                                color: '#32325d',
+                                                                fontFamily: 'sans-serif',
+                                                                '::placeholder': {
+                                                                    color: '#a0aec0'
+                                                                }
+                                                            },
+                                                            invalid: {
+                                                                color: '#fa755a',
+                                                                iconColor: '#fa755a'
+                                                            }
+                                                        },
+                                                        hidePostalCode: true  // Hide postal code field for a simpler form
+                                                    });
+
+                                                    // Update payment method display based on selected option
+                                                    function updatePaymentMethodDisplay() {
+                                                        var paymentType = document.querySelector('input[name="paymentType"]:checked').value;
+                                                        if (paymentType === 'card') {
+                                                            document.getElementById('card-element-container').style.display = 'block';
+                                                            card.mount('#card-element');  // Mount the card element when Credit/Debit Card is selected
+                                                        } else {
+                                                            document.getElementById('card-element-container').style.display = 'none';
+                                                            card.unmount();  // Unmount the card element when another option is selected
+                                                        }
+                                                    }
+
+                                                    // Add event listeners to payment type options
+                                                    var paymentOptions = document.querySelectorAll('input[name="paymentType"]');
+                                                    paymentOptions.forEach(function(option) {
+                                                        option.addEventListener('change', updatePaymentMethodDisplay);
+                                                    });
+
+                                                    // Handle real-time validation errors from the card element
+                                                    card.on('change', function(event) {
+                                                        var displayError = document.getElementById('card-errors');
+                                                        if (event.error) {
+                                                            displayError.textContent = event.error.message;
+                                                        } else {
+                                                            displayError.textContent = '';
+                                                        }
+                                                    });
+
+                                                    // Handle form submission to create a payment method
+                                                    document.querySelector('form').addEventListener('submit', function(event) {
+                                                        event.preventDefault();
+
+                                                        var paymentType = document.querySelector('input[name="paymentType"]:checked').value;
+
+                                                        if (paymentType === 'card') {
+                                                            // If Credit/Debit Card is selected, create the PaymentMethod
+                                                            stripe.createPaymentMethod({
+                                                                type: 'card',
+                                                                card: card,
+                                                            }).then(function(result) {
+                                                                if (result.error) {
+                                                                    // Display error in payment processing
+                                                                    var errorElement = document.getElementById('card-errors');
+                                                                    errorElement.textContent = result.error.message;
+                                                                } else {
+                                                                    // Send the PaymentMethod ID to the server
+                                                                    handleStripePayment(result.paymentMethod.id);
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+
+                                                    // Function to send the PaymentMethod ID to the server
+                                                    function handleStripePayment(paymentMethodId) {
+                                                        fetch('/orders/processPayment', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json',
+                                                                'X-CSRF-Token': '<?= $this->request->getAttribute('csrfToken') ?>'  // Include CSRF token for security
+                                                            },
+                                                            body: JSON.stringify({
+                                                                paymentMethodId: paymentMethodId,
+                                                            })
+                                                        }).then(function(response) {
+                                                            return response.json();
+                                                        }).then(function(result) {
+                                                            if (result.error) {
+                                                                // Display error returned from the server
+                                                                var errorElement = document.getElementById('card-errors');
+                                                                errorElement.textContent = result.error;
+                                                            } else {
+                                                                // Payment succeeded, redirect to success page
+                                                                window.location.href = '/orders/success';
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
                                                 <!-- Pay by Bank -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
                                                     <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentTWB">
