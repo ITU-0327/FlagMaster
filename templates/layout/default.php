@@ -70,6 +70,18 @@ $decimalPlaces = 0;
     </script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const messages = document.querySelectorAll('.message');
+
+            messages.forEach((message) => {
+                setTimeout(() => {
+                    message.classList.add('hidden');
+                }, 7500);
+            });
+        });
+    </script>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Instead of adding event listeners to each button, use event delegation
             document.body.addEventListener('click', function(event) {
