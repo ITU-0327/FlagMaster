@@ -397,7 +397,7 @@ $isLoggedIn = !empty($user_id);
                         <div class="col-xl-6">
                             <div class="hero-content my-5 my-xl-0">
                                 <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                    <i class="ti ti-rocket text-secondary fs-6"></i>
+                                    <i class="ti ti-flag text-secondary fs-6"></i>
                                     <?= $this->ContentBlock->text('tagline'); ?>
                                 </h6>
                                 <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">

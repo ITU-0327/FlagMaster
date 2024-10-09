@@ -43,7 +43,7 @@ class PagesController extends AppController
     {
         parent::beforeFilter($event);
         // Allow the 'display' action to be accessed without login for the homepage
-        $this->Authentication->allowUnauthenticated(['display']);
+        $this->Authentication->allowUnauthenticated(['display', 'aboutUs', 'faq']);
         $this->Authorization->skipAuthorization();
     }
 
@@ -106,19 +106,5 @@ class PagesController extends AppController
     public function faq()
     {
         $this->viewBuilder()->setLayout('default');
-    }
-
-    /**
-     * Determine redirect location based on user role.
-     *
-     * @param string|null $role User role.
-     * @return array Redirect URL array.
-     */
-    protected function determineRedirectByRole(?string $role): array
-    {
-        return match ($role) {
-            'admin' => ['controller' => 'Users', 'action' => 'index'],
-            default => ['controller' => 'Products', 'action' => 'index'],
-        };
     }
 }
