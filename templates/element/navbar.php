@@ -388,8 +388,8 @@ $isLoggedIn = !empty($user_id);
                                         ]) .
                                         '</span>' .
                                         '<div class="w-100 ps-3">' .
-                                        '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
-                                        '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
+                                        '<h6 class="mb-1 fs-3 fw-semibold lh-base">' . ($userRole == 'admin' ? 'My Inbox' : 'My Enquiries') . '</h6>' .
+                                        '<span class="fs-2 d-block text-body-secondary">View Your Inquiries</span>' .
                                         '</div>',
                                         ['controller' => 'Enquiries', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                                         ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
@@ -403,7 +403,7 @@ $isLoggedIn = !empty($user_id);
                                         ]) .
                                         '</span>' .
                                         '<div class="w-100 ps-3">' .
-                                        '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
+                                        '<h6 class="mb-1 fs-3 fw-semibold lh-base">' . ($userRole == 'admin' ? 'Manage Orders' : 'My Orders') . '</h6>' .
                                         '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
                                         '</div>',
                                         ['controller' => 'Orders', 'action' => 'index', 'prefix' => null, 'plugin' => null],
