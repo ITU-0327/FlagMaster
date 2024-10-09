@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use Cake\Http\Response;
 use Cake\I18n\Number;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
 
 /**
  * Orders Controller
@@ -142,16 +144,19 @@ class OrdersController extends AppController
         $user = $this->request->getAttribute('identity');
         $userId = $user->id;
 
+        // Find the current order in the cart
         $order = $this->Orders->find()
             ->where(['Orders.user_id' => $userId, 'Orders.status' => 'incart'])
             ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
             ->first();
 
+        // Fetch user details including address
         $user = $this->Orders->Users->get(
             $userId,
             contain: ['Profiles', 'Profiles.Addresses']
         );
 
+        // Check if the order exists or if it is empty
         if (!$order || empty($order->orders_products)) {
             $this->Flash->error(__('Your cart is empty.'));
 
@@ -165,7 +170,7 @@ class OrdersController extends AppController
 
             $shippingCost = isset($orderData['deliveryOpt']) ? floatval($orderData['deliveryOpt']) : 0;
 
-            // Update quantities in the order
+            // Update product quantities in the order
             foreach ($order->orders_products as $orderProduct) {
                 $productId = $orderProduct->product_id;
                 if (isset($quantities[$productId])) {
@@ -173,6 +178,7 @@ class OrdersController extends AppController
                 }
             }
 
+            // Calculate subtotal
             $subTotal = 0;
             foreach ($order->orders_products as $orderProduct) {
                 $subTotal += $orderProduct->quantity * $orderProduct->unit_price;
@@ -181,18 +187,53 @@ class OrdersController extends AppController
             $order->shipping_cost = $shippingCost;
             $order->total_amount = $subTotal + $shippingCost;
 
-            // Update order status to 'pending' and set the order date
-            $order->status = 'pending';
-            $order->order_date = date('Y-m-d H:i:s');
+            // Check if the payment type is card (Stripe)
+            $paymentType = $orderData['paymentType'];
+            if ($paymentType === 'card') {
+                // Load Stripe keys from app_local.php
+                $secretKey = \Cake\Core\Configure::read('Stripe.secret_key');
+                \Stripe\Stripe::setApiKey($secretKey);
 
-            // Save the order along with associated order products
-            if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
-                $this->Flash->success(__('Order has been placed successfully.'));
+                try {
+                    // Create a payment intent with Stripe
+                    $paymentIntent = \Stripe\PaymentIntent::create([
+                        'amount' => intval($order->total_amount * 100), // Stripe expects amount in cents
+                        'currency' => 'aud',
+                        'payment_method' => $orderData['paymentMethodId'], // PaymentMethod ID sent from the frontend
+                        'confirmation_method' => 'manual',
+                        'confirm' => true, // This will immediately confirm the payment intent
+                    ]);
 
-                return $this->redirect(['action' => 'index']);
+                    // If successful, update order status to 'pending' and save the order
+                    $order->status = 'pending';
+                    $order->order_date = date('Y-m-d H:i:s');
+
+                    // Save the order and associated order products
+                    if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
+                        $this->Flash->success(__('Order placed successfully and payment completed.'));
+
+                        return $this->redirect(['action' => 'index']);
+                    }
+
+                    $this->Flash->error(__('Unable to save the order.'));
+
+                } catch (\Stripe\Exception\CardException $e) {
+                    // Handle any errors that occur when processing the payment
+                    $this->Flash->error(__('Payment failed: ') . $e->getMessage());
+                }
+            } else {
+                // Handle other payment types (e.g., bank transfer or cash on delivery)
+                $order->status = 'pending';
+                $order->order_date = date('Y-m-d H:i:s');
+
+                if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
+                    $this->Flash->success(__('Order placed successfully.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+
+                $this->Flash->error(__('Unable to save the order.'));
             }
-
-            $this->Flash->error(__('Unable to place the order.'));
         }
 
         $this->set(compact('order', 'user'));
