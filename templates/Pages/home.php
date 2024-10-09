@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 $this->disableAutoLayout();
+
+$userInfo = $this->User->getUserInfo();
+extract($userInfo);
+
+// Check if the user is logged in
+$isLoggedIn = !empty($user_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +23,28 @@ $this->disableAutoLayout();
     <?= $this->Html->css('/libs/owl.carousel/dist/assets/owl.carousel.min') ?>
     <?= $this->Html->css('/libs/aos/dist/aos') ?>
     <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css') ?>
+
+    <style>
+        .profile-dropdown .dropdown-menu {
+            min-width: 360px;
+            transform: translateX(-85%);
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .profile-dropdown .dropdown-menu.content-dd {
+            padding: 8px 0;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .profile-dropdown:hover .dropdown-menu {
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -257,14 +285,106 @@ $this->disableAutoLayout();
                                     ['class' => 'nav-link active', 'aria-current' => 'page']
                                 ); ?>
                             </li>
-                            <li class="nav-item ms-2">
-                                <?= $this->Html->link(
-                                    'Login',
-                                    ['controller' => 'Auth', 'action' => 'login'],
-                                    ['class' => 'btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2']
-                                ); ?>
-
-                            </li>
+                            <?php if ($isLoggedIn) : ?>
+                                <li class="nav-item dropdown hover-dd profile-dropdown ms-2">
+                                    <a class="nav-link pe-0 dropdown-toggle" href="javascript:void(0)" id="drop1" aria-expanded="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-profile-img">
+                                                <?= $this->Html->image($profilePicture, [
+                                                    'alt' => 'Profile Picture',
+                                                    'class' => 'rounded-circle',
+                                                    'width' => '35',
+                                                    'height' => '35',
+                                                ]) ?>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop1">
+                                        <div class="profile-dropdown position-relative" data-simplebar>
+                                            <div class="py-3 px-7 pb-0">
+                                                <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
+                                            </div>
+                                            <div class="d-flex align-items-center py-9 mx-7 border-bottom">
+                                                <?= $this->Html->image($profilePicture, [
+                                                    'alt' => 'Profile Picture',
+                                                    'class' => 'rounded-circle',
+                                                    'width' => '80',
+                                                    'height' => '80',
+                                                ]); ?>
+                                                <div class="ms-3">
+                                                    <h5 class="mb-1 fs-3"><?= $fullName ?></h5>
+                                                    <span class="mb-1 d-block">@<?= $username ?></span>
+                                                    <p class="mb-0 d-flex align-items-center gap-2">
+                                                        <i class="ti ti-mail fs-4"></i> <?= $email ?>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="message-body">
+                                                <?= $this->Html->link(
+                                                    '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                                    $this->Html->image('svgs/icon-account.svg', [
+                                                        'alt' => 'flagmaster-img',
+                                                        'width' => '24',
+                                                        'height' => '24',
+                                                    ]) .
+                                                    '</span>' .
+                                                    '<div class="w-100 ps-3">' .
+                                                    '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Profile</h6>' .
+                                                    '<span class="fs-2 d-block text-body-secondary">Account Settings</span>' .
+                                                    '</div>',
+                                                    ['controller' => 'Users', 'action' => 'edit', $user_id, 'prefix' => null, 'plugin' => null],
+                                                    ['class' => 'py-8 px-7 mt-8 d-flex align-items-center', 'escape' => false]
+                                                ); ?>
+                                                <?= $this->Html->link(
+                                                    '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                                    $this->Html->image('svgs/icon-inbox.svg', [
+                                                        'alt' => 'flagmaster-img',
+                                                        'width' => '24',
+                                                        'height' => '24',
+                                                    ]) .
+                                                    '</span>' .
+                                                    '<div class="w-100 ps-3">' .
+                                                    '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Inbox</h6>' .
+                                                    '<span class="fs-2 d-block text-body-secondary">Messages & Emails</span>' .
+                                                    '</div>',
+                                                    ['controller' => 'Enquiries', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                                    ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                                                ); ?>
+                                                <?= $this->Html->link(
+                                                    '<span class="d-flex align-items-center justify-content-center text-bg-light rounded-1 p-6">' .
+                                                    $this->Html->image('svgs/icon-dd-invoice.svg', [
+                                                        'alt' => 'flagmaster-img',
+                                                        'width' => '24',
+                                                        'height' => '24',
+                                                    ]) .
+                                                    '</span>' .
+                                                    '<div class="w-100 ps-3">' .
+                                                    '<h6 class="mb-1 fs-3 fw-semibold lh-base">My Order</h6>' .
+                                                    '<span class="fs-2 d-block text-body-secondary">Order History</span>' .
+                                                    '</div>',
+                                                    ['controller' => 'Orders', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                                                    ['class' => 'py-8 px-7 d-flex align-items-center', 'escape' => false]
+                                                ); ?>
+                                            </div>
+                                            <div class="d-grid py-4 px-7 pt-8">
+                                                <?= $this->Form->postLink(
+                                                    'Log Out',
+                                                    ['controller' => 'Auth', 'action' => 'logout', 'prefix' => null, 'plugin' => null],
+                                                    ['class' => 'btn btn-outline-primary']
+                                                ); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php else : ?>
+                                <li class="nav-item ms-2">
+                                    <?= $this->Html->link(
+                                        'Login',
+                                        ['controller' => 'Auth', 'action' => 'login'],
+                                        ['class' => 'btn btn-primary fs-3 rounded btn-hover-shadow px-3 py-2']
+                                    ); ?>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
@@ -277,7 +397,7 @@ $this->disableAutoLayout();
                         <div class="col-xl-6">
                             <div class="hero-content my-5 my-xl-0">
                                 <h6 class="d-flex align-items-center gap-2 fs-4 fw-semibold mb-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                                    <i class="ti ti-rocket text-secondary fs-6"></i>
+                                    <i class="ti ti-flag text-secondary fs-6"></i>
                                     <?= $this->ContentBlock->text('tagline'); ?>
                                 </h6>
                                 <h1 class="fw-bolder mb-7 fs-13" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
@@ -287,16 +407,29 @@ $this->disableAutoLayout();
                                     <?= $this->ContentBlock->text('sub-headline'); ?>
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                                    <?= $this->Html->link(
-                                        'Login',
-                                        ['controller' => 'Auth', 'action' => 'login'],
-                                        ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
-                                    ); ?>
-                                    <?= $this->Html->link(
-                                        'Register',
-                                        ['controller' => 'Auth', 'action' => 'register'],
-                                        ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
-                                    ); ?>
+                                    <?php if ($isLoggedIn) : ?>
+                                        <?= $this->Html->link(
+                                            'Shop Now',
+                                            ['controller' => 'Products', 'action' => 'index'],
+                                            ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                        ); ?>
+                                        <?= $this->Html->link(
+                                            'My Account',
+                                            ['controller' => 'Users', 'action' => 'view', $user_id],
+                                            ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                        ); ?>
+                                    <?php else : ?>
+                                        <?= $this->Html->link(
+                                            'Login',
+                                            ['controller' => 'Auth', 'action' => 'login'],
+                                            ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                        ); ?>
+                                        <?= $this->Html->link(
+                                            'Register',
+                                            ['controller' => 'Auth', 'action' => 'register'],
+                                            ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                        ); ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -391,81 +524,105 @@ $this->disableAutoLayout();
                             <div class="row justify-content-center">
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/National-Flag.png', [
+                                        <?= $this->ContentBlock->image('national-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">National</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Custom-Flag.png', [
+                                        <?= $this->ContentBlock->image('custom-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Custom</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Cape-Flag.png', [
+                                        <?= $this->ContentBlock->image('cape-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Cape</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Car-Flag.png', [
+                                        <?= $this->ContentBlock->image('car-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Car</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Garden-Flag.png', [
+                                        <?= $this->ContentBlock->image('garden-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Garden</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Hand-Flag.png', [
+                                        <?= $this->ContentBlock->image('hand-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Hanging-Flag.png', [
+                                        <?= $this->ContentBlock->image('hanging-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/String-Flag.png', [
+                                        <?= $this->ContentBlock->image('string-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">String</h6>
                                 </div>
@@ -1800,16 +1957,29 @@ $this->disableAutoLayout();
                                 Start your journey with Flag Master
                             </h2>
                             <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-                                <?= $this->Html->link(
-                                    'Login',
-                                    ['controller' => 'Auth', 'action' => 'login'],
-                                    ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
-                                ); ?>
-                                <?= $this->Html->link(
-                                    'Register',
-                                    ['controller' => 'Auth', 'action' => 'register'],
-                                    ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
-                                ); ?>
+                                <?php if ($isLoggedIn) : ?>
+                                    <?= $this->Html->link(
+                                        'Shop Now',
+                                        ['controller' => 'Products', 'action' => 'index'],
+                                        ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'My Account',
+                                        ['controller' => 'Users', 'action' => 'view', $user_id],
+                                        ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                    ); ?>
+                                <?php else : ?>
+                                    <?= $this->Html->link(
+                                        'Login',
+                                        ['controller' => 'Auth', 'action' => 'login'],
+                                        ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'Register',
+                                        ['controller' => 'Auth', 'action' => 'register'],
+                                        ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                    ); ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-5 col-xl-5">

@@ -97,7 +97,7 @@ class AppController extends Controller
         } else {
             // Default theme settings for guests or unauthenticated users
             $themeSettings = [
-                'Layout' => 'vertical',
+                'Layout' => 'horizontal',
                 'SidebarType' => 'full',
                 'BoxedLayout' => true,
                 'Direction' => 'ltr',
@@ -147,7 +147,7 @@ class AppController extends Controller
                 'cardBorder' => false,
             ],
             default => [
-                'Layout' => 'vertical',
+                'Layout' => 'horizontal',
                 'SidebarType' => 'full',
                 'BoxedLayout' => true,
                 'Direction' => 'ltr',
