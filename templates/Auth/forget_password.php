@@ -22,8 +22,9 @@ $this->assign('title', 'Forget Password');
                                 'class' => 'light-logo',
                             ]),
                             '/',
-                            ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
+                            ['class' => 'text-nowrap logo-img text-center d-block mb-4 w-100', 'escape' => false]
                         ) ?>
+                        <?= $this->Flash->render() ?>
                         <div class="mb-5 text-center">
                             <p class="mb-0 ">
                                 Please enter the email address associated with your account, and we will email you a link to reset your password.

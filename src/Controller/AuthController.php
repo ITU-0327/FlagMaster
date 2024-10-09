@@ -239,7 +239,7 @@ class AuthController extends AppController
         if ($this->request->is('post')) {
             $turnstileResponse = $this->request->getData('cf-turnstile-response');
             if (!$this->verifyTurnstile($turnstileResponse)) {
-                $this->Flash->error('Turnstile verification failed. Please try again.');
+                $this->Flash->error('Captcha verification failed. Please try again.');
 
                 return;
             }
