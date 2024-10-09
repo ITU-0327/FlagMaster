@@ -263,8 +263,8 @@ class ProductsController extends AppController
             $this->Flash->error(__('The product could not be saved. Please, try again.'));
         }
 
-        $categories = $this->Products->Categories->find('list', ['limit' => 200])->all();
-        $orders = $this->Products->Orders->find('list', ['limit' => 200])->all();
+        $categories = $this->Products->Categories->find('list', limit: 200)->all();
+        $orders = $this->Products->Orders->find('list', limit: 200)->all();
         $enumValues = $this->getEnumValues('products', 'status');
         $variationTypes = $this->getEnumValues('product_variations', 'variation_type');
 
