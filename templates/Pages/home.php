@@ -407,16 +407,29 @@ $isLoggedIn = !empty($user_id);
                                     <?= $this->ContentBlock->text('sub-headline'); ?>
                                 </p>
                                 <div class="d-sm-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                                    <?= $this->Html->link(
-                                        'Login',
-                                        ['controller' => 'Auth', 'action' => 'login'],
-                                        ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
-                                    ); ?>
-                                    <?= $this->Html->link(
-                                        'Register',
-                                        ['controller' => 'Auth', 'action' => 'register'],
-                                        ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
-                                    ); ?>
+                                    <?php if ($isLoggedIn) : ?>
+                                        <?= $this->Html->link(
+                                            'Shop Now',
+                                            ['controller' => 'Products', 'action' => 'index'],
+                                            ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                        ); ?>
+                                        <?= $this->Html->link(
+                                            'My Account',
+                                            ['controller' => 'Users', 'action' => 'view', $user_id],
+                                            ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                        ); ?>
+                                    <?php else : ?>
+                                        <?= $this->Html->link(
+                                            'Login',
+                                            ['controller' => 'Auth', 'action' => 'login'],
+                                            ['class' => 'btn btn-primary px-5 py-6 btn-hover-shadow d-block mb-3 mb-sm-0']
+                                        ); ?>
+                                        <?= $this->Html->link(
+                                            'Register',
+                                            ['controller' => 'Auth', 'action' => 'register'],
+                                            ['class' => 'btn btn-outline-primary d-block scroll-link px-7 py-6']
+                                        ); ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -515,7 +528,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">National</h6>
                                 </div>
@@ -525,7 +541,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Custom</h6>
                                 </div>
@@ -535,7 +554,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Cape</h6>
                                 </div>
@@ -545,7 +567,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Car</h6>
                                 </div>
@@ -555,7 +580,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Garden</h6>
                                 </div>
@@ -565,7 +593,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
                                 </div>
@@ -575,7 +606,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
                                 </div>
@@ -585,7 +619,10 @@ $isLoggedIn = !empty($user_id);
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
-                                        <a href="#" class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">View Product</a>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
                                     </div>
                                     <h6 class="mb-0 text-center fs-3">String</h6>
                                 </div>
@@ -1920,16 +1957,29 @@ $isLoggedIn = !empty($user_id);
                                 Start your journey with Flag Master
                             </h2>
                             <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start gap-3">
-                                <?= $this->Html->link(
-                                    'Login',
-                                    ['controller' => 'Auth', 'action' => 'login'],
-                                    ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
-                                ); ?>
-                                <?= $this->Html->link(
-                                    'Register',
-                                    ['controller' => 'Auth', 'action' => 'register'],
-                                    ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
-                                ); ?>
+                                <?php if ($isLoggedIn) : ?>
+                                    <?= $this->Html->link(
+                                        'Shop Now',
+                                        ['controller' => 'Products', 'action' => 'index'],
+                                        ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'My Account',
+                                        ['controller' => 'Users', 'action' => 'view', $user_id],
+                                        ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                    ); ?>
+                                <?php else : ?>
+                                    <?= $this->Html->link(
+                                        'Login',
+                                        ['controller' => 'Auth', 'action' => 'login'],
+                                        ['class' => 'btn bg-white text-primary fw-semibold d-block mb-3 mb-sm-0 btn-hover-shadow px-7 py-6']
+                                    ); ?>
+                                    <?= $this->Html->link(
+                                        'Register',
+                                        ['controller' => 'Auth', 'action' => 'register'],
+                                        ['class' => 'btn border-white text-white fw-semibold btn-hover-white d-block px-7 py-6']
+                                    ); ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="col-lg-5 col-xl-5">
