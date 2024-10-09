@@ -95,15 +95,6 @@ extract($userInfo);
                     <span class="hide-menu">Apps</span>
                 </li>
 
-                <!-- Stock Management -->
-                <li class="sidebar-item">
-                    <?= $this->Html->link(
-                        '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
-                        ['controller' => 'Products', 'action' => 'list', 'prefix' => null, 'plugin' => null],
-                        ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
-                    ); ?>
-                </li>
-
                 <!-- Content Management -->
                 <li class="sidebar-item">
                     <?= $this->Html->link(
