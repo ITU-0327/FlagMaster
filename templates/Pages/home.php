@@ -470,168 +470,71 @@ $isLoggedIn = !empty($user_id);
                     </div>
                 </div>
             </section>
-            <section class="text-bg-light production pt-5 pb-5 pb-md-5 mb-5" id="production-template">
+            <section class="features-section py-5">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                            <div class="d-sm-flex align-items-center text-center gap-2 justify-content-center mb-7">
-                                <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-sm-start mb-2 mb-sm-0">
-                                    <li class="">
-                                        <a class="d-block" href="javascript:void(0)">
-                                            <?= $this->Html->image('profile/user-1.jpg', [
-                                                'alt' => 'flagmaster-img',
-                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
-                                                'width' => '32',
-                                                'height' => '32',
-                                            ]) ?>
-                                        </a>
-                                    </li>
-                                    <li class="ms-n2">
-                                        <a class="d-block" href="javascript:void(0)">
-                                            <?= $this->Html->image('profile/user-2.jpg', [
-                                                'alt' => 'flagmaster-img',
-                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
-                                                'width' => '32',
-                                                'height' => '32',
-                                            ]) ?>
-                                        </a>
-                                    </li>
-                                    <li class="ms-n2">
-                                        <a class="d-block" href="javascript:void(0)">
-                                            <?= $this->Html->image('profile/user-3.jpg', [
-                                                'alt' => 'flagmaster-img',
-                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
-                                                'width' => '32',
-                                                'height' => '32',
-                                            ]) ?>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <p class="mb-0 fw-semibold fs-4 text-dark">
-                                    <span>52,589+</span> users buying from us
-                                </p>
+                        <div class="col-lg-6">
+                            <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                                <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
+                                    <?= $this->ContentBlock->text('key-benefits-section-title') ?>
+                                </h2>
                             </div>
-                            <h2 class="text-center mb-0 fs-9 fw-bolder">
-                                <?= $this->ContentBlock->text('styles-section-title'); ?>
-                            </h2>
                         </div>
                     </div>
-                    <div class="domo-contect position-relative">
-                        <div class="demos-view mt-4">
-                            <div class="badge text-bg-primary text-center mb-7 fs-4 py-6 px-4 d-table mx-auto rounded-pill">
-                                Styles
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-1') ?>
                             </div>
-                            <div class="row justify-content-center">
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('national-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">National</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('custom-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Custom</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('cape-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Cape</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('car-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Car</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('garden-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Garden</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('hand-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('hanging-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
-                                </div>
-                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
-                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->ContentBlock->image('string-flag-image', [
-                                            'alt' => 'flagmaster-img',
-                                            'class' => 'img-fluid',
-                                        ]) ?>
-                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
-                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
-                                            View Product
-                                        </a>
-                                    </div>
-                                    <h6 class="mb-0 text-center fs-3">String</h6>
-                                </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-2') ?>
                             </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-3') ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-4') ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-5') ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-6') ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-7') ?>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
+                            <div class="text-center mb-5">
+                                <?= $this->ContentBlock->html('key-benefits-8') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="1600" data-aos-duration="1000">
+                            <?= $this->Html->link(
+                                'Learn More',
+                                ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null],
+                                ['class' => 'btn btn-primary btn-lg mt-4']
+                            ); ?>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="review-section pt-5">
+            <section class="review-section mb-5">
                 <div class="container pt-md-5">
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
@@ -1864,56 +1767,162 @@ $isLoggedIn = !empty($user_id);
                     </div>
                 </div>
             </section>
-            <section class="features-section py-5">
+            <section class="text-bg-light production pt-5 pb-5 pb-md-5 mb-5" id="production-template">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="text-center" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                                <h2 class="fs-9 text-center mb-4 mb-lg-5 fw-bolder">
-                                    <?= $this->ContentBlock->text('key-benefits-section-title') ?>
-                                </h2>
+                        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                            <div class="d-sm-flex align-items-center text-center gap-2 justify-content-center mb-7">
+                                <ul class="list-unstyled d-flex align-items-center justify-content-center justify-content-sm-start mb-2 mb-sm-0">
+                                    <li class="">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-1.jpg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                    <li class="ms-n2">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-2.jpg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                    <li class="ms-n2">
+                                        <a class="d-block" href="javascript:void(0)">
+                                            <?= $this->Html->image('profile/user-3.jpg', [
+                                                'alt' => 'flagmaster-img',
+                                                'class' => 'img-fluid border border-2 rounded-circle border-white',
+                                                'width' => '32',
+                                                'height' => '32',
+                                            ]) ?>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p class="mb-0 fw-semibold fs-4 text-dark">
+                                    <span>52,589+</span> users buying from us
+                                </p>
                             </div>
+                            <h2 class="text-center mb-0 fs-9 fw-bolder">
+                                <?= $this->ContentBlock->text('styles-section-title'); ?>
+                            </h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-1') ?>
+                    <div class="domo-contect position-relative">
+                        <div class="demos-view mt-4">
+                            <div class="badge text-bg-primary text-center mb-7 fs-4 py-6 px-4 d-table mx-auto rounded-pill">
+                                Styles
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-2') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-3') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-4') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-5') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-6') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-7') ?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
-                            <div class="text-center mb-5">
-                                <?= $this->ContentBlock->html('key-benefits-8') ?>
+                            <div class="row justify-content-center">
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('national-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">National</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('custom-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 15]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Custom</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('cape-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 16]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Cape</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('car-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 17]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Car</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('garden-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 18]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Garden</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('hand-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 19]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Hand-Flag</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('hanging-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 20]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">Hanging-Flag</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
+                                    <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
+                                        <?= $this->ContentBlock->image('string-flag-image', [
+                                            'alt' => 'flagmaster-img',
+                                            'class' => 'img-fluid',
+                                        ]) ?>
+                                        <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 21]]); ?>"
+                                           class="btn btn-primary lp-demos-btn fs-3 px-7 py-1 rounded position-absolute top-50 start-50 translate-middle">
+                                            View Product
+                                        </a>
+                                    </div>
+                                    <h6 class="mb-0 text-center fs-3">String</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
