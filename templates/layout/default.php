@@ -18,6 +18,7 @@ $decimalPlaces = 0;
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
+    <?= $this->html->css('flash') ?>
 </head>
 
 <body>
