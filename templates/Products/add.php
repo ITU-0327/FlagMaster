@@ -204,7 +204,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-7">Product Details</h4>
                     <div class="mb-3">
-                        <?= $this->Form->label('categories._ids', 'Categories', ['class' => 'form-label']) ?>
+                        <?= $this->Form->label('categories._ids', 'Categories <span class="text-danger">*</span>', ['class' => 'form-label', 'escape' => false]) ?>
                         <?= $this->Form->select('categories._ids', $categories, ['multiple' => true, 'class' => 'select2 form-control']) ?>
                         <p class="fs-2 mb-0">
                             Add product to a category.

@@ -54,7 +54,7 @@ extract($userInfo);
                 <!-- Categories -->
                 <li class="sidebar-item">
                     <?= $this->Html->link(
-                        '<span><i class="ti ti-category"></i></span><span class="hide-menu">Category</span>',
+                        '<span><i class="ti ti-category"></i></span><span class="hide-menu">Categories</span>',
                         ['controller' => 'Categories', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
@@ -72,8 +72,8 @@ extract($userInfo);
                 <!-- Customers -->
                 <li class="sidebar-item">
                     <?= $this->Html->link(
-                        '<span><i class="ti ti-user"></i></span><span class="hide-menu">Customers</span>',
-                        ['controller' => 'Users', 'action' => 'index', 'prefix' => null, 'plugin' => null], // TODO: Change to Customers
+                        '<span><i class="ti ti-user"></i></span><span class="hide-menu">Users</span>',
+                        ['controller' => 'Users', 'action' => 'index', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>
@@ -99,7 +99,7 @@ extract($userInfo);
                 <li class="sidebar-item">
                     <?= $this->Html->link(
                         '<span><i class="ti ti-box-seam"></i></span><span class="hide-menu">Stock Management</span>',
-                        ['controller' => 'Products', 'action' => 'list', 'prefix' => null, 'plugin' => null], // TODO: Change to Stock Management
+                        ['controller' => 'Products', 'action' => 'list', 'prefix' => null, 'plugin' => null],
                         ['class' => 'sidebar-link', 'escape' => false, 'aria-expanded' => 'false']
                     ); ?>
                 </li>

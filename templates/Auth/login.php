@@ -20,8 +20,9 @@
                                 'class' => 'light-logo',
                             ]),
                             '/',
-                            ['class' => 'text-nowrap logo-img text-center d-block mb-5 w-100', 'escape' => false]
+                            ['class' => 'text-nowrap logo-img text-center d-block mb-4 w-100', 'escape' => false]
                         ) ?>
+                        <?= $this->Flash->render() ?>
                         <div class="row">
                             <div class="col-12 mb-2 mb-sm-0">
                                 <?= $this->Html->link(

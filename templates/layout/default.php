@@ -18,6 +18,7 @@ $decimalPlaces = 0;
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     <?= $this->element('title-meta', ['title' => $this->fetch('title')]) ?>
+    <?= $this->html->css('flash') ?>
 </head>
 
 <body>
@@ -66,6 +67,18 @@ $decimalPlaces = 0;
         function handleColorTheme(e) {
             document.documentElement.setAttribute("data-color-theme", e);
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const messages = document.querySelectorAll('.message');
+
+            messages.forEach((message) => {
+                setTimeout(() => {
+                    message.classList.add('hidden');
+                }, 7500);
+            });
+        });
     </script>
 
     <script>
