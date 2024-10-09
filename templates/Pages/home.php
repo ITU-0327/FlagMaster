@@ -524,7 +524,7 @@ $isLoggedIn = !empty($user_id);
                             <div class="row justify-content-center">
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/National-Flag.png', [
+                                        <?= $this->ContentBlock->image('national-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -537,7 +537,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Custom-Flag.png', [
+                                        <?= $this->ContentBlock->image('custom-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -550,7 +550,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Cape-Flag.png', [
+                                        <?= $this->ContentBlock->image('cape-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -563,7 +563,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Car-Flag.png', [
+                                        <?= $this->ContentBlock->image('car-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -576,7 +576,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Garden-Flag.png', [
+                                        <?= $this->ContentBlock->image('garden-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -589,7 +589,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Hand-Flag.png', [
+                                        <?= $this->ContentBlock->image('hand-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -602,7 +602,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/Hanging-Flag.png', [
+                                        <?= $this->ContentBlock->image('hanging-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
@@ -615,7 +615,7 @@ $isLoggedIn = !empty($user_id);
                                 </div>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-7">
                                     <div class="border d-block rounded-1 mb-2 position-relative lp-demos-box overflow-hidden">
-                                        <?= $this->Html->image('apps/String-Flag.png', [
+                                        <?= $this->ContentBlock->image('string-flag-image', [
                                             'alt' => 'flagmaster-img',
                                             'class' => 'img-fluid',
                                         ]) ?>
