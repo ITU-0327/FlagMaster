@@ -13,10 +13,13 @@ declare(strict_types=1);
  * @link      https://cakephp.org CakePHP(tm) Project
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
+ * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -36,6 +39,7 @@ class AppController extends Controller
      * e.g. `$this->loadComponent('FormProtection');`
      *
      * @return void
+     * @throws \Exception
      */
     public function initialize(): void
     {
@@ -48,5 +52,109 @@ class AppController extends Controller
          * see https://book.cakephp.org/5/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+
+        $this->loadComponent('Authentication.Authentication');
+        $this->loadComponent('Authorization.Authorization');
+    }
+
+    /**
+     * Before render callback.
+     *
+     * @param \Cake\Event\EventInterface $event The beforeRender event.
+     * @return \Cake\Http\ResponseInterface|null|void
+     */
+    public function beforeRender(EventInterface $event)
+    {
+        parent::beforeRender($event);
+
+        // Retrieve the currently logged-in user
+        $identity = $this->request->getAttribute('identity');
+
+        if ($identity) {
+            $role = $identity->get('role');
+            $userId = $identity->get('id');
+            $ordersTable = $this->fetchTable('Orders');
+            $order = $ordersTable->find()
+                ->where(['user_id' => $userId, 'status' => 'incart'])
+                ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
+                ->first();
+
+            $cartItems = $order ? $order->orders_products : [];
+
+            $cartItemCount = 0;
+            if ($order) {
+                foreach ($order->orders_products as $item) {
+                    $cartItemCount += $item->quantity;
+                }
+            }
+
+            // Determine theme settings based on role
+            $themeSettings = $this->getThemeSettings($role);
+
+            // Pass the user role to the view
+            $this->set('userRole', $role);
+            $this->set('cartItemCount', $cartItemCount);
+        } else {
+            // Default theme settings for guests or unauthenticated users
+            $themeSettings = [
+                'Layout' => 'horizontal',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ];
+
+            $cartItems = [];
+
+            // Pass a default role or null for guests
+            $this->set('userRole', null);
+            $this->set('cartItemCount', 0);
+        }
+
+        $this->set(compact('cartItems'));
+
+        // Pass theme settings to the view
+        $this->set('themeSettings', $themeSettings);
+    }
+
+    /**
+     * Define theme settings based on user role.
+     *
+     * @param string $role User role (e.g., 'admin', 'customer').
+     * @return array Theme settings.
+     */
+    protected function getThemeSettings(string $role): array
+    {
+        return match ($role) {
+            'admin' => [
+                'Layout' => 'vertical',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+            'customer' => [
+                'Layout' => 'horizontal',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+            default => [
+                'Layout' => 'horizontal',
+                'SidebarType' => 'full',
+                'BoxedLayout' => true,
+                'Direction' => 'ltr',
+                'Theme' => 'light',
+                'ColorTheme' => 'Blue_Theme',
+                'cardBorder' => false,
+            ],
+        };
     }
 }

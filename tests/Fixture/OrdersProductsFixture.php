@@ -25,8 +25,8 @@ class OrdersProductsFixture extends TestFixture
                 'quantity' => 1,
                 'unit_price' => 1.5,
                 'total_price' => 1.5,
-                'created_at' => 1725008342,
-                'updated_at' => 1725008342,
+                'created_at' => 1727880895,
+                'updated_at' => 1727880895,
             ],
         ];
         parent::init();

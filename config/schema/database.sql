@@ -34,8 +34,10 @@ CREATE TABLE `profiles` (
     `first_name` VARCHAR(50),
     `last_name` VARCHAR(50),
     `phone` VARCHAR(20),
+    `profile_picture` varchar(255),
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE KEY `unique_user_id` (`user_id`),
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
     FOREIGN KEY (`address_id`) REFERENCES `addresses`(`id`) ON DELETE SET NULL
 );
@@ -59,7 +61,7 @@ CREATE TABLE `products` (
     `discount_value` DECIMAL(10, 2) DEFAULT NULL,
     `stock_quantity` INT NOT NULL,
     `thumbnail_url` VARCHAR(255),
-    `status` ENUM('published', 'draft', 'scheduled', 'inactive') DEFAULT 'draft',
+    `status` ENUM('published', 'draft', 'inactive') DEFAULT 'draft',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -102,7 +104,8 @@ CREATE TABLE `orders` (
     `user_id` INT,
     `order_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `total_amount` DECIMAL(10, 2) NOT NULL,
-    `status` ENUM('pending', 'shipped', 'delivered', 'cancelled') DEFAULT 'pending',
+    `shipping_cost` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+    `status` ENUM('pending', 'shipped', 'delivered', 'cancelled', 'incart') DEFAULT 'pending',
     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE

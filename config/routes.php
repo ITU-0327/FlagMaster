@@ -55,9 +55,15 @@ return function (RouteBuilder $routes): void {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
-        $builder->connect('/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
-        $builder->connect('/pages/about-us', ['controller' => 'Pages', 'action' => 'aboutUs']);
+        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home', 'prefix' => null, 'plugin' => null]);
+
+        $builder->connect('/faq', ['controller' => 'Pages', 'action' => 'faq', 'prefix' => null, 'plugin' => null]);
+        $builder->connect('/about-us', ['controller' => 'Pages', 'action' => 'aboutUs', 'prefix' => null, 'plugin' => null]);
+        $builder->connect('/contact-us', ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null]);
+
+        $builder->connect('/auth/google', ['controller' => 'Auth', 'action' => 'googleLogin', 'prefix' => null, 'plugin' => null]);
+        $builder->connect('/auth/google-callback', ['controller' => 'Auth', 'action' => 'googleCallback', 'prefix' => null, 'plugin' => null]);
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
@@ -78,6 +84,8 @@ return function (RouteBuilder $routes): void {
          */
         $builder->fallbacks();
     });
+
+    $routes->connect('/orders/checkout/*', ['controller' => 'Orders', 'action' => 'checkout']);
 
     /*
      * If you need a different set of middleware or none at all,

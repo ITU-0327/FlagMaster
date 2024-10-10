@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Enquiry $enquiry
- * @var \Cake\Collection\CollectionInterface|string[] $users
+ * @var \Cake\Collection\CollectionInterface|array<string> $users
  */
 ?>
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
@@ -13,7 +13,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Contact Us</li>
                     </ol>
@@ -35,17 +35,6 @@
     <div class="card-body">
         <div class="d-flex align-items-center">
             <h4 class="card-title mb-0">Enquiry Form</h4>
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
-                    </div>
-                </div>
-            </div>
         </div>
         <p class="card-subtitle mb-3">Please fill out the form below to submit an enquiry.</p>
 
@@ -57,7 +46,7 @@
                         'label' => false,
                         'class' => 'form-control',
                         'id' => 'subject',
-                        'placeholder' => 'Subject Here'
+                        'placeholder' => 'Subject Here',
                     ]) ?>
                 </div>
             </div>
@@ -71,7 +60,7 @@
                         'class' => 'form-control',
                         'id' => 'message',
                         'rows' => '4',
-                        'placeholder' => 'Your message here'
+                        'placeholder' => 'Your message here',
                     ]) ?>
                 </div>
             </div>
@@ -81,7 +70,7 @@
     <div class="p-3 border-top">
         <div class="text-center">
             <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
-            <button type="reset" class="btn bg-danger-subtle text-danger ms-6 px-4">Cancel</button>
+            <?= $this->Html->link(__('Cancel '), ['action' => 'index'], ['class' => 'btn bg-danger-subtle text-danger ms-6 px-4']) ?>
         </div>
     </div>
     <?= $this->Form->end() ?>

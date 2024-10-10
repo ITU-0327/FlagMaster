@@ -2,15 +2,17 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Product $product
- * @var \Cake\Collection\CollectionInterface|string[] $categories
+ * @var \Cake\Collection\CollectionInterface|array<string> $categories
+ * @var array<string> $variationTypes
+ * @var array<string> $enumValues
  */
 ?>
 
 <?php $this->start('css'); ?>
 
 <?= $this->Html->css(['/libs/quill/dist/quill.snow']) ?>
-<?= $this->Html->css(['/libs/dropzone/dist/min/dropzone.min']) ?>
 <?= $this->Html->css(['/libs/select2/dist/css/select2.min']) ?>
+<?= $this->Html->css('dropzone') ?>
 
 <?php $this->end(); ?>
 
@@ -23,7 +25,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link('Home', '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">Add Product</li>
                     </ol>
@@ -41,7 +43,7 @@
     </div>
 </div>
 
-<?= $this->Form->create($product, ['class' => 'form-horizontal']) ?>
+<?= $this->Form->create($product, ['class' => 'form-horizontal', 'type' => 'file']) ?>
 <div class="row">
     <div class="col-lg-8 ">
         <div class="card">
@@ -60,56 +62,38 @@
                     <p class="fs-2">A product name is required and recommended to be unique.</p>
                 </div>
                 <div>
-                    <?= $this->Form->label('description', 'Description', ['class' => 'form-label']) ?>
-                    <div id="editor"></div>
-                    <?= $this->Form->hidden('description', ['id' => 'descriptionHidden']) ?>
+                    <?= $this->Form->label('description', 'Description <span class="text-danger">*</span>', [
+                        'escape' => false,
+                        'class' => 'form-label',
+                    ]) ?>
+                    <div id="quill-editor"></div>
+                    <?= $this->Form->textarea('description', [
+                        'id' => 'descriptionTextarea',
+                        'style' => 'display:none;',
+                    ]) ?>
                     <p class="fs-2 mb-0">Set a description to the product for better visibility.</p>
                 </div>
             </div>
         </div>
-<!--        <div class="card">-->
-<!--            <div class="card-body">-->
-<!--                <h4 class="card-title mb-7">Media</h4>-->
-<!--            TODO: May need to adjust this section if the dropzone requires specific form handling -->
-<!--                <div class="dropzone dz-clickable mb-2">-->
-<!--                    <div class="dz-default dz-message">-->
-<!--                        <button class="dz-button" type="button">Drop files here to upload</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-7">Variation</h4>
-
-                <label class="form-label">Add Product Variations</label>
-                <div id="variation_fields" class="mb-3">
-                    <!-- Existing variation fields will be placed here -->
-                    <div class="row mb-3 variation-row">
-                        <div class="col-md-4">
-                            <?php /** @var string[] $variationTypes */ ?>
-                            <?= $this->Form->select('product_variations[0][variation_type]',
-                                array_combine(array_map('strtolower', $variationTypes), $variationTypes),
-                                ['class' => 'select2 form-control', 'data-placeholder' => 'Select Variation Type']) ?>
+                <h4 class="card-title">Product Images</h4>
+                <div class="custom-dropzone" id="product-images-dropzone">
+                    <?= $this->Form->file('product_images[]', [
+                        'accept' => 'image/*',
+                        'multiple' => true,
+                        'label' => false,
+                        'class' => 'custom-file-input',
+                        'id' => 'productImages',
+                    ]) ?>
+                    <label for="productImages" class="dropzone">
+                        <div class="dz-preview" id="product-images-preview">
+                            <div class="dz-message">
+                                <span>Drag and drop product images here or click to upload.</span>
+                            </div>
                         </div>
-                        <div class="col-md-4 mt-3 mt-md-0">
-                            <?= $this->Form->text('product_variations[0][variation_value]', [
-                                'class' => 'form-control',
-                                'placeholder' => 'Variation Value'
-                            ]) ?>
-                        </div>
-                        <div class="col-md-2 mt-3 mt-md-0">
-                            <button class="btn bg-danger-subtle text-danger remove-variation" type="button">
-                                <i class="ti ti-x fs-5 d-flex"></i>
-                            </button>
-                        </div>
-                    </div>
+                    </label>
                 </div>
-                <button type="button" id="add_variation" class="btn bg-primary-subtle text-primary " >
-                    <span class="fs-4 me-1">+</span>
-                    Add another variation
-                </button>
             </div>
         </div>
 
@@ -126,15 +110,15 @@
                     <?= $this->Form->label('discount_type', 'Discount Type', ['class' => 'form-label']) ?>
                     <nav>
                         <div class="nav nav-tabs justify-content-between align-items-center gap-9" id="nav-tab" role="tablist">
-                            <label for="radio1" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-none-tab" data-bs-toggle="tab" data-bs-target="#nav-none" aria-controls="nav-none">
+                            <label for="radio1" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-none-tab" data-bs-toggle="tab" data-bs-target="#nav-none" aria-controls="nav-none">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio1" value="none" checked>
                                 <span class="fs-4 text-dark">No Discount</span>
                             </label>
-                            <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-percentage-tab"  data-bs-toggle="tab" data-bs-target="#nav-percentage" aria-controls="nav-percentage">
+                            <label for="radio2" class="form-check-label p-3 form-check border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-percentage-tab"  data-bs-toggle="tab" data-bs-target="#nav-percentage" aria-controls="nav-percentage">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio2" value="percentage">
                                 <span class="fs-4 text-dark">Percentage %</span>
                             </label>
-                            <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="customControlValidation2" id="nav-fixed-tab"  data-bs-toggle="tab" data-bs-target="#nav-fixed" aria-controls="nav-fixed">
+                            <label for="radio3" class="form-check-label form-check p-3 border gap-2 rounded-2 d-flex flex-fill justify-content-center cursor-pointer" id="nav-fixed-tab"  data-bs-toggle="tab" data-bs-target="#nav-fixed" aria-controls="nav-fixed">
                                 <input type="radio" class="form-check-input" name="discount_type" id="radio3" value="fixed">
                                 <span class="fs-4 text-dark">Fixed Price</span>
                             </label>
@@ -150,7 +134,7 @@
                                     'id' => 'discountPercentage',
                                     'min' => 0,
                                     'max' => 100,
-                                    'step' => 10
+                                    'step' => 10,
                                 ]) ?>
                                 <p class="fs-2">Set a percentage discount to be applied on this product.</p>
                             </div>
@@ -161,7 +145,7 @@
                                 <?= $this->Form->text('discount_value', [
                                     'class' => 'form-control',
                                     'placeholder' => 'Discounted Price',
-                                    'id' => 'discountValue'
+                                    'id' => 'discountValue',
                                 ]) ?>
                                 <p class="fs-2">Set the discounted product price. The product will be reduced at the determined fixed price.</p>
                             </div>
@@ -177,20 +161,29 @@
     </div>
     <div class="col-lg-4">
         <div class="offcanvas-md offcanvas-end overflow-auto" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <h4 class="card-title mb-7">Thumbnail</h4>-->
-<!--                TODO: May need to adjust this section if the dropzone requires specific form handling -->
-<!--                    <div class="dropzone dz-clickable mb-2">-->
-<!--                        <div class="dz-default dz-message">-->
-<!--                            <button class="dz-button" type="button">Drop Thumbnail here to upload</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <p class="fs-2 text-center mb-0">-->
-<!--                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-7">Thumbnail</h4>
+                    <div class="custom-dropzone mb-2" id="thumbnail-dropzone">
+                        <?= $this->Form->file('thumbnail_url', [
+                            'accept' => 'image/*',
+                            'label' => false,
+                            'class' => 'custom-file-input',
+                            'id' => 'thumbnailFile',
+                        ]) ?>
+                        <label for="thumbnailFile" class="dropzone">
+                            <div class="dz-preview" id="thumbnail-preview">
+                                <div class="dz-message">
+                                    <span>Drag and drop product thumbnail here or click to upload.</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <p class="fs-2 text-center mb-0">
+                        Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted.
+                    </p>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-7">
@@ -198,10 +191,11 @@
                         <div class="p-2 h-100 bg-success rounded-circle"></div>
                     </div>
                     <div>
-                        <?php /** @var string[] $enumValues */ ?>
-                        <?= $this->Form->select('status',
+                        <?= $this->Form->select(
+                            'status',
                             array_combine(array_map('strtolower', $enumValues), $enumValues),
-                            ['class' => 'form-select mr-sm-2 mb-2']) ?>
+                            ['class' => 'form-select mr-sm-2 mb-2']
+                        ) ?>
                         <p class="fs-2 mb-0">Set the product status.</p>
                     </div>
                 </div>
@@ -210,7 +204,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-7">Product Details</h4>
                     <div class="mb-3">
-                        <?= $this->Form->label('categories._ids', 'Categories', ['class' => 'form-label']) ?>
+                        <?= $this->Form->label('categories._ids', 'Categories <span class="text-danger">*</span>', ['class' => 'form-label', 'escape' => false]) ?>
                         <?= $this->Form->select('categories._ids', $categories, ['multiple' => true, 'class' => 'select2 form-control']) ?>
                         <p class="fs-2 mb-0">
                             Add product to a category.
@@ -222,10 +216,6 @@
                         ['controller' => 'Categories', 'action' => 'add'],
                         ['class' => 'btn bg-primary-subtle text-primary', 'escape' => false]
                     ) ?>
-<!--                    <button type="button" class="btn bg-primary-subtle text-primary ">-->
-<!--                        <span class="fs-4 me-1">+</span>-->
-<!--                        Create New Category-->
-<!--                    </button>-->
                 </div>
             </div>
             <div class="card">
@@ -246,133 +236,12 @@
 
 <?= $this->Html->script(['https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js']) ?>
 <?= $this->Html->script(['/libs/quill/dist/quill.min']) ?>
-<?= $this->Html->script(['forms/quill-init']) ?>
-<?= $this->Html->script(['/libs/dropzone/dist/min/dropzone.min']) ?>
 <?= $this->Html->script(['/libs/select2/dist/js/select2.full.min']) ?>
 <?= $this->Html->script(['/libs/select2/dist/js/select2.min']) ?>
 <?= $this->Html->script(['forms/select2.init']) ?>
 <?= $this->Html->script(['/libs/jquery.repeater/jquery.repeater.min']) ?>
 <?= $this->Html->script(['/libs/jquery-validation/dist/jquery.validate.min']) ?>
 <?= $this->Html->script(['forms/repeater-init']) ?>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const basePriceInput = document.getElementById('basePrice');
-        const discountPercentageInput = document.getElementById('discountPercentage');
-        const discountValueInput = document.getElementById('discountValue');
-        const discountTypeRadios = document.querySelectorAll('input[name="discount_type"]');
-
-        function calculateDiscountedPrice() {
-            const basePrice = parseFloat(basePriceInput.value) || 0;
-            const discountPercentage = parseFloat(discountPercentageInput.value) || 0;
-            const discountedPrice = basePrice - (basePrice * (discountPercentage / 100));
-            discountValueInput.value = discountedPrice.toFixed(2);
-        }
-
-        function handleDiscountTypeChange() {
-            const selectedDiscountType = document.querySelector('input[name="discount_type"]:checked').value;
-
-            if (selectedDiscountType === 'none') {
-                // If no discount is selected, clear the discount value or set it to the base price
-                discountValueInput.value = '';
-            } else if (selectedDiscountType === 'percentage') {
-                // Calculate discount based on percentage
-                calculateDiscountedPrice();
-            }
-        }
-
-        // Event listener for when the discount type changes
-        discountTypeRadios.forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                handleDiscountTypeChange();
-            });
-        });
-
-        // Also calculate discount when the percentage or base price changes
-        discountPercentageInput.addEventListener('input', function () {
-            if (document.querySelector('input[name="discount_type"]:checked').value === 'percentage') {
-                calculateDiscountedPrice();
-            }
-        });
-
-        basePriceInput.addEventListener('input', function () {
-            handleDiscountTypeChange();
-        });
-
-        // Initialize the discount value on page load
-        handleDiscountTypeChange();
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quill = window.quill;
-
-        const descriptionHidden = document.getElementById('descriptionHidden');
-        const form = document.querySelector('form');
-
-        // On form submit, copy the editor content to the hidden field
-        form.onsubmit = function() {
-             // Get the HTML content from Quill
-            descriptionHidden.value = quill.root.innerHTML; // Assign the content to the hidden field
-        };
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let variationIndex = 1;
-
-        function initializeSelect2() {
-            $('.select2').select2({
-                width: 'resolve'
-            });
-        }
-
-        initializeSelect2();
-
-        // Function to add a new variation row
-        $('#add_variation').on('click', function () {
-            const newVariationRow = $(`
-            <div class="row mb-3 variation-row" style="display:none;">
-                <div class="col-md-4">
-                    <select name="product_variations[${variationIndex}][variation_type]" class="select2 form-control" data-placeholder="Select Variation Type">
-                        <?php foreach ($variationTypes as $type): ?>
-                            <option value="<?= strtolower($type) ?>"><?= $type ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="col-md-4 mt-3 mt-md-0">
-                    <input type="text" name="product_variations[${variationIndex}][variation_value]" class="form-control" placeholder="Variation Value">
-                </div>
-                <div class="col-md-2 mt-3 mt-md-0">
-                    <button class="btn bg-danger-subtle text-danger remove-variation" type="button">
-                        <i class="ti ti-x fs-5 d-flex"></i>
-                    </button>
-                </div>
-            </div>
-        `);
-
-            $('#variation_fields').append(newVariationRow);
-            initializeSelect2();
-
-            newVariationRow.slideDown();
-
-            variationIndex++;
-        });
-
-        // Function to remove a variation row with confirmation
-        $(document).on('click', '.remove-variation', function () {
-            const $row = $(this).closest('.variation-row');
-
-            if (confirm("Are you sure you want to remove this item?")) {
-                $row.slideUp(function() {
-                    $row.remove();
-                });
-            }
-        });
-    });
-
-</script>
+<?= $this->Html->script('apps/addProducts') ?>
 
 <?php $this->end(); ?>

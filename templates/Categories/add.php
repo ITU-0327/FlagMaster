@@ -10,14 +10,14 @@
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
             <div class="col-9">
-                <h4 class="fw-semibold mb-8">Category</h4>
+                <h4 class="fw-semibold mb-8"><?= __('Category') ?></h4>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a class="text-muted text-decoration-none" href="/">Home</a>
+                            <?= $this->Html->link(__('Home'), '/', ['class' => 'text-muted text-decoration-none']) ?>
                         </li>
-                        <li class="breadcrumb-item" aria-current="page">Category</li>
-                        <li class="breadcrumb-item" aria-current="page">Add</li>
+                        <li class="breadcrumb-item" aria-current="page"><?= __('Category') ?></li>
+                        <li class="breadcrumb-item" aria-current="page"><?= __('Add') ?></li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,7 @@
 <div class="row">
     <aside class="column">
         <div class="side-nav">
-            <?= $this->Form->button(__('View All Categories'), [
+            <?= $this->Form->button(__('View Existing Categories'), [
                 'type' => 'button',
                 'onclick' => "location.href='" . $this->Url->build(['action' => 'index']) . "'",
                 'class' => 'btn btn-primary mb-3',
@@ -49,25 +49,34 @@
                 <h4 class="card-title mb-3"><?= __('Add Category') ?></h4>
                 <?= $this->Form->create($category) ?>
                 <div class="row">
-                    <!-- Name field -->
-                    <div class="col-md-12">
-                        <label for="category-name"><?= __('Name') ?></label>
+                    <div class="col-md-6">
+                        <label for="name"><?= __('Name') ?></label>
                         <div class="form-floating mb-3">
-                            <?= $this->Form->control('name', ['class' => 'form-control', 'label' => false, 'placeholder' => 'Category Name']) ?>
+                            <?= $this->Form->control('name', [
+                                'class' => 'form-control',
+                                'label' => false,
+                                'placeholder' => __('Name'),
+                            ]) ?>
                         </div>
                     </div>
-                    <!-- Description field -->
                     <div class="col-md-12">
                         <label for="description"><?= __('Description') ?></label>
                         <div class="form-floating mb-3">
-                            <?= $this->Form->control('description', ['class' => 'form-control', 'label' => false, 'placeholder' => 'Description']) ?>
+                            <?= $this->Form->control('description', [
+                                'type' => 'textarea',
+                                'class' => 'form-control',
+                                'label' => false,
+                                'placeholder' => __('Description'),
+                                'rows' => 3,
+                            ]) ?>
                         </div>
                     </div>
-                    <!-- Submit button -->
                     <div class="col-12">
                         <div class="d-md-flex align-items-center">
                             <div class="ms-auto mt-3 mt-md-0">
-                                <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary hstack gap-6']) ?>
+                                <?= $this->Form->button(__('Submit'), [
+                                    'class' => 'btn btn-primary hstack gap-6',
+                                ]) ?>
                             </div>
                         </div>
                     </div>

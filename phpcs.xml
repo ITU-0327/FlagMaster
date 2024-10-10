@@ -7,6 +7,10 @@
         <exclude-pattern>*/src/Controller/*</exclude-pattern>
     </rule>
 
+    <rule ref="Generic.Files.LineLength">
+        <exclude name="Generic.Files.LineLength"/>
+    </rule>
+
     <file>src/</file>
     <file>tests/</file>
 </ruleset>

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -15,7 +14,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\DeliveriesTable&\Cake\ORM\Association\HasMany $Deliveries
  * @property \App\Model\Table\PaymentsTable&\Cake\ORM\Association\HasMany $Payments
  * @property \App\Model\Table\ProductsTable&\Cake\ORM\Association\BelongsToMany $Products
- *
+ * @property \App\Model\Table\OrdersProductsTable&\Cake\ORM\Association\HasMany $OrdersProducts
  * @method \App\Model\Entity\Order newEmptyEntity()
  * @method \App\Model\Entity\Order newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Order> newEntities(array $data, array $options = [])
@@ -57,9 +56,12 @@ class OrdersTable extends Table
             'foreignKey' => 'order_id',
         ]);
         $this->belongsToMany('Products', [
+            'through' => 'OrdersProducts',
+        ]);
+        $this->hasMany('OrdersProducts', [
             'foreignKey' => 'order_id',
-            'targetForeignKey' => 'product_id',
-            'joinTable' => 'orders_products',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
@@ -83,6 +85,11 @@ class OrdersTable extends Table
             ->decimal('total_amount')
             ->requirePresence('total_amount', 'create')
             ->notEmptyString('total_amount');
+
+        $validator
+            ->decimal('shipping_cost')
+            ->requirePresence('shipping_cost', 'create')
+            ->notEmptyString('shipping_cost');
 
         $validator
             ->scalar('status')

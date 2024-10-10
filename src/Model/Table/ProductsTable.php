@@ -49,6 +49,7 @@ class ProductsTable extends Table
 
         $this->hasMany('ProductImages', [
             'foreignKey' => 'product_id',
+            'dependent' => true,
         ]);
         $this->hasMany('ProductVariations', [
             'foreignKey' => 'product_id',
@@ -57,16 +58,20 @@ class ProductsTable extends Table
         ]);
         $this->hasMany('Reviews', [
             'foreignKey' => 'product_id',
+            'dependent' => true,
         ]);
         $this->belongsToMany('Categories', [
             'foreignKey' => 'product_id',
             'targetForeignKey' => 'category_id',
             'joinTable' => 'categories_products',
         ]);
-        $this->belongsToMany('Orders', [
+        $this->hasMany('OrdersProducts', [
             'foreignKey' => 'product_id',
-            'targetForeignKey' => 'order_id',
-            'joinTable' => 'orders_products',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+        $this->belongsToMany('Orders', [
+            'through' => 'OrdersProducts',
         ]);
     }
 

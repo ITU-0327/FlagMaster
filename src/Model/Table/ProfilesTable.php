@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -13,7 +12,6 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\AddressesTable&\Cake\ORM\Association\BelongsTo $Addresses
- *
  * @method \App\Model\Entity\Profile newEmptyEntity()
  * @method \App\Model\Entity\Profile newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Profile> newEntities(array $data, array $options = [])
@@ -41,7 +39,7 @@ class ProfilesTable extends Table
         parent::initialize($config);
 
         $this->setTable('profiles');
-        $this->setDisplayField('id');
+        $this->setDisplayField('first_name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Users', [
@@ -50,6 +48,9 @@ class ProfilesTable extends Table
         ]);
         $this->belongsTo('Addresses', [
             'foreignKey' => 'address_id',
+            'joinType' => 'LEFT', // Allow profiles without addresses
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
@@ -80,6 +81,11 @@ class ProfilesTable extends Table
             ->allowEmptyString('last_name');
 
         $validator
+            ->scalar('profile_picture')
+            ->maxLength('profile_picture', 255)
+            ->allowEmptyFile('profile_picture');
+
+        $validator
             ->scalar('phone')
             ->maxLength('phone', 20)
             ->allowEmptyString('phone');
@@ -104,6 +110,7 @@ class ProfilesTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->isUnique(['user_id']), ['errorField' => 'user_id']);
         $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
         $rules->add($rules->existsIn(['address_id'], 'Addresses'), ['errorField' => 'address_id']);
 
