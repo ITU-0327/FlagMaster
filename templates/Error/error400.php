@@ -24,9 +24,9 @@ endif;
         <div class="row justify-content-center w-100">
             <div class="col-lg-4">
                 <div class="text-center">
-                    <?= $this->Html->image('backgrounds/maintenance.svg', ['alt' => 'modernize-img', 'class' => 'img-fluid', 'width' => 500]) ?>
-                    <h1 class="fw-semibold my-7 fs-9">Maintenance Mode!!!</h1>
-                    <h4 class="fw-semibold mb-7">Website is Under Construction. Check back later!</h4>
+                    <?= $this->Html->image('backgrounds/errorimg.svg', ['alt' => 'flagmaster-img', 'class' => 'img-fluid', 'width' => 500]) ?>
+                    <h1 class="fw-semibold my-7 fs-9">Opps!!!</h1>
+                    <h4 class="fw-semibold mb-7">This page you are looking for could not be found.</h4>
                     <?= $this->Html->link(
                         __('Back'),
                         'javascript:history.back()',
