@@ -22,6 +22,7 @@ class UserHelper extends Helper
         $fullName = 'Guest';
         $username = 'Guest';
         $email = '';
+        $user_role = null;
 
         // Check if the user object is not null
         if ($user) {
@@ -29,6 +30,7 @@ class UserHelper extends Helper
             $username = h($user->username);
             $email = h($user->email);
             $fullName = h($user->username); // Default full name is username if no first/last name
+            $user_role = $user->role;
 
             // Check if user profile is available
             if ($user->profile) {
@@ -41,6 +43,6 @@ class UserHelper extends Helper
             }
         }
 
-        return compact('user_id', 'profilePicture', 'fullName', 'username', 'email');
+        return compact('user_id', 'profilePicture', 'fullName', 'username', 'email', 'user_role');
     }
 }

@@ -249,13 +249,15 @@ $isLoggedIn = !empty($user_id);
               <!-- ------------------------------- -->
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
-              <li class="nav-item dropdown-hover d-none d-lg-block">
-                  <?= $this->Html->link(
-                      'Custom Products',
-                      ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                      ['class' => 'nav-link']
-                  ); ?>
-              </li>
+                <?php if ($user_role != 'admin') : ?>
+                  <li class="nav-item dropdown-hover d-none d-lg-block">
+                      <?= $this->Html->link(
+                          'Custom Products',
+                          ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'nav-link']
+                      ); ?>
+                  </li>
+                <?php endif; ?>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'FAQs',
@@ -270,13 +272,15 @@ $isLoggedIn = !empty($user_id);
                       ['class' => 'nav-link']
                   ); ?>
               </li>
-              <li class="nav-item dropdown-hover d-none d-lg-block">
-                  <?= $this->Html->link(
-                      'Contact Us',
-                      ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                      ['class' => 'nav-link']
-                  ); ?>
-              </li>
+                <?php if ($user_role != 'admin') : ?>
+                    <li class="nav-item dropdown-hover d-none d-lg-block">
+                        <?= $this->Html->link(
+                            'Contact Us',
+                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                            ['class' => 'nav-link']
+                        ); ?>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <div class="d-block d-lg-none py-4"
@@ -314,14 +318,16 @@ $isLoggedIn = !empty($user_id);
                   <!-- ------------------------------- -->
                   <!-- start shopping cart Dropdown -->
                   <!-- ------------------------------- -->
-                  <li class="nav-item nav-icon-hover-bg rounded-circle">
-                    <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                      <i class="ti ti-basket"></i>
-                        <?php if ($cartItemCount > 0) : ?>
-                            <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
-                        <?php endif; ?>
-                    </a>
-                  </li>
+                    <?php if ($user_role != 'admin') : ?>
+                      <li class="nav-item nav-icon-hover-bg rounded-circle">
+                        <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                          <i class="ti ti-basket"></i>
+                            <?php if ($cartItemCount > 0) : ?>
+                                <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
+                            <?php endif; ?>
+                        </a>
+                      </li>
+                    <?php endif; ?>
                   <!-- ------------------------------- -->
                   <!-- end shopping cart Dropdown -->
                   <!-- ------------------------------- -->
@@ -636,16 +642,18 @@ $isLoggedIn = !empty($user_id);
                       </ul>
                     </ul>
                   </li>
-                  <li class="sidebar-item">
-                      <?= $this->Html->link(
-                          '<span>
-                                    <i class="ti ti-message-dots"></i>
-                                </span>
-                                <span class="hide-menu">Custom Products</span>',
-                          ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                          ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
-                      ); ?>
-                  </li>
+                    <?php if ($user_role != 'admin') : ?>
+                      <li class="sidebar-item">
+                          <?= $this->Html->link(
+                              '<span>
+                                        <i class="ti ti-message-dots"></i>
+                                    </span>
+                                    <span class="hide-menu">Custom Products</span>',
+                              ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                              ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                          ); ?>
+                      </li>
+                    <?php endif; ?>
                   <li class="sidebar-item">
                       <?= $this->Html->link(
                           '<span>
@@ -666,16 +674,18 @@ $isLoggedIn = !empty($user_id);
                           ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
                       ); ?>
                   </li>
-                    <li class="sidebar-item">
-                        <?= $this->Html->link(
-                            '<span>
-                                <i class="ti ti-calendar"></i>
-                            </span>
-                            <span class="hide-menu">Contact Us</span>',
-                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                            ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
-                        ); ?>
-                    </li>
+                    <?php if ($user_role != 'admin') : ?>
+                        <li class="sidebar-item">
+                            <?= $this->Html->link(
+                                '<span>
+                                    <i class="ti ti-calendar"></i>
+                                </span>
+                                <span class="hide-menu">Contact Us</span>',
+                                ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                                ['class' => 'sidebar-link', 'aria-expanded' => 'false', 'escape' => false]
+                            ); ?>
+                        </li>
+                    <?php endif; ?>
                 </ul>
               </div>
             </nav>
@@ -928,13 +938,15 @@ $isLoggedIn = !empty($user_id);
               <!-- ------------------------------- -->
               <!-- end shop Dropdown -->
               <!-- ------------------------------- -->
-              <li class="nav-item dropdown-hover d-none d-lg-block">
-                  <?= $this->Html->link(
-                      'Custom Products',
-                      ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                      ['class' => 'nav-link']
-                  ); ?>
-              </li>
+                <?php if ($user_role != 'admin') : ?>
+                  <li class="nav-item dropdown-hover d-none d-lg-block">
+                      <?= $this->Html->link(
+                          'Custom Products',
+                          ['controller' => 'CustomFlagEnquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'nav-link']
+                      ); ?>
+                  </li>
+                <?php endif; ?>
               <li class="nav-item dropdown-hover d-none d-lg-block">
                   <?= $this->Html->link(
                       'FAQs',
@@ -949,13 +961,15 @@ $isLoggedIn = !empty($user_id);
                       ['class' => 'nav-link']
                   ); ?>
               </li>
-                <li class="nav-item dropdown-hover d-none d-lg-block">
-                    <?= $this->Html->link(
-                        'Contact Us',
-                        ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
-                        ['class' => 'nav-link']
-                    ); ?>
-                </li>
+                <?php if ($user_role != 'admin') : ?>
+                    <li class="nav-item dropdown-hover d-none d-lg-block">
+                        <?= $this->Html->link(
+                            'Contact Us',
+                            ['controller' => 'Enquiries', 'action' => 'add', 'prefix' => null, 'plugin' => null],
+                            ['class' => 'nav-link']
+                        ); ?>
+                    </li>
+                <?php endif; ?>
             </ul>
             <div class="d-block d-xl-none">
                 <?= $this->Html->link(
@@ -996,14 +1010,16 @@ $isLoggedIn = !empty($user_id);
                   <!-- ------------------------------- -->
                   <!-- start shopping cart Dropdown -->
                   <!-- ------------------------------- -->
-                  <li class="nav-item nav-icon-hover-bg rounded-circle">
-                    <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                      <i class="ti ti-basket"></i>
-                        <?php if ($cartItemCount > 0) : ?>
-                            <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
-                        <?php endif; ?>
-                    </a>
-                  </li>
+                    <?php if ($user_role != 'admin') : ?>
+                      <li class="nav-item nav-icon-hover-bg rounded-circle">
+                        <a class="nav-link position-relative" href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                          <i class="ti ti-basket"></i>
+                            <?php if ($cartItemCount > 0) : ?>
+                                <span class="popup-badge rounded-pill bg-danger text-white fs-2"><?= $cartItemCount ?></span>
+                            <?php endif; ?>
+                        </a>
+                      </li>
+                    <?php endif; ?>
                   <!-- ------------------------------- -->
                   <!-- end shopping cart Dropdown -->
                   <!-- ------------------------------- -->
