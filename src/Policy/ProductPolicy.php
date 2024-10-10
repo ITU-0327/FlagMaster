@@ -51,19 +51,23 @@ class ProductPolicy
     /**
      * Determine if the user can view a product.
      *
-     * @param \Authorization\IdentityInterface $user The user.
+     * @param \Authorization\IdentityInterface|null $user The user.
      * @param \App\Model\Entity\Product $product The product entity.
      * @return \Authorization\Policy\ResultInterface
      */
-    public function canView(IdentityInterface $user, Product $product): Result
+    public function canView(?IdentityInterface $user, Product $product): Result
     {
-        // Allow admin users to view all products
-        if ($user->role === 'admin') {
+        // Allow customers to view only published products
+        if ($product->status === 'published') {
             return new Result(true);
         }
 
-        // Allow customers to view only published products
-        if ($product->status === 'published') {
+        if (!$user) {
+            return new Result(false, 'User is not authorized');
+        }
+
+        // Allow admin users to view all products
+        if ($user->role === 'admin') {
             return new Result(true);
         }
 

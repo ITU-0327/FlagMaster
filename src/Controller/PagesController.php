@@ -44,7 +44,6 @@ class PagesController extends AppController
         parent::beforeFilter($event);
         // Allow the 'display' action to be accessed without login for the homepage
         $this->Authentication->allowUnauthenticated(['display', 'aboutUs', 'faq']);
-        $this->Authorization->skipAuthorization();
     }
 
     /**
