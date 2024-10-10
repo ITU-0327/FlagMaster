@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Product $product
+ * @var String $userRole
  */
 ?>
 
@@ -136,33 +137,35 @@
                             <a href="#pills-reviews">(<?= $totalReviews ?> reviews)</a>
                         </div>
 
-                        <?= $this->Form->create(null, ['url' => ['controller' => 'Products', 'action' => 'addToCart', $product->id]]) ?>
-                        <div class="d-flex align-items-center gap-8 py-7">
-                            <h6 class="mb-0 fs-4">QTY:</h6>
-                            <div class="input-group input-group-sm rounded">
-                                <button class="btn min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
-                                    <i class="ti ti-minus"></i>
-                                </button>
-                                <?= $this->Form->text('quantity', [
-                                    'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center',
-                                    'id' => 'quantityInput',
-                                    'value' => 1,
-                                    'min' => 1,
-                                ]) ?>
-                                <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted" type="button" onclick="increaseQuantity()">
-                                    <i class="ti ti-plus"></i>
-                                </button>
+                        <?php if ($userRole != 'admin') : ?>
+                            <?= $this->Form->create(null, ['url' => ['controller' => 'Products', 'action' => 'addToCart', $product->id]]) ?>
+                            <div class="d-flex align-items-center gap-8 py-7">
+                                <h6 class="mb-0 fs-4">QTY:</h6>
+                                <div class="input-group input-group-sm rounded">
+                                    <button class="btn min-width-40 py-0 border-end border-muted fs-5 border-end-0 text-muted" type="button" onclick="decreaseQuantity()">
+                                        <i class="ti ti-minus"></i>
+                                    </button>
+                                    <?= $this->Form->text('quantity', [
+                                        'class' => 'min-width-40 flex-grow-0 border border-muted text-muted fs-4 fw-semibold form-control text-center',
+                                        'id' => 'quantityInput',
+                                        'value' => 1,
+                                        'min' => 1,
+                                    ]) ?>
+                                    <button class="btn min-width-40 py-0 border border-muted fs-5 border-start-0 text-muted" type="button" onclick="increaseQuantity()">
+                                        <i class="ti ti-plus"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
-                            <?php if ($product->stock_quantity > 0) : ?>
-                                <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn" data-product-id="<?= $product->id ?>">Buy Now</a>
-                                <button type="button" class="btn d-block btn-danger px-7 py-8" id="addToCartBtn" data-product-id="<?= $product->id ?>">Add to Cart</button>
-                            <?php else : ?>
-                                <span class="text-danger fs-5">This product is currently out of stock.</span>
-                            <?php endif; ?>
-                        </div>
-                        <?= $this->Form->end() ?>
+                            <div class="d-sm-flex align-items-center gap-6 pt-8 mb-7">
+                                <?php if ($product->stock_quantity > 0) : ?>
+                                    <a class="btn d-block btn-primary px-5 py-8 mb-6 mb-sm-0" id="buyNowBtn" data-product-id="<?= $product->id ?>">Buy Now</a>
+                                    <button type="button" class="btn d-block btn-danger px-7 py-8" id="addToCartBtn" data-product-id="<?= $product->id ?>">Add to Cart</button>
+                                <?php else : ?>
+                                    <span class="text-danger fs-5">This product is currently out of stock.</span>
+                                <?php endif; ?>
+                            </div>
+                            <?= $this->Form->end() ?>
+                        <?php endif; ?>
 
                         <p class="mb-0">Dispatched in 2-3 weeks</p>
                         <a href="javascript:void(0)">Why the longer time for delivery?</a>
@@ -246,7 +249,7 @@
                                         ['controller' => 'Reviews', 'action' => 'add', $product->id],
                                         [
                                             'class' => 'btn btn-outline-primary d-flex align-items-center gap-2 mx-auto',
-                                            'escape' => false
+                                            'escape' => false,
                                         ]
                                     ); ?>
                                 </div>

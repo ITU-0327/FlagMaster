@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Category> $categories
  * @var iterable<\App\Model\Entity\Product> $products
+ * @var String $userRole
  */
 $sort = $this->request->getQuery('sort', 'newest');
 $categoryId = $this->request->getQuery('category', 'all');
@@ -139,7 +140,7 @@ $isLoggedIn = $this->request->getAttribute('identity');
                                             ['escape' => false]
                                         ) ?>
                                     <?php endif; ?>
-                                    <?php if ($isLoggedIn) : ?>
+                                    <?php if ($isLoggedIn && $userRole != 'admin') : ?>
                                         <a href="javascript:void(0)" class="add-to-cart-button text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart" data-product-id="<?= $product->id ?>">
                                             <i class="ti ti-basket fs-4"></i>
                                         </a>
