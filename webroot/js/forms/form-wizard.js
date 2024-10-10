@@ -1,190 +1,123 @@
-//Basic Example
-$("#example-basic").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    autoFocus: true,
-});
-
-// Basic Example with form
-let form = $("#example-form");
-form.validate({
-    errorPlacement: function errorPlacement(error, element)
-    {
-        element.before(error);
-    },
-    rules: {
-        confirm: {
-            equalTo: "#password",
+$(function () {
+    // Initialize the form wizard
+    $(".tab-wizard").steps({
+        headerTag: "h6",
+        bodyTag: "section",
+        transitionEffect: "fade",
+        titleTemplate: '<span class="step">#index#</span> #title#',
+        labels: {
+            finish: "Place Order",
         },
-    },
-});
-form.children("div").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    onStepChanging: function (event, currentIndex, newIndex) {
-        form.validate().settings.ignore = ":disabled,:hidden";
-        return form.valid();
-    },
-    onFinishing: function (event, currentIndex) {
-        form.validate().settings.ignore = ":disabled";
-        return form.valid();
-    },
-    onFinished: function (event, currentIndex) {
-        alert("Submitted!");
-    },
-});
-
-// Advance Example
-
-var advanced_form = $("#example-advanced-form").show();
-
-advanced_form
-  .steps({
-        headerTag: "h3",
-        bodyTag: "fieldset",
-        transitionEffect: "slideLeft",
+        // Disable step header clicking to prevent skipping steps
+        enableAllSteps: false,
+        transitionEffect: "fade",
         onStepChanging: function (event, currentIndex, newIndex) {
-          // Allways allow previous action even if the current form is not valid!
+            // Always allow going back
             if (currentIndex > newIndex) {
                 return true;
             }
-          // Forbid next action on "Warning" step if the user is to young
-            if (newIndex === 3 && Number($("#age-2").val()) < 18) {
-                return false;
+
+            // Reference to the form
+            const form = $("form.tab-wizard");
+
+            // Validate the form
+            form.validate().settings.ignore = ":disabled,:hidden";
+
+            // Custom validation when moving from Billing & Address step
+            if (currentIndex === 1 && newIndex === 2) {
+                if (!addressConfirmed) {
+                    swal("Please click 'Deliver To This Address' to confirm your address before proceeding.", "error");
+                    return false; // Prevent moving to the next step
+                }
             }
-      // Needed in some cases if the user went back (clean up)
-            if (currentIndex < newIndex) {
-                // To remove error styles
-                advanced_form.find(".body:eq(" + newIndex + ") label.error").remove();
-                advanced_form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-            }
-            advanced_form.validate().settings.ignore = ":disabled,:hidden";
-            return advanced_form.valid();
+
+            return form.valid();
         },
-    onStepChanged: function (event, currentIndex, priorIndex) {
-      // Used to skip the "Warning" step if the user is old enough.
-        if (currentIndex === 2 && Number($("#age-2").val()) >= 18) {
-            advanced_form.steps("next");
-        }
-      // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
-        if (currentIndex === 2 && priorIndex === 3) {
-            advanced_form.steps("previous");
-        }
-    },
-    onFinishing: function (event, currentIndex) {
-        advanced_form.validate().settings.ignore = ":disabled";
-        return advanced_form.valid();
-    },
-    onFinished: function (event, currentIndex) {
-        alert("Submitted!");
-    },
-    })
-  .validate({
-        errorPlacement: function errorPlacement(error, element)
-        {
-            element.before(error);
+        onFinishing: function (event, currentIndex) {
+            const form = $("form.tab-wizard");
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
         },
-        rules: {
-            confirm: {
-                equalTo: "#password-2",
-            },
+        onFinished: function (event, currentIndex) {
+            swal({
+                title: "Confirm Order",
+                text: "Are you sure you want to place this order?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willSubmit) => {
+                    if (willSubmit) {
+                        // Submit the form
+                        $('form.tab-wizard').submit();
+                    } else {
+                        swal("Your order has not been placed.");
+                    }
+                });
         },
     });
 
-// Dynamic Manipulation
-$("#example-manipulation").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    enableAllSteps: true,
-    enablePagination: false,
-});
-
-//Vertical Steps
-
-$("#example-vertical").steps({
-    headerTag: "h3",
-    bodyTag: "section",
-    transitionEffect: "slideLeft",
-    stepsOrientation: "vertical",
-});
-
-//Custom design form example
-$(".tab-wizard").steps({
-    headerTag: "h6",
-    bodyTag: "section",
-    transitionEffect: "fade",
-    titleTemplate: '<span class="step">#index#</span> #title#',
-    labels: {
-        finish: "Place Order",
-    },
-    onFinished: function (event, currentIndex) {
-        swal({
-            title: "Confirm Order",
-            text: "Are you sure you want to place this order?",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willSubmit) => {
-            if (willSubmit) {
-                // Submit the form
-                $('form.tab-wizard').submit();
-            } else {
-                swal("Your order has not been placed.");
-            }
-        });
-    },
-});
-
-form = $(".validation-wizard").show();
-
-$(".validation-wizard").steps({
-    headerTag: "h6",
-    bodyTag: "section",
-    transitionEffect: "fade",
-    titleTemplate: '<span class="step">#index#</span> #title#',
-    labels: {
-        finish: "Submit",
-    },
-    onStepChanging: function (event, currentIndex, newIndex) {
-        return (
-        currentIndex > newIndex ||
-        (!(3 === newIndex && Number($("#age-2").val()) < 18) &&
-        (currentIndex < newIndex &&
-          (form.find(".body:eq(" + newIndex + ") label.error").remove(),
-          form.find(".body:eq(" + newIndex + ") .error").removeClass("error")),
-        (form.validate().settings.ignore = ":disabled,:hidden"),
-        form.valid()))
-        );
-    },
-    onFinishing: function (event, currentIndex) {
-        return (form.validate().settings.ignore = ":disabled"), form.valid();
-    },
-    onFinished: function (event, currentIndex) {
-        swal(
-            "Form Submitted!",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed."
-        );
-    },
-}),
-  $(".validation-wizard").validate({
-        ignore: "input[type=hidden]",
+    // Initialize validation
+    $(".tab-wizard").validate({
         errorClass: "text-danger",
-        successClass: "text-success",
-        highlight: function (element, errorClass) {
-            $(element).removeClass(errorClass);
+        rules: {
+            'profile.first_name': {
+                required: true,
+                maxlength: 50,
+            },
+            'profile.last_name': {
+                required: true,
+                maxlength: 50,
+            },
+            'profile.phone': {
+                required: true,
+                // You can add a specific phone validation method if needed
+            },
+            'profile.address.street': {
+                required: true,
+                maxlength: 255,
+            },
+            'profile.address.city': {
+                required: true,
+                maxlength: 100,
+            },
+            'profile.address.state': {
+                required: true,
+                maxlength: 100,
+            },
+            'profile.address.postal_code': {
+                required: true,
+                maxlength: 20,
+            },
+            'profile.address.country': {
+                required: true,
+                maxlength: 100,
+            },
+            'deliveryOpt': {
+                required: true,
+            },
+            'paymentType': {
+                required: true,
+            },
         },
-        unhighlight: function (element, errorClass) {
-            $(element).removeClass(errorClass);
+        messages: {
+            'profile.first_name': "First name is required and cannot exceed 50 characters.",
+            'profile.last_name': "Last name is required and cannot exceed 50 characters.",
+            'profile.phone': "Phone number is required.",
+            'profile.address.street': "Street address is required and cannot exceed 255 characters.",
+            'profile.address.city': "City is required and cannot exceed 100 characters.",
+            'profile.address.state': "State is required and cannot exceed 100 characters.",
+            'profile.address.postal_code': "Postal code is required and cannot exceed 20 characters.",
+            'profile.address.country': "Country is required and cannot exceed 100 characters.",
+            'deliveryOpt': "Please select a delivery option.",
+            'paymentType': "Please select a payment method.",
         },
         errorPlacement: function (error, element) {
-            error.insertAfter(element);
-        },
-        rules: {
-            email: {
-                email: !0,
-            },
+            if (element.attr("name") === "deliveryOpt" || element.attr("name") === "paymentType") {
+                error.insertAfter(element.closest('.btn-group'));
+            } else {
+                error.insertAfter(element);
+            }
         },
     });
+});

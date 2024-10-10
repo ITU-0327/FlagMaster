@@ -176,83 +176,83 @@ function addBusinessDays(DateTime $date, int $days): DateTime
                                         <h6 class="mb-3 fs-4 fw-semibold">Add Your Address</h6>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="firstName" class="form-label">First Name</label>
-                                                    <?= $this->Form->text('profile.first_name', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'firstName',
-                                                        'value' => $user->profile->first_name,
-                                                        'required' => true,
-                                                    ]); ?>
-                                                    <?= $this->Form->error('profile.first_name'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="lastName" class="form-label">Last Name</label>
-                                                    <?= $this->Form->text('profile.last_name', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'lastName',
-                                                        'value' => $user->profile->last_name,
-                                                        'required' => true,
-                                                    ]); ?>
-                                                    <?= $this->Form->error('profile.last_name'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="phone" class="form-label">Phone</label>
-                                                    <?= $this->Form->text('profile.phone', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'phone',
-                                                        'value' => $user->profile->phone,
-                                                        'required' => true,
-                                                    ]); ?>
-                                                    <?= $this->Form->error('profile.phone'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="postalCode" class="form-label">Postal Code</label>
-                                                    <?= $this->Form->text('profile.address.postal_code', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'postalCode',
-                                                        'required' => true,
-                                                    ]) ?>
-                                                    <?= $this->Form->error('profile.address.postal_code'); ?>
-                                                </div>
+                                                <?= $this->Form->control('profile.first_name', [
+                                                    'label' => [
+                                                        'text' => 'First Name',
+                                                        'class' => 'form-label ',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'value' => $user->profile->first_name,
+                                                    'required' => true,
+                                                    'id' => 'firstName',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.last_name', [
+                                                    'label' => [
+                                                        'text' => 'Last Name',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'value' => $user->profile->last_name,
+                                                    'required' => true,
+                                                    'id' => 'lastName',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.phone', [
+                                                    'label' => [
+                                                        'text' => 'Phone',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'value' => $user->profile->phone,
+                                                    'required' => true,
+                                                    'id' => 'phone',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.address.postal_code', [
+                                                    'label' => [
+                                                        'text' => 'Postal Code',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'required' => true,
+                                                    'id' => 'postalCode',
+                                                ]) ?>
                                             </div>
                                             <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label for="street" class="form-label">Street</label>
-                                                    <?= $this->Form->text('profile.address.street', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'street',
-                                                        'required' => true,
-                                                    ]); ?>
-                                                    <?= $this->Form->error('profile.address.street'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="city" class="form-label">City</label>
-                                                    <?= $this->Form->text('profile.address.city', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'city',
-                                                        'required' => true,
-                                                    ]); ?>
-                                                    <?= $this->Form->error('profile.address.city'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="state" class="form-label">State</label>
-                                                    <?= $this->Form->text('profile.address.state', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'state',
-                                                        'required' => true,
-                                                    ]) ?>
-                                                    <?= $this->Form->error('profile.address.state'); ?>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="country" class="form-label">Country</label>
-                                                    <?= $this->Form->text('profile.address.country', [
-                                                        'class' => 'form-control',
-                                                        'id' => 'country',
-                                                        'required' => true,
-                                                    ]) ?>
-                                                    <?= $this->Form->error('profile.address.country'); ?>
-                                                </div>
+                                                <?= $this->Form->control('profile.address.street', [
+                                                    'label' => [
+                                                        'text' => 'Street',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'required' => true,
+                                                    'id' => 'street',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.address.city', [
+                                                    'label' => [
+                                                        'text' => 'City',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'required' => true,
+                                                    'id' => 'city',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.address.state', [
+                                                    'label' => [
+                                                        'text' => 'State',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'required' => true,
+                                                    'id' => 'state',
+                                                ]) ?>
+                                                <?= $this->Form->control('profile.address.country', [
+                                                    'label' => [
+                                                        'text' => 'Country',
+                                                        'class' => 'form-label',
+                                                    ],
+                                                    'class' => 'form-control mb-3',
+                                                    'required' => true,
+                                                    'id' => 'country',
+                                                ]) ?>
                                             </div>
                                         </div>
                                         <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
@@ -337,7 +337,7 @@ function addBusinessDays(DateTime $date, int $days): DateTime
                                             <div class="btn-group flex-column" role="group" aria-label="Payment Options">
                                                 <!-- Pay by Bank -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentTWB">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentTWB" value="bank">
                                                     <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentTWB">
                                                         <div class="d-flex align-items-center">
                                                             <div class="text-start ps-2">
@@ -350,7 +350,7 @@ function addBusinessDays(DateTime $date, int $days): DateTime
                                                 </div>
                                                 <!-- Cash on Delivery -->
                                                 <div class="position-relative form-check btn-custom-fill ps-0">
-                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCOD">
+                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCOD" value="cod">
                                                     <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCOD">
                                                         <div class="d-flex align-items-center">
                                                             <div class="text-start ps-2">
@@ -443,25 +443,5 @@ function addBusinessDays(DateTime $date, int $days): DateTime
 <?= $this->Html->script('/libs/jquery-validation/dist/jquery.validate.min') ?>
 <?= $this->Html->script('forms/form-wizard') ?>
 <?= $this->Html->script('apps/ecommerce') ?>
-
-<script>
-    // Initialize shippingCost variable
-    shippingCost = 0;
-
-    // Add event listeners to delivery options
-    const deliveryOptions = document.getElementsByName('deliveryOpt');
-    for (let i = 0; i < deliveryOptions.length; i++) {
-        deliveryOptions[i].addEventListener('change', function() {
-            shippingCost = parseFloat(this.value);
-            updateTotal();
-        });
-    }
-
-    // Get default selected delivery option (if any)
-    const defaultDeliveryOption = document.querySelector('input[name="deliveryOpt"]:checked');
-    if (defaultDeliveryOption) {
-        shippingCost = parseFloat(defaultDeliveryOption.value);
-    }
-</script>
 
 <?php $this->end(); ?>
