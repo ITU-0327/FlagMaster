@@ -70,8 +70,8 @@ class ReviewsController extends AppController
         }
 
         // Obtain current user and product information to ensure the existence of data
-        $user = $this->Reviews->Users->get($userId, ['contain' => []]);
-        $product = $this->Reviews->Products->get($productId, ['contain' => []]);
+        $user = $this->Reviews->Users->get($userId);
+        $product = $this->Reviews->Products->get($productId);
 
         $review = $this->Reviews->newEmptyEntity();
 
