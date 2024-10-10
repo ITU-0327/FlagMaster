@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Policy;
 
-use App\Model\Table\ProductsTable;
 use Authorization\IdentityInterface;
 
 /**
@@ -14,10 +13,10 @@ class ProductsTablePolicy
     /**
      * Check if $user can index Product
      *
-     * @param \Authorization\IdentityInterface $user The user.
+     * @param \Authorization\IdentityInterface|null $user The user.
      * @return bool
      */
-    public function canIndex(IdentityInterface $user): bool
+    public function canIndex(?IdentityInterface $user): bool
     {
         return true;
     }

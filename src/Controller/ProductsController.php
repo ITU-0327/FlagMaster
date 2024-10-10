@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Cake\Datasource\ConnectionManager;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Event\EventInterface;
 use Cake\Http\Response;
 use Exception;
 use Laminas\Diactoros\UploadedFile;
@@ -18,10 +19,23 @@ use UnexpectedValueException;
  * @property \App\Model\Table\ProductsTable $Products
  * @property \App\Model\Table\OrdersTable $Orders
  * @property \App\Model\Table\OrdersProductsTable $OrdersProducts
+ * @property \Authentication\Controller\Component\AuthenticationComponent $Authentication
  * @property \Authorization\Controller\Component\AuthorizationComponent $Authorization
  */
 class ProductsController extends AppController
 {
+    /**
+     * Displays a view
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // Allow the 'display' action to be accessed without login for the homepage
+        $this->Authentication->allowUnauthenticated(['index', 'view']);
+    }
+
     /**
      * Index method
      *

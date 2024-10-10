@@ -7,6 +7,7 @@
 $sort = $this->request->getQuery('sort', 'newest');
 $categoryId = $this->request->getQuery('category', 'all');
 $priceFilter = $this->request->getQuery('price_filter', 'all');
+$isLoggedIn = $this->request->getAttribute('identity');
 ?>
 
 <?php $this->start('css'); ?>
@@ -138,9 +139,11 @@ $priceFilter = $this->request->getQuery('price_filter', 'all');
                                             ['escape' => false]
                                         ) ?>
                                     <?php endif; ?>
-                                    <a href="javascript:void(0)" class="add-to-cart-button text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart" data-product-id="<?= $product->id ?>">
-                                        <i class="ti ti-basket fs-4"></i>
-                                    </a>
+                                    <?php if ($isLoggedIn) : ?>
+                                        <a href="javascript:void(0)" class="add-to-cart-button text-bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart" data-product-id="<?= $product->id ?>">
+                                            <i class="ti ti-basket fs-4"></i>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="card-body pt-3 p-4">
                                     <h6 class="fs-4"><?= h($product->name) ?></h6>

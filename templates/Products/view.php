@@ -374,6 +374,8 @@
 <?= $this->Html->script('apps/productDetail') ?>
 
 <script>
+    let isLoggedIn = <?= $this->request->getAttribute('identity') ? 'true' : 'false' ?>;
+
     function increaseQuantity() {
         let qtyInput = document.getElementById("quantityInput");
         let currentQty = parseInt(qtyInput.value);
@@ -395,6 +397,11 @@
             event.preventDefault();
             const productId = this.getAttribute('data-product-id');
             const quantity = document.getElementById('quantityInput').value;
+
+            if (!isLoggedIn) {
+                window.location.href = '<?= $this->Url->build(['controller' => 'Auth', 'action' => 'login']); ?>?redirect=products/view/' + productId;
+                return;
+            }
 
             // Send AJAX request to add product to cart
             const xhr = new XMLHttpRequest();
@@ -425,6 +432,11 @@
             event.preventDefault();
             const productId = this.getAttribute('data-product-id');
             const quantity = document.getElementById('quantityInput').value;
+
+            if (!isLoggedIn) {
+                window.location.href = '<?= $this->Url->build(['controller' => 'Auth', 'action' => 'login']); ?>?redirect=products/view/' + productId;
+                return;
+            }
 
             // Send AJAX request to add product to cart
             const xhr = new XMLHttpRequest();
