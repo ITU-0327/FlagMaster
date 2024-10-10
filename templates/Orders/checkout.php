@@ -1,11 +1,34 @@
 <?php
 /**
+ * Skip the weekend and calculate the working day
+ *
+ * @param \DateTime $date
+ * @param int $days
+ * @return \DateTime
+ * @throws \DateMalformedStringException
+ */
+function addBusinessDays(DateTime $date, int $days): DateTime
+{
+    $addedDays = 0;
+
+    while ($addedDays < $days) {
+        $date->modify('+1 day'); // Add one day at a time
+
+        // Check whether it is a working day (Monday to Friday from 1 to 5)
+        if ($date->format('N') < 6) {
+            $addedDays++;
+        }
+    }
+
+    return $date;
+}
+
+/**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Order $order
  * @var \App\Model\Entity\User $user
  */
 ?>
-
 <div class="card bg-info-subtle shadow-none position-relative overflow-hidden mb-4">
     <div class="card-body px-4 py-3">
         <div class="row align-items-center">
@@ -148,7 +171,93 @@
                                     </div>
                                 </div>
                             <?php else : ?>
-                                <p>No address found. Please add a new address.</p>
+                                <div class="card shadow-none border">
+                                    <div class="card-body p-4">
+                                        <h6 class="mb-3 fs-4 fw-semibold">Add Your Address</h6>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="firstName" class="form-label">First Name</label>
+                                                    <?= $this->Form->text('profile.first_name', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'firstName',
+                                                        'value' => $user->profile->first_name,
+                                                        'required' => true,
+                                                    ]); ?>
+                                                    <?= $this->Form->error('profile.first_name'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="lastName" class="form-label">Last Name</label>
+                                                    <?= $this->Form->text('profile.last_name', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'lastName',
+                                                        'value' => $user->profile->last_name,
+                                                        'required' => true,
+                                                    ]); ?>
+                                                    <?= $this->Form->error('profile.last_name'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="phone" class="form-label">Phone</label>
+                                                    <?= $this->Form->text('profile.phone', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'phone',
+                                                        'value' => $user->profile->phone,
+                                                        'required' => true,
+                                                    ]); ?>
+                                                    <?= $this->Form->error('profile.phone'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="postalCode" class="form-label">Postal Code</label>
+                                                    <?= $this->Form->text('profile.address.postal_code', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'postalCode',
+                                                        'required' => true,
+                                                    ]) ?>
+                                                    <?= $this->Form->error('profile.address.postal_code'); ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="mb-3">
+                                                    <label for="street" class="form-label">Street</label>
+                                                    <?= $this->Form->text('profile.address.street', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'street',
+                                                        'required' => true,
+                                                    ]); ?>
+                                                    <?= $this->Form->error('profile.address.street'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="city" class="form-label">City</label>
+                                                    <?= $this->Form->text('profile.address.city', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'city',
+                                                        'required' => true,
+                                                    ]); ?>
+                                                    <?= $this->Form->error('profile.address.city'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="state" class="form-label">State</label>
+                                                    <?= $this->Form->text('profile.address.state', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'state',
+                                                        'required' => true,
+                                                    ]) ?>
+                                                    <?= $this->Form->error('profile.address.state'); ?>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="country" class="form-label">Country</label>
+                                                    <?= $this->Form->text('profile.address.country', [
+                                                        'class' => 'form-control',
+                                                        'id' => 'country',
+                                                        'required' => true,
+                                                    ]) ?>
+                                                    <?= $this->Form->error('profile.address.country'); ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="javascript:void(0)" class="btn btn-outline-primary billing-address">Deliver To This Address</a>
+                                    </div>
+                                </div>
                             <?php endif; ?>
 
                             <div class="order-summary border rounded p-4 my-4">
@@ -178,30 +287,6 @@
                                     <h6 class="mb-3 fw-semibold fs-4">Delivery Option</h6>
                                     <div class="btn-group flex-row gap-3 w-100" role="group" aria-label="Delivery Options">
                                         <?php
-                                        /**
-                                         * Skip the weekend and calculate the working day
-                                         *
-                                         * @param \DateTime $date
-                                         * @param int $days
-                                         * @return \DateTime
-                                         * @throws \DateMalformedStringException
-                                         */
-                                        function addBusinessDays(DateTime $date, int $days): DateTime
-                                        {
-                                            $addedDays = 0;
-
-                                            while ($addedDays < $days) {
-                                                $date->modify('+1 day'); // Add one day at a time
-
-                                                // Check whether it is a working day (Monday to Friday from 1 to 5)
-                                                if ($date->format('N') < 6) {
-                                                    $addedDays++;
-                                                }
-                                            }
-
-                                            return $date;
-                                        }
-
                                         // Get the current date
                                         $now = new DateTime('now');
 
@@ -250,32 +335,6 @@
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <div class="btn-group flex-column" role="group" aria-label="Payment Options">
-                                                <!-- PayPal -->
-<!--                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">-->
-<!--                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentPaypal" checked>-->
-<!--                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentPaypal">-->
-<!--                                                        <div class="d-flex align-items-center">-->
-<!--                                                            <div class="text-start ps-2">-->
-<!--                                                                <h6 class="fs-4 fw-semibold mb-0">Pay with PayPal</h6>-->
-<!--                                                                <p class="mb-0 text-muted">You will be redirected to PayPal to complete your purchase.</p>-->
-<!--                                                            </div>-->
-<!--                                                            --><?php //= $this->Html->image('svgs/paypal.svg', ['alt' => 'paypal-img', 'class' => 'img-fluid ms-auto']) ?>
-<!--                                                        </div>-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
-                                                <!-- Credit/Debit Card -->
-<!--                                                <div class="position-relative mb-3 form-check btn-custom-fill ps-0">-->
-<!--                                                    <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentCard">-->
-<!--                                                    <label class="btn btn-outline-primary mb-0 p-3 rounded ps-5 w-100" for="paymentCard">-->
-<!--                                                        <div class="d-flex align-items-center">-->
-<!--                                                            <div class="text-start ps-2">-->
-<!--                                                                <h6 class="fs-4 fw-semibold mb-0">Credit/Debit Card</h6>-->
-<!--                                                                <p class="mb-0 text-muted">We support Mastercard, Visa, Discover, and Stripe.</p>-->
-<!--                                                            </div>-->
-<!--                                                            --><?php //= $this->Html->image('svgs/mastercard.svg', ['alt' => 'mastercard-img', 'class' => 'img-fluid ms-auto']) ?>
-<!--                                                        </div>-->
-<!--                                                    </label>-->
-<!--                                                </div>-->
                                                 <!-- Pay by Bank -->
                                                 <div class="position-relative mb-3 form-check btn-custom-fill ps-0">
                                                     <input type="radio" class="form-check-input ms-4 round-16" name="paymentType" id="paymentTWB">

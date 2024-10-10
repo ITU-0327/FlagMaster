@@ -79,7 +79,7 @@ $isLoggedIn = !empty($user_id);
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav align-items-center mb-2 mb-lg-0 ms-auto">
                             <li class="nav-item dropdown hover-dd mega-dropdown pages-dropdown">
-                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index']); ?>" role="button" aria-expanded="false">
                                     Shop
                                     <span class="d-flex align-items-center">
                                         <i class="ti ti-chevron-down"></i>

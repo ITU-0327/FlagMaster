@@ -147,16 +147,16 @@ class OrdersController extends AppController
             ->contain(['OrdersProducts.Products', 'OrdersProducts.Products.Categories'])
             ->first();
 
-        $user = $this->Orders->Users->get(
-            $userId,
-            contain: ['Profiles', 'Profiles.Addresses']
-        );
-
         if (!$order || empty($order->orders_products)) {
             $this->Flash->error(__('Your cart is empty.'));
 
             return $this->redirect(['controller' => 'Products', 'action' => 'index']);
         }
+
+        $user = $this->Orders->Users->get(
+            $userId,
+            contain: ['Profiles', 'Profiles.Addresses']
+        );
 
         if ($this->request->is(['post', 'put'])) {
             // Get form data
@@ -185,8 +185,30 @@ class OrdersController extends AppController
             $order->status = 'pending';
             $order->order_date = date('Y-m-d H:i:s');
 
+            $profileData = $orderData['profile'] ?? null;
+
+            if ($profileData) {
+                // Ensure that the user has a profile
+                if (empty($user->profile)) {
+                    $user->profile = $this->Orders->Users->Profiles->newEmptyEntity();
+                    $user->profile->user_id = $user->id;
+                }
+
+                // Patch the user entity with profile and address data
+                $user = $this->Orders->Users->patchEntity($user, ['profile' => $profileData], [
+                    'associated' => ['Profiles.Addresses'],
+                ]);
+
+                // Save the user along with profile and address
+                if (!$this->Orders->Users->save($user, ['associated' => ['Profiles.Addresses']])) {
+                    $this->Flash->error(__('Unable to save your address. Please correct the errors.'));
+
+                    return $this->redirect($this->referer());
+                }
+            }
+
             // Save the order along with associated order products
-            if ($this->Orders->save($order, ['associated' => ['OrdersProducts']])) {
+            if ($this->Orders->save($order, ['associated' => ['OrdersProducts', 'Users.Profiles.Addresses']])) {
                 $this->Flash->success(__('Order has been placed successfully.'));
 
                 return $this->redirect(['action' => 'index']);

@@ -456,12 +456,14 @@ $isLoggedIn = !empty($user_id);
               <div class="offcanvas-body h-n80" data-simplebar="" data-simplebar>
                 <ul id="sidebarnav">
                   <li class="sidebar-item">
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                      <span>
-                        <i class="ti ti-apps"></i>
-                      </span>
-                      <span class="hide-menu">Shop By Category</span>
-                    </a>
+                      <?= $this->Html->link(
+                          '<span>
+                                    <i class="ti ti-apps"></i>
+                              </span>
+                              <span class="hide-menu">Shop By Category</span>',
+                          ['controller' => 'Products', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                          ['class' => 'sidebar-link has-arrow', 'aria-expanded' => 'false', 'escape' => false]
+                      ); ?>
                     <ul aria-expanded="false" class="collapse first-level my-3">
                       <li class="sidebar-item py-2">
                         <a href="<?= $this->Url->build(['controller' => 'Products', 'action' => 'index', '?' => ['category' => 14], 'prefix' => null, 'plugin' => null]); ?>"
@@ -710,11 +712,14 @@ $isLoggedIn = !empty($user_id);
               <!-- ------------------------------- -->
               <li class="nav-item nav-icon-hover-bg rounded w-auto dropdown d-none d-lg-flex">
                 <div class="hover-dd">
-                  <a class="nav-link" href="javascript:void(0)">
-                      Shop By Category<span class="mt-1">
-                      <i class="ti ti-chevron-down fs-3"></i>
-                    </span>
-                  </a>
+                    <?= $this->Html->link(
+                        'Shop By Category
+                                <span class="mt-1">
+                                    <i class="ti ti-chevron-down fs-3"></i>
+                                </span>',
+                        ['controller' => 'Products', 'action' => 'index', 'prefix' => null, 'plugin' => null],
+                        ['class' => 'nav-link', 'escape' => false]
+                    ); ?>
                   <div class="dropdown-menu dropdown-menu-nav dropdown-menu-animate-up py-0">
                     <div class="row">
                       <div class="col-8">
