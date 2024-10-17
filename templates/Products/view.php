@@ -453,16 +453,21 @@
                         const response = JSON.parse(xhr.responseText);
                         if (response.success) {
                             // Update cart item count in navbar
-                            const cartItemCountElement = document.querySelector('.popup-badge');
-                            if (cartItemCountElement) {
-                                cartItemCountElement.textContent = response.cartItemCount;
+                            const cartItemCountElements = document.querySelectorAll('.popup-badge');
+                            if (cartItemCountElements.length > 0) {
+                                cartItemCountElements.forEach(function(badge) {
+                                    badge.textContent = response.cartItemCount;
+                                });
                             } else {
+                                console.log('Creating new badge');
                                 // Create badge if it doesn't exist
-                                const navLink = document.querySelector('.nav-link[data-bs-target="#offcanvasRight"]');
-                                const badge = document.createElement('span');
-                                badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
-                                badge.textContent = response.cartItemCount;
-                                navLink.appendChild(badge);
+                                const navLinks = document.querySelectorAll('.nav-link[data-bs-target="#offcanvasRight"]');
+                                navLinks.forEach(function(navLink) {
+                                    const badge = document.createElement('span');
+                                    badge.className = 'popup-badge rounded-pill bg-danger text-white fs-2';
+                                    badge.textContent = response.cartItemCount;
+                                    navLink.appendChild(badge);
+                                });
                             }
 
                             // Fetch updated cart sidebar content
