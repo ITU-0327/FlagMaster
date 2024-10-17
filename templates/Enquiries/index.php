@@ -103,30 +103,6 @@
                 <div class="chat-container h-100 w-100">
                     <div class="chat-box-inner-part h-100">
                         <div class="chatting-box app-email-chatting-box">
-                            <div class="p-9 py-3 border-bottom chat-meta-user">
-                                <ul class="list-unstyled mb-0 d-flex align-items-center">
-                                    <li class="d-lg-none d-block">
-                                        <a class="text-dark back-btn px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-arrow-left"></i>
-                                        </a>
-                                    </li>
-                                    <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Star">
-                                        <a class="text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-star"></i>
-                                        </a>
-                                    </li>
-                                    <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="important">
-                                        <a class="d-block text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-alert-circle"></i>
-                                        </a>
-                                    </li>
-                                    <li class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Delete">
-                                        <a class="text-dark px-2 fs-5 bg-hover-primary nav-icon-hover position-relative z-index-5" href="javascript:void(0)">
-                                            <i class="ti ti-trash"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                             <div class="position-relative overflow-hidden">
                                 <div class="position-relative">
                                     <div class="chat-box email-box mh-n100 p-9" data-simplebar="init">
@@ -210,24 +186,6 @@
                                         <?php else : ?>
                                             <p>No enquiries found.</p>
                                         <?php endif; ?>
-                                    </div>
-                                    <div class="px-9 py-3 border-top chat-send-message-footer">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <ul class="list-unstyled mb-0 d-flex align-items-center gap-7">
-                                                <li>
-                                                    <a class="text-dark bg-hover-primary d-flex align-items-center gap-1" href="javascript:void(0)">
-                                                        <i class="ti ti-arrow-back-up fs-5"></i>
-                                                        Reply
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="text-dark bg-hover-primary d-flex align-items-center gap-1" href="javascript:void(0)">
-                                                        <i class="ti ti-arrow-forward-up fs-5"></i>
-                                                        Forward
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
